@@ -13,6 +13,7 @@ Strictly enforces:
 
 import os
 import re
+import json
 import hashlib
 import logging
 from datetime import datetime
@@ -20,6 +21,7 @@ from collections import defaultdict, OrderedDict
 from dataclasses import dataclass
 from typing import List, Dict, Any, Tuple, Optional
 
+import pandas as pd
 import pdfplumber
 
 logger = logging.getLogger("farmer_advisor.ingest.ksamb_pdf")
@@ -450,4 +452,247 @@ def select_headline_series(
         secondary_rows.extend(sorted_items[1:])
 
     return headline_rows, secondary_rows
+
+
+def validate_and_filter_ksamb_rows(
+    rows: List[ParsedPdfRow],
+    quarantine_dir: str = "data/quarantine",
+    non_quintal_output_path: str = "data/processed/non_quintal_prices.parquet",
+    today_date_str: str = "2026-11-12",
+    crop_bounds_override: Optional[Dict[str, Tuple[float, float]]] = None
+) -> Tuple[List[ParsedPdfRow], List[ParsedPdfRow], List[Dict[str, Any]]]:
+    """Applies Step 6 & 7 validation, unit separation, and strict anomaly flagging.
+    
+    1. Keeps original units. Quintal rows move forward to panel validation.
+       Non-quintal rows (Numbers, Thousands) are saved to data/processed/non_quintal_prices.parquet.
+    2. Flags and quarantines without silently fixing:
+       (a) identical min/max/modal triples shared by >= 3 different crops in one market (e.g. Nanjangud, Yarahalli).
+       (b) min = max = modal for most rows (>50%) in a market (e.g. Kadur).
+       (c) price below Rs 100/qtl for crops normally trading above that (e.g. Kalaburagi radish 10/20/15).
+       (d) min <= modal <= max violations, non-positive modal, future dates, or bound violations.
+       
+    Returns:
+        (accepted_quintal_rows, non_quintal_rows, quarantined_records)
+    """
+    os.makedirs(quarantine_dir, exist_ok=True)
+    os.makedirs(os.path.dirname(non_quintal_output_path), exist_ok=True)
+
+    today = datetime.strptime(today_date_str, "%Y-%m-%d").date()
+
+    # Step 6: Separate quintal vs non-quintal
+    quintal_rows = []
+    non_quintal_rows = []
+
+    for r in rows:
+        if r.unit.lower() == "quintal":
+            quintal_rows.append(r)
+        else:
+            non_quintal_rows.append(r)
+
+    # Persist non-quintal rows to parquet
+    if non_quintal_rows:
+        df_non_qtl = pd.DataFrame([r.to_dict() for r in non_quintal_rows])
+        df_non_qtl.to_parquet(non_quintal_output_path, index=False)
+        logger.info(f"Saved {len(non_quintal_rows)} non-quintal records to {non_quintal_output_path}")
+
+    # Step 7: Anomaly detection on quintal rows
+    quarantined_records = []
+    quarantined_row_keys = set()  # set of (r.mandi, r.commodity, r.variety, r.grade)
+
+    # Pre-compute market-level stats
+    mandi_groups = defaultdict(list)
+    for r in quintal_rows:
+        mandi_groups[r.mandi].append(r)
+
+    # Check (b): min = max = modal for most rows (>50%) in a market (Kadur)
+    flat_market_names = set()
+    for mandi, m_rows in mandi_groups.items():
+        if len(m_rows) > 1:
+            flat_count = sum(1 for r in m_rows if r.min == r.max == r.modal)
+            if flat_count / len(m_rows) > 0.5:
+                flat_market_names.add(mandi)
+                pct = (flat_count / len(m_rows)) * 100.0
+                for r in m_rows:
+                    row_key = (r.mandi, r.commodity, r.variety, r.grade)
+                    quarantined_row_keys.add(row_key)
+                    quarantined_records.append({
+                        "raw_file": r.raw_file,
+                        "raw_page": r.raw_page,
+                        "raw_line": r.raw_line,
+                        "date": r.date,
+                        "mandi": r.mandi,
+                        "commodity": r.commodity,
+                        "variety": r.variety,
+                        "grade": r.grade,
+                        "min": r.min,
+                        "max": r.max,
+                        "modal": r.modal,
+                        "flag": "flag_b_flat_market",
+                        "rejection_reason": (
+                            f"Flag (b): Market-wide flat price anomaly: majority of rows ({flat_count}/{len(m_rows)}, "
+                            f"{pct:.1f}%) in {mandi} report min=max=modal without natural price variance."
+                        )
+                    })
+
+    # Check (a): identical min/max/modal triples shared by >= 3 different crops in one market
+    for mandi, m_rows in mandi_groups.items():
+        # skip markets already quarantined under (b) to avoid duplicate quarantine entries
+        if mandi in flat_market_names:
+            continue
+
+        triple_map = defaultdict(list)
+        for r in m_rows:
+            triple_map[(r.min, r.max, r.modal)].append(r)
+
+        for triple, t_rows in triple_map.items():
+            distinct_crops = sorted(list(set(r.commodity.lower().strip() for r in t_rows)))
+            if len(distinct_crops) >= 3:
+                for r in t_rows:
+                    row_key = (r.mandi, r.commodity, r.variety, r.grade)
+                    if row_key not in quarantined_row_keys:
+                        quarantined_row_keys.add(row_key)
+                        quarantined_records.append({
+                            "raw_file": r.raw_file,
+                            "raw_page": r.raw_page,
+                            "raw_line": r.raw_line,
+                            "date": r.date,
+                            "mandi": r.mandi,
+                            "commodity": r.commodity,
+                            "variety": r.variety,
+                            "grade": r.grade,
+                            "min": r.min,
+                            "max": r.max,
+                            "modal": r.modal,
+                            "flag": "flag_a_shared_triple",
+                            "rejection_reason": (
+                                f"Flag (a): Suspicious identical price triple (min={r.min}, max={r.max}, modal={r.modal}) "
+                                f"shared across {len(distinct_crops)} different commodities in {mandi}: {distinct_crops}."
+                            )
+                        })
+
+    # Check (c) and standard plausibility checks on remaining rows
+    accepted_quintal_rows = []
+    for r in quintal_rows:
+        row_key = (r.mandi, r.commodity, r.variety, r.grade)
+        if row_key in quarantined_row_keys:
+            continue
+
+        # Check (c): price below Rs 100/qtl for crops normally trading above that
+        # Field vegetables and cereals normally trade well above Rs 100/qtl
+        standard_crops = [
+            "radish", "raddish", "tomato", "onion", "potato", "carrot", "beetroot",
+            "beans", "brinjal", "cabbage", "cauliflower", "green chilly", "cucumber", "cucumbar"
+        ]
+        clean_comm = r.commodity.lower().strip()
+        if (r.modal < 100.0 or r.min < 100.0) and any(sc in clean_comm for sc in standard_crops):
+            quarantined_records.append({
+                "raw_file": r.raw_file,
+                "raw_page": r.raw_page,
+                "raw_line": r.raw_line,
+                "date": r.date,
+                "mandi": r.mandi,
+                "commodity": r.commodity,
+                "variety": r.variety,
+                "grade": r.grade,
+                "min": r.min,
+                "max": r.max,
+                "modal": r.modal,
+                "flag": "flag_c_below_100",
+                "rejection_reason": (
+                    f"Flag (c): Price below Rs 100/quintal floor for standard horticulture crop: "
+                    f"{r.commodity} in {r.mandi} reports min={r.min}, modal={r.modal}, max={r.max}."
+                )
+            })
+            continue
+
+        # Standard check 1: min <= modal <= max
+        if r.min > r.modal:
+            quarantined_records.append({
+                "raw_file": r.raw_file,
+                "raw_page": r.raw_page,
+                "raw_line": r.raw_line,
+                "date": r.date,
+                "mandi": r.mandi,
+                "commodity": r.commodity,
+                "variety": r.variety,
+                "grade": r.grade,
+                "min": r.min,
+                "max": r.max,
+                "modal": r.modal,
+                "flag": "min_greater_than_modal",
+                "rejection_reason": f"Plausibility failure: min_price ({r.min}) > modal_price ({r.modal})."
+            })
+            continue
+
+        if r.modal > r.max:
+            quarantined_records.append({
+                "raw_file": r.raw_file,
+                "raw_page": r.raw_page,
+                "raw_line": r.raw_line,
+                "date": r.date,
+                "mandi": r.mandi,
+                "commodity": r.commodity,
+                "variety": r.variety,
+                "grade": r.grade,
+                "min": r.min,
+                "max": r.max,
+                "modal": r.modal,
+                "flag": "modal_greater_than_max",
+                "rejection_reason": f"Plausibility failure: modal_price ({r.modal}) > max_price ({r.max})."
+            })
+            continue
+
+        if r.modal <= 0:
+            quarantined_records.append({
+                "raw_file": r.raw_file,
+                "raw_page": r.raw_page,
+                "raw_line": r.raw_line,
+                "date": r.date,
+                "mandi": r.mandi,
+                "commodity": r.commodity,
+                "variety": r.variety,
+                "grade": r.grade,
+                "min": r.min,
+                "max": r.max,
+                "modal": r.modal,
+                "flag": "non_positive_modal",
+                "rejection_reason": f"Modal price must be strictly positive, got {r.modal}."
+            })
+            continue
+
+        # Future date check
+        try:
+            r_date = datetime.strptime(r.date, "%Y-%m-%d").date()
+            if r_date > today:
+                quarantined_records.append({
+                    "raw_file": r.raw_file,
+                    "raw_page": r.raw_page,
+                    "raw_line": r.raw_line,
+                    "date": r.date,
+                    "mandi": r.mandi,
+                    "commodity": r.commodity,
+                    "variety": r.variety,
+                    "grade": r.grade,
+                    "min": r.min,
+                    "max": r.max,
+                    "modal": r.modal,
+                    "flag": "future_date",
+                    "rejection_reason": f"Date {r.date} is in the future relative to {today_date_str}."
+                })
+                continue
+        except ValueError:
+            pass
+
+        accepted_quintal_rows.append(r)
+
+    # Persist quarantine records to file
+    if quarantined_records:
+        ts_str = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+        q_path = os.path.join(quarantine_dir, f"quarantine_ksamb_pdf_{ts_str}.json")
+        with open(q_path, "w", encoding="utf-8") as f:
+            json.dump(quarantined_records, f, indent=2)
+        logger.warning(f"Quarantined {len(quarantined_records)} suspicious rows to {q_path}")
+
+    return accepted_quintal_rows, non_quintal_rows, quarantined_records
+
 
