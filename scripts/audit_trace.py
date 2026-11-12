@@ -46,6 +46,7 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
 
     # Check 2: File cache to prevent re-opening file for every single row
     file_lines_cache = {}
+    pdf_cache = {}
     mismatches = []
     verified_count = 0
 
@@ -60,6 +61,41 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
 
         if not os.path.exists(raw_file):
             mismatches.append(f"Row {idx}: Raw file does not exist: {raw_file}")
+            continue
+
+        # Branch for PDF files
+        if raw_file.lower().endswith(".pdf"):
+            import pdfplumber
+            if raw_file not in pdf_cache:
+                pdf_cache[raw_file] = pdfplumber.open(raw_file)
+            pdf_obj = pdf_cache[raw_file]
+            raw_page_no = int(row.get("raw_page", 1)) if "raw_page" in row and pd.notna(row["raw_page"]) else 1
+            if raw_page_no < 1 or raw_page_no > len(pdf_obj.pages):
+                mismatches.append(f"Row {idx}: Invalid page {raw_page_no} in PDF {raw_file}")
+                continue
+
+            page = pdf_obj.pages[raw_page_no - 1]
+            page_text = page.extract_text() or ""
+            page_lines = page_text.splitlines()
+
+            # Check crop in page text
+            if crop.lower() not in page_text.lower() and not any(part in page_text.lower() for part in crop.lower().split()):
+                mismatches.append(f"Row {idx} Page {raw_page_no}: Crop '{crop}' not in PDF page text")
+                continue
+
+            # Check modal price on page
+            matched_modal = False
+            if 1 <= raw_line_no <= len(page_lines):
+                if str(int(modal)) in page_lines[raw_line_no - 1]:
+                    matched_modal = True
+            if not matched_modal and str(int(modal)) in page_text:
+                matched_modal = True
+
+            if not matched_modal:
+                mismatches.append(f"Row {idx} Page {raw_page_no} Line {raw_line_no}: Modal {modal} not in PDF text")
+                continue
+
+            verified_count += 1
             continue
 
         if raw_file not in file_lines_cache:
