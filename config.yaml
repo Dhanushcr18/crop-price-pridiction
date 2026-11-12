@@ -17,6 +17,27 @@ paths:
   models_dir: "models"
   reports_dir: "reports"
 
+# Headline Price Series Selection Rule
+# ASSUMPTION:
+# In multi-variety/grade wholesale market reports (e.g. KSAMB), multiple series are reported for the same crop and mandi on the same date.
+# We keep variety and grade as distinct separate series and NEVER sum or average arrivals across varieties (e.g. Bengaluru repeats 10,823 arrivals across 3 onion rows).
+# To select a single "headline" price series per mandi and crop for farmer advisory:
+# 1. Primary Filter: Filter for the most representative commercial grade, prioritizing 'Medium' or 'Average' or 'FAQ' standard wholesale grades over niche/extreme grades ('Small', 'Non FAQ').
+# 2. Tie-breaker by Variety: Prioritize the standard commercial variety ('Local', or matching crop name) over specialized cultivars ('Bangalore Small', etc.).
+# 3. Tie-breaker by Arrivals: Pick the variety with highest arrival volume.
+# 4. Tie-breaker by Modal Price: If still tied, select the median modal price among candidates.
+# This rule is explicitly tagged as an Assumption and preserved in metadata.
+headline_price_selection:
+  rule_name: "representative_commercial_variety"
+  is_assumption: true
+  assumption_label: "ASSUMPTION: Headline price series selects representative commercial grade (Medium/Average) and standard variety with highest arrival volume; arrivals are never summed across varieties."
+  preferred_grades: ["Medium", "Average", "FAQ", "Large", "Small", "Non FAQ"]
+  preferred_varieties:
+    onion: ["Local", "Onion", "Puna", "Pusa-Red", "Other", "Bangalore Small"]
+    potato: ["Local", "Potato", "Puna", "Other"]
+    tomato: ["Local", "Tomato", "Hybrid", "Other"]
+  arrival_tiebreaker: "max_arrivals"
+
 # Mandi Locations and Geocodes
 mandis:
   "Bengaluru (Yeshwanthpur)":

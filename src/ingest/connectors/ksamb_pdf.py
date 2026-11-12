@@ -399,3 +399,55 @@ class KsambPdfImporter:
                 f"Successfully parsed {len(all_rows)} rows across {len(headers_a)} markets from {rel_path} for date {resolved_date}."
             )
             return all_rows
+
+
+def select_headline_series(
+    rows: List[ParsedPdfRow],
+    config: Optional[Dict[str, Any]] = None
+) -> Tuple[List[ParsedPdfRow], List[ParsedPdfRow]]:
+    """Separates full variety/grade series from headline series using rule in config.yaml.
+    
+    Assumption:
+        Arrivals are NEVER summed or averaged across varieties (Bengaluru repeats 10,823 on 3 onion rows).
+        The headline series selects the representative commercial grade and standard variety with max arrivals.
+        
+    Returns:
+        (headline_rows, non_headline_rows)
+    """
+    cfg = config or {}
+    hl_cfg = cfg.get("headline_price_selection", {})
+    preferred_grades = hl_cfg.get("preferred_grades", ["Medium", "Average", "FAQ", "Large", "Small", "Non FAQ"])
+    preferred_varieties_map = hl_cfg.get("preferred_varieties", {})
+
+    grade_rank = {g.lower(): i for i, g in enumerate(preferred_grades)}
+
+    # Group by (date, mandi, commodity)
+    grouped = defaultdict(list)
+    for r in rows:
+        key = (r.date, r.mandi.lower().strip(), r.commodity.lower().strip())
+        grouped[key].append(r)
+
+    headline_rows = []
+    secondary_rows = []
+
+    for key, items in grouped.items():
+        if len(items) == 1:
+            headline_rows.append(items[0])
+            continue
+
+        crop = key[2]
+        var_prefs = [v.lower() for v in preferred_varieties_map.get(crop, ["local", crop, "other"])]
+        var_rank = {v: i for i, v in enumerate(var_prefs)}
+
+        def sort_key(item: ParsedPdfRow):
+            g_score = grade_rank.get(item.grade.lower(), 99)
+            v_score = var_rank.get(item.variety.lower(), 99)
+            arr_score = -float(item.arrivals)
+            return (g_score, v_score, arr_score)
+
+        sorted_items = sorted(items, key=sort_key)
+        headline_rows.append(sorted_items[0])
+        secondary_rows.extend(sorted_items[1:])
+
+    return headline_rows, secondary_rows
+
