@@ -8,6 +8,7 @@ from src.ingest.connectors.raita_mitra import RaitaMitraConnector
 from src.ingest.connectors.enam import ENAMConnector
 from src.ingest.connectors.open_meteo import OpenMeteoConnector
 from src.ingest.connectors.ppac_diesel import PPACDieselConnector
+from src.ingest.connectors.user_download import UserDownloadConnector, UserDownloadImporter
 
 CONNECTOR_MAP: Dict[str, Type[BaseConnector]] = {
     "data_gov_in": DataGovConnector,
@@ -17,6 +18,7 @@ CONNECTOR_MAP: Dict[str, Type[BaseConnector]] = {
     "weather_open_meteo": OpenMeteoConnector,
     "weather_nasa_power": OpenMeteoConnector,
     "diesel_ppac": PPACDieselConnector,
+    "user_download": UserDownloadConnector,
 }
 
 
