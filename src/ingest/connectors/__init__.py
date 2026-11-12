@@ -9,6 +9,7 @@ from src.ingest.connectors.enam import ENAMConnector
 from src.ingest.connectors.open_meteo import OpenMeteoConnector
 from src.ingest.connectors.ppac_diesel import PPACDieselConnector
 from src.ingest.connectors.user_download import UserDownloadConnector, UserDownloadImporter
+from src.ingest.connectors.ksamb_pdf import KsambPdfImporter, ParsedPdfRow, DateGateError, CompletenessError
 
 CONNECTOR_MAP: Dict[str, Type[BaseConnector]] = {
     "data_gov_in": DataGovConnector,
