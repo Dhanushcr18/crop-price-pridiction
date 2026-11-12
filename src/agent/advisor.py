@@ -304,8 +304,17 @@ def synthesize_advice_multilingual(
     top_mandis_res = tool_rank_mandis(farmer_location, quantity_quintals, horizon_days=7)
     hold_res = tool_hold_vs_sell(farmer_location, quantity_quintals, storage_type, has_trader_debt)
     
-    mandi1 = top_mandis_res["top_3_mandis"][0]
-    best_k = hold_res["best_k_days"]
+    cand_mandis = top_mandis_res.get("top_3_mandis", [])
+    if not cand_mandis:
+        if language.lower() in ["kannada", "kn"]:
+            return f"**ರೈತ ಮಾರಾಟ ಸಲಹೆಗಾರ**: {farmer_location} ಮಾರುಕಟ್ಟೆಗೆ ನೈಜ ಬೆಲೆ ಲಭ್ಯವಿಲ್ಲ (ಮಾಹಿತಿ ಅಲಭ್ಯ). ಅಂತಿಮ ನಿರ್ಧಾರ ರೈತರದ್ದು."
+        elif language.lower() in ["hindi", "hi"]:
+            return f"**किसान बिक्री सलाहकार**: {farmer_location} मंडी के लिए वास्तविक भाव उपलब्ध नहीं है। अंतिम निर्णय किसान का होगा।"
+        else:
+            return f"**Farmer Sell Advisor**: No verified market data available for {farmer_location}. The farmer makes the final decision."
+
+    mandi1 = cand_mandis[0]
+    best_k = hold_res.get("best_k_days", 0)
 
     if language.lower() in ["kannada", "kn"]:
         text = (

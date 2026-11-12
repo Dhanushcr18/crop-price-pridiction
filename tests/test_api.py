@@ -156,12 +156,20 @@ def test_input_validation_negative_quantity():
 
 
 def test_no_price_returned_when_karnataka_panel_is_empty():
-    """Ensure Karnataka mandis return None/not_available when panel has no Karnataka rows."""
-    for mandi in ["Kolar", "Chikkaballapur", "Bengaluru (Yeshwanthpur)"]:
+    """Ensure mandis without onion report not_available, and mandis without trained models report empty horizons."""
+    for mandi in ["Kolar", "Chikkaballapur"]:
         response = client.get(f"/api/forecast?mandi={mandi}")
         assert response.status_code == 200
         data = response.json()
         assert data.get("spot_price_today") is None
-        assert data.get("status") in ["not_available", "no_trained_models"]
+        assert data.get("status") == "not_available"
+
+    # Bengaluru has real observed onion spot price today, but no trained models (Tier C)
+    res_blr = client.get("/api/forecast?mandi=Bengaluru (Yeshwanthpur)")
+    assert res_blr.status_code == 200
+    blr_data = res_blr.json()
+    assert blr_data.get("spot_price_today") == 3500.0
+    assert blr_data.get("status") == "no_trained_models"
+    assert blr_data.get("horizons") == []
 
 

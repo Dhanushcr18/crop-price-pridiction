@@ -1,7 +1,7 @@
 """Where-to-sell optimizer: ranks nearby mandis by net realized return accounting for transport, fees, and shrinkage."""
 
 import yaml
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 import numpy as np
 
 
@@ -12,15 +12,25 @@ def load_config(config_path: str = "config.yaml") -> dict:
 
 
 def compute_mandi_net_price(
-    gross_price: float,
+    gross_price: Optional[float],
     distance_km: float,
     quantity_quintals: float,
     config: dict
-) -> Dict[str, float]:
+) -> Dict[str, Any]:
     """
     Computes net realized price per quintal for a specific mandi:
     net_price = gross_price - transport_cost - mandi_fees_commissions - transit_shrinkage
     """
+    if gross_price is None:
+        return {
+            "gross_price": None,
+            "distance_km": round(distance_km, 1),
+            "transport_cost": None,
+            "fees_and_commission": None,
+            "transit_shrinkage": None,
+            "net_price": None
+        }
+
     c = config["costs"]
     rate_km_qtl = c.get("transport_rate_per_km_quintal", 3.5)
     min_base = c.get("min_trip_freight_base", 300.0)
@@ -119,13 +129,17 @@ def rank_mandis_for_sale(
             local_net_p50 = p50_res["net_price"]
             local_net_p10 = p10_res["net_price"]
 
-    # Fallback if local not identified
-    if local_net_p50 is None and results:
-        local_net_p50 = min(r["net_price_p50"] for r in results)
-        local_net_p10 = min(r["net_price_p10"] for r in results)
+    # Fallback if local not identified or local has no price
+    valid_results = [r for r in results if r["net_price_p50"] is not None]
+    if not valid_results:
+        return []
+
+    if local_net_p50 is None:
+        local_net_p50 = min(r["net_price_p50"] for r in valid_results)
+        local_net_p10 = min(r["net_price_p10"] for r in valid_results)
 
     # Second pass: compute gain over local mandi and rank
-    for item in results:
+    for item in valid_results:
         gain_per_qtl = round(item["net_price_p50"] - local_net_p50, 2)
         gain_p10_per_qtl = round(item["net_price_p10"] - local_net_p10, 2)
         total_gain = round(gain_per_qtl * quantity_quintals, 2)
@@ -135,7 +149,7 @@ def rank_mandis_for_sale(
         item["total_gain_rs"] = total_gain
 
     # Rank descending by expected net price (P50)
-    ranked = sorted(results, key=lambda x: x["net_price_p50"], reverse=True)
+    ranked = sorted(valid_results, key=lambda x: x["net_price_p50"], reverse=True)
     return ranked[:3]
 
 

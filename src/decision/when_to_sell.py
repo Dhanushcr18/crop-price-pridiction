@@ -73,6 +73,24 @@ def simulate_hold_vs_sell(
     else:
         annual_rate = 0.0
 
+    # Horizon 0: Sell today
+    if price_today is None or price_today <= 0:
+        return {
+            "price_today": None,
+            "best_k_days": 0,
+            "max_expected_gain_per_qtl": 0.0,
+            "horizon_results": {
+                0: {
+                    "k_days": 0,
+                    "expected_gain_per_qtl": 0.0,
+                    "p10_gain_per_qtl": 0.0,
+                    "p90_gain_per_qtl": 0.0,
+                    "total_expected_gain": 0.0,
+                    "prob_wait_beats_today_pct": 0.0
+                }
+            }
+        }
+
     daily_interest_cost = price_today * (annual_rate / 365.0)
 
     horizon_results = {}

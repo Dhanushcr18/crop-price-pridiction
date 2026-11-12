@@ -16,6 +16,7 @@ import re
 import json
 import hashlib
 import logging
+import warnings
 from datetime import datetime
 from collections import defaultdict, OrderedDict
 from dataclasses import dataclass
@@ -136,9 +137,9 @@ def resolve_report_date(explicit_date: Optional[str], file_path: str, stray_date
 
     # Warn if resolved date differs from stray date found in PDF text
     if stray_date and date_val != stray_date:
-        logger.warning(
-            f"Date Warning: Configured/filename report date '{date_val}' differs from stray date found in PDF text: '{stray_date}'."
-        )
+        msg = f"Date Warning: Configured/filename report date '{date_val}' differs from stray date found in PDF text: '{stray_date}'."
+        logger.warning(msg)
+        warnings.warn(msg, UserWarning)
 
     return date_val
 
@@ -639,6 +640,25 @@ def validate_and_filter_ksamb_rows(
                 "modal": r.modal,
                 "flag": "modal_greater_than_max",
                 "rejection_reason": f"Plausibility failure: modal_price ({r.modal}) > max_price ({r.max})."
+            })
+            continue
+
+        # Strict check: reject suspicious synthesized 0.9/1.1 ratio
+        if r.modal > 0 and round(r.min, 2) == round(0.9 * r.modal, 2) and round(r.max, 2) == round(1.1 * r.modal, 2):
+            quarantined_records.append({
+                "raw_file": r.raw_file,
+                "raw_page": r.raw_page,
+                "raw_line": r.raw_line,
+                "date": r.date,
+                "mandi": r.mandi,
+                "commodity": r.commodity,
+                "variety": r.variety,
+                "grade": r.grade,
+                "min": r.min,
+                "max": r.max,
+                "modal": r.modal,
+                "flag": "synthesized_min_max_ratio",
+                "rejection_reason": f"Suspicious synthesized 0.9/1.1 min/max ratio: min={r.min}, modal={r.modal}, max={r.max}."
             })
             continue
 

@@ -151,17 +151,30 @@ class AdvisorService:
         if cache_key in self.forecast_cache:
             return self.forecast_cache[cache_key]
 
-        # Find latest spot price for mandi
+        # Find latest spot price for mandi and specified crop (default onion)
         spot_price = None
         if self.latest_panel_rows is not None and not self.latest_panel_rows.empty:
             mandi_clean = mandi.lower().strip()
+            crop_clean = "onion"
             match = self.latest_panel_rows[
-                (self.latest_panel_rows["mandi"].str.lower() == mandi_clean) |
-                (self.latest_panel_rows["mandi"].str.lower() == f"{mandi_clean} apmc") |
-                (self.latest_panel_rows["mandi"].str.lower() == f"{mandi_clean} market")
+                (self.latest_panel_rows["crop"].str.lower() == crop_clean) &
+                ((self.latest_panel_rows["mandi"].str.lower() == mandi_clean) |
+                 (self.latest_panel_rows["mandi"].str.lower() == f"{mandi_clean} apmc") |
+                 (self.latest_panel_rows["mandi"].str.lower() == f"{mandi_clean} market") |
+                 (self.latest_panel_rows["mandi"].str.lower().str.startswith(mandi_clean)))
             ]
             if not match.empty:
-                spot_price = float(match["modal_price"].values[0])
+                # If multiple varieties exist (like Bengaluru Onion), apply headline rule:
+                # Prefer representative commercial grade (Medium/Average), then highest arrivals
+                preferred_grades = ["medium", "average", "faq", "large", "small"]
+                grade_rank = {g: i for i, g in enumerate(preferred_grades)}
+                match_sorted = match.copy()
+                if "grade" in match_sorted.columns:
+                    match_sorted["g_rank"] = match_sorted["grade"].str.lower().map(lambda g: grade_rank.get(g, 99))
+                else:
+                    match_sorted["g_rank"] = 99
+                match_sorted = match_sorted.sort_values(by=["g_rank", "arrivals"], ascending=[True, False])
+                spot_price = float(match_sorted["modal_price"].values[0])
 
         # If no real spot price exists for this mandi in the panel
         if spot_price is None:
@@ -363,6 +376,8 @@ class AdvisorService:
                 "price_today": None,
                 "recommendation": "Not available",
                 "recommended_horizon_days": 0,
+                "best_k_days": 0,
+                "max_expected_gain_per_qtl": 0.0,
                 "confidence": "Low",
                 "message": "Not available: No real price data exists for this mandi in the panel.",
                 "horizons": [],
@@ -499,7 +514,7 @@ class AdvisorService:
             }
 
         top_mandi = ranked_mandis[0]
-        best_k = when_res["best_k_days"]
+        best_k = when_res.get("best_k_days", 0)
         p10_p90 = f"Rs {top_mandi['gross_price_p10']:,.0f} to Rs {top_mandi['gross_price_p90']:,.0f}"
 
         # Generate summary sentence
