@@ -13,12 +13,12 @@ On 12 November 2026, an official KSAMB Commoditywise Daily Market Report PDF (`C
 
 - **Total Markets in Document**: 115 markets (100% completeness verified across dual independent parsing engines).
 - **Total Parsed Rows**: 752 raw rows.
-  - **Accepted Quintal Rows**: 608 rows (across 99 active mandis and 96 distinct agricultural commodities).
+  - **Accepted Quintal Rows**: 605 rows (across 99 active mandis and 96 distinct agricultural commodities).
   - **Non-Quintal Series**: 27 rows (Numbers, Thousands) safely stored outside the quintal panel in `data/processed/non_quintal_prices.parquet`.
-  - **Quarantined Rows**: 117 rows flagged for anomalies and quarantined in `data/quarantine/` with diagnostic logs.
+  - **Quarantined Rows**: 120 rows flagged for anomalies and quarantined in `data/quarantine/` with diagnostic logs.
 - **National Baseline Rows**: 16,240 rows from date `2026-11-03`.
-- **Total Rows in `panel.parquet`**: **16,848 rows**.
-- **Audit-Trace Status**: **100% PASSED** (`python scripts/audit_trace.py` verified all 16,848 rows against exact raw file lines and PDF pages).
+- **Total Rows in `panel.parquet`**: **16,845 rows**.
+- **Audit-Trace Status**: **100% PASSED** (`python scripts/audit_trace.py` verified all 16,845 rows against exact raw file lines and PDF pages).
 
 ---
 
@@ -84,12 +84,14 @@ In accordance with Step 5 instructions:
 
 ---
 
-## 5. Summary of Quarantined Anomalies (117 Rows)
+## 5. Summary of Quarantined Anomalies (120 Rows)
 
-The 117 flagged rows were excluded from `panel.parquet` and stored in `data/quarantine/` with diagnostic tags:
+The 120 flagged rows were excluded from `panel.parquet` and stored in `data/quarantine/` with diagnostic tags:
 1. **Flag (a) Shared Identical Triples across $\ge 3$ crops** (44 rows):
    - Examples: Nanjangud (`min=3700, max=4666, modal=4166` shared by Radish, Potato, Tomato); Gowribidnur (`1500/2500/2000` shared by Bottle Gourd, Tomato, Potato, Cauliflower).
 2. **Flag (b) Flat Price Markets** (72 rows):
    - Examples: Kadur (9 of 15 rows reported `min == max == modal`, such as `2776/2776/2776` across Ladies Finger, Potato, Onion); Belur (6 of 7 rows flat); Yarahalli (100% of rows flat).
 3. **Flag (c) Sub-₹100 Floor Violation** (1 row):
    - Kalaburagi: Radish reported at `min=10, max=20, modal=15` (likely per-bunch/kg reported as quintal).
+4. **Flag (d) Coincidental / Synthesized 0.9 / 1.1 Min/Max Ratio** (3 rows):
+   - Binny Mill: Cabbage (`900/1000/1100`), Green Avare (`3600/4000/4400`), Tomato (`1350/1500/1650`).
