@@ -1,0 +1,13 @@
+{
+  "source_id": "weather_open_meteo",
+  "url": "https://api.open-meteo.com/v1/forecast?latitude=13.4355&longitude=77.7315&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia%2FKolkata&start_date=2026-10-13&end_date=2026-11-12",
+  "fetched_at": "2026-11-12T15:31:15",
+  "raw_hash": "4bcd904dd51024096b02a57fd99d2959daef2f44c82e9e7706e0d77f1f3b0bb3",
+  "bytes": 1258,
+  "content_type": "application/json",
+  "metadata": {
+    "mandi": "Chikkaballapur",
+    "lat": 13.4355,
+    "lon": 77.7315
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "version": "2.0.0",
+  "last_updated": "2026-11-12",
+  "status": "no_trained_models",
+  "message": "No trained model yet. Real continuous Tier A history is strictly required before model training.",
+  "crops": {},
+  "models": {}
+}

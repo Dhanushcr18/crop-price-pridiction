@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface":"#201b17","on-surface-variant":"#40493d","outline-variant":"#bfcaba","primary-fixed-dim":"#88d982","error-container":"#ffdad6","surface-bright":"#fff8f5","error":"#ba1a1a","surface-container":"#f7ece5","inverse-primary":"#88d982","surface-container-low":"#fdf1eb","on-tertiary-fixed":"#2f1400","on-tertiary-fixed-variant":"#6f3800","tertiary-container":"#a95900","surface-container-lowest":"#ffffff","inverse-on-surface":"#faefe8","on-primary-container":"#cbffc2","on-secondary-fixed":"#002117","on-primary-fixed-variant":"#005312","on-error":"#ffffff","on-background":"#201b17","surface-variant":"#ebe0da","tertiary-fixed-dim":"#ffb780","inverse-surface":"#352f2b","primary-container":"#2e7d32","on-secondary-fixed-variant":"#1d4f40","surface-tint":"#1b6d24","primary":"#0d631b","surface":"#fff8f5","on-secondary-container":"#3d6d5d","surface-dim":"#e3d8d1","on-secondary":"#ffffff","on-error-container":"#93000a","background":"#fff8f5","on-tertiary-container":"#ffefe5","secondary":"#376757","secondary-fixed":"#baeed9","tertiary-fixed":"#ffdcc4","secondary-fixed-dim":"#9ed1bd","tertiary":"#854500","primary-fixed":"#a3f69c","outline":"#707a6c","on-tertiary":"#ffffff","surface-container-highest":"#ebe0da","secondary-container":"#baeed9","surface-container-high":"#f1e6df","on-primary-fixed":"#002204","on-primary":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xs":"0.25rem","space-md":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","space-lg":"1.5rem","gutter":"1.5rem","gutter-sm":"1rem","margin-sm":"1rem","margin":"2rem"},"fontFamily":{"headline-lg":["Inter"],"tabular-metric":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"headline-sm":["Inter"],"body-lg":["Inter"],"label-md":["Inter"],"label-lg":["Inter"],"display-lg":["Inter"],"body-md":["Inter"]},"fontSize":{"headline-lg":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.01em","fontWeight":"700"}],"tabular-metric":["1.75rem",{"lineHeight":"2rem","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.25rem","fontWeight":"400"}],"headline-md":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["1.25rem",{"lineHeight":"1.75rem","fontWeight":"600"}],"body-lg":["1.125rem",{"lineHeight":"1.75rem","fontWeight":"400"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.04em","fontWeight":"600"}],"label-lg":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0.02em","fontWeight":"600"}],"display-lg":["3rem",{"lineHeight":"3.5rem","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.5rem","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-60 bg-surface-container-low z-50 flex flex-col pt-24 pb-4 px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="mb-space-md px-space-xs"><span class="font-label-md text-label-md text-outline tracking-wider uppercase">Advice &gt; Crop Area</span></div><nav class="flex-1 flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="enter-acreage" href="#"><span class="material-symbols-outlined text-[20px]">edit</span><span class="font-label-lg text-label-lg">Enter Acreage</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="supply-outlook" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">Supply Outlook</span></a><a class="flex items-center justify-between px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="officer-review" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Officer / FPO Review</span></div><span class="bg-secondary text-on-secondary px-space-xs py-0.5 rounded-full font-label-md text-label-md leading-none">Staff</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-sm transition-colors min-h-[48px] bg-primary-container text-on-primary font-bold rounded-lg" data-path="sources-methods" href="#"><span class="material-symbols-outlined text-[20px]">menu_book</span><span class="font-label-lg text-label-lg">Sources &amp; Methods</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="help-history" href="#"><span class="material-symbols-outlined text-[20px]">history</span><span class="font-label-lg text-label-lg">Help &amp; History</span></a></nav><div class="my-space-md p-space-sm bg-surface-container-lowest rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><label class="block font-label-md text-label-md text-on-surface-variant uppercase mb-space-xs font-semibold">Interactive Test Scenarios</label><select class="w-full bg-surface-container-high text-on-surface font-body-sm text-body-sm rounded p-space-xs focus:outline-none"><option value="normal">Normal Scenario</option><option value="coverage">&lt;5% Coverage</option><option value="missing">Missing Official</option><option value="stale">Stale Data</option></select></div><div class="p-space-sm bg-surface-container rounded-lg"><p class="font-label-md text-label-md text-on-surface-variant leading-tight">Kiosk Assisted Mode - Optimized for 1-metre shared reading between farmer &amp; helper.</p></div></aside><div class="pl-60"><header class="fixed top-0 left-0 right-0 z-40 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-error text-on-error py-1 px-space-md text-center font-label-md text-label-md tracking-wide font-bold uppercase select-none">SYNTHETIC DATA — NOT FOR REAL FINANCIAL OR FARMING DECISIONS (RESEARCH DEMO)</div><div class="h-20 w-full px-space-md flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container"><span class="material-symbols-outlined text-[26px]">eco</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Farmer Sell Advisor</span><span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-space-xs py-0.5 rounded font-bold">KARNATAKA</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-none mt-0.5">Crop Area &amp; Supply Outlook • Kharif &amp; Rabi Onion</p></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-full"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-md text-label-md text-on-surface font-medium">Live Kiosk Connected (Mysuru KVK Kiosk #04)</span></div></div><div class="flex items-center gap-space-sm"><div class="flex items-center bg-surface-container rounded-lg p-0.5"><button class="px-space-sm py-1 rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-semibold shadow-[0_1px_8px_rgba(0,0,0,0.04)]" type="button">English</button><button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">ಕನ್ನಡ</button><button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">हिन्दी</button></div><button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Toggle color mode" type="button"><span class="material-symbols-outlined text-[22px]">dark_mode</span></button><button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-xs rounded-lg font-label-lg text-label-lg min-h-[48px] hover:bg-primary-container transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">person_add</span><span>New Farmer</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-28 pb-space-xl bg-background min-h-screen"><div class="max-w-7xl mx-auto px-gutter"><div class="flex flex-col w-full gap-space-lg">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Institutional Governance &amp; Audit Trail</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Data Sources, Accuracy Limits &amp; Calculation Methodology</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl">Complete transparency on how crop area, supply signals, and price projections are calculated for Karnataka onion farming clusters.</p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto shrink-0">
+<div class="px-space-md py-space-sm bg-surface-container-high rounded-lg text-left">
+<span class="block font-label-md text-label-md text-on-surface-variant uppercase">Kiosk Readability Standard</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">visibility</span> 1-Metre Distance Verified
+        </span>
+</div>
+<button class="h-12 px-space-md bg-surface-container rounded-lg font-label-lg text-label-lg text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-space-xs shadow-sm" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[20px]">print</span>
+<span>Print Protocol</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-md mb-space-lg bg-surface-container-low -mx-space-lg -mt-space-lg p-space-lg rounded-t-xl">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-on-surface flex items-center justify-center text-surface">
+<span class="material-symbols-outlined text-[28px]">balance</span>
+</div>
+<div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-outline font-bold">Foundational Integrity Policy</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">The Principle of Data Separation</h2>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-md py-space-xs rounded-full">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-ping"></span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Strict Zero-Contamination Boundary</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg items-stretch">
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[220px]">account_balance</span>
+</div>
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-[#1B4D3E] text-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">account_balance</span> Official Government Stream
+            </span>
+<span class="font-label-md text-label-md text-on-surface-variant font-bold">STATE &amp; NATIONAL</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Official Statutory Estimates</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Legally sanctioned data pipelines used exclusively for macro-level supply projections and regional production targets.</p>
+</div>
+<div class="space-y-space-sm pt-space-xs">
+<div class="flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary text-[22px] shrink-0 mt-0.5">verified_user</span>
+<div>
+<strong class="font-label-lg text-label-lg text-on-surface block">Primary Source Authority</strong>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sourced exclusively from Directorate of Economics &amp; Statistics (DES) and Ministry of Agriculture &amp; Farmers Welfare (MoA&amp;FW).</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary text-[22px] shrink-0 mt-0.5">public</span>
+<div>
+<strong class="font-label-lg text-label-lg text-on-surface block">Scope of Deployment</strong>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Applied exclusively for statewide outlooks, taluk sowing targets, and wholesale arrival expectations.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary text-[22px] shrink-0 mt-0.5">event_repeat</span>
+<div>
+<strong class="font-label-lg text-label-lg text-on-surface block">Publication Rhythm</strong>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Fixed seasonal milestones (1st, 2nd, 3rd Advance Estimates &amp; monthly sowing bulletins).</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container rounded-lg p-space-sm">
+<p class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px] text-primary">lock</span> System Constraint: Official records are never overwritten by farmer inputs.
+          </p>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[220px]">groups</span>
+</div>
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded bg-[#B25E00] text-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">groups</span> Village Ground Truth
+            </span>
+<span class="font-label-md text-label-md text-on-surface-variant font-bold">LOCAL CLUSTER ONLY</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Farmer-Reported Ground Records</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Crowdsourced acreage voluntarily declared at village kiosks, FPO aggregation centers, and extension visits.</p>
+</div>
+<div class="space-y-space-sm pt-space-xs">
+<div class="flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[22px] shrink-0 mt-0.5">pin_drop</span>
+<div>
+<strong class="font-label-lg text-label-lg text-on-surface block">Field Ingestion Mechanism</strong>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Entered via KVK touchscreens and FPO field facilitator devices with GPS verified cluster tags.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[22px] shrink-0 mt-0.5">compress</span>
+<div>
+<strong class="font-label-lg text-label-lg text-on-surface block">Boundary of Application</strong>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Confined strictly to village panchayat ground checks and local micro-market gluts.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[22px] shrink-0 mt-0.5">do_not_disturb_on</span>
+<div>
+<strong class="font-label-lg text-label-lg text-on-surface block">Mathematical Isolation Rule</strong>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Never blown up or extrapolated to state, national, or foreign trade volume computations.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container rounded-lg p-space-sm">
+<p class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px] text-tertiary">shield</span> Privacy Guarantee: Farmer identities are masked; only aggregated acreage is displayed.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-xs">
+<div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-outline font-bold">Catalog of Ingestion Feeds</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Official Datasets Directory</h2>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Refreshed continuously against statutory APIs</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-bold">Karnataka State</span>
+<span class="flex items-center gap-1 text-primary font-label-md text-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-primary"></span> ACTIVE
+            </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">Karnataka Directorate of Economics &amp; Statistics (DES)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cadastral-level sowing progress reported across 31 revenue districts. Formats include weekly crop coverage reports and moisture indices.</p>
+</div>
+<div class="mt-space-lg pt-space-sm space-y-space-xs bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Update Cycle:</span>
+<span class="font-semibold text-on-surface">Monthly (Sowing Season)</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Latest Record Date:</span>
+<span class="font-semibold text-on-surface">28 July 2024</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Verification Hash:</span>
+<span class="font-label-md text-label-md text-primary font-mono font-bold">DES-KA-2024-K04</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-bold">Union Ministry</span>
+<span class="flex items-center gap-1 text-primary font-label-md text-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-primary"></span> VERIFIED
+            </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">MoA&amp;FW Advance Estimates (First Round)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">National production benchmarks and pan-India onion acreage estimates compiled by the Ministry of Agriculture &amp; Farmers Welfare.</p>
+</div>
+<div class="mt-space-lg pt-space-sm space-y-space-xs bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Release Model:</span>
+<span class="font-semibold text-on-surface">Seasonal Milestones</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Official Release Date:</span>
+<span class="font-semibold text-on-surface">14 August 2024</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Data Scope:</span>
+<span class="font-label-md text-label-md text-primary font-bold">National Onion Belt</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface font-label-md text-label-md font-bold">Market Feed</span>
+<span class="flex items-center gap-1 text-primary font-label-md text-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-primary"></span> DAILY LIVE
+            </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold leading-tight">Agmarknet / e-NAM Market Modal Prices</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time daily mandi arrivals and modal prices across Mysuru, Bengaluru (Yeshwanthpur), Hubballi, and Lasalgaon benchmarks.</p>
+</div>
+<div class="mt-space-lg pt-space-sm space-y-space-xs bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Feed Latency:</span>
+<span class="font-semibold text-on-surface">Daily (Closing Bells)</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Monitored Yards:</span>
+<span class="font-semibold text-on-surface">4 Key Mandis + 14 Sub-yards</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Modal Accuracy:</span>
+<span class="font-label-md text-label-md text-primary font-bold">± ₹35/Quintal</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl p-space-lg shadow-md space-y-space-md">
+<div class="flex items-center gap-space-sm pb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">calculate</span>
+</div>
+<div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-outline font-bold">Mathematical Rigor &amp; Constraints</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Assumptions &amp; Model Parameters</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold uppercase">Assumption 1</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface font-label-md text-label-md">Phenology</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Sowing-to-Harvest Delay</h4>
+<div class="flex items-baseline gap-2">
+<span class="font-tabular-metric text-tabular-metric text-on-surface">90 – 105</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">days for Kharif red onion</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Maturity curves track standard bulb sizing after transplanting. Extreme rainfall anomalies shift expected arrivals into mandis by +7 to +14 calendar days.
+          </p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold uppercase">Assumption 2</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface font-label-md text-label-md">Yield Baseline</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">District Productivity Norm</h4>
+<div class="flex items-baseline gap-2">
+<span class="font-tabular-metric text-tabular-metric text-on-surface">12.5</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">tonnes / hectare</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Derived directly from ICAR-Directorate of Onion and Garlic Research (ICAR-DOGR) 5-year rolling yield data across southern plateau agro-climatic zones.
+          </p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-tertiary font-bold uppercase">Limit 3</span>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-md text-label-md">Safety Threshold</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Crowdsource Statistical Gate</h4>
+<div class="flex items-baseline gap-2 text-error">
+<span class="font-tabular-metric text-tabular-metric">&lt; 30 Farmers</span>
+<span class="font-body-sm text-body-sm text-error">or &lt; 5% Acreage Coverage</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            If village reporting falls below this threshold, the algorithm classifies data as unstable and flags the banner: <strong class="text-on-surface font-semibold">“Too few reports to trust”</strong>.
+          </p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary font-bold uppercase">Principle 4</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface font-label-md text-label-md">Econometric Engine</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Price Elasticity Modeling</h4>
+<div class="flex items-baseline gap-2">
+<span class="font-tabular-metric text-tabular-metric text-on-surface">Historical APMC</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">arrival-price elasticity</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Price forecasts are derived from historical arrival elasticities at regional APMCs. Individual farm declarations never directly influence price predictions.
+          </p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 space-y-space-md">
+<div class="bg-surface-container-high rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-[28px]">gavel</span>
+<span class="font-headline-sm text-headline-sm font-bold">Plain-Language Disclaimer</span>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm">
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold leading-snug">
+            “This is advice, the decision is yours.”
+          </p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+            Projections are generated from aggregate statistics, weather projections, and statutory reports. Local field microclimates, pest pressures, and transit realities may alter real farm outcomes.
+          </p>
+</div>
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+<span>No personal data stored without farmer authorization</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+<span>Audited quarterly by KVK Agronomists Council</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md space-y-space-md">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-[28px]">support_agent</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold">Assistance &amp; Field Support</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Direct liaison for farmers &amp; extension staff</span>
+</div>
+</div>
+<div class="space-y-space-sm">
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<span class="block font-label-md text-label-md text-on-surface-variant uppercase font-semibold">Toll-Free Agricultural Support</span>
+<div class="flex items-center justify-between mt-1">
+<span class="font-tabular-metric text-tabular-metric text-primary">1800-425-3553</span>
+<span class="px-space-xs py-0.5 rounded bg-primary-container text-on-primary font-label-md text-label-md font-bold">24 / 7 FREE</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Kannada, Hindi, English operator options available</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-space-xs">
+<span class="block font-label-md text-label-md text-on-surface-variant uppercase font-semibold">On-Ground Extension Desk</span>
+<p class="font-body-md text-body-md text-on-surface font-semibold">ICAR-KVK Mysuru Suttur Campus</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Specialist: Dr. S. Mallikarjun (Horticulture Discipline)</p>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<a class="min-h-[48px] px-space-md bg-secondary text-on-secondary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-1 hover:opacity-90 transition-opacity" href="tel:08212572566">
+<span class="material-symbols-outlined text-[18px]">call</span> Call KVK Desk
+              </a>
+<button class="min-h-[48px] px-space-md bg-surface-container text-on-surface rounded-lg font-label-lg text-label-lg hover:bg-surface-container-high transition-colors" type="button">
+                FAQ Guide
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">code</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Model Version 2.4.1-KA (Release August 2024)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Mathematical equations, data normalization matrices, and coefficient weights are maintained as open agronomic research under Indian Council of Agricultural Research guidelines.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="font-label-md text-label-md text-outline font-mono">SHA-256: 7b88...e391</span>
+<button class="h-12 px-space-md bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-primary-container transition-colors flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download Audit Spec (PDF)</span>
+</button>
+</div>
+</div>
+</div></div></main></div></body></html>

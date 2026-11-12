@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Sell Advisor - Crop Area & Supply Outlook</title>
+  <!-- Tailwind CSS CDN with plugins -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter, Noto Sans Kannada, Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            fsa: {
+              cream: '#FAF7F0',
+              creamDark: '#141412',
+              surfaceLight: '#FFFFFF',
+              surfaceDark: '#21211E',
+              borderLight: '#E8E3D7',
+              borderDark: '#33322E',
+              textMainLight: '#211C18',
+              textMainDark: '#F7F4EE',
+              textMutedLight: '#6B6258',
+              textMutedDark: '#A39B91',
+              green: '#2E7D32',
+              greenHover: '#236327',
+              greenLight: '#E8F5E9',
+              greenDark: '#123D15',
+              official: '#1B4D3E',
+              officialBg: '#EAF3EF',
+              officialBgDark: '#0D2921',
+              officialBorder: '#A3C9BC',
+              reported: '#B25E00',
+              reportedBg: '#FFF7EB',
+              reportedBgDark: '#3A1E02',
+              reportedBorder: '#F2D099',
+              turmeric: '#E65100',
+              turmericBg: '#FFF3E0',
+              terracotta: '#C62828',
+              terracottaBg: '#FFEBEE',
+              amberBadge: '#F59E0B'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Kannada', 'Noto Sans Devanagari', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Tabular numbers for clear 1-metre kiosk reading */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Custom focus outline for high accessibility */
+    button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
+      outline: 3px solid #2E7D32;
+      outline-offset: 2px;
+    }
+    /* Hide scrollbars gracefully for clean tablet/desktop view */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-fsa-cream text-fsa-textMainLight dark:bg-fsa-creamDark dark:text-fsa-textMainDark min-h-screen flex flex-col font-sans transition-colors duration-150 antialiased selection:bg-fsa-greenLight selection:text-fsa-green">
+
+  <!-- TOP LEVEL: NON-DISMISSIBLE SYNTHETIC DATA BANNER -->
+  <div id="syntheticBanner" class="bg-fsa-terracotta text-white px-4 py-2 text-center text-sm font-bold tracking-wider flex items-center justify-center gap-2 border-b-2 border-red-800 shadow-sm" role="alert">
+    <i data-lucide="alert-triangle" class="w-5 h-5 flex-shrink-0"></i>
+    <span id="txt-synthetic-banner">SYNTHETIC DATA — NOT FOR REAL FINANCIAL OR FARMING DECISIONS (RESEARCH DEMO)</span>
+  </div>
+
+  <!-- PERSISTENT TOP APP BAR -->
+  <header class="bg-white dark:bg-fsa-surfaceDark border-b border-fsa-borderLight dark:border-fsa-borderDark sticky top-0 z-40 px-6 py-3 shadow-xs">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Brand & Mode Title -->
+      <div class="flex items-center gap-4">
+        <a href="javascript:void(0)" onclick="navigateTo('screen-entry')" class="flex items-center gap-3 group focus:ring-2 focus:ring-fsa-green rounded-lg p-1">
+          <div class="w-11 h-11 rounded-xl bg-fsa-green flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+            <i data-lucide="sprout" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-xl tracking-tight text-fsa-textMainLight dark:text-fsa-textMainDark">Farmer Sell Advisor</span>
+              <span class="bg-fsa-greenLight dark:bg-fsa-greenDark text-fsa-green dark:text-emerald-300 text-xs px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Karnataka</span>
+            </div>
+            <p id="txt-module-subtitle" class="text-xs text-fsa-textMutedLight dark:text-fsa-textMutedDark font-medium">Crop Area & Supply Outlook • Kharif & Rabi Onion</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center System Status indicator -->
+      <div class="hidden lg:flex items-center gap-2 text-sm bg-stone-100 dark:bg-stone-800/80 px-3 py-1.5 rounded-full border border-fsa-borderLight dark:border-fsa-borderDark">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-xs font-semibold text-stone-700 dark:text-stone-300">Live Kiosk Connected (Mysuru KVK Kiosk #04)</span>
+      </div>
+
+      <!-- Right Controls: Language, Mode, Reset Kiosk -->
+      <div class="flex items-center gap-3">
+        <!-- Language Switcher (Strict: No language mixing) -->
+        <div class="flex items-center bg-stone-100 dark:bg-stone-800 p-1 rounded-xl border border-fsa-borderLight dark:border-fsa-borderDark text-sm font-semibold">
+          <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-lg transition-all text-xs sm:text-sm bg-white dark:bg-stone-700 shadow-xs text-fsa-green dark:text-emerald-400 font-bold">English</button>
+          <button onclick="setLanguage('kn')" id="lang-btn-kn" class="px-2.5 py-1 rounded-lg transition-all text-xs sm:text-sm text-stone-600 dark:text-stone-300 hover:text-fsa-green">ಕನ್ನಡ</button>
+          <button onclick="setLanguage('hi')" id="lang-btn-hi" class="px-2.5 py-1 rounded-lg transition-all text-xs sm:text-sm text-stone-600 dark:text-stone-300 hover:text-fsa-green">हिन्दी</button>
+        </div>
+
+        <!-- Dark / Light Toggle -->
+        <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl border border-fsa-borderLight dark:border-fsa-borderDark bg-stone-50 dark:bg-stone-800 text-stone-600 dark:text-stone-200 hover:bg-stone-100 transition-colors" title="Toggle Theme" aria-label="Toggle Dark Mode">
+          <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+        </button>
+
+        <!-- Kiosk Shared Session Reset Button (Enforces safe farmer turnover) -->
+        <button onclick="resetKioskSession()" class="flex items-center gap-2 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:hover:bg-amber-900/50 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200 px-3.5 py-2 rounded-xl text-sm font-bold transition-all shadow-xs" title="Clear current entries and start new farmer session">
+          <i data-lucide="user-plus" class="w-4 h-4 text-amber-700 dark:text-amber-400"></i>
+          <span id="txt-start-new-farmer">New Farmer</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER (Sidebar + Canvas Area) -->
+  <div class="flex-1 max-w-[1440px] w-full mx-auto flex flex-col md:flex-row">
+    
+    <!-- LEFT SIDEBAR NAVIGATION (Collapsible on kiosk/tablet) -->
+    <aside class="w-full md:w-64 bg-white/70 dark:bg-fsa-surfaceDark/70 backdrop-blur-md border-r border-fsa-borderLight dark:border-fsa-borderDark p-4 flex flex-col justify-between shrink-0">
+      <div class="space-y-6">
+        <!-- Breadcrumb / Section context -->
+        <div class="px-2 py-1 text-xs uppercase tracking-wider text-fsa-textMutedLight dark:text-fsa-textMutedDark font-bold flex items-center gap-1.5">
+          <span>Advice</span> <i data-lucide="chevron-right" class="w-3 h-3"></i> <span class="text-fsa-green">Crop Area</span>
+        </div>
+
+        <nav class="space-y-1.5">
+          <button onclick="navigateTo('screen-entry')" id="nav-btn-entry" class="w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-bold text-sm text-left transition-all bg-fsa-green text-white shadow-sm">
+            <i data-lucide="edit-3" class="w-5 h-5"></i>
+            <span id="txt-nav-entry">Enter Acreage</span>
+          </button>
+          
+          <button onclick="navigateTo('screen-results')" id="nav-btn-results" class="w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-semibold text-sm text-left transition-all text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800">
+            <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+            <span id="txt-nav-results">Supply Outlook</span>
+            <span id="resultsReadyBadge" class="ml-auto bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded-md hidden">LIVE</span>
+          </button>
+
+          <button onclick="navigateTo('screen-officer')" id="nav-btn-officer" class="w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-semibold text-sm text-left transition-all text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800">
+            <i data-lucide="shield-check" class="w-5 h-5 text-fsa-reported"></i>
+            <span id="txt-nav-officer">Officer / FPO Review</span>
+            <span class="ml-auto bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 text-[10px] font-bold px-1.5 py-0.5 rounded-md">Staff</span>
+          </button>
+
+          <button onclick="navigateTo('screen-methodology')" id="nav-btn-methodology" class="w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-semibold text-sm text-left transition-all text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800">
+            <i data-lucide="book-open" class="w-5 h-5"></i>
+            <span id="txt-nav-sources">Sources & Methods</span>
+          </button>
+
+          <button onclick="navigateTo('screen-feedback')" id="nav-btn-feedback" class="w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-semibold text-sm text-left transition-all text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800">
+            <i data-lucide="message-square" class="w-5 h-5"></i>
+            <span id="txt-nav-feedback">Help & History</span>
+          </button>
+        </nav>
+
+        <!-- Quick State Demonstration Switcher for Evaluators -->
+        <div class="p-3 bg-stone-100 dark:bg-stone-800/90 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-stone-500 dark:text-stone-400">Interactive Test Scenarios</span>
+            <i data-lucide="sliders" class="w-3.5 h-3.5 text-stone-400"></i>
+          </div>
+          <select id="scenarioSelector" onchange="applyTestScenario(this.value)" class="w-full text-xs font-semibold p-2 rounded-lg bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 text-stone-800 dark:text-stone-200">
+            <option value="normal">Scenario A: Normal (Mysuru Kharif, 42 Reports)</option>
+            <option value="few-reports">Scenario B: Low Farmer Reports (&lt;30 or &lt;5%)</option>
+            <option value="missing-official">Scenario C: Official State Data Missing</option>
+            <option value="stale-data">Scenario D: Stale Data Warning (60+ days)</option>
+            <option value="high-supply">Scenario E: Extreme High Supply Outlook</option>
+          </select>
+          <p class="text-[10px] text-stone-500 leading-tight">Instant preview of all hard edge cases mandated by research guidelines.</p>
+        </div>
+      </div>
+
+      <!-- Kiosk Helper Footer Note -->
+      <div class="pt-4 border-t border-fsa-borderLight dark:border-fsa-borderDark text-xs text-fsa-textMutedLight dark:text-fsa-textMutedDark">
+        <p class="font-semibold text-stone-800 dark:text-stone-200">Kiosk Assisted Mode</p>
+        <p class="text-[11px] mt-0.5">Optimized for 1-metre shared reading between farmer & helper.</p>
+      </div>
+    </aside>
+
+    <!-- MAIN INTERACTIVE CANVAS -->
+    <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 1: ENTRY & LIVE CONTEXT (1440px Primary Layout)                   -->
+      <!-- ========================================================================= -->
+      <section id="screen-entry" class="space-y-6">
+        
+        <!-- Screen Title & Audio Guidance -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h1 id="txt-entry-heading" class="text-3xl font-extrabold tracking-tight text-fsa-textMainLight dark:text-fsa-textMainDark">
+              Enter District Onion Acreage
+            </h1>
+            <p id="txt-entry-subheading" class="text-fsa-textMutedLight dark:text-fsa-textMutedDark text-base mt-1 font-medium">
+              Step 1 of 2: Report your planting details to view local and statewide supply outlook.
+            </p>
+          </div>
+          <!-- Read Aloud Voice Button for Accessibility -->
+          <button onclick="simulateAudioRead('txt-entry-heading')" class="self-start sm:self-auto flex items-center gap-2 px-4 py-2.5 rounded-xl border border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold text-sm hover:bg-emerald-100 transition-colors shadow-xs">
+            <i data-lucide="volume-2" class="w-5 h-5 text-emerald-600 dark:text-emerald-400"></i>
+            <span id="txt-read-aloud">Read Out Loud (ಧ್ವನಿ ಓದು)</span>
+          </button>
+        </div>
+
+        <!-- 2-COLUMN LAYOUT: 5/12 Form + 7/12 Live Preview & Context Map -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- LEFT FORM CARD (5/12 columns) -->
+          <div class="lg:col-span-5 bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 sm:p-7 border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-6">
+            
+            <!-- STEP 1: District Picker -->
+            <div class="space-y-2">
+              <label for="districtSelect" class="flex items-center justify-between font-bold text-base text-fsa-textMainLight dark:text-fsa-textMainDark">
+                <span class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-fsa-green text-white text-xs flex items-center justify-center font-extrabold">1</span>
+                  <span id="txt-label-district">Select District</span>
+                </span>
+                <span class="text-xs font-semibold text-fsa-green">Karnataka State</span>
+              </label>
+              
+              <div class="relative">
+                <select id="districtSelect" onchange="handleDistrictChange(this.value)" class="w-full text-lg font-semibold py-3.5 pl-4 pr-10 rounded-2xl border-2 border-stone-300 dark:border-stone-600 bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-stone-100 focus:border-fsa-green appearance-none transition-colors">
+                  <option value="Mysuru" selected>Mysuru (ಮೈಸೂರು)</option>
+                  <option value="Chitradurga">Chitradurga (ಚಿತ್ರದುರ್ಗ)</option>
+                  <option value="Dharwad">Dharwad (ಧಾರವಾಡ)</option>
+                  <option value="Bagalkote">Bagalkote (ಬಾಗಲಕೋಟೆ)</option>
+                  <option value="Gadag">Gadag (ಗದಗ)</option>
+                  <option value="Vijayapura">Vijayapura (ವಿಜಯಪುರ)</option>
+                </select>
+                <i data-lucide="chevron-down" class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-stone-500 pointer-events-none"></i>
+              </div>
+              <p class="text-xs text-fsa-textMutedLight dark:text-fsa-textMutedDark">Covers taluks: Hunsur, Nanjangud, Periyapatna, T. Narasipura.</p>
+            </div>
+
+            <!-- STEP 2: Season & Year Selector -->
+            <div class="space-y-2.5">
+              <label class="flex items-center justify-between font-bold text-base text-fsa-textMainLight dark:text-fsa-textMainDark">
+                <span class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-fsa-green text-white text-xs flex items-center justify-center font-extrabold">2</span>
+                  <span id="txt-label-season">Season & Year</span>
+                </span>
+                <span class="text-xs font-bold text-stone-500">2024–25</span>
+              </label>
+
+              <!-- Season Segmented Control (Large touch targets) -->
+              <div class="grid grid-cols-3 gap-2 p-1.5 bg-stone-100 dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800">
+                <button type="button" onclick="setSeason('Kharif')" id="btn-season-kharif" class="py-2.5 text-center text-sm font-bold rounded-xl bg-fsa-green text-white shadow-xs transition-all">
+                  Kharif (ಮುಂಗಾರು)
+                </button>
+                <button type="button" onclick="setSeason('Late Kharif')" id="btn-season-late" class="py-2.5 text-center text-sm font-semibold rounded-xl text-stone-600 dark:text-stone-300 hover:bg-white/60 dark:hover:bg-stone-800 transition-all">
+                  Late Kharif
+                </button>
+                <button type="button" onclick="setSeason('Rabi')" id="btn-season-rabi" class="py-2.5 text-center text-sm font-semibold rounded-xl text-stone-600 dark:text-stone-300 hover:bg-white/60 dark:hover:bg-stone-800 transition-all">
+                  Rabi (ಹಿಂಗಾರು)
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 3: Acres Input Field + Stepper + Quick Chips -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <label for="acresInput" class="flex items-center gap-2 font-bold text-base text-fsa-textMainLight dark:text-fsa-textMainDark">
+                  <span class="w-6 h-6 rounded-full bg-fsa-green text-white text-xs flex items-center justify-center font-extrabold">3</span>
+                  <span id="txt-label-acres">Onion Acreage Grown</span>
+                </label>
+                <!-- Voice Input Mic simulation -->
+                <button type="button" onclick="simulateVoiceInput()" class="flex items-center gap-1.5 text-xs font-bold text-fsa-green dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1 rounded-lg border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100">
+                  <i data-lucide="mic" class="w-3.5 h-3.5 text-red-500 animate-pulse"></i>
+                  <span>Speak Value</span>
+                </button>
+              </div>
+
+              <!-- Big Numeric Input with Stepper -->
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="stepAcres(-5)" class="w-14 h-14 rounded-2xl border-2 border-stone-300 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-2xl font-bold flex items-center justify-center hover:bg-stone-200 active:scale-95 transition-transform" aria-label="Decrease acres by 5">
+                  -
+                </button>
+                <div class="relative flex-1">
+                  <input type="number" id="acresInput" value="50" min="1" max="500" oninput="updateAcresConversion(this.value)" class="w-full text-center text-3xl font-extrabold py-2.5 px-4 rounded-2xl border-2 border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900 text-stone-900 dark:text-white tabular-nums focus:border-fsa-green" />
+                  <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-stone-400">Acres</span>
+                </div>
+                <button type="button" onclick="stepAcres(5)" class="w-14 h-14 rounded-2xl border-2 border-stone-300 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-2xl font-bold flex items-center justify-center hover:bg-stone-200 active:scale-95 transition-transform" aria-label="Increase acres by 5">
+                  +
+                </button>
+              </div>
+
+              <!-- Quick Select Acre Chips (5, 10, 25, 50, 100) -->
+              <div class="flex items-center gap-2 flex-wrap pt-1">
+                <span class="text-xs font-semibold text-stone-500 mr-1">Quick:</span>
+                <button type="button" onclick="setAcres(5)" class="px-3 py-1.5 rounded-xl border border-stone-300 dark:border-stone-700 text-xs font-bold hover:border-fsa-green bg-stone-50 dark:bg-stone-800 text-stone-700 dark:text-stone-300">5 ac</button>
+                <button type="button" onclick="setAcres(10)" class="px-3 py-1.5 rounded-xl border border-stone-300 dark:border-stone-700 text-xs font-bold hover:border-fsa-green bg-stone-50 dark:bg-stone-800 text-stone-700 dark:text-stone-300">10 ac</button>
+                <button type="button" onclick="setAcres(25)" class="px-3 py-1.5 rounded-xl border border-stone-300 dark:border-stone-700 text-xs font-bold hover:border-fsa-green bg-stone-50 dark:bg-stone-800 text-stone-700 dark:text-stone-300">25 ac</button>
+                <button type="button" onclick="setAcres(50)" class="px-3 py-1.5 rounded-xl border-2 border-fsa-green text-xs font-bold bg-fsa-greenLight dark:bg-fsa-greenDark text-fsa-green dark:text-emerald-300">50 ac</button>
+                <button type="button" onclick="setAcres(100)" class="px-3 py-1.5 rounded-xl border border-stone-300 dark:border-stone-700 text-xs font-bold hover:border-fsa-green bg-stone-50 dark:bg-stone-800 text-stone-700 dark:text-stone-300">100 ac</button>
+              </div>
+
+              <!-- Live Automatic Conversion Pill -->
+              <div class="p-3 bg-stone-100 dark:bg-stone-800/80 rounded-2xl flex items-center justify-between text-sm font-semibold border border-stone-200 dark:border-stone-700">
+                <span class="text-stone-600 dark:text-stone-300 flex items-center gap-1.5">
+                  <i data-lucide="scale" class="w-4 h-4 text-stone-500"></i>
+                  <span>Metric Equivalent:</span>
+                </span>
+                <span id="txt-metric-conversion" class="text-fsa-green dark:text-emerald-400 font-extrabold tabular-nums">50 Acres = 20.23 Hectares (ಗುಂಟೆ: 2,000)</span>
+              </div>
+            </div>
+
+            <!-- HARD RULE DISCLOSURE (Non-negotiable) -->
+            <div class="p-3.5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/70 flex items-start gap-3">
+              <i data-lucide="info" class="w-5 h-5 text-amber-700 dark:text-amber-400 shrink-0 mt-0.5"></i>
+              <p id="txt-farmer-entry-note" class="text-xs text-amber-900 dark:text-amber-200 font-medium leading-relaxed">
+                <strong>Your entry helps local reports. It does not change the price outlook.</strong> State and national supply projections are strictly derived from verified official government statistics.
+              </p>
+            </div>
+
+            <!-- PRIMARY SUBMIT ACTION BUTTON (Minimum 48px touch target) -->
+            <button type="button" onclick="submitAcreageForm()" class="w-full py-4 px-6 rounded-2xl bg-fsa-green hover:bg-fsa-greenHover text-white font-extrabold text-lg flex items-center justify-center gap-3 shadow-md hover:shadow-lg active:scale-[0.99] transition-all">
+              <span id="txt-btn-show-outlook">Show Area & Supply Outlook</span>
+              <i data-lucide="arrow-right" class="w-6 h-6"></i>
+            </button>
+          </div>
+
+          <!-- RIGHT COLUMN: LIVE CONTEXT PANEL & KARNATAKA MAP (7/12 columns) -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Live District Preview Card -->
+            <div class="bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm">
+              <div class="flex items-center justify-between pb-4 border-b border-fsa-borderLight dark:border-fsa-borderDark">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-fsa-officialBg dark:bg-fsa-officialBgDark text-fsa-official dark:text-emerald-400 flex items-center justify-center">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <h2 class="text-lg font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+                      <span id="previewDistrictName">Mysuru District Context</span>
+                      <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Kharif 2024</span>
+                    </h2>
+                    <p class="text-xs text-stone-500">Live baseline before entering reports</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold text-stone-500 uppercase tracking-wider block">Official Baseline</span>
+                  <span class="text-sm font-extrabold text-fsa-official dark:text-emerald-400">DES Karnataka (Jul 2024)</span>
+                </div>
+              </div>
+
+              <!-- Quick 3 Stat Tiles inside Preview -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-5">
+                <div class="p-4 rounded-2xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+                  <span class="text-xs font-bold text-stone-500 block">Last Year District Area</span>
+                  <p class="text-2xl font-extrabold text-stone-900 dark:text-stone-100 tabular-nums mt-1">42,500 <span class="text-xs font-medium text-stone-500">acres</span></p>
+                  <span class="text-[11px] text-stone-500 mt-1 block">17,200 hectares</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+                  <span class="text-xs font-bold text-stone-500 block">District Normal (5-yr)</span>
+                  <p class="text-2xl font-extrabold text-stone-900 dark:text-stone-100 tabular-nums mt-1">38,100 <span class="text-xs font-medium text-stone-500">acres</span></p>
+                  <span class="text-[11px] text-emerald-600 font-bold mt-1 block">Expected sowing window</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/80">
+                  <span class="text-xs font-bold text-amber-800 dark:text-amber-300 block">Farmer Reports Received</span>
+                  <p class="text-2xl font-extrabold text-amber-900 dark:text-amber-200 tabular-nums mt-1">42 <span class="text-xs font-medium">farmers</span></p>
+                  <span class="text-[11px] text-amber-700 dark:text-amber-400 font-bold mt-1 block">Coverage: 7.2% (Trustworthy)</span>
+                </div>
+              </div>
+
+              <!-- Karnataka Stylized District Map Visualization (SVG with highlights) -->
+              <div class="rounded-2xl bg-stone-100 dark:bg-stone-900 p-4 border border-stone-200 dark:border-stone-800 relative overflow-hidden">
+                <div class="flex items-center justify-between text-xs font-bold text-stone-600 dark:text-stone-300 mb-2">
+                  <span>Karnataka Onion Producing Belts (ಕರ್ನಾಟಕ ನೀರುಳ್ಳಿ ವಲಯಗಳು)</span>
+                  <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-fsa-green"></span> Selected: Mysuru</span>
+                </div>
+
+                <!-- Custom SVG stylized district map of Karnataka with agricultural clusters -->
+                <svg viewBox="0 0 600 320" class="w-full h-56 rounded-xl bg-emerald-950/5 dark:bg-stone-950 border border-stone-200 dark:border-stone-800">
+                  <!-- State outline silhouette -->
+                  <path d="M 180,30 L 290,20 L 370,40 L 410,90 L 360,160 L 380,240 L 310,290 L 230,300 L 190,260 L 160,190 L 170,120 Z" fill="#E2E8F0" class="dark:fill-stone-800 stroke-stone-300 dark:stroke-stone-700" stroke-width="2" />
+                  
+                  <!-- Northern Onion Belt (Bagalkote, Vijayapura, Gadag) -->
+                  <polygon points="270,50 330,55 350,100 290,110 260,80" fill="#93C5FD" class="dark:fill-sky-950 cursor-pointer hover:opacity-80" stroke="#3B82F6" stroke-width="1.5">
+                    <title>Bagalkote & Vijayapura Belt</title>
+                  </polygon>
+                  <text x="270" y="85" font-size="11" font-weight="bold" fill="#1E3A8A" class="dark:fill-sky-300">North Cluster (Bagalkote)</text>
+
+                  <!-- Central Onion Belt (Chitradurga, Davanagere) -->
+                  <polygon points="260,120 330,125 340,170 270,175 240,140" fill="#BBF7D0" class="dark:fill-emerald-950 cursor-pointer hover:opacity-80" stroke="#22C55E" stroke-width="1.5">
+                    <title>Chitradurga & Central Belt</title>
+                  </polygon>
+                  <text x="250" y="150" font-size="11" font-weight="bold" fill="#14532D" class="dark:fill-emerald-300">Central Cluster (Chitradurga)</text>
+
+                  <!-- Southern Belt (Mysuru - Highlighted) -->
+                  <polygon id="svgDistrictMysuru" points="240,210 310,215 315,265 250,270 220,240" fill="#15803D" class="cursor-pointer animate-pulse" stroke="#2E7D32" stroke-width="3">
+                    <title>Mysuru District - Active Focus</title>
+                  </polygon>
+                  <!-- Mysuru pin marker -->
+                  <circle cx="270" cy="240" r="7" fill="#FBBF24" stroke="#78350F" stroke-width="2" />
+                  <text x="285" y="244" font-size="13" font-weight="900" fill="#15803D" class="dark:fill-emerald-400">★ MYSURU (Active: 50 ac entered)</text>
+
+                  <!-- Compass & Legend -->
+                  <g transform="translate(430, 20)">
+                    <rect width="150" height="95" rx="10" fill="white" class="dark:fill-stone-900" stroke="#CBD5E1" stroke-width="1" />
+                    <text x="12" y="22" font-size="10" font-weight="bold" fill="#64748B">MAP LEGEND</text>
+                    <circle cx="20" cy="40" r="5" fill="#15803D" />
+                    <text x="32" y="44" font-size="10" font-weight="600" fill="#334155" class="dark:fill-stone-300">Active Selection</text>
+                    <circle cx="20" cy="60" r="5" fill="#BBF7D0" stroke="#22C55E" />
+                    <text x="32" y="64" font-size="10" font-weight="600" fill="#334155" class="dark:fill-stone-300">Major Sowing Zones</text>
+                    <circle cx="20" cy="80" r="5" fill="#FBBF24" />
+                    <text x="32" y="84" font-size="10" font-weight="600" fill="#334155" class="dark:fill-stone-300">FPO Kiosk Presence</text>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Duplicate Check Safety Warning Badge (Simulated state) -->
+              <div id="duplicateEntryNotice" class="hidden mt-4 p-3 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-300 dark:border-sky-800 flex items-center justify-between text-xs">
+                <span class="text-sky-900 dark:text-sky-200 font-medium">
+                  <strong>Notice:</strong> An entry of 50 acres for Mysuru was recorded 2 hours ago from this terminal.
+                </span>
+                <button class="text-xs font-bold text-sky-800 dark:text-sky-300 underline ml-2">Update Existing Record</button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 2: RESULTS & SYNTHESIS (The Main Screen)                          -->
+      <!-- ========================================================================= -->
+      <section id="screen-results" class="hidden space-y-7">
+        
+        <!-- Breadcrumbs & Quick Return -->
+        <div class="flex items-center justify-between">
+          <button onclick="navigateTo('screen-entry')" class="flex items-center gap-2 text-sm font-bold text-fsa-green dark:text-emerald-400 hover:underline">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span id="txt-edit-entry">Edit My Entry (ನನ್ನ ನಮೂದು ಬದಲಿಸಿ)</span>
+          </button>
+          
+          <!-- Share & Print Toolbar -->
+          <div class="flex items-center gap-2">
+            <button onclick="simulateWhatsAppShare()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-colors">
+              <i data-lucide="share-2" class="w-4 h-4"></i>
+              <span>Share WhatsApp (ವಾಟ್ಸಾಪ್)</span>
+            </button>
+            <button onclick="window.print()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-bold text-xs hover:bg-stone-50 transition-colors">
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>Print / PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- a. EXECUTIVE SUMMARY BANNER (Answer First) -->
+        <div class="p-6 rounded-3xl bg-emerald-900 text-white shadow-md relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6 border-l-8 border-emerald-400">
+          <div class="space-y-2 max-w-3xl">
+            <div class="flex items-center gap-2.5">
+              <span class="bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                Summary Signal
+              </span>
+              <span class="text-xs text-emerald-200">Kharif 2024–25 Outlook</span>
+            </div>
+            <h2 id="txt-summary-banner-title" class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug">
+              Mysuru: You reported 50 acres. Karnataka onion area is 18% higher than the 5-year average.
+            </h2>
+            <p id="txt-summary-banner-desc" class="text-sm text-emerald-100 font-medium leading-relaxed">
+              Official government releases confirm higher planted acreage statewide (3.8 lakh acres vs 3.2 lakh normal). Supply looks higher than usual; higher planted area has historically been accompanied by moderated wholesale prices.
+            </p>
+          </div>
+
+          <!-- Confidence Badge & Audio Read -->
+          <div class="flex flex-row md:flex-col items-center md:items-end gap-3 shrink-0">
+            <div class="bg-emerald-950/80 border border-emerald-700/60 px-4 py-2.5 rounded-2xl text-center shadow-inner">
+              <span class="text-[11px] font-bold text-emerald-300 uppercase tracking-wider block">Outlook Confidence</span>
+              <span class="text-lg font-extrabold text-emerald-100 flex items-center justify-center gap-1.5 mt-0.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span id="badge-confidence-text">High (84%)</span>
+              </span>
+            </div>
+
+            <button onclick="simulateAudioRead('txt-summary-banner-title')" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors">
+              <i data-lucide="volume-2" class="w-4 h-4 text-emerald-300"></i>
+              <span>Listen Summary</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STALE / CAUTION BANNER (Toggled by test scenario) -->
+        <div id="staleDataWarning" class="hidden p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/50 border border-amber-300 dark:border-amber-700 flex items-center gap-3 text-amber-900 dark:text-amber-200 text-sm">
+          <i data-lucide="clock" class="w-5 h-5 text-amber-700 dark:text-amber-400 shrink-0"></i>
+          <div>
+            <strong>Notice: Official dataset published 62 days ago.</strong> Updated sowing figures from the Directorate of Economics & Statistics expected by next Tuesday.
+          </div>
+        </div>
+
+        <!-- b. THREE AREA CARDS (District | Karnataka | India) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- CARD 1: DISTRICT CARD (Contains nested Reported-by-Farmers strip) -->
+          <div class="bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 border-2 border-stone-200 dark:border-stone-700 shadow-sm flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Local Jurisdiction</span>
+                  <h3 class="text-2xl font-black text-stone-900 dark:text-stone-100">Mysuru District</h3>
+                </div>
+                <!-- Supply Badge -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-300 dark:border-amber-700">
+                  <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                  <span>Higher (+12%)</span>
+                </span>
+              </div>
+
+              <!-- Big Area Display -->
+              <div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-4xl font-black text-stone-950 dark:text-white tabular-nums">42,500</span>
+                  <span class="text-lg font-bold text-stone-600 dark:text-stone-400">Acres</span>
+                </div>
+                <div class="text-sm font-semibold text-stone-500 mt-0.5">
+                  17,200 Hectares • 5-Yr Avg: 38,100 Acres
+                </div>
+              </div>
+
+              <!-- Official Source Tag -->
+              <div class="flex items-center gap-2 p-2 rounded-xl bg-fsa-officialBg dark:bg-fsa-officialBgDark text-fsa-official dark:text-emerald-300 text-xs font-bold border border-fsa-officialBorder dark:border-emerald-800">
+                <i data-lucide="file-check-2" class="w-4 h-4 shrink-0"></i>
+                <span class="truncate">DES Karnataka • Published 18 Jul 2024</span>
+              </div>
+            </div>
+
+            <!-- c. NESTED REPORTED-BY-FARMERS PANEL (Strict visual separation with Turmeric tone) -->
+            <div class="mt-6 pt-5 border-t-2 border-dashed border-stone-200 dark:border-stone-700 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-fsa-reportedBg dark:bg-fsa-reportedBgDark text-fsa-reported dark:text-amber-400 border border-fsa-reportedBorder dark:border-amber-700">
+                  <i data-lucide="users" class="w-3.5 h-3.5"></i>
+                  <span>Reported by Farmers</span>
+                </span>
+                <span id="farmerReportCountTag" class="text-xs font-extrabold text-stone-700 dark:text-stone-300">42 farmers</span>
+              </div>
+
+              <div class="flex items-baseline justify-between">
+                <div>
+                  <span class="text-2xl font-black text-amber-900 dark:text-amber-300 tabular-nums">3,060</span>
+                  <span class="text-xs font-bold text-stone-500">ac verified</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold text-stone-500">Coverage Ratio</span>
+                  <p class="text-sm font-black text-stone-800 dark:text-stone-200 tabular-nums">7.2% of district</p>
+                </div>
+              </div>
+
+              <!-- Coverage Meter with 5% threshold marker -->
+              <div class="space-y-1">
+                <div class="relative w-full h-3 bg-stone-200 dark:bg-stone-700 rounded-full overflow-hidden">
+                  <!-- 5% threshold vertical line -->
+                  <div class="absolute left-[33%] top-0 bottom-0 w-0.5 bg-red-600 z-10" title="5% Minimum Trust Threshold"></div>
+                  <!-- Progress bar -->
+                  <div id="coverageProgressBar" class="h-full bg-amber-500 rounded-full transition-all duration-500" style="width: 48%;"></div>
+                </div>
+                <div class="flex justify-between text-[10px] font-bold text-stone-500">
+                  <span>0%</span>
+                  <span class="text-red-600 font-extrabold">▲ 5% Trust Threshold</span>
+                  <span>15% Max</span>
+                </div>
+              </div>
+
+              <!-- WARNING FOR TOO FEW REPORTS (<30 farmers or <5% coverage) -->
+              <div id="tooFewReportsWarning" class="hidden p-2.5 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-300 dark:border-red-800 text-red-900 dark:text-red-200 text-xs font-semibold flex items-center gap-2">
+                <i data-lucide="alert-octagon" class="w-4 h-4 text-red-600 shrink-0"></i>
+                <span>Too few reports to trust (<5% coverage). Not used in price outlook.</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CARD 2: STATE CARD (Karnataka) -->
+          <div class="bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 border-2 border-stone-200 dark:border-stone-700 shadow-sm flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Statewide Total</span>
+                  <h3 class="text-2xl font-black text-stone-900 dark:text-stone-100">Karnataka State</h3>
+                </div>
+                <!-- Supply Badge -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-300 dark:border-amber-700">
+                  <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                  <span>Higher (+18%)</span>
+                </span>
+              </div>
+
+              <!-- Big Area Display -->
+              <div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-4xl font-black text-stone-950 dark:text-white tabular-nums">3,80,000</span>
+                  <span class="text-lg font-bold text-stone-600 dark:text-stone-400">Acres</span>
+                </div>
+                <div class="text-sm font-semibold text-stone-500 mt-0.5">
+                  1,53,780 Hectares (3.8 Lakh ac) • 5-Yr: 3.2 Lakh ac
+                </div>
+              </div>
+
+              <!-- Official Source Tag -->
+              <div class="flex items-center gap-2 p-2 rounded-xl bg-fsa-officialBg dark:bg-fsa-officialBgDark text-fsa-official dark:text-emerald-300 text-xs font-bold border border-fsa-officialBorder dark:border-emerald-800">
+                <i data-lucide="shield-check" class="w-4 h-4 shrink-0"></i>
+                <span class="truncate">Dept of Agriculture, Govt of Karnataka</span>
+              </div>
+            </div>
+
+            <!-- Missing Data State fallback inside state card (hidden by default) -->
+            <div id="stateDataMissingNotice" class="hidden p-4 rounded-2xl bg-stone-100 dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-center space-y-1 my-auto">
+              <p class="text-sm font-black text-stone-700 dark:text-stone-300">Data Not Available</p>
+              <p class="text-xs text-stone-500">Official Kharif state bulletin pending validation.</p>
+            </div>
+
+            <div class="pt-5 border-t border-stone-200 dark:border-stone-700 space-y-2 text-xs">
+              <div class="flex justify-between font-medium text-stone-600 dark:text-stone-400">
+                <span>Top Sowing Belts:</span>
+                <span class="font-bold text-stone-900 dark:text-stone-100">Chitradurga, Bagalkote, Gadag</span>
+              </div>
+              <div class="flex justify-between font-medium text-stone-600 dark:text-stone-400">
+                <span>Sowing Progress:</span>
+                <span class="font-bold text-emerald-600">94% Completed</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: ALL-INDIA CARD -->
+          <div class="bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 border-2 border-stone-200 dark:border-stone-700 shadow-sm flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">National Acreage</span>
+                  <h3 class="text-2xl font-black text-stone-900 dark:text-stone-100">All India Total</h3>
+                </div>
+                <!-- Supply Badge -->
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Normal (+3%)</span>
+                </span>
+              </div>
+
+              <!-- Big Area Display -->
+              <div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-4xl font-black text-stone-950 dark:text-white tabular-nums">29,40,000</span>
+                  <span class="text-lg font-bold text-stone-600 dark:text-stone-400">Acres</span>
+                </div>
+                <div class="text-sm font-semibold text-stone-500 mt-0.5">
+                  11,89,800 Hectares (29.4 Lakh ac) • 5-Yr: 28.5 Lakh ac
+                </div>
+              </div>
+
+              <!-- Official Source Tag -->
+              <div class="flex items-center gap-2 p-2 rounded-xl bg-fsa-officialBg dark:bg-fsa-officialBgDark text-fsa-official dark:text-emerald-300 text-xs font-bold border border-fsa-officialBorder dark:border-emerald-800">
+                <i data-lucide="landmark" class="w-4 h-4 shrink-0"></i>
+                <span class="truncate">Ministry of Agriculture & Farmers Welfare (DA&FW)</span>
+              </div>
+            </div>
+
+            <div class="pt-5 border-t border-stone-200 dark:border-stone-700 space-y-2 text-xs">
+              <div class="flex justify-between font-medium text-stone-600 dark:text-stone-400">
+                <span>Key Competing States:</span>
+                <span class="font-bold text-stone-900 dark:text-stone-100">Maharashtra, MP, Gujarat</span>
+              </div>
+              <div class="flex justify-between font-medium text-stone-600 dark:text-stone-400">
+                <span>National Buffer Stock:</span>
+                <span class="font-bold text-stone-800 dark:text-stone-200">5.0 Lakh MT (NCCF & NAFED)</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- d. TWO-COLUMN ROW: AREA BAR CHART (5-YR) + SUPPLY SIGNAL CARD -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- LEFT: 5-YEAR HISTORICAL BAR CHART (7/12) -->
+          <div class="lg:col-span-7 bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 class="text-lg font-black text-stone-900 dark:text-stone-100">5-Year Kharif Onion Area Comparison</h3>
+                <p class="text-xs text-stone-500">Unit: Lakh Acres (ಲಕ್ಷ ಎಕರೆಗಳು) • Official Government Series</p>
+              </div>
+              <!-- State / National Toggle -->
+              <div class="flex items-center bg-stone-100 dark:bg-stone-800 p-1 rounded-xl text-xs font-bold">
+                <button type="button" onclick="switchChartScope('state')" id="btn-chart-state" class="px-3 py-1.5 rounded-lg bg-white dark:bg-stone-700 shadow-xs text-fsa-green font-extrabold">Karnataka</button>
+                <button type="button" onclick="switchChartScope('india')" id="btn-chart-india" class="px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200">All India</button>
+              </div>
+            </div>
+
+            <!-- Stylized Accessible SVG Bar Chart -->
+            <div class="relative pt-4">
+              <svg viewBox="0 0 540 220" class="w-full h-56">
+                <!-- Grid Lines -->
+                <line x1="40" y1="180" x2="520" y2="180" stroke="#CBD5E1" stroke-width="1.5" />
+                <line x1="40" y1="135" x2="520" y2="135" stroke="#E2E8F0" stroke-dasharray="4" />
+                <line x1="40" y1="90" x2="520" y2="90" stroke="#E2E8F0" stroke-dasharray="4" />
+                <line x1="40" y1="45" x2="520" y2="45" stroke="#E2E8F0" stroke-dasharray="4" />
+
+                <!-- Y-Axis Labels -->
+                <text x="32" y="184" font-size="10" text-anchor="end" fill="#94A3B8">0</text>
+                <text x="32" y="139" font-size="10" text-anchor="end" fill="#94A3B8">1.5</text>
+                <text x="32" y="94" font-size="10" text-anchor="end" fill="#94A3B8">3.0</text>
+                <text x="32" y="49" font-size="10" text-anchor="end" fill="#94A3B8">4.5</text>
+
+                <!-- 5-Year Baseline Average dotted reference line (3.2 Lakh) -->
+                <line x1="40" y1="84" x2="520" y2="84" stroke="#D97706" stroke-width="2" stroke-dasharray="5 3" />
+                <text x="515" y="80" font-size="10" text-anchor="end" font-weight="bold" fill="#D97706">5-Yr Avg: 3.2 L ac</text>
+
+                <!-- Year 2020 Bar: 2.9 L -->
+                <rect x="70" y="93" width="55" height="87" rx="6" fill="#94A3B8" class="hover:opacity-80 transition-opacity" />
+                <text x="97" y="85" font-size="11" font-weight="bold" text-anchor="middle" fill="#64748B">2.9</text>
+                <text x="97" y="200" font-size="11" font-weight="bold" text-anchor="middle" fill="#475569">2020</text>
+
+                <!-- Year 2021 Bar: 3.4 L -->
+                <rect x="160" y="78" width="55" height="102" rx="6" fill="#94A3B8" class="hover:opacity-80 transition-opacity" />
+                <text x="187" y="70" font-size="11" font-weight="bold" text-anchor="middle" fill="#64748B">3.4</text>
+                <text x="187" y="200" font-size="11" font-weight="bold" text-anchor="middle" fill="#475569">2021</text>
+
+                <!-- Year 2022 Bar: 3.1 L -->
+                <rect x="250" y="87" width="55" height="93" rx="6" fill="#94A3B8" class="hover:opacity-80 transition-opacity" />
+                <text x="277" y="79" font-size="11" font-weight="bold" text-anchor="middle" fill="#64748B">3.1</text>
+                <text x="277" y="200" font-size="11" font-weight="bold" text-anchor="middle" fill="#475569">2022</text>
+
+                <!-- Year 2023 Bar: 3.3 L -->
+                <rect x="340" y="81" width="55" height="99" rx="6" fill="#94A3B8" class="hover:opacity-80 transition-opacity" />
+                <text x="367" y="73" font-size="11" font-weight="bold" text-anchor="middle" fill="#64748B">3.3</text>
+                <text x="367" y="200" font-size="11" font-weight="bold" text-anchor="middle" fill="#475569">2023</text>
+
+                <!-- Year 2024 (CURRENT SEASON) HIGHLIGHTED BAR: 3.8 L -->
+                <rect x="430" y="66" width="55" height="114" rx="6" fill="#15803D" class="hover:opacity-90 shadow-lg" />
+                <text x="457" y="55" font-size="13" font-weight="900" text-anchor="middle" fill="#15803D" class="dark:fill-emerald-400">3.8★</text>
+                <text x="457" y="200" font-size="11" font-weight="900" text-anchor="middle" fill="#15803D" class="dark:fill-emerald-400">2024 (Now)</text>
+              </svg>
+            </div>
+            <div class="flex items-center justify-between text-xs text-stone-500 pt-2 border-t border-stone-100 dark:border-stone-800">
+              <span>Source: DES Karnataka Annual Agricultural Statistics</span>
+              <span class="font-bold text-emerald-700 dark:text-emerald-400">Current season is highest in 5 seasons</span>
+            </div>
+          </div>
+
+          <!-- RIGHT: SUPPLY SIGNAL GAUGE CARD (5/12) -->
+          <div class="lg:col-span-5 bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-black text-stone-900 dark:text-stone-100">Estimated Market Supply</h3>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-black bg-amber-100 text-amber-900 border border-amber-300">
+                  Signal: Higher
+                </span>
+              </div>
+              <p class="text-xs text-stone-500 mt-1">Calculated as: Planted Area × 5-Yr Median Productivity (16.2 MT/ha)</p>
+            </div>
+
+            <!-- Stylized Accessible Semi-circle Gauge -->
+            <div class="py-2 flex flex-col items-center">
+              <svg viewBox="0 0 240 130" class="w-56 h-32">
+                <!-- Gauge Background Arc -->
+                <path d="M 30,120 A 90,90 0 0,1 210,120" fill="none" stroke="#E2E8F0" stroke-width="22" stroke-linecap="round" class="dark:stroke-stone-700" />
+                <!-- Active Value Arc (Higher supply zone) -->
+                <path d="M 30,120 A 90,90 0 0,1 175,45" fill="none" stroke="#F59E0B" stroke-width="22" stroke-linecap="round" />
+                
+                <!-- Needle Indicator -->
+                <circle cx="120" cy="120" r="8" fill="#1F2937" class="dark:fill-white" />
+                <line x1="120" y1="120" x2="165" y2="52" stroke="#1F2937" stroke-width="4" stroke-linecap="round" class="dark:stroke-white" />
+                
+                <!-- Tick markings -->
+                <text x="25" y="130" font-size="10" font-weight="bold" fill="#64748B">Lower</text>
+                <text x="120" y="28" font-size="10" font-weight="bold" text-anchor="middle" fill="#64748B">Normal</text>
+                <text x="215" y="130" font-size="10" font-weight="bold" text-anchor="end" fill="#64748B">Higher</text>
+              </svg>
+
+              <div class="text-center mt-1">
+                <span class="text-3xl font-black text-amber-700 dark:text-amber-400 tabular-nums">1.18×</span>
+                <span class="text-xs font-bold text-stone-500 block">Supply Volume Ratio vs 5-Year Baseline</span>
+              </div>
+            </div>
+
+            <!-- Cautionary Note on Causation -->
+            <div class="p-3 rounded-2xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+              <strong>Supply Commentary:</strong> "Higher planted area has usually been followed by lower wholesale arrivals prices in Lasalgaon & Yeshwanthpur markets during harvest peak."
+            </div>
+          </div>
+
+        </div>
+
+        <!-- e. PRICE OUTLOOK SECTION (Full Width) -->
+        <div class="bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 sm:p-8 border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-fsa-borderLight dark:border-fsa-borderDark">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-2xl font-black text-stone-900 dark:text-stone-100">Wholesale Price Range Forecast (Mysuru APMC)</h3>
+                <span class="bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs px-2.5 py-0.5 rounded-full font-bold">Medium Bellary Red</span>
+              </div>
+              <p class="text-xs text-stone-500 mt-1">Prices are rounded ranges in ₹ per quintal (100 kg). Single-point prices are deliberately omitted.</p>
+            </div>
+
+            <!-- Honesty Note on Farmer Acreage -->
+            <div class="flex items-center gap-2 bg-stone-50 dark:bg-stone-800/80 px-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-700 text-xs text-stone-600 dark:text-stone-300">
+              <i data-lucide="info" class="w-4 h-4 text-fsa-green shrink-0"></i>
+              <span>Farmer-entered acreage does NOT influence these statistical price bands.</span>
+            </div>
+          </div>
+
+          <!-- Three Price Horizon Cards (30 / 60 / 90 Days) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Horizon 1: 30 Days (Harvest Start) -->
+            <div class="p-5 rounded-2xl bg-stone-50 dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-700 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">30 Days Out (Aug 2024)</span>
+                <span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> High Confidence
+                </span>
+              </div>
+              <div>
+                <span class="text-3xl font-black text-stone-900 dark:text-white tabular-nums">₹ 3,340 – 3,650</span>
+                <p class="text-xs font-semibold text-stone-500 mt-1">Per Quintal (Mid: ₹ 3,490)</p>
+              </div>
+              <p class="text-xs text-stone-600 dark:text-stone-400 leading-snug">Early arrivals expected to hold steady before northern crop flows in.</p>
+            </div>
+
+            <!-- Horizon 2: 60 Days (Harvest Peak) -->
+            <div class="p-5 rounded-2xl bg-amber-50/50 dark:bg-amber-950/20 border-2 border-amber-200 dark:border-amber-800/70 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-800 dark:text-amber-400 uppercase tracking-wider">60 Days Out (Sep 2024)</span>
+                <span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Medium Confidence
+                </span>
+              </div>
+              <div>
+                <span class="text-3xl font-black text-stone-900 dark:text-white tabular-nums">₹ 2,820 – 3,240</span>
+                <p class="text-xs font-semibold text-stone-500 mt-1">Per Quintal (Mid: ₹ 3,030)</p>
+              </div>
+              <p class="text-xs text-stone-600 dark:text-stone-400 leading-snug">Peak Karnataka arrivals. Sowing surplus likely exerts downward pressure.</p>
+            </div>
+
+            <!-- Horizon 3: 90 Days (Late Kharif Arrival) -->
+            <div class="p-5 rounded-2xl bg-stone-50 dark:bg-stone-900 border-2 border-stone-200 dark:border-stone-700 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">90 Days Out (Oct 2024)</span>
+                <span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md bg-stone-200 text-stone-700 dark:bg-stone-800 dark:text-stone-300">
+                  <span class="w-1.5 h-1.5 rounded-full bg-stone-500"></span> Moderate Band
+                </span>
+              </div>
+              <div>
+                <span class="text-3xl font-black text-stone-900 dark:text-white tabular-nums">₹ 2,450 – 3,150</span>
+                <p class="text-xs font-semibold text-stone-500 mt-1">Per Quintal (Mid: ₹ 2,800)</p>
+              </div>
+              <p class="text-xs text-stone-600 dark:text-stone-400 leading-snug">Wider uncertainty due to Maharashtra Late Kharif weather dependencies.</p>
+            </div>
+
+          </div>
+
+          <!-- Fan Chart Range Visualization -->
+          <div class="p-4 rounded-2xl bg-stone-100 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800 space-y-2">
+            <span class="text-xs font-bold text-stone-500">Price Fan Probability Cone (90-Day Horizon)</span>
+            <svg viewBox="0 0 600 130" class="w-full h-32">
+              <!-- Grid lines -->
+              <line x1="50" y1="20" x2="570" y2="20" stroke="#E2E8F0" stroke-dasharray="3" />
+              <line x1="50" y1="65" x2="570" y2="65" stroke="#E2E8F0" stroke-dasharray="3" />
+              <line x1="50" y1="110" x2="570" y2="110" stroke="#CBD5E1" />
+
+              <!-- Fan Range Polygon (Upper and Lower confidence boundaries) -->
+              <polygon points="50,60 210,50 370,68 530,90 530,115 370,105 210,80 50,60" fill="#BBF7D0" fill-opacity="0.4" class="dark:fill-emerald-950/60" />
+              <polygon points="50,60 210,55 370,74 530,98 530,108 370,98 210,72 50,60" fill="#22C55E" fill-opacity="0.3" />
+
+              <!-- Median Price Trajectory -->
+              <polyline points="50,60 210,65 370,86 530,103" fill="none" stroke="#15803D" stroke-width="3" stroke-linecap="round" />
+
+              <!-- Time points -->
+              <circle cx="50" cy="60" r="5" fill="#15803D" />
+              <text x="50" y="125" font-size="10" font-weight="bold" fill="#64748B" text-anchor="middle">Today (₹3,550)</text>
+
+              <circle cx="210" cy="65" r="5" fill="#15803D" />
+              <text x="210" y="125" font-size="10" font-weight="bold" fill="#64748B" text-anchor="middle">30 Days</text>
+
+              <circle cx="370" cy="86" r="5" fill="#15803D" />
+              <text x="370" y="125" font-size="10" font-weight="bold" fill="#64748B" text-anchor="middle">60 Days</text>
+
+              <circle cx="530" cy="103" r="5" fill="#15803D" />
+              <text x="530" y="125" font-size="10" font-weight="bold" fill="#64748B" text-anchor="middle">90 Days</text>
+            </svg>
+          </div>
+
+          <!-- Non-causation and Honesty Legal Disclosure (MANDATED TEXT) -->
+          <div class="text-xs text-stone-500 space-y-1 text-center font-medium pt-2">
+            <p><strong>Supply Signal Note:</strong> Higher planted area has usually been followed by lower prices during post-harvest arrivals, but localized weather shocks can alter outcomes.</p>
+            <p class="font-extrabold text-stone-800 dark:text-stone-200 text-sm">"This is advice, the decision is yours." (ಇದು ಸಲಹೆ ಮಾತ್ರ, ಅಂತಿಮ ನಿರ್ಧಾರ ನಿಮ್ಮದು.)</p>
+          </div>
+
+        </div>
+
+        <!-- f. DETAILED COMPARISON TABLE (District vs Karnataka vs India) -->
+        <div class="bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-black text-stone-900 dark:text-stone-100">Granular Area & Coverage Comparison</h3>
+            <span class="text-xs font-semibold text-stone-500">Indian Digit Grouping Standard (1,23,456)</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm border-collapse">
+              <thead>
+                <tr class="border-b-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <th class="py-3 px-4">Level / Jurisdiction</th>
+                  <th class="py-3 px-4">2024 Area (Acres)</th>
+                  <th class="py-3 px-4">5-Year Normal</th>
+                  <th class="py-3 px-4">Change vs Avg</th>
+                  <th class="py-3 px-4">Primary Source</th>
+                  <th class="py-3 px-4">Date Verified</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stone-100 dark:divide-stone-800 text-stone-800 dark:text-stone-200">
+                <!-- Row 1: District Official -->
+                <tr class="hover:bg-stone-50 dark:hover:bg-stone-800/50">
+                  <td class="py-3.5 px-4 font-bold flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                    <span>Mysuru (Official)</span>
+                  </td>
+                  <td class="py-3.5 px-4 tabular-nums font-extrabold">42,500 ac</td>
+                  <td class="py-3.5 px-4 tabular-nums">38,100 ac</td>
+                  <td class="py-3.5 px-4 font-bold text-amber-600">+11.5%</td>
+                  <td class="py-3.5 px-4 text-xs">DES Karnataka</td>
+                  <td class="py-3.5 px-4 text-xs text-stone-500">18 Jul 2024</td>
+                </tr>
+                <!-- Row 2: District Crowdsourced Farmer Reports (Clear Turmeric Badge) -->
+                <tr class="bg-amber-50/60 dark:bg-amber-950/30 font-medium">
+                  <td class="py-3.5 px-4 font-black text-amber-900 dark:text-amber-300 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    <span>Mysuru (Reported by Farmers)</span>
+                  </td>
+                  <td class="py-3.5 px-4 tabular-nums font-black text-amber-900 dark:text-amber-300">3,060 ac (42 farmers)</td>
+                  <td class="py-3.5 px-4 text-xs text-stone-500">— (Crowdsourced)</td>
+                  <td class="py-3.5 px-4 text-xs font-bold text-emerald-700">7.2% Coverage</td>
+                  <td class="py-3.5 px-4 text-xs font-semibold">Local Kiosk Inputs</td>
+                  <td class="py-3.5 px-4 text-xs text-stone-500">Live Today</td>
+                </tr>
+                <!-- Row 3: Karnataka -->
+                <tr class="hover:bg-stone-50 dark:hover:bg-stone-800/50">
+                  <td class="py-3.5 px-4 font-bold flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                    <span>Karnataka State</span>
+                  </td>
+                  <td class="py-3.5 px-4 tabular-nums font-extrabold">3,80,000 ac</td>
+                  <td class="py-3.5 px-4 tabular-nums">3,22,000 ac</td>
+                  <td class="py-3.5 px-4 font-bold text-amber-600">+18.0%</td>
+                  <td class="py-3.5 px-4 text-xs">Dept of Agriculture</td>
+                  <td class="py-3.5 px-4 text-xs text-stone-500">12 Jul 2024</td>
+                </tr>
+                <!-- Row 4: All India -->
+                <tr class="hover:bg-stone-50 dark:hover:bg-stone-800/50">
+                  <td class="py-3.5 px-4 font-bold flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                    <span>All India</span>
+                  </td>
+                  <td class="py-3.5 px-4 tabular-nums font-extrabold">29,40,000 ac</td>
+                  <td class="py-3.5 px-4 tabular-nums">28,50,000 ac</td>
+                  <td class="py-3.5 px-4 font-bold text-emerald-600">+3.1%</td>
+                  <td class="py-3.5 px-4 text-xs">DA&FW Krishi Bhawan</td>
+                  <td class="py-3.5 px-4 text-xs text-stone-500">05 Jul 2024</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- g. DATA PROVENANCE FOOTER -->
+        <div class="p-5 rounded-2xl bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-xs text-stone-500 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span>Model Version: FSA-Supply-v3.4.1 (Confidence calibrated on 2018–2023 Kharif Cycles)</span>
+            <a href="javascript:void(0)" onclick="navigateTo('screen-methodology')" class="text-fsa-green dark:text-emerald-400 font-bold underline">Read Complete Methodology & Assumptions</a>
+          </div>
+          <p>Farmer entries are never extrapolated into state or national estimates. All projections reflect official datasets released by Directorate of Economics and Statistics (Karnataka) and Ministry of Agriculture (Government of India).</p>
+        </div>
+
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 3: FPO & OFFICER REVIEW (Desktop Staff View)                     -->
+      <!-- ========================================================================= -->
+      <section id="screen-officer" class="hidden space-y-6">
+        
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-bold text-xs px-2.5 py-0.5 rounded-md border border-amber-300">
+                Staff Restricted
+              </span>
+              <h2 class="text-2xl font-black text-stone-900 dark:text-stone-100">FPO Officer Review: District Submissions Roster</h2>
+            </div>
+            <p class="text-xs text-stone-500 mt-1">Anonymized logs, quality screening & automated anomaly flags for Mysuru Kharif 2024.</p>
+          </div>
+          <button onclick="simulateCsvExport()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 font-bold text-xs hover:bg-stone-800 transition-colors">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Export Cleaned CSV</span>
+          </button>
+        </div>
+
+        <!-- Summary Metric Tiles for Officer -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          <div class="p-4 rounded-2xl bg-white dark:bg-fsa-surfaceDark border border-stone-200 dark:border-stone-800">
+            <span class="text-xs font-bold text-stone-500">Total Valid Submissions</span>
+            <p class="text-3xl font-black text-stone-900 dark:text-white tabular-nums mt-1">42</p>
+            <span class="text-[11px] text-emerald-600 font-bold">Above 30-entry trust bar</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-white dark:bg-fsa-surfaceDark border border-stone-200 dark:border-stone-800">
+            <span class="text-xs font-bold text-stone-500">Reported Acreage</span>
+            <p class="text-3xl font-black text-amber-700 dark:text-amber-400 tabular-nums mt-1">3,060 <span class="text-xs text-stone-500">ac</span></p>
+            <span class="text-[11px] text-stone-500">Mean: 72.8 ac/farmer</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-white dark:bg-fsa-surfaceDark border border-stone-200 dark:border-stone-800">
+            <span class="text-xs font-bold text-stone-500">District Coverage Ratio</span>
+            <p class="text-3xl font-black text-stone-900 dark:text-white tabular-nums mt-1">7.2%</p>
+            <span class="text-[11px] text-emerald-600 font-bold">Safe &ge; 5.0% threshold</span>
+          </div>
+          <div class="p-4 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900">
+            <span class="text-xs font-bold text-red-800 dark:text-red-300">Flagged Anomalies</span>
+            <p class="text-3xl font-black text-red-700 dark:text-red-400 tabular-nums mt-1">3</p>
+            <span class="text-[11px] text-red-600 font-bold">Excluded from aggregates</span>
+          </div>
+        </div>
+
+        <!-- Anonymized Data Table -->
+        <div class="bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-bold text-stone-900 dark:text-stone-100">Recent Device Submissions (Anonymized by SHA-256)</h3>
+            <span class="text-xs text-stone-500">Showing last 6 submissions</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-stone-200 dark:border-stone-700 font-bold text-stone-500 uppercase">
+                  <th class="py-2.5 px-3">Device Hash</th>
+                  <th class="py-2.5 px-3">Reported Acres</th>
+                  <th class="py-2.5 px-3">Taluk / Village</th>
+                  <th class="py-2.5 px-3">Timestamp</th>
+                  <th class="py-2.5 px-3">Quality Status</th>
+                  <th class="py-2.5 px-3">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stone-100 dark:divide-stone-800 text-stone-800 dark:text-stone-200">
+                <tr>
+                  <td class="py-3 px-3 font-mono">e4b7...910c (This Kiosk)</td>
+                  <td class="py-3 px-3 font-extrabold text-sm text-fsa-green">50.0 ac</td>
+                  <td class="py-3 px-3">Nanjangud</td>
+                  <td class="py-3 px-3 text-stone-500">Just now</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold">Verified</span></td>
+                  <td class="py-3 px-3"><button class="text-stone-500 hover:text-stone-900 font-bold">Review</button></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-mono">7a12...83dd</td>
+                  <td class="py-3 px-3 font-extrabold text-sm">25.0 ac</td>
+                  <td class="py-3 px-3">Hunsur</td>
+                  <td class="py-3 px-3 text-stone-500">14 mins ago</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold">Verified</span></td>
+                  <td class="py-3 px-3"><button class="text-stone-500 hover:text-stone-900 font-bold">Review</button></td>
+                </tr>
+                <tr class="bg-red-50/70 dark:bg-red-950/40">
+                  <td class="py-3 px-3 font-mono">88c1...04aa</td>
+                  <td class="py-3 px-3 font-extrabold text-sm text-red-600">620.0 ac</td>
+                  <td class="py-3 px-3">Periyapatna</td>
+                  <td class="py-3 px-3 text-stone-500">1 hr ago</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-md bg-red-100 text-red-800 font-bold">Flagged: Exceeds 500ac Limit</span></td>
+                  <td class="py-3 px-3"><button class="text-red-700 font-bold underline">Override</button></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-mono">11fe...32ba</td>
+                  <td class="py-3 px-3 font-extrabold text-sm">12.5 ac</td>
+                  <td class="py-3 px-3">T. Narasipura</td>
+                  <td class="py-3 px-3 text-stone-500">2 hrs ago</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold">Verified</span></td>
+                  <td class="py-3 px-3"><button class="text-stone-500 hover:text-stone-900 font-bold">Review</button></td>
+                </tr>
+                <tr class="bg-amber-50/70 dark:bg-amber-950/40">
+                  <td class="py-3 px-3 font-mono">59a0...7112</td>
+                  <td class="py-3 px-3 font-extrabold text-sm text-amber-700">50.0 ac</td>
+                  <td class="py-3 px-3">Nanjangud</td>
+                  <td class="py-3 px-3 text-stone-500">2 hrs ago</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 font-bold">Duplicate Device Hash</span></td>
+                  <td class="py-3 px-3"><button class="text-amber-700 font-bold underline">Resolve</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 4: DATA SOURCES & METHODOLOGY                                    -->
+      <!-- ========================================================================= -->
+      <section id="screen-methodology" class="hidden space-y-6 max-w-4xl mx-auto">
+        
+        <div>
+          <h2 class="text-3xl font-black text-stone-900 dark:text-stone-100">Transparent Methodology & Data Sources</h2>
+          <p class="text-sm text-stone-500 mt-1">Every number in Farmer Sell Advisor carries provenance. Here is how signals are constructed.</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Pillar 1: Source Split Rule -->
+          <div class="p-6 rounded-3xl bg-white dark:bg-fsa-surfaceDark border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                <i data-lucide="shield" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-stone-900 dark:text-stone-100">1. Strict Separation of Farmer & Official Data</h3>
+                <span class="text-xs text-stone-500 font-medium">Non-negotiable architectural boundary</span>
+              </div>
+            </div>
+            <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+              We never extrapolate individual farmer reports into state or national aggregates. Crowd entries are strictly used for local district verification if and only if $\ge 30$ farmers or $\ge 5\%$ of district area is recorded. State and national acreages are sourced exclusively from published Directorate of Economics & Statistics bulletins.
+            </p>
+          </div>
+
+          <!-- Pillar 2: Price Forecasting Engine -->
+          <div class="p-6 rounded-3xl bg-white dark:bg-fsa-surfaceDark border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
+                <i data-lucide="trending-down" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-stone-900 dark:text-stone-100">2. Why Prices are Displayed as Rounded Ranges</h3>
+                <span class="text-xs text-stone-500 font-medium">Honesty by design principle</span>
+              </div>
+            </div>
+            <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+              Agriculture markets possess natural volatility from weather variations, transport costs, and storage losses. Providing a single point price (e.g., ₹3,412/q) creates false precision. We round prices to the nearest ₹10 and provide high, mid, and low probability bounds with an explicit confidence rating.
+            </p>
+          </div>
+
+          <!-- Pillar 3: Sowing-to-Harvest Lag Assumption -->
+          <div class="p-6 rounded-3xl bg-white dark:bg-fsa-surfaceDark border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center font-bold">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-stone-900 dark:text-stone-100">3. Explicit Agricultural Assumptions (Labelled)</h3>
+                <span class="text-xs text-stone-500 font-medium">Clear assumption disclosure</span>
+              </div>
+            </div>
+            <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+              <strong>Assumption 1 (Duration):</strong> Kharif onion nursery transplantation to harvest is modelled as 90 to 105 days.<br>
+              <strong>Assumption 2 (Post-harvest Loss):</strong> Normal curing and transport shrinkage is pegged at 12.5% for early red varieties.<br>
+              <strong>Assumption 3 (Productivity):</strong> Normal yield for irrigated Karnataka onion is pegged at 16.2 MT/hectare.
+            </p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- SCREEN 5: FEEDBACK & FARMER HISTORY                                     -->
+      <!-- ========================================================================= -->
+      <section id="screen-feedback" class="hidden space-y-6 max-w-3xl mx-auto">
+        
+        <div class="text-center space-y-2">
+          <h2 class="text-3xl font-black text-stone-900 dark:text-stone-100">Was This Outlook Helpful?</h2>
+          <p class="text-sm text-stone-500">Your feedback helps improve advice algorithms for Karnataka farmers.</p>
+        </div>
+
+        <div class="bg-white dark:bg-fsa-surfaceDark rounded-3xl p-6 sm:p-8 border border-fsa-borderLight dark:border-fsa-borderDark shadow-sm space-y-6">
+          <!-- Thumbs Up / Down -->
+          <div class="flex justify-center gap-6">
+            <button onclick="recordFeedback('helpful')" class="flex flex-col items-center gap-2 p-5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 hover:border-fsa-green hover:bg-emerald-50 dark:hover:bg-emerald-950/40 w-36 transition-all group">
+              <i data-lucide="thumbs-up" class="w-10 h-10 text-stone-400 group-hover:text-fsa-green"></i>
+              <span class="font-extrabold text-sm text-stone-700 dark:text-stone-200">Yes, Helpful</span>
+            </button>
+            <button onclick="recordFeedback('not-helpful')" class="flex flex-col items-center gap-2 p-5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 hover:border-red-500 hover:bg-red-50 dark:hover:bg-red-950/40 w-36 transition-all group">
+              <i data-lucide="thumbs-down" class="w-10 h-10 text-stone-400 group-hover:text-red-600"></i>
+              <span class="font-extrabold text-sm text-stone-700 dark:text-stone-200">Needs Work</span>
+            </button>
+          </div>
+
+          <!-- Optional Voice Memo Recording -->
+          <div class="p-4 rounded-2xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 space-y-3">
+            <label class="block text-xs font-bold text-stone-600 dark:text-stone-300">Optional Voice Note / ಅಭಿಪ್ರಾಯ (Kannada / Hindi / English):</label>
+            <div class="flex items-center gap-3">
+              <button onclick="simulateAudioRecordMemo()" id="recordMemoBtn" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs">
+                <i data-lucide="mic" class="w-4 h-4"></i>
+                <span id="recordMemoText">Record 30s Audio Note</span>
+              </button>
+              <span id="memoStatus" class="text-xs text-stone-500 italic">No audio recorded yet</span>
+            </div>
+          </div>
+
+          <!-- History of Past Submissions on this Kiosk -->
+          <div class="space-y-3 pt-4 border-t border-stone-200 dark:border-stone-800">
+            <h3 class="text-sm font-bold text-stone-800 dark:text-stone-200">Your Recent Session Reports (Stored on Device):</h3>
+            <div class="space-y-2 text-xs">
+              <div class="p-3 rounded-xl bg-stone-100 dark:bg-stone-800/80 flex items-center justify-between">
+                <div>
+                  <span class="font-bold text-stone-900 dark:text-stone-100">Mysuru • Kharif 2024</span>
+                  <span class="text-stone-500 block">Reported: 50.0 acres (20.23 ha)</span>
+                </div>
+                <button onclick="navigateTo('screen-results')" class="px-3 py-1.5 rounded-lg bg-white dark:bg-stone-700 border border-stone-300 dark:border-stone-600 font-bold text-fsa-green">View Outlook</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 bg-stone-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-semibold transition-transform duration-300 translate-y-24 z-50">
+    <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>
+    <span id="toastMessage">Action completed successfully</span>
+  </div>
+
+  <!-- JAVASCRIPT STATE ENGINE & MULTI-LINGUAL CONTROLLER -->
+  <script>
+    // System Translations (English, Kannada, Hindi)
+    const translations = {
+      en: {
+        syntheticBanner: "SYNTHETIC DATA — NOT FOR REAL FINANCIAL OR FARMING DECISIONS (RESEARCH DEMO)",
+        moduleSubtitle: "Crop Area & Supply Outlook • Kharif & Rabi Onion",
+        startNewFarmer: "New Farmer",
+        navEntry: "Enter Acreage",
+        navResults: "Supply Outlook",
+        navOfficer: "Officer / FPO Review",
+        navSources: "Sources & Methods",
+        navFeedback: "Help & History",
+        readAloud: "Read Out Loud (ಧ್ವನಿ ಓದು)",
+        entryHeading: "Enter District Onion Acreage",
+        entrySubheading: "Step 1 of 2: Report your planting details to view local and statewide supply outlook.",
+        labelDistrict: "Select District",
+        labelSeason: "Season & Year",
+        labelAcres: "Onion Acreage Grown",
+        farmerEntryNote: "Your entry helps local reports. It does not change the price outlook. State and national supply projections are strictly derived from verified official government statistics.",
+        btnShowOutlook: "Show Area & Supply Outlook",
+        editEntry: "Edit My Entry",
+        summaryTitle: "Mysuru: You reported 50 acres. Karnataka onion area is 18% higher than the 5-year average.",
+        summaryDesc: "Official government releases confirm higher planted acreage statewide (3.8 lakh acres vs 3.2 lakh normal). Supply looks higher than usual; higher planted area has historically been accompanied by moderated wholesale prices.",
+        confidenceText: "High (84%)"
+      },
+      kn: {
+        syntheticBanner: "ಪ್ರಾಯೋಗಿಕ ಡೇಟಾ — ನೈಜ ಹಣಕಾಸು ಅಥವಾ ಕೃಷಿ ನಿರ್ಧಾರಗಳಿಗಾಗಿ ಬಳಸಬೇಡಿ (ಸಂಶೋಧನಾ ಡೆಮೊ)",
+        moduleSubtitle: "ಬೆಳೆ ವಿಸ್ತೀರ್ಣ ಮತ್ತು ಪೂರೈಕೆ ಮುನ್ನೋಟ • ಮುಂಗಾರು ಮತ್ತು ಹಿಂಗಾರು ಈರುಳ್ಳಿ",
+        startNewFarmer: "ಹೊಸ ರೈತ",
+        navEntry: "ಎಕರೆ ನಮೂದಿಸಿ",
+        navResults: "ಪೂರೈಕೆ ಮುನ್ನೋಟ",
+        navOfficer: "ಅಧಿಕಾರಿಗಳ ಪರಿಶೀಲನೆ",
+        navSources: "ಮೂಲಗಳು ಮತ್ತು ವಿಧಾನ",
+        navFeedback: "ಸಹಾಯ ಮತ್ತು ಇತಿಹಾಸ",
+        readAloud: "ಧ್ವನಿ ಮೂಲಕ ಕೇಳಿ",
+        entryHeading: "ಜಿಲ್ಲಾ ಈರುಳ್ಳಿ ಬೆಳೆ ವಿಸ್ತೀರ್ಣ ನಮೂದಿಸಿ",
+        entrySubheading: "ಹಂತ 1 / 2: ಸ್ಥಳೀಯ ಮತ್ತು ರಾಜ್ಯ ಮಟ್ಟದ ಪೂರೈಕೆ ಮುನ್ನೋಟ ನೋಡಲು ನಿಮ್ಮ ಬಿತ್ತನೆ ವಿವರ ದಾಖಲಿಸಿ.",
+        labelDistrict: "ಜಿಲ್ಲೆ ಆಯ್ಕೆಮಾಡಿ",
+        labelSeason: "ಋತು ಮತ್ತು ವರ್ಷ",
+        labelAcres: "ಬೆಳೆದ ಈರುಳ್ಳಿ ವಿಸ್ತೀರ್ಣ",
+        farmerEntryNote: "ನಿಮ್ಮ ದಾಖಲು ಸ್ಥಳೀಯ ವರದಿಗೆ ಮಾತ್ರ ಸಹಕಾರಿ. ಇದು ಬೆಲೆ ಮುನ್ನೋಟವನ್ನು ಬದಲಿಸುವುದಿಲ್ಲ. ರಾಜ್ಯ ಮತ್ತು ರಾಷ್ಟ್ರೀಯ ಅಂಕಿಅಂಶಗಳು ಅಧಿಕೃತ ಸರ್ಕಾರಿ ಮೂಲಗಳಿಂದ ಬರುತ್ತವೆ.",
+        btnShowOutlook: "ವಿಸ್ತೀರ್ಣ ಮತ್ತು ಪೂರೈಕೆ ಮುನ್ನೋಟ ತೋರಿಸಿ",
+        editEntry: "ನನ್ನ ನಮೂದು ಬದಲಿಸಿ",
+        summaryTitle: "ಮೈಸೂರು: ನೀವು 50 ಎಕರೆ ವರದಿ ಮಾಡಿದ್ದೀರಿ. ಕರ್ನಾಟಕದ ಈರುಳ್ಳಿ ವಿಸ್ತೀರ್ಣ ಸರಾಸರಿಗಿಂತ 18% ಹೆಚ್ಚಾಗಿದೆ.",
+        summaryDesc: "ಸರ್ಕಾರಿ ಅಂಕಿಅಂಶಗಳ ಪ್ರಕಾರ ರಾಜ್ಯದಲ್ಲಿ ಬಿತ್ತನೆ ಹೆಚ್ಚಾಗಿದೆ (3.8 ಲಕ್ಷ ಎಕರೆ). ಪೂರೈಕೆ ಹೆಚ್ಚಾಗುವ ಲಕ್ಷಣವಿದ್ದು, ಬೆಲೆ ಸಾಧಾರಣವಾಗಿರಬಹುದು.",
+        confidenceText: "ಹೆಚ್ಚಿನ ವಿಶ್ವಾಸಾರ್ಹತೆ (84%)"
+      },
+      hi: {
+        syntheticBanner: "प्रायोगिक डेटा — वास्तविक वित्तीय या कृषि निर्णयों के लिए नहीं (शोध डेमो)",
+        moduleSubtitle: "फसल रकबा और आवक का पूर्वानुमान • खरीफ और रबी प्याज",
+        startNewFarmer: "नया किसान",
+        navEntry: "रकबा दर्ज करें",
+        navResults: "आवक पूर्वानुमान",
+        navOfficer: "अधिकारी / FPO समीक्षा",
+        navSources: "स्रोत और पद्धति",
+        navFeedback: "मदद और इतिहास",
+        readAloud: "बोलकर सुनें",
+        entryHeading: "जिला प्याज का रकबा दर्ज करें",
+        entrySubheading: "चरण 1 / 2: स्थानीय और राज्य स्तरीय आपूर्ति अनुमान देखने के लिए बुवाई विवरण दर्ज करें।",
+        labelDistrict: "जिला चुनें",
+        labelSeason: "मौसम और वर्ष",
+        labelAcres: "बोया गया प्याज का रकबा",
+        farmerEntryNote: "आपकी प्रविष्टि से केवल स्थानीय रिपोर्ट बनती है। इससे मूल्य पूर्वानुमान नहीं बदलता। राज्य और राष्ट्रीय आंकड़े आधिकारिक स्रोतों से लिए जाते हैं।",
+        btnShowOutlook: "रकबा और आवक पूर्वानुमान देखें",
+        editEntry: "अपनी प्रविष्टि बदलें",
+        summaryTitle: "मैसूरु: आपने 50 एकड़ दर्ज किया। कर्नाटक में प्याज का रकबा 5 साल के औसत से 18% अधिक है।",
+        summaryDesc: "आधिकारिक रिपोर्टों से पुष्टि होती है कि राज्य में बुवाई अधिक है (3.8 लाख एकड़)। आवक सामान्य से अधिक रहने का अनुमान है।",
+        confidenceText: "उच्च विश्वास (84%)"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const dict = translations[lang];
+
+      document.getElementById('txt-synthetic-banner').innerText = dict.syntheticBanner;
+      document.getElementById('txt-module-subtitle').innerText = dict.moduleSubtitle;
+      document.getElementById('txt-start-new-farmer').innerText = dict.startNewFarmer;
+      document.getElementById('txt-nav-entry').innerText = dict.navEntry;
+      document.getElementById('txt-nav-results').innerText = dict.navResults;
+      document.getElementById('txt-nav-officer').innerText = dict.navOfficer;
+      document.getElementById('txt-nav-sources').innerText = dict.navSources;
+      document.getElementById('txt-nav-feedback').innerText = dict.navFeedback;
+      document.getElementById('txt-read-aloud').innerText = dict.readAloud;
+      document.getElementById('txt-entry-heading').innerText = dict.entryHeading;
+      document.getElementById('txt-entry-subheading').innerText = dict.entrySubheading;
+      document.getElementById('txt-label-district').innerText = dict.labelDistrict;
+      document.getElementById('txt-label-season').innerText = dict.labelSeason;
+      document.getElementById('txt-label-acres').innerText = dict.labelAcres;
+      document.getElementById('txt-farmer-entry-note').innerHTML = `<strong>${dict.farmerEntryNote.split('.')[0]}.</strong> ${dict.farmerEntryNote.split('.').slice(1).join('.')}`;
+      document.getElementById('txt-btn-show-outlook').innerText = dict.btnShowOutlook;
+      document.getElementById('txt-edit-entry').innerText = dict.editEntry;
+      document.getElementById('txt-summary-banner-title').innerText = dict.summaryTitle;
+      document.getElementById('txt-summary-banner-desc').innerText = dict.summaryDesc;
+      document.getElementById('badge-confidence-text').innerText = dict.confidenceText;
+
+      // Update button styling
+      ['en', 'kn', 'hi'].forEach(l => {
+        const btn = document.getElementById(`lang-btn-${l}`);
+        if (l === lang) {
+          btn.className = "px-2.5 py-1 rounded-lg transition-all text-xs sm:text-sm bg-white dark:bg-stone-700 shadow-xs text-fsa-green dark:text-emerald-400 font-extrabold";
+        } else {
+          btn.className = "px-2.5 py-1 rounded-lg transition-all text-xs sm:text-sm text-stone-600 dark:text-stone-300 hover:text-fsa-green font-semibold";
+        }
+      });
+
+      showToast(`Language set to ${lang === 'en' ? 'English' : lang === 'kn' ? 'ಕನ್ನಡ' : 'हिन्दी'}`);
+    }
+
+    // Navigation Router
+    function navigateTo(screenId) {
+      const screens = ['screen-entry', 'screen-results', 'screen-officer', 'screen-methodology', 'screen-feedback'];
+      screens.forEach(s => {
+        const el = document.getElementById(s);
+        if (el) el.classList.add('hidden');
+      });
+
+      const target = document.getElementById(screenId);
+      if (target) target.classList.remove('hidden');
+
+      // Update active nav button
+      const navMap = {
+        'screen-entry': 'nav-btn-entry',
+        'screen-results': 'nav-btn-results',
+        'screen-officer': 'nav-btn-officer',
+        'screen-methodology': 'nav-btn-methodology',
+        'screen-feedback': 'nav-btn-feedback'
+      };
+
+      Object.values(navMap).forEach(btnId => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+          btn.className = "w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-semibold text-sm text-left transition-all text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800";
+        }
+      });
+
+      const activeBtn = document.getElementById(navMap[screenId]);
+      if (activeBtn) {
+        activeBtn.className = "w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-bold text-sm text-left transition-all bg-fsa-green text-white shadow-sm";
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Input Acreage Management
+    function setAcres(val) {
+      document.getElementById('acresInput').value = val;
+      updateAcresConversion(val);
+    }
+
+    function stepAcres(step) {
+      const input = document.getElementById('acresInput');
+      let val = parseInt(input.value) || 0;
+      val = Math.max(1, Math.min(500, val + step));
+      input.value = val;
+      updateAcresConversion(val);
+    }
+
+    function updateAcresConversion(val) {
+      const acres = parseFloat(val) || 0;
+      const ha = (acres * 0.404686).toFixed(2);
+      const gunta = (acres * 40).toLocaleString('en-IN');
+      document.getElementById('txt-metric-conversion').innerText = `${acres} Acres = ${ha} Hectares (ಗುಂಟೆ: ${gunta})`;
+    }
+
+    function setSeason(season) {
+      ['kharif', 'late', 'rabi'].forEach(s => {
+        const btn = document.getElementById(`btn-season-${s}`);
+        btn.className = "py-2.5 text-center text-sm font-semibold rounded-xl text-stone-600 dark:text-stone-300 hover:bg-white/60 dark:hover:bg-stone-800 transition-all";
+      });
+
+      if (season === 'Kharif') {
+        document.getElementById('btn-season-kharif').className = "py-2.5 text-center text-sm font-bold rounded-xl bg-fsa-green text-white shadow-xs transition-all";
+      } else if (season === 'Late Kharif') {
+        document.getElementById('btn-season-late').className = "py-2.5 text-center text-sm font-bold rounded-xl bg-fsa-green text-white shadow-xs transition-all";
+      } else {
+        document.getElementById('btn-season-rabi').className = "py-2.5 text-center text-sm font-bold rounded-xl bg-fsa-green text-white shadow-xs transition-all";
+      }
+    }
+
+    function handleDistrictChange(district) {
+      document.getElementById('previewDistrictName').innerText = `${district} District Context`;
+      showToast(`Selected district: ${district}`);
+    }
+
+    function submitAcreageForm() {
+      const acres = parseInt(document.getElementById('acresInput').value) || 0;
+      if (acres <= 0) {
+        alert("Please enter a valid acreage greater than 0.");
+        return;
+      }
+      if (acres > 500) {
+        alert("Acreage exceeds normal smallholder limit (500 ac). Please verify your entry with the FPO officer.");
+        return;
+      }
+
+      document.getElementById('resultsReadyBadge').classList.remove('hidden');
+      navigateTo('screen-results');
+      showToast("Outlook generated using official datasets & local reports!");
+    }
+
+    // Reset Session for Next Farmer (Shared Kiosk rule)
+    function resetKioskSession() {
+      if (confirm("Clear current farmer inputs and start a new session?")) {
+        document.getElementById('acresInput').value = "50";
+        updateAcresConversion(50);
+        document.getElementById('duplicateEntryNotice').classList.add('hidden');
+        navigateTo('screen-entry');
+        showToast("New farmer session initiated. Kiosk cleared.");
+      }
+    }
+
+    // Toggle Dark Mode
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+      showToast(`Theme switched`);
+    }
+
+    // Test Scenarios Switcher (Evaluator ease)
+    function applyTestScenario(scenario) {
+      const warningEl = document.getElementById('tooFewReportsWarning');
+      const progressBar = document.getElementById('coverageProgressBar');
+      const countTag = document.getElementById('farmerReportCountTag');
+      const staleBanner = document.getElementById('staleDataWarning');
+      const stateMissing = document.getElementById('stateDataMissingNotice');
+
+      if (scenario === 'few-reports') {
+        warningEl.classList.remove('hidden');
+        progressBar.style.width = '18%'; // below 33% (5% threshold)
+        countTag.innerText = '14 farmers (Too few)';
+        showToast("Scenario B active: <30 farmers / <5% coverage warning triggered.");
+      } else if (scenario === 'missing-official') {
+        stateMissing.classList.remove('hidden');
+        showToast("Scenario C active: Official state data missing fallback.");
+      } else if (scenario === 'stale-data') {
+        staleBanner.classList.remove('hidden');
+        showToast("Scenario D active: 60+ days stale data banner shown.");
+      } else {
+        warningEl.classList.add('hidden');
+        stateMissing.classList.add('hidden');
+        staleBanner.classList.add('hidden');
+        progressBar.style.width = '48%';
+        countTag.innerText = '42 farmers';
+        showToast("Scenario A active: Normal Kharif state.");
+      }
+    }
+
+    // Simulated Voice & Audio Read-Aloud
+    function simulateAudioRead(elementId) {
+      const el = document.getElementById(elementId);
+      const text = el ? el.innerText : "Reading out summary.";
+      showToast(`Audio playing: "${text.substring(0, 45)}..."`);
+    }
+
+    function simulateVoiceInput() {
+      showToast("Listening... Speak acreage in Kannada, Hindi, or English.");
+      setTimeout(() => {
+        document.getElementById('acresInput').value = "65";
+        updateAcresConversion(65);
+        showToast("Recognized speech: '65 Acres'");
+      }, 1200);
+    }
+
+    function simulateWhatsAppShare() {
+      showToast("WhatsApp card generated: 'Mysuru Kharif 50ac Outlook: Karnataka Area +18%'");
+    }
+
+    function simulateCsvExport() {
+      showToast("Exporting anonymized CSV: mysuru_kharif_submissions_anonymized.csv");
+    }
+
+    function recordFeedback(sentiment) {
+      showToast(`Thank you! Recorded feedback: ${sentiment}`);
+    }
+
+    function simulateAudioRecordMemo() {
+      const btn = document.getElementById('recordMemoText');
+      const status = document.getElementById('memoStatus');
+      btn.innerText = "Recording (0:08)...";
+      status.innerText = "Listening to farmer voice note...";
+      setTimeout(() => {
+        btn.innerText = "Record Again";
+        status.innerText = "Voice note attached: 18 seconds (Kannada)";
+        showToast("Audio note recorded successfully.");
+      }, 2000);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const msg = document.getElementById('toastMessage');
+      if (toast && msg) {
+        msg.innerText = message;
+        toast.classList.remove('translate-y-24');
+        setTimeout(() => {
+          toast.classList.add('translate-y-24');
+        }, 3200);
+      }
+    }
+
+    // Chart Scope Switcher
+    function switchChartScope(scope) {
+      const stateBtn = document.getElementById('btn-chart-state');
+      const indiaBtn = document.getElementById('btn-chart-india');
+      if (scope === 'state') {
+        stateBtn.className = "px-3 py-1.5 rounded-lg bg-white dark:bg-stone-700 shadow-xs text-fsa-green font-extrabold";
+        indiaBtn.className = "px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 font-bold";
+      } else {
+        indiaBtn.className = "px-3 py-1.5 rounded-lg bg-white dark:bg-stone-700 shadow-xs text-fsa-green font-extrabold";
+        stateBtn.className = "px-3 py-1.5 rounded-lg text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 font-bold";
+      }
+      showToast(`Chart updated to ${scope === 'state' ? 'Karnataka' : 'All India'} 5-year series`);
+    }
+
+    // Initialize Lucide icons on load
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      updateAcresConversion(50);
+    });
+  </script>
+</body>
+</html>

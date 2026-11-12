@@ -1,0 +1,156 @@
+# Configuration for Farmer Sell Advisor (Onion)
+project:
+  name: "Farmer Sell Advisor"
+  crop: "onion"
+  target_mandis:
+    - "Bengaluru (Yeshwanthpur)"
+    - "Kolar"
+    - "Chikkaballapur"
+  horizons: [7, 14, 30]
+  random_seed: 42
+  allow_synthetic_training: false  # DATA_PROVENANCE: strictly false; training refuses synthetic data by default
+
+paths:
+  raw_data_dir: "data/raw"
+  real_data_dir: "data/raw/real"
+  processed_panel: "data/processed/panel.parquet"
+  models_dir: "models"
+  reports_dir: "reports"
+
+# Mandi Locations and Geocodes
+mandis:
+  "Bengaluru (Yeshwanthpur)":
+    state: "Karnataka"
+    district: "Bengaluru Urban"
+    lat: 13.0285
+    lon: 77.5450
+    tier: "Major Consumption Hub"
+    base_modal_price_offset: 150.0  # Premium for large wholesale hub
+  "Kolar":
+    state: "Karnataka"
+    district: "Kolar"
+    lat: 13.1367
+    lon: 78.1340
+    tier: "Production / Secondary Mandi"
+    base_modal_price_offset: 0.0
+  "Chikkaballapur":
+    state: "Karnataka"
+    district: "Chikkaballapur"
+    lat: 13.4355
+    lon: 77.7315
+    tier: "Production / Feeder Mandi"
+    base_modal_price_offset: -30.0
+
+# Road Distances (km) between hubs and local farming centers
+distance_matrix_km:
+  "Bengaluru (Yeshwanthpur)":
+    "Bengaluru (Yeshwanthpur)": 10.0
+    "Kolar": 70.0
+    "Chikkaballapur": 58.0
+  "Kolar":
+    "Bengaluru (Yeshwanthpur)": 70.0
+    "Kolar": 8.0
+    "Chikkaballapur": 65.0
+  "Chikkaballapur":
+    "Bengaluru (Yeshwanthpur)": 58.0
+    "Kolar": 65.0
+    "Chikkaballapur": 8.0
+
+# Economic Cost Assumptions
+costs:
+  diesel_price_per_liter: 88.0
+  transport_rate_per_km_quintal: 3.5  # Rs per quintal per km for small commercial vehicle (e.g. Tata 407 / Ape / Canter)
+  min_trip_freight_base: 300.0        # Minimum fixed loading / trip charge
+  mandi_user_fee_pct: 0.015           # 1.5% APMC market regulation fee
+  commission_agent_fee_pct: 0.020     # 2.0% agent commission
+  handling_hamali_per_quintal: 12.0   # Unloading & grading hamali charge (Rs/qtl)
+  transit_shrinkage_pct_per_100km: 0.0025  # 0.25% weight loss per 100km
+
+# Post-harvest storage assumptions
+storage:
+  types:
+    "open":
+      name: "Open Farm Storage (Kaccha Shed)"
+      cost_per_quintal_day: 0.0
+      daily_spoilage_rate: 0.012      # 1.2% weight loss / rotting / sprouting per day
+      max_safe_days: 15
+    "warehouse":
+      name: "Standard Ventilated Warehouse"
+      cost_per_quintal_day: 0.50      # ~Rs 15/quintal/month
+      daily_spoilage_rate: 0.004      # 0.4% per day
+      max_safe_days: 60
+    "cold_storage":
+      name: "Controlled Atmosphere / Cold Storage"
+      cost_per_quintal_day: 1.50      # ~Rs 45/quintal/month
+      daily_spoilage_rate: 0.001      # 0.1% per day
+      max_safe_days: 120
+
+# Credit and Opportunity Costs
+credit:
+  trader_debt_annual_interest_pct: 24.0   # 2.0% per month moneylender / commission agent loan
+  warehouse_receipt_loan_annual_interest_pct: 9.0  # 0.75% per month institutional e-NWR financing
+
+# Feature engineering parameters
+features:
+  price_lags: [1, 7, 14, 30]
+  rolling_windows: [7, 14, 30]
+  arrival_lags: [1, 7]
+  weather_lags: [1, 7]
+
+# Forecaster model parameters
+model:
+  quantiles: [0.10, 0.50, 0.90]
+  target_horizons: [7, 14, 30]
+  optuna_n_trials: 15
+  test_horizon_days: 60
+  coverage_target_min: 70.0  # Alert if P10-P90 coverage < 70%
+  coverage_target_max: 90.0  # Alert if P10-P90 coverage > 90%
+  lightgbm_params:
+    n_estimators: 120
+    learning_rate: 0.05
+    num_leaves: 31
+    min_child_samples: 15
+    subsample: 0.85
+    colsample_bytree: 0.85
+    random_state: 42
+    verbose: -1
+
+# Monte Carlo Simulation parameters
+simulation:
+  n_draws: 10000
+  evaluation_horizons: [0, 7, 14, 30]
+
+# Crop Area & Supply Outlook settings
+area_outlook:
+  official_data_path: "data/raw/official_crop_area/onion_area_production.csv"
+  db_path: "data/area_reports.db"
+  min_farmer_entries_threshold: 30
+  min_coverage_pct_threshold: 5.0
+  max_single_entry_acres: 500.0
+  sowing_to_harvest_lag_days: 105
+  default_district: "Mysuru"
+  known_districts:
+    - "Mysuru"
+    - "Gadag"
+    - "Dharwad"
+    - "Chitradurga"
+    - "Bagalkot"
+    - "Vijayapura"
+    - "Chikkaballapur"
+    - "Kolar"
+    - "Ballari"
+    - "Belagavi"
+    - "Davanagere"
+    - "Hassan"
+    - "Mandya"
+    - "Tumakuru"
+  known_seasons:
+    - "Kharif"
+    - "Late Kharif"
+    - "Rabi"
+    - "Total"
+  supply_signal_thresholds:
+    higher_ratio: 1.05
+    lower_ratio: 0.95
+
+

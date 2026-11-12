@@ -1,0 +1,83 @@
+@import "./fonts.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-base-size: 18px;
+}
+
+html {
+  font-size: var(--font-base-size);
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Tabular numerals for numbers and prices so alignment is rock-solid */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Material Symbols Outlined Icon Helper */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Minimum touch target utility for high accessibility */
+.touch-target {
+  min-height: 56px;
+  min-width: 56px;
+}
+
+/* Card hover and active states for sunlight-tested outdoor tactile feel */
+.touch-press {
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.touch-press:active {
+  transform: scale(0.985);
+}
+
+/* Prevent any accidental horizontal overflow at small screen sizes */
+* {
+  box-sizing: border-box;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+}

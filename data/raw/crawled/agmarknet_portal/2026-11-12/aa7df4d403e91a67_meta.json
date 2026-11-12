@@ -1,0 +1,12 @@
+{
+  "source_id": "agmarknet_portal",
+  "url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+  "fetched_at": "2026-11-12T15:30:50",
+  "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed",
+  "bytes": 2334,
+  "content_type": "text/csv",
+  "metadata": {
+    "local_file": "data/raw\\Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+    "type": "marketwise_bulletin"
+  }
+}

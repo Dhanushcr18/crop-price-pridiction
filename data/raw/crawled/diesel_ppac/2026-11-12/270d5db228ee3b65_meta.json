@@ -1,0 +1,12 @@
+{
+  "source_id": "diesel_ppac",
+  "url": "https://ppac.gov.in/retail-prices/karnataka-diesel",
+  "fetched_at": "2026-11-12T15:32:08",
+  "raw_hash": "270d5db228ee3b65cc21689db5279883dec90f899aa192b9637adb0acf5d4a61",
+  "bytes": 140,
+  "content_type": "text/csv",
+  "metadata": {
+    "state": "Karnataka",
+    "fuel": "Diesel"
+  }
+}

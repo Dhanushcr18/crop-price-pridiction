@@ -1,0 +1,13 @@
+{
+  "source_id": "data_gov_in",
+  "url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+  "fetched_at": "2026-11-12T15:30:43",
+  "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d",
+  "bytes": 1721065,
+  "content_type": "text/csv",
+  "metadata": {
+    "source": "verified_local_dump",
+    "start_date": "2026-10-13",
+    "end_date": "2026-11-12"
+  }
+}

@@ -1,0 +1,451 @@
+<!DOCTYPE html><html lang="kn"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-error":"#ffffff","tertiary-fixed-dim":"#ffb59a","primary":"#00450d","on-primary-container":"#90d689","on-secondary":"#ffffff","inverse-surface":"#382f25","surface-dim":"#e8d7c9","outline":"#717a6d","on-primary-fixed-variant":"#0c5216","surface-tint":"#2a6b2c","on-tertiary":"#ffffff","primary-container":"#1b5e20","on-background":"#221a11","primary-fixed":"#acf4a4","surface-container-low":"#fff1e7","secondary-container":"#fdcdbc","on-surface-variant":"#41493e","surface-bright":"#fff8f4","tertiary-container":"#933100","background":"#fff8f4","surface-container":"#fcebdc","surface-container-high":"#f7e5d7","secondary":"#7a5649","error":"#ba1a1a","surface-container-highest":"#f1dfd1","on-primary-fixed":"#002203","secondary-fixed":"#ffdbcf","on-tertiary-container":"#ffb498","error-container":"#ffdad6","inverse-on-surface":"#ffeee0","on-error-container":"#93000a","inverse-primary":"#91d78a","tertiary":"#6c2200","on-tertiary-fixed-variant":"#802a00","tertiary-fixed":"#ffdbcf","on-secondary-fixed-variant":"#603f33","on-tertiary-fixed":"#380d00","on-secondary-container":"#795548","on-secondary-fixed":"#2e150b","on-primary":"#ffffff","primary-fixed-dim":"#91d78a","secondary-fixed-dim":"#ebbcac","surface-container-lowest":"#ffffff","on-surface":"#221a11","outline-variant":"#c0c9bb","surface":"#fff8f4","surface-variant":"#f1dfd1"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-lg":"1.5rem","space-sm":"0.75rem","space-md":"1rem","space-xs":"0.375rem","space-2xl":"3rem","margin-md":"1.5rem","margin-lg":"2.5rem","margin":"1rem","space-xl":"2.25rem","gutter-lg":"1.5rem","gutter":"1rem"},fontFamily:{"body-lg":["Noto Sans"],"label-lg":["Noto Sans"],"display-lg":["Noto Sans"],"display-lg-mobile":["Noto Sans"],"body-md":["Noto Sans"],"title-lg":["Noto Sans"],"numeral-lg":["Noto Sans"],"headline-md":["Noto Sans"],"numeral-md":["Noto Sans"],"headline-lg":["Noto Sans"],"label-md":["Noto Sans"]},fontSize:{"body-lg":["18px",{"lineHeight":"26px","fontWeight":"500"}],"label-lg":["16px",{"lineHeight":"20px","fontWeight":"700"}],"display-lg":["40px",{"lineHeight":"48px","fontWeight":"700"}],"display-lg-mobile":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"title-lg":["20px",{"lineHeight":"28px","fontWeight":"600"}],"numeral-lg":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"700"}],"numeral-md":["22px",{"lineHeight":"28px","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"label-md":["14px",{"lineHeight":"18px","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-20 px-space-md flex items-center gap-space-sm bg-surface-container-high/40"><div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[28px]">agriculture</span></div><div class="flex flex-col overflow-hidden"><span class="font-title-lg text-title-lg text-primary leading-tight truncate">ರೈತ ಸಲಹೆಗಾರ</span><span class="font-label-md text-label-md text-on-surface-variant truncate">Farmer Sell Advisor</span></div></div><div class="px-space-md pt-space-md pb-space-xs"><span class="font-label-md text-label-md text-outline uppercase tracking-wider px-space-xs">ಮುಖ್ಯ ಮೆನು / Menu</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_3px_0_0_#d7ccc8]"><a aria-current="page" class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg transition-all bg-primary-container text-on-primary font-bold shadow-[0_3px_0_0_#d7ccc8]" data-path="advice" href="#"><span class="material-symbols-outlined text-[24px]">recommend</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">Advice</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಸಲಹೆ ಮತ್ತು ಶಿಫಾರಸು</span></div></a><a class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="my-history" href="#"><span class="material-symbols-outlined text-[24px]">history_edu</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">My History</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಹಿಂದಿನ ಲೆಕ್ಕ</span></div></a><a class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="how-reliable" href="#"><span class="material-symbols-outlined text-[24px]">verified</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">How Reliable?</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಮಾದರಿ ನಿಖರತೆ</span></div></a><a class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="help-and-faq" href="#"><span class="material-symbols-outlined text-[24px]">support_agent</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">Help &amp; FAQ</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಸಹಾಯ ಮತ್ತು ಮಾಹಿತಿ</span></div></a><a class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[24px]">tune</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">Settings</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಸೆಟ್ಟಿಂಗ್ಸ್ ಮತ್ತು ಮಂಡಿ ಆಯ್ಕೆ</span></div></a></nav></div><div class="p-space-md flex flex-col gap-space-sm bg-surface-container/60"><div class="flex items-center gap-space-sm px-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">store</span><span class="font-label-md text-label-md font-bold">RSK Kiosk #14 - Hubli APMC</span></div><div class="w-full py-space-xs px-space-sm rounded-lg bg-surface-container-highest text-on-surface flex items-center justify-between"><span class="font-label-md text-label-md">ಕನ್ನಡ ಬೆಂಬಲ ಲಭ್ಯ</span><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span></div></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 min-h-[64px] bg-surface/95 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container-high"><div class="w-full px-space-lg py-space-xs flex flex-wrap items-center justify-between gap-space-md min-h-[64px]"><div class="flex items-center flex-wrap gap-space-sm shrink-0"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-lg bg-tertiary-container text-on-tertiary font-label-md text-label-md shrink-0"><span class="material-symbols-outlined text-[20px]">warning</span><div class="flex flex-col leading-tight"><span class="font-bold text-xs uppercase tracking-wide">Synthetic Data - Not For Real Decisions</span><span class="text-[10px] opacity-90">ಕೃತಕ ಮಾಹಿತಿ - ತರಬೇತಿಗಾಗಿ ಮಾತ್ರ</span></div></div><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md shrink-0"><span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shrink-0"></span><span class="font-bold text-xs">Online: Live APMC Sync</span></div></div><div class="flex items-center flex-wrap gap-space-sm shrink-0"><div class="flex items-center bg-surface-container-high rounded-lg p-1 text-on-surface shrink-0"><button class="min-h-[40px] px-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1 shrink-0" type="button"><span class="material-symbols-outlined text-[16px]">translate</span>ಕನ್ನಡ</button><button class="min-h-[40px] px-space-sm rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md shrink-0" type="button">English</button><button class="min-h-[40px] px-space-sm rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md shrink-0" type="button">हिन्दी</button></div><button class="min-h-[40px] px-space-md rounded-lg bg-error text-on-error font-label-md text-label-md flex items-center gap-space-xs hover:bg-error/90 transition-colors shrink-0" type="button"><span class="material-symbols-outlined text-[18px]">restart_alt</span><span class="font-bold">Start New Farmer (ಹೊಸ ರೈತ)</span></button><button class="min-h-[40px] px-space-sm rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1 shrink-0" type="button"><span class="material-symbols-outlined text-[18px]">badge</span><span class="hidden sm:inline">Staff / Kiosk Mode</span></button><div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full flex-1 pt-20 bg-surface px-space-lg"><div class="flex flex-col w-full pb-space-2xl">
+<!-- Top Persistent Notice Banner -->
+<div class="w-full bg-error-container text-on-error-container px-space-md py-space-sm rounded-lg mb-space-lg flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px] text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div class="flex flex-col sm:flex-row sm:items-center sm:gap-space-sm">
+<span class="font-label-lg text-label-lg tracking-wide uppercase font-bold text-error">SYNTHETIC DATA — NOT FOR REAL DECISIONS</span>
+<span class="hidden sm:inline text-outline">•</span>
+<span class="font-body-md text-body-md text-on-surface">ಕೃತಕ ಮಾಹಿತಿ — ಕ್ಷೇತ್ರ ತರಬೇತಿ ಮತ್ತು ಪ್ರಾತ್ಯಕ್ಷಿಕೆಗಾಗಿ ಮಾತ್ರ</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="hidden md:inline">RSK Verified Session #2024-KLR</span>
+</div>
+</div>
+<!-- Shared Consultation Header bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-md bg-surface-container-low p-space-md rounded-xl shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[32px]">co_present</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="bg-primary/10 text-primary px-space-xs py-0.5 rounded font-label-md text-label-md font-bold uppercase tracking-wider">Joint Assisted Mode</span>
+<span class="text-on-surface-variant font-label-md text-label-md">• ರೈತ ಮತ್ತು ಕೃಷಿ ಅಧಿಕಾರಿ ಸಮಾಲೋಚನೆ</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold">ಮಾರಾಟ ನಿರ್ಧಾರ ಸಮಾಲೋಚನೆ (Sell Advisory Intake)</h1>
+</div>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-highest px-space-md py-space-xs rounded-lg">
+<span class="w-3 h-3 rounded-full bg-primary animate-ping"></span>
+<div class="flex flex-col text-right">
+<span class="font-label-md text-label-md text-primary font-bold">Kolar APMC Connected</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Modal: ₹2,600 / Qtl (11:30 AM)</span>
+</div>
+</div>
+</div>
+<!-- 2-Column Split: 5 Cols Form (Farmer + Worker) | 7 Cols Spatial/Mandi Preview -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: 5 Cols (Stepper Form Card) -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col gap-space-lg relative">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="font-title-lg text-title-lg text-primary font-bold">ಹಂತ ಹಂತದ ವಿವರ</span>
+<span class="text-on-surface-variant font-body-md text-body-md">(5 Step Input)</span>
+</div>
+<span class="font-label-md text-label-md bg-surface-container text-on-surface-variant px-space-sm py-1 rounded-full font-bold">1-Metre Glare Optimized</span>
+</div>
+<!-- Step 1: Crop Selection -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-center text-xs leading-6 inline-block">1</span>
+            ಬೆಳೆ ಆಯ್ಕೆ / Select Crop
+          </label>
+<span class="text-primary font-label-md text-label-md font-bold">ಖಾರಿಫ್ ಹಂಗಾಮು (Kharif)</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs pt-1">
+<!-- Active Crop -->
+<button class="min-h-[56px] p-space-xs rounded-lg bg-surface-container text-primary font-bold shadow-[0_3px_0_0_#1b5e20] flex flex-col items-center justify-center text-center transition-all" type="button">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[20px]">nutrition</span>
+<span class="font-label-lg text-label-lg">ಕೆಂಪು ಈರುಳ್ಳಿ</span>
+</div>
+<span class="font-label-md text-label-md text-primary/80">Red Onion</span>
+</button>
+<!-- Disabled Crop 1 -->
+<div class="min-h-[56px] p-space-xs rounded-lg bg-surface-container-low opacity-50 flex flex-col items-center justify-center text-center cursor-not-allowed">
+<span class="font-label-md text-label-md text-on-surface-variant line-through">ಆಲೂಗಡ್ಡೆ (Potato)</span>
+<span class="text-[10px] uppercase font-bold text-outline">ಶೀಘ್ರದಲ್ಲಿ (Soon)</span>
+</div>
+<!-- Disabled Crop 2 -->
+<div class="min-h-[56px] p-space-xs rounded-lg bg-surface-container-low opacity-50 flex flex-col items-center justify-center text-center cursor-not-allowed">
+<span class="font-label-md text-label-md text-on-surface-variant line-through">ಟೊಮ್ಯಾಟೊ (Tomato)</span>
+<span class="text-[10px] uppercase font-bold text-outline">ಶೀಘ್ರದಲ್ಲಿ (Soon)</span>
+</div>
+</div>
+</div>
+<!-- Step 2: Location Combobox -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center justify-between">
+<span class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-center text-xs leading-6 inline-block">2</span>
+            ನಿಮ್ಮ ಊರು / ಮಂಡಿ (Where are you?)
+          </span>
+<span class="font-label-md text-label-md text-secondary">ಮಂಡಿ ಅಂತರ ಲೆಕ್ಕಾಚಾರ</span>
+</label>
+<div class="flex flex-col gap-space-xs">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-space-sm text-primary text-[24px]">location_on</span>
+<input class="w-full min-h-[52px] pl-12 pr-28 rounded-lg bg-surface-container text-on-surface font-title-lg text-title-lg font-bold focus:outline-none cursor-pointer" readonly="" type="text" value="Kolar APMC (ಕೋಲಾರ ಮಂಡಿ) — Zone 4">
+<span class="absolute right-3 bg-primary text-on-primary font-label-md text-label-md px-space-xs py-1 rounded">Active</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="min-h-[48px] px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface flex items-center justify-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-primary text-[20px]">my_location</span>
+<span class="font-label-md text-label-md font-bold">Use GPS (ಸ್ಥಳ ಗುರುತಿಸು)</span>
+</button>
+<button class="min-h-[48px] px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface flex items-center justify-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-tertiary text-[20px]">mic</span>
+<span class="font-label-md text-label-md font-bold">ಕೇಳಿ / Speak Village</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Step 3: Harvest Quantity (Stepper + Quick Chips) -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-center text-xs leading-6 inline-block">3</span>
+            ಎಷ್ಟು ಕ್ವಿಂಟಾಲ್? (Harvest Quantity)
+          </label>
+<span class="font-label-md text-label-md text-on-surface-variant font-bold">1 ಚೀಲ ≈ 50 ಕೆಜಿ</span>
+</div>
+<div class="bg-surface-container p-space-sm rounded-xl flex items-center justify-between">
+<button class="w-14 h-14 rounded-lg bg-surface-container-lowest hover:bg-surface-container-high text-on-surface flex items-center justify-center text-numeral-md font-bold shadow-sm select-none active:scale-95 transition-all" id="decrement-btn" type="button">
+<span class="material-symbols-outlined text-[30px]">remove</span>
+</button>
+<div class="flex flex-col items-center">
+<div class="flex items-baseline gap-1">
+<span class="font-numeral-lg text-numeral-lg text-primary font-extrabold tracking-tight" id="quantity-display">35</span>
+<span class="font-title-lg text-title-lg text-on-surface font-bold">ಕ್ವಿಂಟಾಲ್ (Qtl)</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">ಅಂದಾಜು 70 ಚೀಲಗಳು (Bags)</span>
+</div>
+<button class="w-14 h-14 rounded-lg bg-surface-container-lowest hover:bg-surface-container-high text-on-surface flex items-center justify-center text-numeral-md font-bold shadow-sm select-none active:scale-95 transition-all" id="increment-btn" type="button">
+<span class="material-symbols-outlined text-[30px]">add</span>
+</button>
+</div>
+<!-- Quick Select Chips -->
+<div class="flex items-center justify-between gap-space-xs pt-1 overflow-x-auto">
+<button class="chip-btn min-h-[48px] flex-1 py-1 px-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md font-bold text-center hover:bg-surface-container-highest" onclick="setQuantity(10)" type="button">10 Qtl</button>
+<button class="chip-btn min-h-[48px] flex-1 py-1 px-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md font-bold text-center hover:bg-surface-container-highest" onclick="setQuantity(20)" type="button">20 Qtl</button>
+<button class="chip-btn min-h-[48px] flex-1 py-1 px-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center shadow-sm" onclick="setQuantity(35)" type="button">35 Qtl</button>
+<button class="chip-btn min-h-[48px] flex-1 py-1 px-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md font-bold text-center hover:bg-surface-container-highest" onclick="setQuantity(50)" type="button">50 Qtl</button>
+<button class="chip-btn min-h-[48px] flex-1 py-1 px-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md font-bold text-center hover:bg-surface-container-highest" onclick="setQuantity(100)" type="button">100 Qtl</button>
+</div>
+</div>
+<!-- Step 4: Storage Access Selection Cards -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center justify-between">
+<span class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-center text-xs leading-6 inline-block">4</span>
+            ದಾಸ್ತಾನು ಸೌಲಭ್ಯವಿದೆಯೇ? (Storage Access)
+          </span>
+<span class="font-label-md text-label-md text-secondary">ಗುಣಮಟ್ಟ ಸಂರಕ್ಷಣೆ</span>
+</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs">
+<!-- Option 1: Selected -->
+<div class="storage-card cursor-pointer min-h-[56px] p-space-sm rounded-lg bg-surface-container shadow-[0_3px_0_0_#1b5e20] flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-[22px]">timer_off</span>
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-primary">ಇಲ್ಲ / ತಾಜಾ ಮಾರಾಟ</p>
+<p class="font-label-md text-label-md text-on-surface-variant">None / Sell Fresh</p>
+</div>
+</div>
+<!-- Option 2 -->
+<div class="storage-card cursor-pointer min-h-[56px] p-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest flex flex-col justify-between opacity-85 transition-colors">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-[22px]">roofing</span>
+<span class="w-3 h-3 rounded-full bg-outline-variant"></span>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">ಮನೆ ಉಗ್ರಾಣ</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Home Onion Chawl</p>
+</div>
+</div>
+<!-- Option 3 -->
+<div class="storage-card cursor-pointer min-h-[56px] p-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest flex flex-col justify-between opacity-85 transition-colors">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-[22px]">ac_unit</span>
+<span class="w-3 h-3 rounded-full bg-outline-variant"></span>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">ಶೀತಲ ಕೇಂದ್ರ</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Cold Storage (APMC)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 5: Trader Debt Question (Critical for hold/sell guidance) -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-center text-xs leading-6 inline-block">5</span>
+            ಆಡತಿದಾರರಿಗೆ ಸಾಲವಿದೆಯೇ? (Owe Trader?)
+          </label>
+<span class="material-symbols-outlined text-secondary text-[20px]" title="Why we ask: If you owe an agent, selling outside may require immediate cash settlement.">help</span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs">
+<button class="min-h-[52px] px-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-bold flex items-center justify-center gap-1" type="button">
+<span>ಸಾಲವಿದೆ (Yes)</span>
+</button>
+<button class="min-h-[52px] px-space-xs rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-bold flex items-center justify-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>ಇಲ್ಲ (No Debt)</span>
+</button>
+<button class="min-h-[52px] px-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant font-label-md text-label-md flex items-center justify-center" type="button">
+<span>ಹೇಳಲು ಇಷ್ಟವಿಲ್ಲ</span>
+</button>
+</div>
+<!-- Explanatory Tooltip Box -->
+<div class="p-space-xs bg-surface-container-high rounded-lg text-on-surface-variant flex items-start gap-space-xs mt-1">
+<span class="material-symbols-outlined text-[18px] text-primary shrink-0 mt-0.5">info</span>
+<p class="font-label-md text-label-md leading-tight">
+<strong>ಏಕೆ ಕೇಳುತ್ತಿದ್ದೇವೆ?</strong> ದಲ್ಲಾಳಿಗಳಿಗೆ ಸಾಲವಿದ್ದರೆ ಮಂಡಿ ಹೊರಗೆ ಮಾರಾಟ ಮಾಡುವುದು ಕಷ್ಟವಾಗಬಹುದು. ಮುಕ್ತ ನಿರ್ಧಾರಕ್ಕಾಗಿ ಈ ಮಾಹಿತಿ ಮುಖ್ಯ.
+          </p>
+</div>
+</div>
+<!-- Intake Review Summary Tag & Action CTA -->
+<div class="pt-space-sm flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">task_alt</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">ತಕ್ಷಣದ ಲೆಕ್ಕ: 35 Qtl ಕೆಂಪು ಈರುಳ್ಳಿ • ಕೋಲಾರ • ಸಾಲವಿಲ್ಲ</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-extrabold">ಸಿದ್ಧವಾಗಿದೆ</span>
+</div>
+<button class="w-full min-h-[56px] px-space-lg rounded-xl bg-primary text-on-primary font-headline-md text-headline-md font-bold flex items-center justify-center gap-space-sm shadow-md hover:bg-primary/95 active:scale-[0.99] transition-transform" type="button">
+<span>ಸಲಹೆ ಪಡೆಯಿರಿ / Get Advice</span>
+<span class="material-symbols-outlined text-[28px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- RIGHT COLUMN: 7 Cols (Live Spatial Preview & Mandi Map) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Real-Time Context Summary Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-xs border-b border-surface-container-high gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<h2 class="font-title-lg text-title-lg text-on-surface font-bold">ಸ್ಥಳೀಯ ಮಾರುಕಟ್ಟೆ ಮುನ್ನೋಟ (Live Kolar Preview)</h2>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-bold">ತಾಜಾ ದರ: ಇಂದು ಬೆಳಗ್ಗೆ 11:30</span>
+</div>
+<!-- 3 KPI Grid for Field Staff & Farmer -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">ಕೋಲಾರ ಮಾದರಿ ಬೆಲೆ (Modal)</span>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-numeral-lg text-numeral-lg text-primary font-bold">₹2,600</span>
+<span class="font-label-md text-label-md text-on-surface-variant">/ Qtl</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +₹150 ನಿನ್ನೆಗೆ ಹೋಲಿಸಿದರೆ
+            </span>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">ಇಂದಿನ ಒಟ್ಟು ಆವಕ (Arrival)</span>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-numeral-lg text-numeral-lg text-on-surface font-bold">480</span>
+<span class="font-label-md text-label-md text-on-surface-variant">ಕ್ವಿಂಟಾಲ್</span>
+</div>
+<span class="font-label-md text-label-md text-secondary font-bold">ಸಾಮಾನ್ಯ ಹರಿವು (Normal flow)</span>
+</div>
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">35 ಕ್ವಿಂಟಾಲ್ ಅಂದಾಜು ಮೌಲ್ಯ</span>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-numeral-lg text-numeral-lg text-primary font-bold">₹91,000</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">ಸಾರಿಗೆ ಕಳೆಯುವ ಮುನ್ನ (Gross)</span>
+</div>
+</div>
+<!-- Voice Assistance Banner -->
+<div class="bg-surface-container-high p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">volume_up</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">ಧ್ವನಿ ಮಾರ್ಗದರ್ಶನ ಲಭ್ಯವಿದೆ (Voice Guidance)</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Press Spacebar on kiosk or tap speaker to hear price comparison in Kannada.</p>
+</div>
+</div>
+<button class="min-h-[48px] px-space-md rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md font-bold shadow-sm hover:bg-surface transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>ಪ್ಲೇ ಮಾಡಿ</span>
+</button>
+</div>
+</div>
+<!-- Spatial Mandi Comparison Map Canvas -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">map</span>
+<h3 class="font-title-lg text-title-lg text-on-surface font-bold">ಸಮೀಪದ ಮಂಡಿಗಳ ಲೈವ್ ನಕ್ಷೆ (Live APMC Spatial Route)</h3>
+</div>
+<span class="font-label-md text-label-md bg-secondary-fixed text-on-secondary-fixed px-space-sm py-1 rounded font-bold">Kolar Radius: 70 KM</span>
+</div>
+<!-- Interactive Map Visual Canvas with Local APMC Clusters -->
+<div class="relative w-full h-80 bg-surface-container rounded-xl overflow-hidden p-space-md flex flex-col justify-between" data-location="Kolar APMC, Karnataka">
+<!-- Stylized Map Background Pattern (Vector Terrain) -->
+<svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<path d="M 50,0 Q 200,120 400,80 T 800,160" fill="none" stroke="#00450d" stroke-dasharray="6 6" stroke-width="4"></path>
+<path d="M 0,220 Q 300,180 500,260 T 900,220" fill="none" stroke="#7a5649" stroke-width="3"></path>
+<circle cx="280" cy="150" fill="#acf4a4" fill-opacity="0.25" r="110"></circle>
+</svg>
+<!-- Map Nodes / Pins -->
+<!-- Farmer Location: Kolar (Hero Node) -->
+<div class="absolute left-1/3 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+<div class="px-space-xs py-0.5 rounded bg-primary text-on-primary font-label-md text-label-md font-bold shadow-md animate-bounce">
+              ನೀವು ಇಲ್ಲಿದ್ದೀರಿ (Kolar)
+            </div>
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[18px]">agriculture</span>
+</div>
+<span class="font-label-md text-label-md font-extrabold text-on-surface bg-surface-container-lowest/90 px-1 rounded shadow-sm mt-1">₹2,600 / Qtl</span>
+</div>
+<!-- Bangalore Yeshwanthpur Node -->
+<div class="absolute left-12 bottom-8 z-10 flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[16px]">storefront</span>
+</div>
+<div class="bg-surface-container-lowest/95 p-1 rounded shadow-sm text-center">
+<p class="font-label-md text-label-md font-bold text-on-surface">ಬೆಂಗಳೂರು (Yeshwanthpur)</p>
+<p class="font-label-md text-label-md text-primary font-bold">₹2,820 • 68 km</p>
+</div>
+</div>
+<!-- Chintamani Node -->
+<div class="absolute right-1/4 top-10 z-10 flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[16px]">storefront</span>
+</div>
+<div class="bg-surface-container-lowest/95 p-1 rounded shadow-sm text-center">
+<p class="font-label-md text-label-md font-bold text-on-surface">ಚಿಂತಾಮಣಿ (Chintamani)</p>
+<p class="font-label-md text-label-md text-on-surface-variant font-bold">₹2,540 • 38 km</p>
+</div>
+</div>
+<!-- Malur Node -->
+<div class="absolute left-1/4 bottom-16 z-10 flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[14px]">storefront</span>
+</div>
+<div class="bg-surface-container-lowest/95 px-1 py-0.5 rounded shadow-sm text-center">
+<span class="font-label-md text-label-md font-bold text-on-surface">ಮಾಲೂರು (Malur) 24km</span>
+</div>
+</div>
+<!-- Hubli distant badge -->
+<div class="absolute right-4 bottom-4 z-10">
+<span class="bg-surface-container-highest text-on-surface-variant px-space-xs py-1 rounded font-label-md text-label-md">
+              ಹುಬ್ಬಳ್ಳಿ (Hubballi): ₹2,950 (420 km - ದೂರದ ಮಾರುಕಟ್ಟೆ)
+            </span>
+</div>
+</div>
+<!-- Transport & Fuel Estimator Widget (Tempo Calculator) -->
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">local_shipping</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">ಸಾರಿಗೆ ವೆಚ್ಚ ಅಂದಾಜು (35 ಕ್ವಿಂಟಾಲ್‌ಗಾಗಿ ಟೆಂಪೋ ದರ)</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-bold">Tata Ace / 1.5 Tonne</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<!-- Bengauru Trip Estimate -->
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">ಕೋಲಾರ → ಬೆಂಗಳೂರು (68 ಕಿ.ಮೀ)</p>
+<p class="font-label-md text-label-md text-primary font-bold">+₹220/Qtl ಹೆಚ್ಚಿನ ದರ</p>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-title-lg text-error font-bold">₹1,400</p>
+<p class="font-label-md text-label-md text-on-surface-variant">ಅಂದಾಜು ಬಾಡಿಗೆ</p>
+</div>
+</div>
+<!-- Chintamani Trip Estimate -->
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">ಕೋಲಾರ → ಚಿಂತಾಮಣಿ (38 ಕಿ.ಮೀ)</p>
+<p class="font-label-md text-label-md text-on-surface-variant font-bold">ಸ್ಥಳೀಯ ದರಕ್ಕಿಂತ ಕಡಿಮೆ</p>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-title-lg text-on-surface font-bold">₹600</p>
+<p class="font-label-md text-label-md text-on-surface-variant">ಅಂದಾಜು ಬಾಡಿಗೆ</p>
+</div>
+</div>
+</div>
+<!-- Bottom Net Gain Callout -->
+<div class="flex items-center justify-between pt-1 border-t border-surface-container-high text-on-surface-variant font-label-md text-label-md">
+<span>ನಿವ್ವಳ ಲಾಭ (Net Profit) ಸಾರಿಗೆಯ ನಂತರ ಬೆಂಗಳೂರಿನಲ್ಲಿ ಹೆಚ್ಚಾಗುವ ಸಾಧ್ಯತೆ: <strong>+₹6,300</strong></span>
+<span class="text-primary font-bold">ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentQty = 35;
+  const qtyDisplay = document.getElementById('quantity-display');
+
+  function updateDisplay() {
+    if (qtyDisplay) {
+      qtyDisplay.textContent = currentQty;
+    }
+  }
+
+  function setQuantity(val) {
+    currentQty = val;
+    updateDisplay();
+    // Update chip active classes
+    const chips = document.querySelectorAll('.chip-btn');
+    chips.forEach(chip => {
+      if (chip.textContent.trim().startsWith(val.toString())) {
+        chip.className = "chip-btn min-h-[48px] flex-1 py-1 px-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-bold text-center shadow-sm";
+      } else {
+        chip.className = "chip-btn min-h-[48px] flex-1 py-1 px-2 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md font-bold text-center hover:bg-surface-container-highest";
+      }
+    });
+  }
+
+  document.getElementById('increment-btn')?.addEventListener('click', () => {
+    currentQty += 5;
+    updateDisplay();
+  });
+
+  document.getElementById('decrement-btn')?.addEventListener('click', () => {
+    if (currentQty > 5) {
+      currentQty -= 5;
+      updateDisplay();
+    }
+  });
+
+  // Storage card selection toggle
+  const storageCards = document.querySelectorAll('.storage-card');
+  storageCards.forEach(card => {
+    card.addEventListener('click', () => {
+      storageCards.forEach(c => {
+        c.classList.remove('bg-surface-container', 'shadow-[0_3px_0_0_#1b5e20]');
+        c.classList.add('bg-surface-container-high');
+        const dot = c.querySelector('span.w-3.h-3');
+        if (dot) {
+          dot.className = 'w-3 h-3 rounded-full bg-outline-variant';
+        }
+      });
+      card.classList.remove('bg-surface-container-high');
+      card.classList.add('bg-surface-container', 'shadow-[0_3px_0_0_#1b5e20]');
+      const activeDot = card.querySelector('span.w-3.h-3');
+      if (activeDot) {
+        activeDot.className = 'w-3 h-3 rounded-full bg-primary';
+      }
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-low py-space-lg mt-auto"><div class="w-full px-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex flex-col"><p class="font-headline-md text-headline-md text-primary font-bold">ಇದು ಕೇವಲ ಸಲಹೆ. ಅಂತಿಮ ನಿರ್ಧಾರ ನಿಮ್ಮದೇ.</p><p class="font-body-md text-body-md text-on-surface-variant">This is advisory guidance based on mandi models. The ultimate trading decision is yours.</p></div><div class="flex flex-col md:items-end font-label-md text-label-md text-secondary"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">database</span><span>Data Engine: APMC-K-V4.2.1 • Sync: Live Today</span></div><span>Karnataka State Agricultural Marketing Board Protocol Compliance</span></div></div></footer></div>
+
+</body></html>

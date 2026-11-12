@@ -1,0 +1,13 @@
+{
+  "source_id": "weather_open_meteo",
+  "url": "https://api.open-meteo.com/v1/forecast?latitude=13.1367&longitude=78.134&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia%2FKolkata&start_date=2026-10-13&end_date=2026-11-12",
+  "fetched_at": "2026-11-12T15:31:12",
+  "raw_hash": "c4c5fcac48a191bf9611b27dece0b4837d6044aba9dd914c23f49700ca353d92",
+  "bytes": 1262,
+  "content_type": "application/json",
+  "metadata": {
+    "mandi": "Kolar",
+    "lat": 13.1367,
+    "lon": 78.134
+  }
+}

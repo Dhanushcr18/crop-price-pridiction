@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface":"#201b17","on-surface-variant":"#40493d","outline-variant":"#bfcaba","primary-fixed-dim":"#88d982","error-container":"#ffdad6","surface-bright":"#fff8f5","error":"#ba1a1a","surface-container":"#f7ece5","inverse-primary":"#88d982","surface-container-low":"#fdf1eb","on-tertiary-fixed":"#2f1400","on-tertiary-fixed-variant":"#6f3800","tertiary-container":"#a95900","surface-container-lowest":"#ffffff","inverse-on-surface":"#faefe8","on-primary-container":"#cbffc2","on-secondary-fixed":"#002117","on-primary-fixed-variant":"#005312","on-error":"#ffffff","on-background":"#201b17","surface-variant":"#ebe0da","tertiary-fixed-dim":"#ffb780","inverse-surface":"#352f2b","primary-container":"#2e7d32","on-secondary-fixed-variant":"#1d4f40","surface-tint":"#1b6d24","primary":"#0d631b","surface":"#fff8f5","on-secondary-container":"#3d6d5d","surface-dim":"#e3d8d1","on-secondary":"#ffffff","on-error-container":"#93000a","background":"#fff8f5","on-tertiary-container":"#ffefe5","secondary":"#376757","secondary-fixed":"#baeed9","tertiary-fixed":"#ffdcc4","secondary-fixed-dim":"#9ed1bd","tertiary":"#854500","primary-fixed":"#a3f69c","outline":"#707a6c","on-tertiary":"#ffffff","surface-container-highest":"#ebe0da","secondary-container":"#baeed9","surface-container-high":"#f1e6df","on-primary-fixed":"#002204","on-primary":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xs":"0.25rem","space-md":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","space-lg":"1.5rem","gutter":"1.5rem","gutter-sm":"1rem","margin-sm":"1rem","margin":"2rem"},"fontFamily":{"headline-lg":["Inter"],"tabular-metric":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"headline-sm":["Inter"],"body-lg":["Inter"],"label-md":["Inter"],"label-lg":["Inter"],"display-lg":["Inter"],"body-md":["Inter"]},"fontSize":{"headline-lg":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.01em","fontWeight":"700"}],"tabular-metric":["1.75rem",{"lineHeight":"2rem","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.25rem","fontWeight":"400"}],"headline-md":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["1.25rem",{"lineHeight":"1.75rem","fontWeight":"600"}],"body-lg":["1.125rem",{"lineHeight":"1.75rem","fontWeight":"400"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.04em","fontWeight":"600"}],"label-lg":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0.02em","fontWeight":"600"}],"display-lg":["3rem",{"lineHeight":"3.5rem","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.5rem","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-60 bg-surface-container-low z-50 flex flex-col pt-24 pb-4 px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="mb-space-md px-space-xs"><span class="font-label-md text-label-md text-outline tracking-wider uppercase">Advice &gt; Crop Area</span></div><nav class="flex-1 flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="enter-acreage" href="#"><span class="material-symbols-outlined text-[20px]">edit</span><span class="font-label-lg text-label-lg">Enter Acreage</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="supply-outlook" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">Supply Outlook</span></a><a class="flex items-center justify-between px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="officer-review" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Officer / FPO Review</span></div><span class="bg-secondary text-on-secondary px-space-xs py-0.5 rounded-full font-label-md text-label-md leading-none">Staff</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="sources-methods" href="#"><span class="material-symbols-outlined text-[20px]">menu_book</span><span class="font-label-lg text-label-lg">Sources &amp; Methods</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-sm transition-colors min-h-[48px] bg-primary-container text-on-primary font-bold rounded-lg" data-path="help-history" href="#"><span class="material-symbols-outlined text-[20px]">history</span><span class="font-label-lg text-label-lg">Help &amp; History</span></a></nav><div class="my-space-md p-space-sm bg-surface-container-lowest rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><label class="block font-label-md text-label-md text-on-surface-variant uppercase mb-space-xs font-semibold">Interactive Test Scenarios</label><select class="w-full bg-surface-container-high text-on-surface font-body-sm text-body-sm rounded p-space-xs focus:outline-none"><option value="normal">Normal Scenario</option><option value="coverage">&lt;5% Coverage</option><option value="missing">Missing Official</option><option value="stale">Stale Data</option></select></div><div class="p-space-sm bg-surface-container rounded-lg"><p class="font-label-md text-label-md text-on-surface-variant leading-tight">Kiosk Assisted Mode - Optimized for 1-metre shared reading between farmer &amp; helper.</p></div></aside><div class="pl-60"><header class="fixed top-0 left-0 right-0 z-40 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-error text-on-error py-1 px-space-md text-center font-label-md text-label-md tracking-wide font-bold uppercase select-none">SYNTHETIC DATA — NOT FOR REAL FINANCIAL OR FARMING DECISIONS (RESEARCH DEMO)</div><div class="h-20 w-full px-space-md flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container"><span class="material-symbols-outlined text-[26px]">eco</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Farmer Sell Advisor</span><span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-space-xs py-0.5 rounded font-bold">KARNATAKA</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-none mt-0.5">Crop Area &amp; Supply Outlook • Kharif &amp; Rabi Onion</p></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-full"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-md text-label-md text-on-surface font-medium">Live Kiosk Connected (Mysuru KVK Kiosk #04)</span></div></div><div class="flex items-center gap-space-sm"><div class="flex items-center bg-surface-container rounded-lg p-0.5"><button class="px-space-sm py-1 rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-semibold shadow-[0_1px_8px_rgba(0,0,0,0.04)]" type="button">English</button><button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">ಕನ್ನಡ</button><button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">हिन्दी</button></div><button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Toggle color mode" type="button"><span class="material-symbols-outlined text-[22px]">dark_mode</span></button><button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-xs rounded-lg font-label-lg text-label-lg min-h-[48px] hover:bg-primary-container transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">person_add</span><span>New Farmer</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-28 pb-space-xl bg-background min-h-screen"><div class="max-w-7xl mx-auto px-gutter"><div class="flex flex-col w-full gap-space-lg">
+<!-- Header Banner Section with subtle tactile warmth -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md bg-surface-container p-space-lg rounded-xl shadow-sm relative overflow-hidden">
+<div class="relative z-10 flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-primary font-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span>Audit Trail &amp; Field Experience</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Kiosk History &amp; Farmer Feedback</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Review past crop queries conducted on terminal <strong class="text-on-surface">#MYS-04</strong> or submit verbal &amp; written feedback to calibrate local mandi estimates.
+      </p>
+</div>
+<div class="relative z-10 flex items-center gap-space-sm self-start md:self-auto">
+<div class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest rounded-lg shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline uppercase leading-none">Session Status</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Kharif Co-Browsing</span>
+</div>
+</div>
+</div>
+<!-- Subtle visual organic background flourish -->
+<div class="absolute -right-8 -bottom-10 w-48 h-48 rounded-full bg-primary/5 pointer-events-none"></div>
+</div>
+<!-- Main Grid: Feedback Form (Left / 7 cols) & Kiosk Security / Snapshot (Right / 5 cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT: Interactive Feedback Component (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">rate_review</span>
+</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Was this session helpful?</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ಈ ಮಾಹಿತಿ ನಿಮಗೆ ಉಪಯುಕ್ತವಾಗಿದೆಯೇ? (Direct kiosk rating)</p>
+</div>
+</div>
+<span class="bg-surface-container px-space-sm py-0.5 rounded font-label-md text-label-md text-on-surface-variant font-medium">Anonymous</span>
+</div>
+<!-- Rating Selection Buttons (Large 56px touch target for gloved/sunlight field use) -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm mt-space-xs" id="ratingContainer">
+<button class="rating-btn flex flex-col items-center justify-center p-space-sm min-h-[56px] rounded-lg bg-surface-container-low hover:bg-surface-container transition-all text-on-surface group" data-rating="high" type="button">
+<div class="flex items-center gap-space-xs font-label-lg text-label-lg font-bold">
+<span class="text-xl">👍</span>
+<span>Very Helpful</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface">ತುಂಬಾ ಉಪಯುಕ್ತ</span>
+</button>
+<button class="rating-btn flex flex-col items-center justify-center p-space-sm min-h-[56px] rounded-lg bg-surface-container-low hover:bg-surface-container transition-all text-on-surface group" data-rating="mid" type="button">
+<div class="flex items-center gap-space-xs font-label-lg text-label-lg font-bold">
+<span class="text-xl">😐</span>
+<span>Moderate</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface">ಸಾಧಾರಣ</span>
+</button>
+<button class="rating-btn flex flex-col items-center justify-center p-space-sm min-h-[56px] rounded-lg bg-surface-container-low hover:bg-surface-container transition-all text-on-surface group" data-rating="low" type="button">
+<div class="flex items-center gap-space-xs font-label-lg text-label-lg font-bold">
+<span class="text-xl">👎</span>
+<span>Needs Work</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface">ಸುಧಾರಣೆ ಬೇಕು</span>
+</button>
+</div>
+<!-- Voice Note Audio Recording Module -->
+<div class="p-space-md rounded-lg bg-surface-container flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-tertiary text-[22px]">mic</span>
+<span class="font-label-lg text-label-lg font-bold">Audio Voice Note (ಧ್ವನಿ ಪ್ರತಿಕ್ರಿಯೆ)</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-lowest px-space-xs py-0.5 rounded" id="timerBadge">Max 30s</span>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-md">
+<button class="w-full sm:w-auto min-h-[48px] px-space-lg rounded-lg bg-tertiary text-on-tertiary hover:bg-tertiary-container transition-colors flex items-center justify-center gap-space-xs font-label-lg text-label-lg shadow-sm" id="recordBtn" type="button">
+<span class="material-symbols-outlined text-[20px]" id="recordIcon">fiber_manual_record</span>
+<span id="recordLabel">Record Voice Feedback</span>
+</button>
+<!-- Waveform visualizer container -->
+<div class="flex-1 w-full bg-surface-container-lowest h-12 rounded-lg p-space-xs flex items-center justify-between gap-1 overflow-hidden" id="waveContainer">
+<div class="w-1.5 bg-outline-variant h-2 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-4 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-3 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-6 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-8 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-4 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-10 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-5 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-3 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-7 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-4 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-2 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-5 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-3 rounded-full transition-all"></div>
+<div class="w-1.5 bg-outline-variant h-2 rounded-full transition-all"></div>
+</div>
+<button class="min-h-[48px] min-w-[48px] rounded-lg bg-surface-container-high text-outline flex items-center justify-center cursor-not-allowed" disabled="" id="playbackBtn" title="Play recording" type="button">
+<span class="material-symbols-outlined text-[24px]">play_arrow</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Recommended for non-typists: Speak clearly in Kannada, Hindi, or English.</p>
+</div>
+<!-- Quick Tag Feedback Pills -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md uppercase tracking-wider text-outline font-bold">Quick Tag Highlights</label>
+<div class="flex flex-wrap gap-space-xs" id="quickTags">
+<button class="tag-pill px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+            ✓ Accurate price range
+          </button>
+<button class="tag-pill px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+            ✓ Clear Kannada text
+          </button>
+<button class="tag-pill px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+            ✓ District map was helpful
+          </button>
+<button class="tag-pill px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+            ⚠️ Need more local mandis
+          </button>
+<button class="tag-pill px-space-sm py-1.5 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+            ⚠️ Official data was stale
+          </button>
+</div>
+</div>
+<!-- Text Memo Box with Input Language Helpers -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md uppercase tracking-wider text-outline font-bold" for="feedbackMemo">Additional Comments / Notes</label>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Keyboard Helper:</span>
+<button class="px-space-xs py-0.5 rounded bg-surface-container font-label-md text-label-md text-primary font-bold hover:bg-surface-container-high" onclick="insertSample('ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಮಾಹಿತಿ ಸ್ಪಷ್ಟವಾಗಿದೆ ')" type="button">ಕನ್ನಡ</button>
+<button class="px-space-xs py-0.5 rounded bg-surface-container font-label-md text-label-md text-secondary font-bold hover:bg-surface-container-high" onclick="insertSample('मंडी भाव अनुमान उपयोगी है ')" type="button">हिन्दी</button>
+</div>
+</div>
+<textarea class="w-full p-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:bg-surface-bright" id="feedbackMemo" placeholder="Type comments or specific mandi observation (e.g. Mysuru APMC onion arrivals surged today)..." rows="3"></textarea>
+</div>
+<!-- Action Row -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+<span>Logged anonymously under KVK Mysuru Node</span>
+</div>
+<button class="w-full sm:w-auto min-h-[48px] px-space-xl rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors flex items-center justify-center gap-space-xs font-label-lg text-label-lg font-bold shadow-md" id="submitFeedbackBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">send</span>
+<span>Submit Feedback</span>
+</button>
+</div>
+<!-- Inline success feedback state banner (Hidden by default) -->
+<div class="hidden p-space-md rounded-lg bg-primary-container text-on-primary flex items-center justify-between" id="feedbackSuccessAlert">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+<div>
+<p class="font-label-lg text-label-lg font-bold">Feedback Received • ಧನ್ಯವಾದಗಳು</p>
+<p class="font-body-sm text-body-sm">Logged for review by the regional Directorate of Agriculture.</p>
+</div>
+</div>
+<button class="text-on-primary hover:opacity-75" onclick="document.getElementById('feedbackSuccessAlert').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- RIGHT: Shared Kiosk Protection & Operational Context (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Shared Kiosk Security Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">lock_reset</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md uppercase tracking-wider text-error font-bold">Kiosk Terminal Privacy</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Shared Computer Protection</h3>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm leading-relaxed flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs font-label-lg text-label-lg text-on-surface font-semibold">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span>Zero Persistent PII Storage</span>
+</div>
+<p>
+            Farmer identities, surveyed survey numbers, and phone numbers are never stored locally. Acreage scenarios are cached solely in volatile session storage for co-browsing and print generation.
+          </p>
+<p class="text-outline">
+            To prevent subsequent users from seeing your numbers, click <strong class="text-on-surface">"New Farmer"</strong> in the top header or purge below immediately after consulting.
+          </p>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="min-h-[48px] w-full rounded-lg bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition-colors flex items-center justify-center gap-space-xs font-label-lg text-label-lg font-bold" id="purgeLocalBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+<span>Clear All Local History on This Kiosk</span>
+</button>
+<span class="font-label-md text-label-md text-outline text-center">Affects only the local browser storage on this terminal.</span>
+</div>
+</div>
+<!-- Kiosk Operator & Co-Browsing Assist Card -->
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-outline font-bold">Field Kiosk Specification</span>
+<span class="bg-primary text-on-primary px-space-xs py-0.5 rounded font-label-md text-label-md font-bold">Node Ready</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm bg-surface-container-lowest rounded-lg">
+<span class="font-label-md text-label-md text-outline block">Terminal ID</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">MYS-KVK-04</span>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg">
+<span class="font-label-md text-label-md text-outline block">Assisted Field Agent</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">S. Gowda (Extension)</span>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg">
+<span class="font-label-md text-label-md text-outline block">Local Thermal Printer</span>
+<span class="font-label-lg text-label-lg text-primary font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+              Online (Paper 84%)
+            </span>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg">
+<span class="font-label-md text-label-md text-outline block">Sync Latency</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">140 ms • Gov API</span>
+</div>
+</div>
+<!-- Co-browsing visual note -->
+<div class="flex items-center gap-space-sm pt-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px] text-secondary">visibility</span>
+<span class="font-body-sm text-body-sm">Dual high-contrast mode engaged for 1-metre kiosk angle.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Past Area Reports History Table (Full Width) -->
+<div class="flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">table_view</span>
+</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent Terminal Acreage Queries</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Queries processed locally during this shift. Useful for comparing neighboring farmer estimates.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="min-h-[48px] px-space-md rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-lg text-label-lg flex items-center gap-space-xs" onclick="printAllSlip()" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Batch Print</span>
+</button>
+<button class="min-h-[48px] px-space-md rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-lg text-label-lg flex items-center gap-space-xs" onclick="exportCsvDemo()" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export Summary</span>
+</button>
+</div>
+</div>
+<!-- Responsive High-Legibility Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="historyTable">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">Timestamp</th>
+<th class="py-space-sm px-space-md">District</th>
+<th class="py-space-sm px-space-md">Season</th>
+<th class="py-space-sm px-space-md text-right">Reported Acres</th>
+<th class="py-space-sm px-space-md text-center">Supply Outlook</th>
+<th class="py-space-sm px-space-md text-right">30-Day Range</th>
+<th class="py-space-sm px-space-md text-center rounded-r-lg">Quick Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-surface-container">
+<!-- Row 1 (Current Session) -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Today, 11:15 AM</span>
+</div>
+<span class="font-label-md text-label-md text-outline block">Slip #MY-8921</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Mysuru</span>
+<span class="font-label-md text-label-md text-on-surface-variant block">Nanjangud Taluk</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-md text-label-md text-on-surface">Kharif 2024</span>
+<span class="font-label-md text-label-md text-outline block">Red Onion</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-tabular-metric text-tabular-metric text-on-surface">50</span>
+<span class="font-body-sm text-body-sm text-outline ml-1">Acres</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span>Higher (+11%)</span>
+</span>
+<span class="font-label-md text-label-md text-outline block mt-0.5">Crowdsource Surpass</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg text-primary font-bold">₹ 3,120 – 3,480</span>
+<span class="font-body-sm text-body-sm text-outline block">per Quintal</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center justify-center gap-space-xs">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-colors text-on-surface" onclick="reloadRow('50 Acres', 'Mysuru')" title="Reload Outlook into active session" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-on-secondary transition-colors text-on-surface" onclick="printReceipt('MY-8921', 'Mysuru', '50 Acres')" title="Print Kiosk Receipt Slip" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-error hover:text-on-error transition-colors text-on-surface" onclick="deleteRow(this)" title="Delete from Local Device Log" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Today, 10:40 AM</span>
+</div>
+<span class="font-label-md text-label-md text-outline block">Slip #MY-8920</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Mandya</span>
+<span class="font-label-md text-label-md text-on-surface-variant block">Maddur Taluk</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-md text-label-md text-on-surface">Kharif 2024</span>
+<span class="font-label-md text-label-md text-outline block">Small Onion</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-tabular-metric text-tabular-metric text-on-surface">18</span>
+<span class="font-body-sm text-body-sm text-outline ml-1">Acres</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">horizontal_rule</span>
+<span>Normal (±2%)</span>
+</span>
+<span class="font-label-md text-label-md text-outline block mt-0.5">Matches Baseline</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">₹ 3,450 – 3,700</span>
+<span class="font-body-sm text-body-sm text-outline block">per Quintal</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center justify-center gap-space-xs">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-colors text-on-surface" onclick="reloadRow('18 Acres', 'Mandya')" title="Reload Outlook" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-on-secondary transition-colors text-on-surface" onclick="printReceipt('MY-8920', 'Mandya', '18 Acres')" title="Print Kiosk Receipt Slip" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-error hover:text-on-error transition-colors text-on-surface" onclick="deleteRow(this)" title="Delete from Local Device Log" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Today, 09:15 AM</span>
+</div>
+<span class="font-label-md text-label-md text-outline block">Slip #MY-8919</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Chamarajanagar</span>
+<span class="font-label-md text-label-md text-on-surface-variant block">Gundlupet</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-md text-label-md text-on-surface">Late Kharif</span>
+<span class="font-label-md text-label-md text-outline block">Bellary Red</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-tabular-metric text-tabular-metric text-on-surface">82</span>
+<span class="font-body-sm text-body-sm text-outline ml-1">Acres</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span>Higher (+19%)</span>
+</span>
+<span class="font-label-md text-label-md text-outline block mt-0.5">High Acreage Risk</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg text-error font-bold">₹ 2,800 – 3,050</span>
+<span class="font-body-sm text-body-sm text-outline block">per Quintal</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center justify-center gap-space-xs">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-colors text-on-surface" onclick="reloadRow('82 Acres', 'Chamarajanagar')" title="Reload Outlook" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-on-secondary transition-colors text-on-surface" onclick="printReceipt('MY-8919', 'Chamarajanagar', '82 Acres')" title="Print Kiosk Receipt Slip" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-error hover:text-on-error transition-colors text-on-surface" onclick="deleteRow(this)" title="Delete from Local Device Log" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Yesterday, 04:30 PM</span>
+</div>
+<span class="font-label-md text-label-md text-outline block">Slip #MY-8918</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Hassan</span>
+<span class="font-label-md text-label-md text-on-surface-variant block">Holenarasipura</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-md text-label-md text-on-surface">Kharif 2024</span>
+<span class="font-label-md text-label-md text-outline block">Red Onion</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-tabular-metric text-tabular-metric text-on-surface">32</span>
+<span class="font-body-sm text-body-sm text-outline ml-1">Acres</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-error-container text-on-error-container font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+<span>Deficit (-14%)</span>
+</span>
+<span class="font-label-md text-label-md text-outline block mt-0.5">Moisture Impact</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg text-primary font-bold">₹ 3,800 – 4,200</span>
+<span class="font-body-sm text-body-sm text-outline block">per Quintal</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center justify-center gap-space-xs">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary transition-colors text-on-surface" onclick="reloadRow('32 Acres', 'Hassan')" title="Reload Outlook" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-secondary hover:text-on-secondary transition-colors text-on-surface" onclick="printReceipt('MY-8918', 'Hassan', '32 Acres')" title="Print Kiosk Receipt Slip" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-error hover:text-on-error transition-colors text-on-surface" onclick="deleteRow(this)" title="Delete from Local Device Log" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Empty state notice (hidden by default) -->
+<div class="hidden py-space-xl text-center flex flex-col items-center justify-center gap-space-xs" id="emptyTableNotice">
+<span class="material-symbols-outlined text-outline text-[48px]">folder_off</span>
+<p class="font-headline-sm text-headline-sm text-on-surface font-semibold">Local Query Cache Cleared</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All previous session acreage inputs have been cleared from this kiosk terminal.</p>
+</div>
+</div>
+<!-- Notification Toast Modal -->
+<div class="fixed bottom-6 right-6 z-50 bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-lg shadow-xl flex items-center gap-space-sm transition-all duration-300 opacity-0 pointer-events-none translate-y-4" id="toastNotification">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed" id="toastIcon">info</span>
+<span class="font-label-lg text-label-lg" id="toastMsg">Operation successful</span>
+</div>
+</div>
+<!-- Client-side Interactive Logic -->
+<script>
+  // Simple toast trigger
+  function showToast(msg, icon = 'info') {
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMsg');
+    const toastIcon = document.getElementById('toastIcon');
+    if (!toast) return;
+
+    toastMsg.textContent = msg;
+    toastIcon.textContent = icon;
+    toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+    toast.classList.add('opacity-100', 'translate-y-0');
+
+    setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+    }, 3200);
+  }
+
+  // Quick rating button toggle
+  const ratingButtons = document.querySelectorAll('.rating-btn');
+  ratingButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      ratingButtons.forEach(b => {
+        b.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-md');
+        b.classList.add('bg-surface-container-low', 'text-on-surface');
+      });
+      btn.classList.remove('bg-surface-container-low', 'text-on-surface');
+      btn.classList.add('bg-primary-container', 'text-on-primary', 'shadow-md');
+      showToast('Rating recorded: ' + btn.querySelector('span:first-child').innerText, 'thumb_up');
+    });
+  });
+
+  // Quick tag selection toggle
+  const tagPills = document.querySelectorAll('.tag-pill');
+  tagPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      if (pill.classList.contains('bg-secondary')) {
+        pill.classList.remove('bg-secondary', 'text-on-secondary');
+        pill.classList.add('bg-surface-container', 'text-on-surface');
+      } else {
+        pill.classList.remove('bg-surface-container', 'text-on-surface');
+        pill.classList.add('bg-secondary', 'text-on-secondary');
+      }
+    });
+  });
+
+  // Multilingual input helper
+  function insertSample(text) {
+    const textarea = document.getElementById('feedbackMemo');
+    if (textarea) {
+      textarea.value += text;
+      textarea.focus();
+    }
+  }
+
+  // Voice note simulation
+  let recording = false;
+  let recordInterval = null;
+  let seconds = 0;
+  const recordBtn = document.getElementById('recordBtn');
+  const recordIcon = document.getElementById('recordIcon');
+  const recordLabel = document.getElementById('recordLabel');
+  const timerBadge = document.getElementById('timerBadge');
+  const waveBars = document.querySelectorAll('#waveContainer div');
+  const playbackBtn = document.getElementById('playbackBtn');
+
+  if (recordBtn) {
+    recordBtn.addEventListener('click', () => {
+      recording = !recording;
+      if (recording) {
+        seconds = 0;
+        recordBtn.classList.remove('bg-tertiary');
+        recordBtn.classList.add('bg-error', 'text-on-error');
+        recordIcon.textContent = 'stop';
+        recordLabel.textContent = 'Stop Recording (ಧ್ವನಿ ನಿಲ್ಲಿಸಿ)';
+        showToast('Microphone live: Recording audio note...', 'mic');
+
+        recordInterval = setInterval(() => {
+          seconds++;
+          timerBadge.textContent = '00:' + (seconds < 10 ? '0' : '') + seconds + ' / 00:30';
+          
+          // Animate waveform bars
+          waveBars.forEach(bar => {
+            const randomH = Math.floor(Math.random() * 32) + 6;
+            bar.style.height = randomH + 'px';
+            bar.classList.remove('bg-outline-variant');
+            bar.classList.add('bg-tertiary');
+          });
+
+          if (seconds >= 30) {
+            recordBtn.click();
+          }
+        }, 1000);
+      } else {
+        clearInterval(recordInterval);
+        recordBtn.classList.remove('bg-error', 'text-on-error');
+        recordBtn.classList.add('bg-tertiary', 'text-on-tertiary');
+        recordIcon.textContent = 'fiber_manual_record';
+        recordLabel.textContent = 'Re-record Note';
+        timerBadge.textContent = 'Recorded (00:' + (seconds < 10 ? '0' : '') + seconds + ')';
+        
+        // Reset wave visuals
+        waveBars.forEach(bar => {
+          bar.classList.remove('bg-tertiary');
+          bar.classList.add('bg-outline-variant');
+        });
+
+        // Enable Playback
+        if (playbackBtn) {
+          playbackBtn.disabled = false;
+          playbackBtn.classList.remove('bg-surface-container-high', 'text-outline', 'cursor-not-allowed');
+          playbackBtn.classList.add('bg-secondary', 'text-on-secondary', 'hover:bg-secondary-fixed-dim');
+        }
+        showToast('Voice note stored for submission (30s sample)', 'check');
+      }
+    });
+  }
+
+  if (playbackBtn) {
+    playbackBtn.addEventListener('click', () => {
+      showToast('Playing recorded voice feedback...', 'volume_up');
+    });
+  }
+
+  // Feedback Submission handler
+  const submitFeedbackBtn = document.getElementById('submitFeedbackBtn');
+  if (submitFeedbackBtn) {
+    submitFeedbackBtn.addEventListener('click', () => {
+      const alertBox = document.getElementById('feedbackSuccessAlert');
+      if (alertBox) {
+        alertBox.classList.remove('hidden');
+        alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      showToast('Feedback submitted to Mysuru KVK Node', 'verified');
+    });
+  }
+
+  // Purge local kiosk history
+  const purgeBtn = document.getElementById('purgeLocalBtn');
+  if (purgeBtn) {
+    purgeBtn.addEventListener('click', () => {
+      if (confirm('Clear all local queries and farmer inputs on this shared kiosk? This cannot be undone.')) {
+        const tableBody = document.querySelector('#historyTable tbody');
+        if (tableBody) tableBody.innerHTML = '';
+        const emptyNotice = document.getElementById('emptyTableNotice');
+        if (emptyNotice) emptyNotice.classList.remove('hidden');
+        showToast('Local kiosk memory purged securely', 'delete_sweep');
+      }
+    });
+  }
+
+  // Individual Row actions
+  function deleteRow(btn) {
+    const row = btn.closest('tr');
+    if (row) {
+      row.remove();
+      showToast('Record removed from local history', 'delete');
+    }
+  }
+
+  function reloadRow(acres, district) {
+    showToast('Loaded ' + acres + ' (' + district + ') into active Crop Advisory rail', 'open_in_browser');
+  }
+
+  function printReceipt(slip, dist, acres) {
+    showToast('Sending ' + slip + ' (' + dist + ' ' + acres + ') to Kiosk Thermal Printer...', 'print');
+  }
+
+  function printAllSlip() {
+    showToast('Queued 4 slips to Kiosk Thermal Printer', 'print');
+  }
+
+  function exportCsvDemo() {
+    showToast('Exporting kiosk session log to CSV...', 'download');
+  }
+</script></div></main></div></body></html>

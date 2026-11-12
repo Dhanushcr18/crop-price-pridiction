@@ -1,0 +1,48 @@
+{
+  "status": "ok",
+  "total": 3,
+  "count": 3,
+  "limit": "10",
+  "offset": "0",
+  "records": [
+    {
+      "State": "Karnataka",
+      "District": "Kolar",
+      "Market": "Kolar",
+      "Commodity": "Onion",
+      "Variety": "Nasik Red",
+      "Grade": "FAQ",
+      "Arrival_Date": "08/11/2026",
+      "Min_Price": "2800",
+      "Max_Price": "4200",
+      "Modal_Price": "3500",
+      "Arrivals": "450"
+    },
+    {
+      "State": "Karnataka",
+      "District": "Bengaluru Urban",
+      "Market": "Bengaluru (Yeshwanthpur)",
+      "Commodity": "Onion",
+      "Variety": "Local",
+      "Grade": "Medium",
+      "Arrival_Date": "08/11/2026",
+      "Min_Price": "3100",
+      "Max_Price": "4500",
+      "Modal_Price": "3800",
+      "Arrivals": "12000"
+    },
+    {
+      "State": "Karnataka",
+      "District": "Chikkaballapura",
+      "Market": "Chikkaballapur",
+      "Commodity": "Tomato",
+      "Variety": "Hybrid",
+      "Grade": "FAQ",
+      "Arrival_Date": "08/11/2026",
+      "Min_Price": "1800",
+      "Max_Price": "2400",
+      "Modal_Price": "2100",
+      "Arrivals": "850"
+    }
+  ]
+}

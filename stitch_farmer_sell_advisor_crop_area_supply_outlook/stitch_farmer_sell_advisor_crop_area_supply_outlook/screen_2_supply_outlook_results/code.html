@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface":"#201b17","on-surface-variant":"#40493d","outline-variant":"#bfcaba","primary-fixed-dim":"#88d982","error-container":"#ffdad6","surface-bright":"#fff8f5","error":"#ba1a1a","surface-container":"#f7ece5","inverse-primary":"#88d982","surface-container-low":"#fdf1eb","on-tertiary-fixed":"#2f1400","on-tertiary-fixed-variant":"#6f3800","tertiary-container":"#a95900","surface-container-lowest":"#ffffff","inverse-on-surface":"#faefe8","on-primary-container":"#cbffc2","on-secondary-fixed":"#002117","on-primary-fixed-variant":"#005312","on-error":"#ffffff","on-background":"#201b17","surface-variant":"#ebe0da","tertiary-fixed-dim":"#ffb780","inverse-surface":"#352f2b","primary-container":"#2e7d32","on-secondary-fixed-variant":"#1d4f40","surface-tint":"#1b6d24","primary":"#0d631b","surface":"#fff8f5","on-secondary-container":"#3d6d5d","surface-dim":"#e3d8d1","on-secondary":"#ffffff","on-error-container":"#93000a","background":"#fff8f5","on-tertiary-container":"#ffefe5","secondary":"#376757","secondary-fixed":"#baeed9","tertiary-fixed":"#ffdcc4","secondary-fixed-dim":"#9ed1bd","tertiary":"#854500","primary-fixed":"#a3f69c","outline":"#707a6c","on-tertiary":"#ffffff","surface-container-highest":"#ebe0da","secondary-container":"#baeed9","surface-container-high":"#f1e6df","on-primary-fixed":"#002204","on-primary":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xs":"0.25rem","space-md":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","space-lg":"1.5rem","gutter":"1.5rem","gutter-sm":"1rem","margin-sm":"1rem","margin":"2rem"},"fontFamily":{"headline-lg":["Inter"],"tabular-metric":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"headline-sm":["Inter"],"body-lg":["Inter"],"label-md":["Inter"],"label-lg":["Inter"],"display-lg":["Inter"],"body-md":["Inter"]},"fontSize":{"headline-lg":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.01em","fontWeight":"700"}],"tabular-metric":["1.75rem",{"lineHeight":"2rem","fontWeight":"700"}],"body-sm":["0.875rem",{"lineHeight":"1.25rem","fontWeight":"400"}],"headline-md":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["1.25rem",{"lineHeight":"1.75rem","fontWeight":"600"}],"body-lg":["1.125rem",{"lineHeight":"1.75rem","fontWeight":"400"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.04em","fontWeight":"600"}],"label-lg":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0.02em","fontWeight":"600"}],"display-lg":["3rem",{"lineHeight":"3.5rem","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.5rem","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-60 bg-surface-container-low z-50 flex flex-col pt-24 pb-4 px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="mb-space-md px-space-xs"><span class="font-label-md text-label-md text-outline tracking-wider uppercase">Advice &gt; Crop Area</span></div><nav class="flex-1 flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="enter-acreage" href="#"><span class="material-symbols-outlined text-[20px]">edit</span><span class="font-label-lg text-label-lg">Enter Acreage</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-sm transition-colors min-h-[48px] bg-primary-container text-on-primary font-bold rounded-lg" data-path="supply-outlook" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span class="font-label-lg text-label-lg">Supply Outlook</span></a><a class="flex items-center justify-between px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="officer-review" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Officer / FPO Review</span></div><span class="bg-secondary text-on-secondary px-space-xs py-0.5 rounded-full font-label-md text-label-md leading-none">Staff</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="sources-methods" href="#"><span class="material-symbols-outlined text-[20px]">menu_book</span><span class="font-label-lg text-label-lg">Sources &amp; Methods</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors min-h-[48px]" data-path="help-history" href="#"><span class="material-symbols-outlined text-[20px]">history</span><span class="font-label-lg text-label-lg">Help &amp; History</span></a></nav><div class="my-space-md p-space-sm bg-surface-container-lowest rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><label class="block font-label-md text-label-md text-on-surface-variant uppercase mb-space-xs font-semibold">Interactive Test Scenarios</label><select class="w-full bg-surface-container-high text-on-surface font-body-sm text-body-sm rounded p-space-xs focus:outline-none"><option value="normal">Normal Scenario</option><option value="coverage">&lt;5% Coverage</option><option value="missing">Missing Official</option><option value="stale">Stale Data</option></select></div><div class="p-space-sm bg-surface-container rounded-lg"><p class="font-label-md text-label-md text-on-surface-variant leading-tight">Kiosk Assisted Mode - Optimized for 1-metre shared reading between farmer &amp; helper.</p></div></aside><div class="pl-60"><header class="fixed top-0 left-0 right-0 z-40 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-error text-on-error py-1 px-space-md text-center font-label-md text-label-md tracking-wide font-bold uppercase select-none">SYNTHETIC DATA — NOT FOR REAL FINANCIAL OR FARMING DECISIONS (RESEARCH DEMO)</div><div class="h-20 w-full px-space-md flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container"><span class="material-symbols-outlined text-[26px]">eco</span></div><div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Farmer Sell Advisor</span><span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-space-xs py-0.5 rounded font-bold">KARNATAKA</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-none mt-0.5">Crop Area &amp; Supply Outlook • Kharif &amp; Rabi Onion</p></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-full"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-md text-label-md text-on-surface font-medium">Live Kiosk Connected (Mysuru KVK Kiosk #04)</span></div></div><div class="flex items-center gap-space-sm"><div class="flex items-center bg-surface-container rounded-lg p-0.5"><button class="px-space-sm py-1 rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-semibold shadow-[0_1px_8px_rgba(0,0,0,0.04)]" type="button">English</button><button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">ಕನ್ನಡ</button><button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface" type="button">हिन्दी</button></div><button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Toggle color mode" type="button"><span class="material-symbols-outlined text-[22px]">dark_mode</span></button><button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-xs rounded-lg font-label-lg text-label-lg min-h-[48px] hover:bg-primary-container transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">person_add</span><span>New Farmer</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-28 pb-space-xl bg-background min-h-screen"><div class="max-w-7xl mx-auto px-gutter"><div class="flex flex-col w-full gap-space-lg">
+<!-- 1. Executive Summary Banner -->
+<section class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex-1 space-y-space-xs">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-space-xs py-0.5 rounded font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+            High Confidence (88%)
+          </span>
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Kharif Season 2024 Advisory</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+          Mysuru: you reported <span class="font-bold text-primary">50 acres</span>. Karnataka onion area this season: <span class="font-bold text-on-surface">1.42 lakh acres</span> (DES Karnataka, Jul 2024).
+        </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary">info</span>
+          Your entry helps local reports. It does not change the price outlook.
+        </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<button class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-container text-on-surface px-space-md py-space-sm rounded-lg font-label-lg text-label-lg min-h-[48px] shadow-sm transition-all active:scale-95" id="readAloudBtn" type="button">
+<span class="material-symbols-outlined text-primary text-[20px]" id="speakerIcon">volume_up</span>
+<span id="readAloudText">Read Out Loud (ಧ್ವನಿ ಓದು)</span>
+</button>
+<button class="flex items-center gap-space-xs bg-primary text-on-primary hover:bg-primary-container px-space-md py-space-sm rounded-lg font-label-lg text-label-lg min-h-[48px] shadow-sm transition-all active:scale-95" onclick="navigator.clipboard.writeText(window.location.href); alert('Summary link copied for WhatsApp sharing!');" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span>Share on WhatsApp</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 2. Three AreaCards (Horizontal Row, Equal 1/3 Width) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Card 1: Mysuru District -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">location_on</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Mysuru District</span>
+</div>
+<span class="bg-primary-container text-on-primary-container font-label-md text-label-md px-space-xs py-0.5 rounded font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+            Higher (+11%)
+          </span>
+</div>
+<div class="mt-space-sm space-y-1">
+<div class="font-display-lg text-display-lg text-on-surface font-bold leading-tight">42,500 <span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">acres</span></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">17,200 hectares • 5-Yr Normal: <span class="font-semibold text-on-surface">38,100 acres</span></p>
+</div>
+<div class="mt-space-md flex items-center gap-1.5 text-on-secondary-fixed-variant bg-surface-container-high px-space-sm py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+<span class="font-label-md text-label-md">Official: DES Karnataka (Jul 2024)</span>
+</div>
+</div>
+<!-- Nested Reported by Farmers Strip -->
+<div class="bg-[#FFF8F0] p-space-sm rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wide">Reported by Farmers</span>
+</div>
+<span class="bg-error-container text-on-error-container font-label-md text-label-md px-1.5 py-0.5 rounded font-semibold">
+            Coverage 4.3%
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">42 farmers reported • 1,840 acres total</p>
+<p class="font-label-md text-label-md text-error leading-snug">
+          ⚠ Too few reports to trust warning tag — not used in price outlook.
+        </p>
+</div>
+</div>
+<!-- Card 2: Karnataka State -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">map</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Karnataka State</span>
+</div>
+<span class="bg-primary-container text-on-primary-container font-label-md text-label-md px-space-xs py-0.5 rounded font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+            Higher (+13.6%)
+          </span>
+</div>
+<div class="mt-space-sm space-y-1">
+<div class="font-display-lg text-display-lg text-on-surface font-bold leading-tight">1.42 <span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">lakh acres</span></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">57,465 hectares • 5-Yr Normal: <span class="font-semibold text-on-surface">1.25 lakh acres</span></p>
+</div>
+<div class="mt-space-md flex items-center gap-1.5 text-on-secondary-fixed-variant bg-surface-container-high px-space-sm py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">satellite_alt</span>
+<span class="font-label-md text-label-md">Official: DES Karnataka (Aug 2024)</span>
+</div>
+</div>
+<div class="bg-surface-container p-space-sm rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">shield</span>
+<p class="font-label-md text-label-md text-on-surface-variant font-semibold">
+          Official State Baseline — Not extrapolated from farmer crowd reports.
+        </p>
+</div>
+</div>
+<!-- Card 3: All India -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">public</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">All India</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-space-xs py-0.5 rounded font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_flat</span>
+            Normal (+5.7%)
+          </span>
+</div>
+<div class="mt-space-sm space-y-1">
+<div class="font-display-lg text-display-lg text-on-surface font-bold leading-tight">12.80 <span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">lakh acres</span></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">5.18 lakh hectares • 5-Yr Normal: <span class="font-semibold text-on-surface">12.10 lakh acres</span></p>
+</div>
+<div class="mt-space-md flex items-center gap-1.5 text-on-secondary-fixed-variant bg-surface-container-high px-space-sm py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">domain</span>
+<span class="font-label-md text-label-md">MoA&amp;FW First Advance Estimates (Aug 2024)</span>
+</div>
+</div>
+<div class="bg-surface-container p-space-sm rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">analytics</span>
+<p class="font-label-md text-label-md text-on-surface-variant font-semibold">
+          National Benchmark: Maharashtra, Karnataka, and MP harvest alignment.
+        </p>
+</div>
+</div>
+</section>
+<!-- 3. Middle 2-Column Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-stretch">
+<!-- Left Column: 5-Year Area Bar Chart (7/12) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Historical Comparison</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">5-Year Area Trend (2020 – 2024)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Units: Area in Lakh Acres</p>
+</div>
+<!-- Season Toggle -->
+<div class="flex items-center bg-surface-container p-0.5 rounded-lg shrink-0" role="group">
+<button class="px-space-sm py-1 rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-bold shadow-sm transition-all" id="toggleKharif" type="button">Kharif</button>
+<button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="toggleRabi" type="button">Rabi</button>
+</div>
+</div>
+<!-- Bar Chart (SVG Inline) -->
+<div class="relative w-full h-64 bg-surface-container-low rounded-lg p-space-md flex flex-col justify-end">
+<svg aria-label="5 Year Onion Area Bar Chart" class="w-full h-full overflow-visible" viewbox="0 0 540 180">
+<!-- Horizontal Grid Lines -->
+<line stroke="#f1e6df" stroke-dasharray="3 3" x1="40" x2="520" y1="20" y2="20"></line>
+<text class="font-label-md" fill="#707a6c" font-size="10" text-anchor="end" x="32" y="24">1.6</text>
+<line stroke="#f1e6df" stroke-dasharray="3 3" x1="40" x2="520" y1="65" y2="65"></line>
+<text class="font-label-md" fill="#707a6c" font-size="10" text-anchor="end" x="32" y="69">1.2</text>
+<line stroke="#f1e6df" stroke-dasharray="3 3" x1="40" x2="520" y1="110" y2="110"></line>
+<text class="font-label-md" fill="#707a6c" font-size="10" text-anchor="end" x="32" y="114">0.8</text>
+<line stroke="#bfcaba" stroke-width="1.5" x1="40" x2="520" y1="155" y2="155"></line>
+<text class="font-label-md" fill="#707a6c" font-size="10" text-anchor="end" x="32" y="159">0.0</text>
+<!-- 2020: State (1.18), Dist (0.34) -->
+<g class="cursor-pointer group">
+<rect class="transition-all hover:opacity-80" fill="#376757" height="83" rx="3" width="24" x="68" y="72"></rect>
+<rect class="transition-all hover:opacity-80" fill="#0d631b" height="27" rx="2" width="18" x="96" y="128"></rect>
+<text class="font-label-md" fill="#40493d" font-size="11" text-anchor="middle" x="94" y="172">2020</text>
+<title>2020: Karnataka 1.18L acres, Mysuru 0.34L acres</title>
+</g>
+<!-- 2021: State (1.24), Dist (0.36) -->
+<g class="cursor-pointer group">
+<rect class="transition-all hover:opacity-80" fill="#376757" height="89" rx="3" width="24" x="160" y="66"></rect>
+<rect class="transition-all hover:opacity-80" fill="#0d631b" height="30" rx="2" width="18" x="188" y="125"></rect>
+<text class="font-label-md" fill="#40493d" font-size="11" text-anchor="middle" x="186" y="172">2021</text>
+<title>2021: Karnataka 1.24L acres, Mysuru 0.36L acres</title>
+</g>
+<!-- 2022: State (1.20), Dist (0.35) -->
+<g class="cursor-pointer group">
+<rect class="transition-all hover:opacity-80" fill="#376757" height="85" rx="3" width="24" x="252" y="70"></rect>
+<rect class="transition-all hover:opacity-80" fill="#0d631b" height="28" rx="2" width="18" x="280" y="127"></rect>
+<text class="font-label-md" fill="#40493d" font-size="11" text-anchor="middle" x="278" y="172">2022</text>
+<title>2022: Karnataka 1.20L acres, Mysuru 0.35L acres</title>
+</g>
+<!-- 2023: State (1.26), Dist (0.38) -->
+<g class="cursor-pointer group">
+<rect class="transition-all hover:opacity-80" fill="#376757" height="91" rx="3" width="24" x="344" y="64"></rect>
+<rect class="transition-all hover:opacity-80" fill="#0d631b" height="32" rx="2" width="18" x="372" y="123"></rect>
+<text class="font-label-md" fill="#40493d" font-size="11" text-anchor="middle" x="370" y="172">2023</text>
+<title>2023: Karnataka 1.26L acres, Mysuru 0.38L acres</title>
+</g>
+<!-- 2024 (Current Highlighted): State (1.42), Dist (0.425) -->
+<g class="cursor-pointer group">
+<rect fill="#fdf1eb" height="150" rx="6" width="80" x="430" y="10"></rect>
+<rect class="transition-all hover:opacity-90" fill="#376757" height="111" rx="3" width="28" x="436" y="44"></rect>
+<rect class="transition-all hover:opacity-90" fill="#0d631b" height="37" rx="2" width="22" x="468" y="118"></rect>
+<text class="font-label-md" fill="#0d631b" font-size="11" font-weight="700" text-anchor="middle" x="463" y="36">1.42L</text>
+<text class="font-label-md" fill="#201b17" font-size="11" font-weight="700" text-anchor="middle" x="463" y="172">2024 (Now)</text>
+<title>2024 Current: Karnataka 1.42L acres, Mysuru 0.425L acres (+13.6%)</title>
+</g>
+</svg>
+</div>
+<div class="flex flex-wrap items-center justify-between text-body-sm text-on-surface-variant pt-space-xs gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2">
+<span class="w-3.5 h-3.5 rounded bg-secondary"></span>
+<span class="font-label-md text-label-md text-on-surface">Karnataka State</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3.5 h-3.5 rounded bg-primary"></span>
+<span class="font-label-md text-label-md text-on-surface">Mysuru District</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-outline">5-Yr Mean Baseline: 1.25L acres</span>
+</div>
+</div>
+<!-- Right Column: Supply Signal Gauge Card (5/12) -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Aggregated Signal</span>
+<span class="bg-primary-container text-on-primary-container px-space-xs py-0.5 rounded font-label-md text-label-md font-bold">Surplus Supply</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-space-xs">
+          Supply looks higher than the 5-year average (+12%)
+        </h2>
+</div>
+<!-- Speedometer Visual Gauge -->
+<div class="flex flex-col items-center justify-center py-space-sm">
+<div class="relative w-64 h-36 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 200 110">
+<!-- Gauge track: Lower, Normal, Higher zones -->
+<path d="M 20 100 A 80 80 0 0 1 65 35" fill="none" stroke="#baeed9" stroke-linecap="round" stroke-width="20"></path>
+<path d="M 68 32 A 80 80 0 0 1 132 32" fill="none" stroke="#88d982" stroke-width="20"></path>
+<path d="M 135 35 A 80 80 0 0 1 180 100" fill="none" stroke="#2e7d32" stroke-linecap="round" stroke-width="20"></path>
+<!-- Gauge Center Needle (Pointing to Higher zone ~65 deg right) -->
+<g transform="rotate(52 100 100)">
+<line stroke="#201b17" stroke-linecap="round" stroke-width="4.5" x1="100" x2="100" y1="100" y2="28"></line>
+<polygon fill="#201b17" points="96,40 104,40 100,22"></polygon>
+<circle cx="100" cy="100" fill="#201b17" r="8"></circle>
+<circle cx="100" cy="100" fill="#ffffff" r="4"></circle>
+</g>
+</svg>
+<div class="absolute bottom-1 flex flex-col items-center">
+<span class="font-tabular-metric text-tabular-metric text-primary leading-none">+12.0%</span>
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Above Normal</span>
+</div>
+</div>
+<div class="w-full flex justify-between px-space-md text-label-md text-on-surface-variant font-bold mt-1">
+<span class="text-secondary">Deficit (&lt; -5%)</span>
+<span class="text-on-surface">Normal (±5%)</span>
+<span class="text-primary font-bold">Higher (&gt; +10%)</span>
+</div>
+</div>
+<!-- Transparent Explanation -->
+<div class="bg-surface-container p-space-sm rounded-lg flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">insights</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+          Higher planted area in major onion belts indicates strong arrivals starting late October across Belagavi, Bagalkote, and Nashik mandates.
+        </p>
+</div>
+</div>
+</section>
+<!-- 4. Full Width Price Outlook Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Mandi Price Trajectory</span>
+<span class="bg-surface-container-high text-on-surface font-label-md text-label-md px-space-xs py-0.5 rounded font-semibold">Mysuru APMC Reference</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Wholesale Price Outlook &amp; Harvest Windows</h2>
+</div>
+<div class="text-right">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Modal Price Today: <strong class="text-on-surface font-semibold">₹ 3,450 / quintal</strong></span>
+</div>
+</div>
+<!-- 3 Horizon Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- 30 Days -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between gap-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">30 Days Horizon</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-space-xs py-0.5 rounded font-bold">
+            High (86%)
+          </span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Projected Range</span>
+<div class="font-tabular-metric text-tabular-metric text-primary font-bold">₹ 3,120 – 3,480</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">per quintal (Grade A Onion)</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[86%] rounded-full"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+          Early Kharif arrivals steady. Favorable window for immediate harvesting if curing completed.
+        </p>
+</div>
+<!-- 60 Days -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between gap-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">60 Days Horizon</span>
+<span class="bg-surface-container-high text-on-surface font-label-md text-label-md px-space-xs py-0.5 rounded font-semibold">
+            Medium (72%)
+          </span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Projected Range</span>
+<div class="font-tabular-metric text-tabular-metric text-tertiary font-bold">₹ 2,850 – 3,240</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">per quintal (Grade A Onion)</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[72%] rounded-full"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+          Heavy market arrivals peak in Hubballi and Lasalgaon. Storage risks escalate due to humidity.
+        </p>
+</div>
+<!-- 90 Days -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between gap-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">90 Days Horizon</span>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md text-label-md px-space-xs py-0.5 rounded font-medium">
+            Moderate (64%)
+          </span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Projected Range</span>
+<div class="font-tabular-metric text-tabular-metric text-error font-bold">₹ 2,600 – 3,050</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">per quintal (Grade A Onion)</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full w-[64%] rounded-full"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+          Late Kharif supply saturation expected across southern states. Stored stock drawdown recommended.
+        </p>
+</div>
+</div>
+<!-- Non-Causation Disclosure Banner -->
+<div class="bg-surface-container p-space-md rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px] shrink-0">balance</span>
+<p class="font-body-md text-body-md text-on-surface">
+<strong class="font-semibold">Honest Market Advisory:</strong> Higher planted area has usually been followed by lower wholesale arrivals prices. This is advice, the decision is yours.
+      </p>
+</div>
+</section>
+<!-- 5. Detailed Comparison Table -->
+<section class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Tabular Baseline</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">District vs State vs National Area Statistics</h2>
+</div>
+<button class="text-on-surface hover:text-primary p-space-xs rounded flex items-center gap-1 font-label-md text-label-md" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+        Print Table
+      </button>
+</div>
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Level</th>
+<th class="py-space-sm px-space-md text-right">Current Area</th>
+<th class="py-space-sm px-space-md text-right">5-Yr Average</th>
+<th class="py-space-sm px-space-md text-right">Variance %</th>
+<th class="py-space-sm px-space-md">Source Dataset</th>
+<th class="py-space-sm px-space-md">Date Published</th>
+<th class="py-space-sm px-space-md text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-md font-bold text-on-surface flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+              Mysuru District
+            </td>
+<td class="py-space-md px-space-md text-right font-semibold text-on-surface">42,500 ac</td>
+<td class="py-space-md px-space-md text-right text-on-surface-variant">38,100 ac</td>
+<td class="py-space-md px-space-md text-right text-primary font-bold">+11.5%</td>
+<td class="py-space-md px-space-md text-on-surface-variant">DES Karnataka Kharif Weekly Sowing</td>
+<td class="py-space-md px-space-md text-on-surface-variant">24 Jul 2024</td>
+<td class="py-space-md px-space-md text-center">
+<a class="text-primary hover:underline font-label-md text-label-md" href="#">View Source</a>
+</td>
+</tr>
+<tr class="bg-surface-container-low hover:bg-surface-container transition-colors">
+<td class="py-space-md px-space-md font-bold text-on-surface flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+              Karnataka State
+            </td>
+<td class="py-space-md px-space-md text-right font-semibold text-on-surface">1,42,000 ac</td>
+<td class="py-space-md px-space-md text-right text-on-surface-variant">1,25,000 ac</td>
+<td class="py-space-md px-space-md text-right text-primary font-bold">+13.6%</td>
+<td class="py-space-md px-space-md text-on-surface-variant">Directorate of Economics &amp; Statistics</td>
+<td class="py-space-md px-space-md text-on-surface-variant">02 Aug 2024</td>
+<td class="py-space-md px-space-md text-center">
+<a class="text-primary hover:underline font-label-md text-label-md" href="#">View Source</a>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-md font-bold text-on-surface flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+              All India
+            </td>
+<td class="py-space-md px-space-md text-right font-semibold text-on-surface">12,80,000 ac</td>
+<td class="py-space-md px-space-md text-right text-on-surface-variant">12,10,000 ac</td>
+<td class="py-space-md px-space-md text-right text-secondary font-bold">+5.7%</td>
+<td class="py-space-md px-space-md text-on-surface-variant">First Advance Estimates, MoA&amp;FW</td>
+<td class="py-space-md px-space-md text-on-surface-variant">14 Aug 2024</td>
+<td class="py-space-md px-space-md text-center">
+<a class="text-primary hover:underline font-label-md text-label-md" href="#">View Source</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 6. Transparency & Provenance Footer -->
+<footer class="bg-surface-container rounded-xl p-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant">
+<div class="flex flex-col gap-1">
+<div class="flex flex-wrap items-center gap-space-sm font-label-md text-label-md">
+<span>Model Version: <strong class="text-on-surface font-semibold">v2.4-karnataka</strong></span>
+<span>•</span>
+<a class="underline hover:text-on-surface" href="#">DES Karnataka Portal</a>
+<span>•</span>
+<a class="underline hover:text-on-surface" href="#">Agmarknet Arrivals API</a>
+<span>•</span>
+<a class="underline hover:text-on-surface" href="#">Methodology &amp; Confidence Calculation</a>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+        Decision-support tool calibrated for Indian Mandi dynamics. Field station: Mysuru KVK Kiosk #04.
+      </p>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-md py-space-sm rounded-lg font-label-lg text-label-lg min-h-[48px] shadow-sm hover:bg-surface-container-high transition-colors" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Print Report</span>
+</button>
+<button class="flex items-center gap-1 bg-surface-container-lowest text-on-surface px-space-md py-space-sm rounded-lg font-label-lg text-label-lg min-h-[48px] shadow-sm hover:bg-surface-container-high transition-colors" onclick="alert('Downloading high-resolution advisory PDF...')" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download PDF</span>
+</button>
+<a class="flex items-center gap-1 bg-primary text-on-primary px-space-md py-space-sm rounded-lg font-label-lg text-label-lg min-h-[48px] shadow-sm hover:bg-primary-container transition-colors" data-path="enter-acreage" href="#">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span>Edit My Entry</span>
+</a>
+</div>
+</footer>
+</div>
+<script>
+  // Simple Read Aloud Audio Toggle State simulation
+  const readBtn = document.getElementById('readAloudBtn');
+  const readText = document.getElementById('readAloudText');
+  const speakerIcon = document.getElementById('speakerIcon');
+  let isPlaying = false;
+
+  if (readBtn) {
+    readBtn.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        readText.innerText = 'Playing Audio (ಪ್ಲೇ ಆಗುತ್ತಿದೆ...)';
+        speakerIcon.innerText = 'volume_up';
+        readBtn.classList.add('bg-primary-container', 'text-on-primary-container');
+        if ('speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance("Mysuru: you reported 50 acres. Karnataka onion area this season: 1.42 lakh acres. Supply looks higher than the five year average. Wholesale price forecast for 30 days is 3120 to 3480 rupees per quintal.");
+          utterance.rate = 0.95;
+          utterance.onend = () => {
+            isPlaying = false;
+            readText.innerText = 'Read Out Loud (ಧ್ವನಿ ಓದು)';
+            speakerIcon.innerText = 'volume_up';
+            readBtn.classList.remove('bg-primary-container', 'text-on-primary-container');
+          };
+          window.speechSynthesis.speak(utterance);
+        }
+      } else {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+        readText.innerText = 'Read Out Loud (ಧ್ವನಿ ಓದು)';
+        speakerIcon.innerText = 'volume_up';
+        readBtn.classList.remove('bg-primary-container', 'text-on-primary-container');
+      }
+    });
+  }
+
+  // Toggle Season logic
+  const kharifBtn = document.getElementById('toggleKharif');
+  const rabiBtn = document.getElementById('toggleRabi');
+
+  if (kharifBtn && rabiBtn) {
+    kharifBtn.addEventListener('click', () => {
+      kharifBtn.className = "px-space-sm py-1 rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-bold shadow-sm transition-all";
+      rabiBtn.className = "px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all";
+    });
+    rabiBtn.addEventListener('click', () => {
+      rabiBtn.className = "px-space-sm py-1 rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface font-bold shadow-sm transition-all";
+      kharifBtn.className = "px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all";
+    });
+  }
+</script></div></main></div></body></html>

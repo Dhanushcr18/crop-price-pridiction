@@ -1,0 +1,164 @@
+crop_id,name_en,name_kn,name_hi,unit,category,perishability_class
+onion,Onion,ಈರುಳ್ಳಿ,प्याज़,Quintal,Vegetables,High
+potato,Potato,ಆಲೂಗಡ್ಡೆ,ಆಲೂ,Quintal,Vegetables,Medium
+tomato,Tomato,ಟೊಮೆಟೊ,टमाटर,Quintal,Vegetables,High
+ragi,Ragi (Finger Millet),ರಾಗಿ,रागी,Quintal,Cereals,Low
+paddy,Paddy (Dhan),ಭತ್ತ,धान,Quintal,Cereals,Low
+maize,Maize (Corn),ಮೆಕ್ಕೆಜೋಳ,मक्का,Quintal,Cereals,Low
+jowar,Jowar (Sorghum),ಜೋಳ,ज्वार,Quintal,Cereals,Low
+bajra,Bajra (Pearl Millet),ಸಜ್ಜೆ,बाजरा,Quintal,Cereals,Low
+wheat,Wheat,ಗೋಧಿ,गेहूं,Quintal,Cereals,Low
+cotton,Cotton,ಹತ್ತಿ,कपास,Quintal,Fibre Crops,Low
+groundnut,Groundnut,ಕಡಲೆಕಾಯಿ,मूंगफली,Quintal,Oil Seeds,Low
+bengal_gram,Bengal Gram (Chana),ಕಡಲೆ ಕಾಳು,चना,Quintal,Pulses,Low
+red_gram,Red Gram (Tur),ತೊಗರಿ,अरहर / तूर,Quintal,Pulses,Low
+green_gram,Green Gram (Moong),ಹೆಸರು ಕಾಳು,मूंग,Quintal,Pulses,Low
+black_gram,Black Gram (Urad),ಉದ್ದಿನ ಕಾಳು,उडद,Quintal,Pulses,Low
+coconut,Coconut,ತೆಂಗಿನಕಾಯಿ,नारियल,Thousand,Commercial,Medium
+arecanut,Arecanut,ಅಡಿಕೆ,सुपारी,Quintal,Commercial,Low
+coffee,Coffee,ಕಾಫಿ,कॉफ़ी,Quintal,Commercial,Low
+banana,Banana,ಬಾಳೆಹಣ್ಣು,केला,Quintal,Fruits,High
+mango,Mango,ಮಾವಿನಹಣ್ಣು,आम,Quintal,Fruits,High
+chilli,Green Chilli,ಹಸಿಮೆಣಸಿನಕಾಯಿ,हरी मिर्च,Quintal,Vegetables,High
+dry_chilli,Dry Chilli,ಒಣ ಮೆಣಸಿನಕಾಯಿ,सूखी मिर्च,Quintal,Spices,Low
+garlic,Garlic,ಬೆಳ್ಳುಳ್ಳಿ,लहसुन,Quintal,Vegetables,Medium
+ginger,Ginger,ಶುಂಠಿ,अदरक,Quintal,Vegetables,Medium
+turmeric,Turmeric,ಅರಿಶಿನ,हल्दी,Quintal,Spices,Low
+bull,Bull,Bull,Bull,Numbers,Other Agri/Horti,Medium
+cow,Cow,Cow,Cow,Numbers,Other Agri/Horti,Medium
+goat,Goat,Goat,Goat,Numbers,Other Agri/Horti,Medium
+he_baffalo,He Baffalo,He Baffalo,He Baffalo,Numbers,Other Agri/Horti,Medium
+ox,Ox,Ox,Ox,Numbers,Other Agri/Horti,Medium
+ram,Ram,Ram,Ram,Numbers,Other Agri/Horti,Medium
+sajje,Sajje,Sajje,Sajje,Quintal,Other Agri/Horti,Medium
+she_baffalo,She Baffalo,She Baffalo,She Baffalo,Numbers,Other Agri/Horti,Medium
+she_goat,She Goat,She Goat,She Goat,Numbers,Other Agri/Horti,Medium
+sheep,Sheep,Sheep,Sheep,Numbers,Other Agri/Horti,Medium
+sunflower,Sunflower,Sunflower,Sunflower,Quintal,Other Agri/Horti,Medium
+alasande_gram,Alasande Gram,Alasande Gram,Alasande Gram,Quintal,Other Agri/Horti,Medium
+horse_gram,Horse Gram,Horse Gram,Horse Gram,Quintal,Other Agri/Horti,Medium
+bengalgram,Bengalgram,Bengalgram,Bengalgram,Quintal,Other Agri/Horti,Medium
+greengram,Greengram,Greengram,Greengram,Quintal,Other Agri/Horti,Medium
+neem_seed,Neem Seed,Neem Seed,Neem Seed,Quintal,Other Agri/Horti,Medium
+castor_seed,Castor Seed,Castor Seed,Castor Seed,Quintal,Other Agri/Horti,Medium
+tur,Tur,Tur,Tur,Quintal,Other Agri/Horti,Medium
+safflower,Safflower,Safflower,Safflower,Quintal,Other Agri/Horti,Medium
+cowpea,Cowpea,Cowpea,Cowpea,Quintal,Other Agri/Horti,Medium
+sesamum,Sesamum,Sesamum,Sesamum,Quintal,Other Agri/Horti,Medium
+cotton_seed,Cotton Seed,Cotton Seed,Cotton Seed,Quintal,Other Agri/Horti,Medium
+chilly_red,Chilly Red,Chilly Red,Chilly Red,Quintal,Other Agri/Horti,Medium
+jaggery,Jaggery,Jaggery,Jaggery,Quintal,Other Agri/Horti,Medium
+avare,Avare,Avare,Avare,Quintal,Other Agri/Horti,Medium
+banana_green,Banana Green,Banana Green,Banana Green,Quintal,Other Agri/Horti,Medium
+beans,Beans,Beans,Beans,Quintal,Other Agri/Horti,Medium
+bitter_gourd,Bitter Gourd,Bitter Gourd,Bitter Gourd,Quintal,Other Agri/Horti,Medium
+brinjal,Brinjal,Brinjal,Brinjal,Quintal,Other Agri/Horti,Medium
+cabbage,Cabbage,Cabbage,Cabbage,Quintal,Other Agri/Horti,Medium
+carrot,Carrot,Carrot,Carrot,Quintal,Other Agri/Horti,Medium
+cauliflower,Cauliflower,Cauliflower,Cauliflower,Quintal,Other Agri/Horti,Medium
+chapparada_avare,Chapparada Avare,Chapparada Avare,Chapparada Avare,Quintal,Other Agri/Horti,Medium
+cucumbar,Cucumbar,Cucumbar,Cucumbar,Quintal,Other Agri/Horti,Medium
+green_avare_w,Green Avare (W),Green Avare (W),Green Avare (W),Quintal,Other Agri/Horti,Medium
+green_chilly,Green Chilly,Green Chilly,Green Chilly,Quintal,Other Agri/Horti,Medium
+knool_khol,Knool Khol,Knool Khol,Knool Khol,Quintal,Other Agri/Horti,Medium
+ladies_finger,Ladies Finger,Ladies Finger,Ladies Finger,Quintal,Other Agri/Horti,Medium
+raddish,Raddish,Raddish,Raddish,Quintal,Other Agri/Horti,Medium
+rice,Rice,Rice,Rice,Quintal,Other Agri/Horti,Medium
+ridgeguard,Ridgeguard,Ridgeguard,Ridgeguard,Quintal,Other Agri/Horti,Medium
+coriander_seed,Coriander Seed,Coriander Seed,Coriander Seed,Quintal,Other Agri/Horti,Medium
+coriander,Coriander,Coriander,Coriander,Quintal,Other Agri/Horti,Medium
+alasandikai,Alasandikai,Alasandikai,Alasandikai,Quintal,Other Agri/Horti,Medium
+cowpea_veg,Cowpea (Veg),Cowpea (Veg),Cowpea (Veg),Quintal,Other Agri/Horti,Medium
+avaredal,Avaredal,Avaredal,Avaredal,Quintal,Other Agri/Horti,Medium
+bengal_gramdal,Bengal Gramdal,Bengal Gramdal,Bengal Gramdal,Quintal,Other Agri/Horti,Medium
+black_gramdal,Black Gramdal,Black Gramdal,Black Gramdal,Quintal,Other Agri/Horti,Medium
+black_pepper,Black Pepper,Black Pepper,Black Pepper,Quintal,Other Agri/Horti,Medium
+blackgram,Blackgram,Blackgram,Blackgram,Quintal,Other Agri/Horti,Medium
+chennangidal,Chennangidal,Chennangidal,Chennangidal,Quintal,Other Agri/Horti,Medium
+copra,Copra,Copra,Copra,Quintal,Other Agri/Horti,Medium
+dry_chillies,Dry Chillies,Dry Chillies,Dry Chillies,Quintal,Other Agri/Horti,Medium
+dry_grapes,Dry Grapes,Dry Grapes,Dry Grapes,Quintal,Other Agri/Horti,Medium
+green_ginger,Green Ginger,Green Ginger,Green Ginger,Quintal,Other Agri/Horti,Medium
+green_gramdal,Green Gramdal,Green Gramdal,Green Gramdal,Quintal,Other Agri/Horti,Medium
+green_peas,Green Peas,Green Peas,Green Peas,Quintal,Other Agri/Horti,Medium
+groundnut_seed,Groundnut Seed,Groundnut Seed,Groundnut Seed,Quintal,Other Agri/Horti,Medium
+methi_seeds,Methi Seeds,Methi Seeds,Methi Seeds,Quintal,Other Agri/Horti,Medium
+moath,Moath,Moath,Moath,Quintal,Other Agri/Horti,Medium
+mustard,Mustard,Mustard,Mustard,Quintal,Other Agri/Horti,Medium
+navane,Navane,Navane,Navane,Quintal,Other Agri/Horti,Medium
+soapnut,Soapnut,Soapnut,Soapnut,Quintal,Other Agri/Horti,Medium
+soyabeen,Soyabeen,Soyabeen,Soyabeen,Quintal,Other Agri/Horti,Medium
+tamarind_fruit,Tamarind Fruit,Tamarind Fruit,Tamarind Fruit,Quintal,Other Agri/Horti,Medium
+tur_dal,Tur Dal,Tur Dal,Tur Dal,Quintal,Other Agri/Horti,Medium
+mataki,Mataki,Mataki,Mataki,Quintal,Other Agri/Horti,Medium
+apple,Apple,Apple,Apple,Quintal,Other Agri/Horti,Medium
+ash_gourd,Ash Gourd,Ash Gourd,Ash Gourd,Numbers,Other Agri/Horti,Medium
+beetroot,Beetroot,Beetroot,Beetroot,Quintal,Other Agri/Horti,Medium
+borehannu,Borehannu,Borehannu,Borehannu,Quintal,Other Agri/Horti,Medium
+bottle_gourd,Bottle Gourd,Bottle Gourd,Bottle Gourd,Quintal,Other Agri/Horti,Medium
+bunch_beans,Bunch Beans,Bunch Beans,Bunch Beans,Quintal,Other Agri/Horti,Medium
+capsicum,Capsicum,Capsicum,Capsicum,Quintal,Other Agri/Horti,Medium
+chikoos_sapota,Chikoos (Sapota),Chikoos (Sapota),Chikoos (Sapota),Quintal,Other Agri/Horti,Medium
+chilly_capsicum,Chilly Capsicum,Chilly Capsicum,Chilly Capsicum,Quintal,Other Agri/Horti,Medium
+drum_stick,Drum Stick,Drum Stick,Drum Stick,Quintal,Other Agri/Horti,Medium
+grapes,Grapes,Grapes,Grapes,Quintal,Other Agri/Horti,Medium
+karbuja,Karbuja,Karbuja,Karbuja,Quintal,Other Agri/Horti,Medium
+mousambi,Mousambi,Mousambi,Mousambi,Quintal,Other Agri/Horti,Medium
+orange,Orange,Orange,Orange,Quintal,Other Agri/Horti,Medium
+papaya,Papaya,Papaya,Papaya,Quintal,Other Agri/Horti,Medium
+peas_wet,Peas Wet,Peas Wet,Peas Wet,Quintal,Other Agri/Horti,Medium
+pine_apple,Pine Apple,Pine Apple,Pine Apple,Quintal,Other Agri/Horti,Medium
+pomagranate,Pomagranate,Pomagranate,Pomagranate,Quintal,Other Agri/Horti,Medium
+seemebadanekai,Seemebadanekai,Seemebadanekai,Seemebadanekai,Quintal,Other Agri/Horti,Medium
+seethaphal,Seethaphal,Seethaphal,Seethaphal,Quintal,Other Agri/Horti,Medium
+snakeguard,Snakeguard,Snakeguard,Snakeguard,Quintal,Other Agri/Horti,Medium
+suvarnagadde,Suvarnagadde,Suvarnagadde,Suvarnagadde,Quintal,Other Agri/Horti,Medium
+sweet_potato,Sweet Potato,Sweet Potato,Sweet Potato,Quintal,Other Agri/Horti,Medium
+sweet_pumpkin,Sweet Pumpkin,Sweet Pumpkin,Sweet Pumpkin,Quintal,Other Agri/Horti,Medium
+thogarikai,Thogarikai,Thogarikai,Thogarikai,Quintal,Other Agri/Horti,Medium
+thondekai,Thondekai,Thondekai,Thondekai,Quintal,Other Agri/Horti,Medium
+water_melon,Water Melon,Water Melon,Water Melon,Quintal,Other Agri/Horti,Medium
+white_pumpkin,White Pumpkin,White Pumpkin,White Pumpkin,Quintal,Other Agri/Horti,Medium
+guava,Guava,Guava,Guava,Quintal,Other Agri/Horti,Medium
+mango_raw_ripe,Mango (Raw-Ripe),Mango (Raw-Ripe),Mango (Raw-Ripe),Quintal,Other Agri/Horti,Medium
+marasebu,Marasebu,Marasebu,Marasebu,Quintal,Other Agri/Horti,Medium
+other_fruits,Other Fruits,Other Fruits,Other Fruits,Quintal,Other Agri/Horti,Medium
+all_flowers,All Flowers,All Flowers,All Flowers,Quintal,Other Agri/Horti,Medium
+tender_coconut,Tender Coconut,Tender Coconut,Tender Coconut,Thousands,Other Agri/Horti,Medium
+cashewnut,Cashewnut,Cashewnut,Cashewnut,Quintal,Other Agri/Horti,Medium
+jack_fruit,Jack Fruit,Jack Fruit,Jack Fruit,Quintal,Other Agri/Horti,Medium
+chennangi_w,Chennangi (W),Chennangi (W),Chennangi (W),Quintal,Other Agri/Horti,Medium
+leafy_vegetables,Leafy Vegetables,Leafy Vegetables,Leafy Vegetables,Quintal,Other Agri/Horti,Medium
+skin_and_hide,Skin And Hide,Skin And Hide,Skin And Hide,Quintal,Other Agri/Horti,Medium
+calf,Calf,Calf,Calf,Numbers,Other Agri/Horti,Medium
+lint,Lint,Lint,Lint,Quintal,Other Agri/Horti,Medium
+redgram,Redgram,Redgram,Redgram,Quintal,Other Agri/Horti,Medium
+bullar,Bullar,Bullar,Bullar,Quintal,Other Agri/Horti,Medium
+sweet_lime,Sweet Lime,Sweet Lime,Sweet Lime,Quintal,Other Agri/Horti,Medium
+tamarind_seed,Tamarind Seed,Tamarind Seed,Tamarind Seed,Quintal,Other Agri/Horti,Medium
+honge_seed,Honge Seed,Honge Seed,Honge Seed,Quintal,Other Agri/Horti,Medium
+marygold,Marygold,Marygold,Marygold,Quintal,Other Agri/Horti,Medium
+hybrid_cumbu,Hybrid Cumbu,Hybrid Cumbu,Hybrid Cumbu,Quintal,Other Agri/Horti,Medium
+rose,Rose,Rose,Rose,Quintal,Other Agri/Horti,Medium
+crysanthamum,Crysanthamum,Crysanthamum,Crysanthamum,Quintal,Other Agri/Horti,Medium
+kakada,Kakada,Kakada,Kakada,Quintal,Other Agri/Horti,Medium
+kanakambara,Kanakambara,Kanakambara,Kanakambara,Quintal,Other Agri/Horti,Medium
+antawala,Antawala,Antawala,Antawala,Quintal,Other Agri/Horti,Medium
+same_savi,Same/Savi,Same/Savi,Same/Savi,Quintal,Other Agri/Horti,Medium
+gingelly,Gingelly,Gingelly,Gingelly,Quintal,Other Agri/Horti,Medium
+citrus_fruit,Citrus Fruit,Citrus Fruit,Citrus Fruit,Quintal,Other Agri/Horti,Medium
+arhar,Arhar,Arhar,Arhar,Quintal,Other Agri/Horti,Medium
+betal_leaves,Betal Leaves,Betal Leaves,Betal Leaves,Quintal,Other Agri/Horti,Medium
+gurellu,Gurellu,Gurellu,Gurellu,Quintal,Other Agri/Horti,Medium
+linseed,Linseed,Linseed,Linseed,Quintal,Other Agri/Horti,Medium
+niger_seed,Niger Seed,Niger Seed,Niger Seed,Quintal,Other Agri/Horti,Medium
+hippe_seed,Hippe Seed,Hippe Seed,Hippe Seed,Quintal,Other Agri/Horti,Medium
+wood,Wood,Wood,Wood,Quintal,Other Agri/Horti,Medium
+bamboo,Bamboo,Bamboo,Bamboo,Quintal,Other Agri/Horti,Medium
+maragenasu,Maragenasu,Maragenasu,Maragenasu,Quintal,Other Agri/Horti,Medium
+season_leaves,Season Leaves,Season Leaves,Season Leaves,Quintal,Other Agri/Horti,Medium
+duster_beans,Duster Beans,Duster Beans,Duster Beans,Quintal,Other Agri/Horti,Medium
+beaten_rice,Beaten Rice,Beaten Rice,Beaten Rice,Quintal,Other Agri/Horti,Medium
+methi,Methi,Methi,Methi,Quintal,Other Agri/Horti,Medium
+t_v_cumbu,T. V. Cumbu,T. V. Cumbu,T. V. Cumbu,Quintal,Other Agri/Horti,Medium
+jute,Jute,Jute,Jute,Quintal,Other Agri/Horti,Medium

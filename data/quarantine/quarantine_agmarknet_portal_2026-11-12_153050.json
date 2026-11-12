@@ -1,0 +1,242 @@
+[
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Bengaluru (Yeshwanthpur)",
+      "district": "Bengaluru Urban",
+      "date": "2026-11-01",
+      "min_price": 25869.28,
+      "modal_price": 28743.64,
+      "max_price": 31618.0,
+      "arrivals": 68.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 28743.64/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.280522"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Kolar",
+      "district": "Kolar",
+      "date": "2026-11-01",
+      "min_price": 25869.28,
+      "modal_price": 28743.64,
+      "max_price": 31618.0,
+      "arrivals": 68.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 28743.64/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.280522"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Chikkaballapur",
+      "district": "Chikkaballapura",
+      "date": "2026-11-01",
+      "min_price": 25869.28,
+      "modal_price": 28743.64,
+      "max_price": 31618.0,
+      "arrivals": 68.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 28743.64/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.280522"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Bengaluru (Yeshwanthpur)",
+      "district": "Bengaluru Urban",
+      "date": "2026-10-30",
+      "min_price": 23176.8,
+      "modal_price": 25752.0,
+      "max_price": 28327.2,
+      "arrivals": 220.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 25752.0/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.281518"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Kolar",
+      "district": "Kolar",
+      "date": "2026-10-30",
+      "min_price": 23176.8,
+      "modal_price": 25752.0,
+      "max_price": 28327.2,
+      "arrivals": 220.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 25752.0/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.281518"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Chikkaballapur",
+      "district": "Chikkaballapura",
+      "date": "2026-10-30",
+      "min_price": 23176.8,
+      "modal_price": 25752.0,
+      "max_price": 28327.2,
+      "arrivals": 220.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 25752.0/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.281518"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Bengaluru (Yeshwanthpur)",
+      "district": "Bengaluru Urban",
+      "date": "2026-11-01",
+      "min_price": 25869.28,
+      "modal_price": 28743.64,
+      "max_price": 31618.0,
+      "arrivals": 68.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 28743.64/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.292982"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Kolar",
+      "district": "Kolar",
+      "date": "2026-11-01",
+      "min_price": 25869.28,
+      "modal_price": 28743.64,
+      "max_price": 31618.0,
+      "arrivals": 68.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 28743.64/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.293993"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Chikkaballapur",
+      "district": "Chikkaballapura",
+      "date": "2026-11-01",
+      "min_price": 25869.28,
+      "modal_price": 28743.64,
+      "max_price": 31618.0,
+      "arrivals": 68.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 28743.64/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.293993"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Bengaluru (Yeshwanthpur)",
+      "district": "Bengaluru Urban",
+      "date": "2026-10-30",
+      "min_price": 23176.8,
+      "modal_price": 25752.0,
+      "max_price": 28327.2,
+      "arrivals": 220.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 25752.0/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.293993"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Kolar",
+      "district": "Kolar",
+      "date": "2026-10-30",
+      "min_price": 23176.8,
+      "modal_price": 25752.0,
+      "max_price": 28327.2,
+      "arrivals": 220.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 25752.0/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.293993"
+  },
+  {
+    "raw_record": {
+      "crop": "copra",
+      "mandi": "Chikkaballapur",
+      "district": "Chikkaballapura",
+      "date": "2026-10-30",
+      "min_price": 23176.8,
+      "modal_price": 25752.0,
+      "max_price": 28327.2,
+      "arrivals": 220.4,
+      "unit": "Quintal",
+      "source_id": "agmarknet_portal",
+      "source_url": "https://agmarknet.gov.in/PriceTrends/Market_Wise_Price_Arrival_04-11-2026_12-20-32_AM.csv",
+      "fetched_at": "2026-11-12T15:30:50",
+      "raw_hash": "aa7df4d403e91a673cabb1d0eb6d310ecf2e8de6b53e4c983b95aaefe7f063ed"
+    },
+    "reason": "Price Rs 25752.0/qtl outside plausible bounds [100.0, 25000.0] for copra",
+    "source_id": "agmarknet_portal",
+    "timestamp": "2026-11-12T15:30:50.293993"
+  }
+]

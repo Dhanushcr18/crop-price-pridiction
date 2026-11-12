@@ -1,0 +1,414 @@
+<!DOCTYPE html><html lang="kn"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-error":"#ffffff","tertiary-fixed-dim":"#ffb59a","primary":"#00450d","on-primary-container":"#90d689","on-secondary":"#ffffff","inverse-surface":"#382f25","surface-dim":"#e8d7c9","outline":"#717a6d","on-primary-fixed-variant":"#0c5216","surface-tint":"#2a6b2c","on-tertiary":"#ffffff","primary-container":"#1b5e20","on-background":"#221a11","primary-fixed":"#acf4a4","surface-container-low":"#fff1e7","secondary-container":"#fdcdbc","on-surface-variant":"#41493e","surface-bright":"#fff8f4","tertiary-container":"#933100","background":"#fff8f4","surface-container":"#fcebdc","surface-container-high":"#f7e5d7","secondary":"#7a5649","error":"#ba1a1a","surface-container-highest":"#f1dfd1","on-primary-fixed":"#002203","secondary-fixed":"#ffdbcf","on-tertiary-container":"#ffb498","error-container":"#ffdad6","inverse-on-surface":"#ffeee0","on-error-container":"#93000a","inverse-primary":"#91d78a","tertiary":"#6c2200","on-tertiary-fixed-variant":"#802a00","tertiary-fixed":"#ffdbcf","on-secondary-fixed-variant":"#603f33","on-tertiary-fixed":"#380d00","on-secondary-container":"#795548","on-secondary-fixed":"#2e150b","on-primary":"#ffffff","primary-fixed-dim":"#91d78a","secondary-fixed-dim":"#ebbcac","surface-container-lowest":"#ffffff","on-surface":"#221a11","outline-variant":"#c0c9bb","surface":"#fff8f4","surface-variant":"#f1dfd1"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-lg":"1.5rem","space-sm":"0.75rem","space-md":"1rem","space-xs":"0.375rem","space-2xl":"3rem","margin-md":"1.5rem","margin-lg":"2.5rem","margin":"1rem","space-xl":"2.25rem","gutter-lg":"1.5rem","gutter":"1rem"},fontFamily:{"body-lg":["Noto Sans"],"label-lg":["Noto Sans"],"display-lg":["Noto Sans"],"display-lg-mobile":["Noto Sans"],"body-md":["Noto Sans"],"title-lg":["Noto Sans"],"numeral-lg":["Noto Sans"],"headline-md":["Noto Sans"],"numeral-md":["Noto Sans"],"headline-lg":["Noto Sans"],"label-md":["Noto Sans"]},fontSize:{"body-lg":["18px",{"lineHeight":"26px","fontWeight":"500"}],"label-lg":["16px",{"lineHeight":"20px","fontWeight":"700"}],"display-lg":["40px",{"lineHeight":"48px","fontWeight":"700"}],"display-lg-mobile":["32px",{"lineHeight":"40px","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"title-lg":["20px",{"lineHeight":"28px","fontWeight":"600"}],"numeral-lg":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"700"}],"numeral-md":["22px",{"lineHeight":"28px","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"label-md":["14px",{"lineHeight":"18px","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-20 px-space-md flex items-center gap-space-sm bg-surface-container-high/40"><div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[28px]">agriculture</span></div><div class="flex flex-col overflow-hidden"><span class="font-title-lg text-title-lg text-primary leading-tight truncate">ರೈತ ಸಲಹೆಗಾರ</span><span class="font-label-md text-label-md text-on-surface-variant truncate">Farmer Sell Advisor</span></div></div><div class="px-space-md pt-space-md pb-space-xs"><span class="font-label-md text-label-md text-outline uppercase tracking-wider px-space-xs">ಮುಖ್ಯ ಮೆನು / Menu</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_3px_0_0_#d7ccc8]"><a class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="advice" href="#"><span class="material-symbols-outlined text-[24px]">recommend</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">Advice</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಸಲಹೆ ಮತ್ತು ಶಿಫಾರಸು</span></div></a><a class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="my-history" href="#"><span class="material-symbols-outlined text-[24px]">history_edu</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">My History</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಹಿಂದಿನ ಲೆಕ್ಕ</span></div></a><a aria-current="page" class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg transition-all bg-primary-container text-on-primary font-bold shadow-[0_3px_0_0_#d7ccc8]" data-path="how-reliable" href="#"><span class="material-symbols-outlined text-[24px]">verified</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">How Reliable?</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಮಾದರಿ ನಿಖರತೆ</span></div></a><a class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="help-and-faq" href="#"><span class="material-symbols-outlined text-[24px]">support_agent</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">Help &amp; FAQ</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಸಹಾಯ ಮತ್ತು ಮಾಹಿತಿ</span></div></a><a class="min-h-[52px] flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-[24px]">tune</span><div class="flex flex-col text-left"><span class="font-label-lg text-label-lg leading-tight">Settings</span><span class="font-label-md text-label-md text-on-surface-variant/80">ಸೆಟ್ಟಿಂಗ್ಸ್ ಮತ್ತು ಮಂಡಿ ಆಯ್ಕೆ</span></div></a></nav></div><div class="p-space-md flex flex-col gap-space-sm bg-surface-container/60"><div class="flex items-center gap-space-sm px-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">store</span><span class="font-label-md text-label-md font-bold">RSK Kiosk #14 - Hubli APMC</span></div><div class="w-full py-space-xs px-space-sm rounded-lg bg-surface-container-highest text-on-surface flex items-center justify-between"><span class="font-label-md text-label-md">ಕನ್ನಡ ಬೆಂಬಲ ಲಭ್ಯ</span><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span></div></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 min-h-[64px] bg-surface/95 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] py-space-xs px-space-lg flex items-center justify-between flex-wrap gap-space-sm"><div class="flex items-center flex-wrap gap-space-sm flex-1"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg bg-tertiary-container text-on-tertiary font-label-md text-label-md shrink-0"><span class="material-symbols-outlined text-[20px]">warning</span><div class="flex flex-col leading-none"><span class="font-bold">SYNTHETIC DATA - NOT FOR REAL DECISIONS</span><span class="text-[14px] opacity-90">ಕೃತಕ ಮಾಹಿತಿ - ತರಬೇತಿಗಾಗಿ ಮಾತ್ರ</span></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg bg-surface-container-high text-primary font-label-md text-label-md shrink-0"><span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span><span class="font-bold">Online: Live APMC Sync</span></div></div><div class="flex items-center flex-wrap gap-space-sm shrink-0"><div class="flex items-center bg-surface-container-high rounded-lg p-1 text-on-surface shrink-0"><button class="min-h-[48px] px-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1 shrink-0" type="button"><span class="material-symbols-outlined text-[18px]">translate</span>ಕನ್ನಡ</button><button class="min-h-[48px] px-space-sm rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md shrink-0" type="button">English</button><button class="min-h-[48px] px-space-sm rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md shrink-0" type="button">हिन्दी</button></div><button class="min-h-[48px] px-space-md rounded-lg bg-error text-on-error font-label-lg text-label-lg flex items-center gap-space-xs hover:bg-error/90 transition-colors shrink-0" type="button"><span class="material-symbols-outlined text-[20px]">restart_alt</span><span>Start New Farmer (ಹೊಸ ರೈತ)</span></button><button class="min-h-[48px] px-space-sm rounded-lg bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1 shrink-0" type="button"><span class="material-symbols-outlined text-[20px]">badge</span><span class="hidden 2xl:inline">Staff / Kiosk Mode</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full flex-1 pt-20 bg-surface px-space-lg"><div class="flex flex-col w-full pb-space-2xl">
+<!-- Top Context / Breadcrumb Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-md py-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-space-xs rounded-lg bg-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>ಮಾದರಿ ನಿಖರತೆ ಮತ್ತು ಪಾರದರ್ಶಕತೆ • Model Transparency Protocol</span>
+</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-md text-body-md text-on-surface-variant">KVK Version: v4.2-bayesian-ensemble</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-md text-label-md text-secondary">ಅಧಿಕೃತ ಮೌಲ್ಯಮಾಪನ ದಾಖಲೆ (Official Audit Log)</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md">Ref: KA-AGR-2024-884</span>
+</div>
+</div>
+<!-- 1. PERSISTENT BOLD WARNING BANNER -->
+<section class="w-full rounded-xl bg-tertiary-container text-on-tertiary p-space-lg shadow-md mb-space-lg relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-on-tertiary/10 pointer-events-none"></div>
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md relative z-10">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-on-tertiary text-tertiary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md font-bold tracking-tight">SYNTHETIC RESEARCH BENCHMARK • ಕೃತಕ ಸಂಶೋಧನಾ ಮಾಹಿತಿ</span>
+<span class="px-space-xs py-0.5 rounded bg-tertiary text-on-tertiary font-label-md text-label-md uppercase tracking-wider">Experimental</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-tertiary/90 mt-1 max-w-4xl">
+            This module evaluates algorithms trained on 8 years (2016–2024) of Karnataka Agmarknet mandi data alongside synthetic extreme-weather stress tests. <strong>ಇದು ನೈಜ ಆರ್ಥಿಕ ನಿರ್ಧಾರಕ್ಕೆ ಏಕೈಕ ಆಧಾರವಲ್ಲ.</strong> Do not make multi-lakh harvest liquidations solely based on algorithmic forecasts.
+          </p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-start md:items-end bg-tertiary/60 p-space-sm rounded-lg backdrop-blur-sm">
+<span class="font-label-md text-label-md uppercase tracking-wider text-tertiary-fixed">Dataset Sample</span>
+<span class="font-numeral-md text-numeral-md font-bold text-on-tertiary">3,12,480 Mandi Lots</span>
+</div>
+</div>
+</section>
+<!-- 2. PLAIN LANGUAGE SUMMARY / VERDICT -->
+<section class="w-full bg-surface-container-lowest rounded-xl p-space-xl shadow-md mb-space-lg relative">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Big Statement and Honest Verdict -->
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<div class="inline-flex items-center gap-space-xs text-primary font-label-lg text-label-lg uppercase tracking-wider">
+<span class="material-symbols-outlined text-[20px]">psychology_alt</span>
+<span>ನೇರ ಮಾತು • Radical Honesty Assessment</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface leading-tight">
+          How accurate is this advice? <br>
+<span class="text-primary font-bold">ಈ ಸಲಹೆ ಎಷ್ಟು ನಂಬಿಕಸ್ಥ ಮತ್ತು ನಿಖರ?</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl pt-space-xs">
+          Our models are strongest for <span class="text-primary font-bold">10 to 14-day macro price trends (82% hit rate)</span>, but significantly weaker for tomorrow’s exact hourly fluctuations (<span class="text-tertiary font-bold">58% hit rate</span>). Crucially, we consistently outperform the naive mandi baseline (<span class="italic">"tomorrow’s price will just equal today’s price"</span>) by an average of <span class="text-primary font-bold">+24%</span> across North Karnataka APMCs.
+        </p>
+<!-- Key Quick Takeaways Pill Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md pt-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Short Horizon (1-3 Days)</span>
+<span class="font-headline-md text-headline-md text-secondary font-bold">58% – 74%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">High noise from daily lorry arrivals</span>
+</div>
+<div class="p-space-md rounded-xl bg-primary-container text-on-primary flex flex-col gap-1 shadow-sm">
+<span class="font-label-md text-label-md text-primary-fixed uppercase tracking-wider">Optimal Sweet Spot (14 Days)</span>
+<span class="font-numeral-lg text-numeral-lg font-bold text-on-primary">84% Hit</span>
+<span class="font-label-md text-label-md text-on-primary-container">Price envelope verified within ₹300/qtl</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Naive Baseline Margin</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">+24% Edge</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Beats guessing based on today's auction</span>
+</div>
+</div>
+</div>
+<!-- Right Visual Indicator: Accuracy Gauge / Visual Proof -->
+<div class="lg:col-span-4 flex flex-col items-center justify-center p-space-lg bg-surface-container rounded-xl">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-space-sm text-center">Ensemble Confidence Rating</span>
+<!-- Inline SVG Gauge Chart -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+<!-- Background Track -->
+<circle class="text-surface-dim stroke-current" cx="60" cy="60" fill="none" r="50" stroke-width="12"></circle>
+<!-- Baseline 60% mark -->
+<circle class="text-secondary-fixed stroke-current" cx="60" cy="60" fill="none" r="50" stroke-dasharray="314.16" stroke-dashoffset="125.6" stroke-width="12"></circle>
+<!-- Actual Model 82% sweetspot -->
+<circle class="text-primary stroke-current" cx="60" cy="60" fill="none" r="50" stroke-dasharray="314.16" stroke-dashoffset="56.5" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-numeral-lg text-numeral-lg font-bold text-primary">82%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">14-Day Hit Rate</span>
+</div>
+</div>
+<div class="w-full mt-space-md pt-space-sm flex items-center justify-between font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-full bg-surface-dim"></span>
+<span>Uncertain</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-full bg-secondary-fixed"></span>
+<span>Naive Base (58%)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span>Model (82%)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. TWO-COLUMN ANALYTICAL OVERVIEW: METRICS TABLE VS MEASURED FACTS -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Left Column: Horizon Accuracy Metrics Table vs Baseline (7 Cols) -->
+<div class="xl:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[26px]">table_chart</span>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Horizon Accuracy vs Baseline</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">ವಿವಿಧ ದಿನಗಳ ಮುನ್ನೋಟದ ನಿಖರತೆ ಕೋಷ್ಟಕ</span>
+</div>
+</div>
+<span class="px-space-sm py-space-xs rounded-lg bg-surface-container-high text-on-surface-variant font-label-md text-label-md font-bold">
+            Hubli, Belgaum &amp; Gadag APMCs
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+          Performance evaluated against actual Karnataka APMC closure mandi rates across 1,840 historical auction weeks. Margin compares algorithmic yield predictions vs standard persistence model.
+        </p>
+<!-- Structured Comparison Strips -->
+<div class="flex flex-col gap-space-xs">
+<!-- Header Strip -->
+<div class="grid grid-cols-12 gap-space-sm px-space-md py-space-xs bg-surface-container font-label-md text-label-md text-on-surface-variant rounded-lg">
+<span class="col-span-3 uppercase tracking-wider">Forecast Horizon</span>
+<span class="col-span-3 text-right uppercase tracking-wider">Accuracy Envelope</span>
+<span class="col-span-3 text-right uppercase tracking-wider">vs Naive Baseline</span>
+<span class="col-span-3 text-right uppercase tracking-wider">Reliability Grade</span>
+</div>
+<!-- Row 1: 3-Day Forecast -->
+<div class="grid grid-cols-12 gap-space-sm px-space-md py-space-md bg-surface rounded-lg items-center hover:bg-surface-container-low transition-colors">
+<div class="col-span-3 flex flex-col">
+<span class="font-title-lg text-title-lg text-on-surface font-bold">3-Day Forecast</span>
+<span class="font-label-md text-label-md text-on-surface-variant">೩ ದಿನಗಳ ಮುನ್ಸೂಚನೆ</span>
+</div>
+<div class="col-span-3 text-right flex flex-col">
+<span class="font-numeral-md text-numeral-md font-bold text-on-surface">74%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">within ±₹150/qtl</span>
+</div>
+<div class="col-span-3 text-right flex flex-col items-end">
+<span class="font-label-lg text-label-lg font-bold text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>+12%
+              </span>
+<span class="font-label-md text-label-md text-on-surface-variant">over today's rate</span>
+</div>
+<div class="col-span-3 text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                Good / ಉತ್ತಮ
+              </span>
+</div>
+</div>
+<!-- Row 2: 7-Day Forecast -->
+<div class="grid grid-cols-12 gap-space-sm px-space-md py-space-md bg-surface rounded-lg items-center hover:bg-surface-container-low transition-colors">
+<div class="col-span-3 flex flex-col">
+<span class="font-title-lg text-title-lg text-on-surface font-bold">7-Day Forecast</span>
+<span class="font-label-md text-label-md text-on-surface-variant">೭ ದಿನಗಳ ಮುನ್ಸೂಚನೆ</span>
+</div>
+<div class="col-span-3 text-right flex flex-col">
+<span class="font-numeral-md text-numeral-md font-bold text-on-surface">81%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">within ±₹200/qtl</span>
+</div>
+<div class="col-span-3 text-right flex flex-col items-end">
+<span class="font-label-lg text-label-lg font-bold text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>+21%
+              </span>
+<span class="font-label-md text-label-md text-on-surface-variant">over today's rate</span>
+</div>
+<div class="col-span-3 text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                High / ಅಧಿಕ
+              </span>
+</div>
+</div>
+<!-- Row 3: 14-Day Forecast (HIGHLIGHTED OPTIMAL) -->
+<div class="grid grid-cols-12 gap-space-sm px-space-md py-space-md bg-surface-container-high rounded-lg items-center shadow-[0_2px_0_0_#d7ccc8]">
+<div class="col-span-3 flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-title-lg text-title-lg text-primary font-bold">14-Day Forecast</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">೧೪ ದಿನಗಳ (ಅತ್ಯುತ್ತಮ)</span>
+</div>
+<div class="col-span-3 text-right flex flex-col">
+<span class="font-numeral-md text-numeral-md font-bold text-primary">84%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">within ±₹300/qtl</span>
+</div>
+<div class="col-span-3 text-right flex flex-col items-end">
+<span class="font-label-lg text-label-lg font-bold text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>+28%
+              </span>
+<span class="font-label-md text-label-md text-on-surface-variant">peak model gain</span>
+</div>
+<div class="col-span-3 text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm">
+<span class="material-symbols-outlined text-[16px]">thumb_up</span>
+                Optimal / ಅತ್ಯುತ್ತಮ
+              </span>
+</div>
+</div>
+<!-- Row 4: 30-Day Forecast (CAUTION) -->
+<div class="grid grid-cols-12 gap-space-sm px-space-md py-space-md bg-surface rounded-lg items-center hover:bg-surface-container-low transition-colors">
+<div class="col-span-3 flex flex-col">
+<span class="font-title-lg text-title-lg text-on-surface font-bold">30-Day Forecast</span>
+<span class="font-label-md text-label-md text-on-surface-variant">೩೦ ದಿನಗಳ ದೂರದೃಷ್ಟಿ</span>
+</div>
+<div class="col-span-3 text-right flex flex-col">
+<span class="font-numeral-md text-numeral-md font-bold text-tertiary">63%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">wide interval (±₹650)</span>
+</div>
+<div class="col-span-3 text-right flex flex-col items-end">
+<span class="font-label-lg text-label-lg font-bold text-secondary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>+8%
+              </span>
+<span class="font-label-md text-label-md text-on-surface-variant">low confidence edge</span>
+</div>
+<div class="col-span-3 text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                Caution / ಎಚ್ಚರಿಕೆ
+              </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Explanatory footer note inside left card -->
+<div class="mt-space-md pt-space-sm flex items-center gap-space-sm text-on-surface-variant font-label-md text-label-md bg-surface-container-low p-space-sm rounded-lg">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+<span><strong>Why 14 days works best:</strong> Onion supply is regulated by warehouse emptying cycles which operate on bi-weekly truck booking schedules across Bagalkote, Gadag, and Hubballi.</span>
+</div>
+</div>
+<!-- Right Column: Model Assumptions vs Measured Facts (5 Cols) -->
+<div class="xl:col-span-5 bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs mb-space-md">
+<span class="material-symbols-outlined text-secondary text-[26px]">balance</span>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Assumptions vs Real Facts</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">ವಾಸ್ತವ ಸತ್ಯಗಳು ಮತ್ತು ಲೆಕ್ಕಾಚಾರದ ಊಹೆಗಳು</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+          We separate what is objectively pulled from government sensors from the human estimates embedded in our model logic.
+        </p>
+<!-- Card stack comparing facts and assumptions -->
+<div class="flex flex-col gap-space-sm">
+<!-- Fact 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded bg-primary text-on-primary font-label-md text-label-md font-bold uppercase tracking-wider">
+                [MEASURED] ನೈಜ ದತ್ತಾಂಶ
+              </span>
+<span class="font-label-md text-label-md text-on-surface-variant">Live Agmarknet Sync</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-bold mt-1">Daily APMC Modal Prices &amp; Total Quintal Arrivals</p>
+<span class="font-label-md text-label-md text-on-surface-variant">Direct tally from weighbridges at Hubli, Gadag, and Bangalore Yeshwanthpur.</span>
+</div>
+<!-- Fact 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded bg-primary text-on-primary font-label-md text-label-md font-bold uppercase tracking-wider">
+                [MEASURED] ನೈಜ ದತ್ತಾಂಶ
+              </span>
+<span class="font-label-md text-label-md text-on-surface-variant">NHAI &amp; IOCL Indices</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-bold mt-1">Official Diesel Index &amp; Road Mileage (NH75 / SH96)</p>
+<span class="font-label-md text-label-md text-on-surface-variant">Calculated per 10-tonne axle truck tariffs directly on Karnataka highway routes.</span>
+</div>
+<!-- Assumption 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-high flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded bg-tertiary-container text-on-tertiary font-label-md text-label-md font-bold uppercase tracking-wider">
+                [ASSUMPTION] ಊಹೆ
+              </span>
+<span class="font-label-md text-label-md text-tertiary font-bold">Risk Factor: Medium</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-bold mt-1">Farmer Storage Spoilage Fixed at 3.5% / 10 Days</p>
+<span class="font-label-md text-label-md text-on-surface-variant">Traditional bamboo/mud kanadas vary widely (2% to 8%) based on humidity and ventilation.</span>
+</div>
+<!-- Assumption 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-high flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded bg-tertiary-container text-on-tertiary font-label-md text-label-md font-bold uppercase tracking-wider">
+                [ASSUMPTION] ಊಹೆ
+              </span>
+<span class="font-label-md text-label-md text-tertiary font-bold">Informal Variance</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-bold mt-1">Trader Commission Fixed at Standard 2.0%</p>
+<span class="font-label-md text-label-md text-on-surface-variant">Actual commission frequently escalates to 5%-7% if the farmer carries informal pre-sowing debt.</span>
+</div>
+</div>
+</div>
+<!-- Action note on assumptions -->
+<div class="mt-space-md flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Need personalized assumption tuning?</span>
+<button class="min-h-[48px] px-space-md rounded-lg bg-surface-container-high text-primary hover:bg-surface-container font-label-md text-label-md font-bold transition-all" type="button">
+          Adjust My Farm Parameters (ಬದಲಾಯಿಸಿ)
+        </button>
+</div>
+</div>
+</div>
+<!-- 4. KNOWN LIMITATIONS & FAILURE MODES -->
+<section class="w-full mb-space-lg">
+<div class="flex items-center gap-space-xs mb-space-md">
+<span class="material-symbols-outlined text-error text-[26px]">cloud_download</span>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Known Failure Modes &amp; Market Realities</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">ಯಾವ ಸಂದರ್ಭಗಳಲ್ಲಿ ಕಂಪ್ಯೂಟರ್ ಮುನ್ಸೂಚನೆ ತಪ್ಪಾಗುತ್ತದೆ?</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Caution Card 1: Maharashtra Rain Surge -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col justify-between">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">thunderstorm</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-error font-bold uppercase tracking-wider">Unpredictable Weather Shock</span>
+<h3 class="font-title-lg text-title-lg text-on-surface font-bold">Nashik / Maharashtra Influx Gluts</h3>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Sudden unseasonal rain in Lasalgaon or Nashik causes immediate distress harvesting. Thousands of wet onion lorries flood Hubballi and Belagavi markets within <strong>24 to 48 hours</strong>, causing price crashes that historical time-series algorithms cannot anticipate ahead of rainfall radar confirmations.
+          </p>
+<div class="p-space-sm rounded-lg bg-error-container/40 text-on-surface font-label-md text-label-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-error text-[18px]">gavel</span>
+<span><strong>Farmer Rule:</strong> If Nashik declares red-alert rain, do not wait 14 days. Harvest &amp; sell quickly before the truck flood arrives.</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Failure probability during monsoon: <strong>High (38%)</strong></span>
+<span class="text-error font-bold">Critical Override</span>
+</div>
+</div>
+<!-- Caution Card 2: Informal Debt & Middlemen Bindings -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col justify-between">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">link_off</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider">Socio-Economic Restriction</span>
+<h3 class="font-title-lg text-title-lg text-on-surface font-bold">Informal Commission Agent Tie-Ins (ಕಮಿಷನ್ ಏಜೆಂಟ್ ಕಟ್ಟುಪಾಡು)</h3>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Our recommendation may calculate that transporting your produce to <strong>Bengaluru Yeshwanthpur fetches ₹420 extra per quintal</strong>. However, if you took advance cash for fertilizer or seeds from an APMC Hubli commission agent (ಆಡತಿ ವ್ಯಾಪಾರಿ), you are contractually or culturally compelled to liquidate only at their stall.
+          </p>
+<div class="p-space-sm rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">handshake</span>
+<span><strong>Model Blindspot:</strong> We cannot compute personal credit ties. Factor your local commitments before booking outstation logistics.</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Affected cultivators: <strong>~62% of smallholders</strong></span>
+<span class="text-secondary font-bold">Personal Evaluation Needed</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. AUDIT & COMPLIANCE SPECIFICATIONS -->
+<section class="w-full bg-surface-container rounded-xl p-space-lg shadow-md">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">
+<!-- Spec Details -->
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">terminal</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Algorithm Architecture &amp; Data Provenance</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Model: <strong>LightGBM Gradient Boosted Trees + Bayesian Quantile Regression (P10/P50/P90 intervals)</strong>. Trained on 8 continuous years of Agmarknet portal records, India Meteorological Department (IMD) Hubli station precipitation indices, and diesel freight price tables.
+        </p>
+<div class="flex flex-wrap items-center gap-space-md font-label-md text-label-md text-secondary mt-1">
+<span>Last automated retraining run: <strong>Yesterday at 04:00 AM IST</strong></span>
+<span>•</span>
+<span>Next scheduled cycle: <strong>Tomorrow 04:00 AM IST</strong></span>
+<span>•</span>
+<span>Version hash: <strong>#8f9c-ensemble-onion-rsk14</strong></span>
+</div>
+</div>
+<!-- KVK Contact & Verification Action -->
+<div class="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm w-full lg:w-auto">
+<a class="min-h-[52px] px-space-md rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high flex items-center justify-center gap-space-xs font-label-lg text-label-lg shadow-sm transition-all" href="tel:0836220810">
+<span class="material-symbols-outlined text-primary text-[20px]">call</span>
+<div class="flex flex-col text-left">
+<span>KVK Data Officer</span>
+<span class="font-label-md text-label-md text-on-surface-variant">0836-220810 (ಧಾರವಾಡ ಕೃಷಿ ವಿವಿ)</span>
+</div>
+</a>
+<button class="min-h-[52px] px-space-lg rounded-lg bg-primary text-on-primary hover:bg-primary/90 flex items-center justify-center gap-space-xs font-label-lg text-label-lg shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Download Audit Certificate (PDF)</span>
+</button>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low py-space-lg mt-auto"><div class="w-full px-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex flex-col"><p class="font-headline-md text-headline-md text-primary font-bold">ಇದು ಕೇವಲ ಸಲಹೆ. ಅಂತಿಮ ನಿರ್ಧಾರ ನಿಮ್ಮದೇ.</p><p class="font-body-md text-body-md text-on-surface-variant">This is advisory guidance based on mandi models. The ultimate trading decision is yours.</p></div><div class="flex flex-col md:items-end font-label-md text-label-md text-secondary"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">database</span><span>Data Engine: APMC-K-V4.2.1 • Sync: Live Today</span></div><span>Karnataka State Agricultural Marketing Board Protocol Compliance</span></div></div></footer></div>
+
+</body></html>

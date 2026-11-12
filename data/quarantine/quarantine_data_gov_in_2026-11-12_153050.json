@@ -1,0 +1,3402 @@
+[
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "Kuthuparambu Market",
+      "district": "Kannur",
+      "date": "2026-11-03",
+      "min_price": 71000.0,
+      "modal_price": 72000.0,
+      "max_price": 73000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 72000.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.595364"
+  },
+  {
+    "raw_record": {
+      "crop": "Walnut",
+      "mandi": "Bumhama Kupwara (F&V)",
+      "district": "Kupwara",
+      "date": "2026-11-03",
+      "min_price": 90000.0,
+      "modal_price": 100000.0,
+      "max_price": 110000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 100000.0/qtl outside plausible bounds [100.0, 25000.0] for Walnut",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.597364"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "Perumbavoor Market",
+      "district": "Ernakulam",
+      "date": "2026-11-03",
+      "min_price": 85000.0,
+      "modal_price": 90000.0,
+      "max_price": 95000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 90000.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.602360"
+  },
+  {
+    "raw_record": {
+      "crop": "Mushroom",
+      "mandi": "Palanganatham(Uzhavar Sandhai )",
+      "district": "Madurai",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26250.0,
+      "max_price": 27500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26250.0/qtl outside plausible bounds [100.0, 25000.0] for Mushroom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.645090"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Palayamkottai(Uzhavar Sandhai )",
+      "district": "Tirunelveli",
+      "date": "2026-11-03",
+      "min_price": 30000.0,
+      "modal_price": 31500.0,
+      "max_price": 33000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 31500.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.673276"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Vellore RM",
+      "district": "Vellore",
+      "date": "2026-11-03",
+      "min_price": 70000.0,
+      "modal_price": 75000.0,
+      "max_price": 80000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 75000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.758620"
+  },
+  {
+    "raw_record": {
+      "crop": "Arecanut(Betelnut/Supari)",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 38000.0,
+      "modal_price": 64000.0,
+      "max_price": 90000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 64000.0/qtl outside plausible bounds [100.0, 25000.0] for Arecanut(Betelnut/Supari)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.760611"
+  },
+  {
+    "raw_record": {
+      "crop": "Cashewnuts",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 90000.0,
+      "modal_price": 120000.0,
+      "max_price": 150000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 120000.0/qtl outside plausible bounds [100.0, 25000.0] for Cashewnuts",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.760611"
+  },
+  {
+    "raw_record": {
+      "crop": "Mushroom",
+      "mandi": "Chokkikulam(Uzhavar Sandhai )",
+      "district": "Madurai",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26250.0,
+      "max_price": 27500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26250.0/qtl outside plausible bounds [100.0, 25000.0] for Mushroom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.818595"
+  },
+  {
+    "raw_record": {
+      "crop": "Mint(Pudina)",
+      "mandi": "APMC Pune",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 2.0,
+      "modal_price": 6.0,
+      "max_price": 10.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 6.0/qtl outside plausible bounds [100.0, 25000.0] for Mint(Pudina)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.839597"
+  },
+  {
+    "raw_record": {
+      "crop": "Spinach",
+      "mandi": "Pune(Khadiki)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 3.0,
+      "modal_price": 4.0,
+      "max_price": 5.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 4.0/qtl outside plausible bounds [100.0, 25000.0] for Spinach",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.851595"
+  },
+  {
+    "raw_record": {
+      "crop": "Raddish",
+      "mandi": "Pune(Manjri)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 7.0,
+      "modal_price": 10.0,
+      "max_price": 15.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 10.0/qtl outside plausible bounds [100.0, 25000.0] for Raddish",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.853594"
+  },
+  {
+    "raw_record": {
+      "crop": "Onion Green",
+      "mandi": "Pune(Moshi)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 10.0,
+      "modal_price": 15.0,
+      "max_price": 20.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 15.0/qtl outside plausible bounds [100.0, 25000.0] for Onion Green",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.858609"
+  },
+  {
+    "raw_record": {
+      "crop": "Mint(Pudina)",
+      "mandi": "Pune(Moshi)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 8.0,
+      "modal_price": 9.0,
+      "max_price": 10.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 9.0/qtl outside plausible bounds [100.0, 25000.0] for Mint(Pudina)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.858609"
+  },
+  {
+    "raw_record": {
+      "crop": "Cummin Seed(Jeera)",
+      "mandi": "Fancy Bazaar APMC",
+      "district": "Kamrup",
+      "date": "2026-11-03",
+      "min_price": 27000.0,
+      "modal_price": 28000.0,
+      "max_price": 29000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28000.0/qtl outside plausible bounds [100.0, 25000.0] for Cummin Seed(Jeera)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.872579"
+  },
+  {
+    "raw_record": {
+      "crop": "Mushroom",
+      "mandi": "Kumbakonam (Uzhavar Sandhai )",
+      "district": "Thanjavur",
+      "date": "2026-11-03",
+      "min_price": 30000.0,
+      "modal_price": 30000.0,
+      "max_price": 30000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 30000.0/qtl outside plausible bounds [100.0, 25000.0] for Mushroom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.882440"
+  },
+  {
+    "raw_record": {
+      "crop": "Rose(Local)",
+      "mandi": "Kolaghat APMC",
+      "district": "Medinipur(E)",
+      "date": "2026-11-03",
+      "min_price": 38000.0,
+      "modal_price": 39000.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 39000.0/qtl outside plausible bounds [100.0, 25000.0] for Rose(Local)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.898137"
+  },
+  {
+    "raw_record": {
+      "crop": "Lotus",
+      "mandi": "Flower Market,Gazipur APMC",
+      "district": "Delhi",
+      "date": "2026-11-03",
+      "min_price": 20.0,
+      "modal_price": 25.0,
+      "max_price": 30.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25.0/qtl outside plausible bounds [100.0, 25000.0] for Lotus",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.899155"
+  },
+  {
+    "raw_record": {
+      "crop": "BOP",
+      "mandi": "Flower Market,Gazipur APMC",
+      "district": "Delhi",
+      "date": "2026-11-03",
+      "min_price": 60.0,
+      "modal_price": 70.0,
+      "max_price": 80.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 70.0/qtl outside plausible bounds [100.0, 25000.0] for BOP",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.899155"
+  },
+  {
+    "raw_record": {
+      "crop": "Mint(Pudina)",
+      "mandi": "Pune(Pimpri)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 7.0,
+      "modal_price": 8.0,
+      "max_price": 8.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 8.0/qtl outside plausible bounds [100.0, 25000.0] for Mint(Pudina)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.912476"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Vaniyampadi(Uzhavar Sandhai )",
+      "district": "Thirupathur",
+      "date": "2026-11-03",
+      "min_price": 28000.0,
+      "modal_price": 28000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28000.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.915459"
+  },
+  {
+    "raw_record": {
+      "crop": "Rubber",
+      "mandi": "Pulpally Market",
+      "district": "Wayanad",
+      "date": "2026-11-03",
+      "min_price": 28400.0,
+      "modal_price": 28600.0,
+      "max_price": 28800.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28600.0/qtl outside plausible bounds [100.0, 25000.0] for Rubber",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.931455"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Koduvayoor Market",
+      "district": "Palakad",
+      "date": "2026-11-03",
+      "min_price": 25100.0,
+      "modal_price": 25300.0,
+      "max_price": 25500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25300.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.954517"
+  },
+  {
+    "raw_record": {
+      "crop": "Tube Flower",
+      "mandi": "Paramakudi(Uzhavar Sandhai )",
+      "district": "Ramanathapuram",
+      "date": "2026-11-03",
+      "min_price": 90000.0,
+      "modal_price": 92500.0,
+      "max_price": 95000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 92500.0/qtl outside plausible bounds [100.0, 25000.0] for Tube Flower",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.959284"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Ramanathapuram(Uzhavar Sandhai )",
+      "district": "Ramanathapuram",
+      "date": "2026-11-03",
+      "min_price": 60000.0,
+      "modal_price": 62500.0,
+      "max_price": 65000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 62500.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.959284"
+  },
+  {
+    "raw_record": {
+      "crop": "Rose(Local)",
+      "mandi": "Tiruvannamalai(Uzhavar Sandhai )",
+      "district": "Thiruvannamalai",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 28000.0,
+      "max_price": 30000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28000.0/qtl outside plausible bounds [100.0, 25000.0] for Rose(Local)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.962309"
+  },
+  {
+    "raw_record": {
+      "crop": "Green Chilli",
+      "mandi": "Diglipur Vegetable Market (Subhashgram)",
+      "district": "North and Middle Andaman",
+      "date": "2026-11-03",
+      "min_price": 40000.0,
+      "modal_price": 45000.0,
+      "max_price": 50000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 45000.0/qtl outside plausible bounds [100.0, 25000.0] for Green Chilli",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.980990"
+  },
+  {
+    "raw_record": {
+      "crop": "Tender Coconut",
+      "mandi": "Diglipur Vegetable Market (Subhashgram)",
+      "district": "North and Middle Andaman",
+      "date": "2026-11-03",
+      "min_price": 25.0,
+      "modal_price": 35.0,
+      "max_price": 50.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 35.0/qtl outside plausible bounds [100.0, 25000.0] for Tender Coconut",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.981991"
+  },
+  {
+    "raw_record": {
+      "crop": "Green Chilli",
+      "mandi": "Mayabander Vegetable Market",
+      "district": "North and Middle Andaman",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 27000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27000.0/qtl outside plausible bounds [100.0, 25000.0] for Green Chilli",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:48.981991"
+  },
+  {
+    "raw_record": {
+      "crop": "nigella seeds",
+      "mandi": "Neemuch APMC",
+      "district": "Neemuch",
+      "date": "2026-11-03",
+      "min_price": 24000.0,
+      "modal_price": 25501.0,
+      "max_price": 25600.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25501.0/qtl outside plausible bounds [100.0, 25000.0] for nigella seeds",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.169580"
+  },
+  {
+    "raw_record": {
+      "crop": "poppy seeds",
+      "mandi": "Neemuch APMC",
+      "district": "Neemuch",
+      "date": "2026-11-03",
+      "min_price": 108000.0,
+      "modal_price": 121000.0,
+      "max_price": 162000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 121000.0/qtl outside plausible bounds [100.0, 25000.0] for poppy seeds",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.169580"
+  },
+  {
+    "raw_record": {
+      "crop": "Tomato",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 0.01,
+      "modal_price": 0.01,
+      "max_price": 0.01,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 0.01/qtl outside plausible bounds [150.0, 18000.0] for Tomato",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.189452"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Kakching Market APMC",
+      "district": "Kakching",
+      "date": "2026-11-03",
+      "min_price": 27000.0,
+      "modal_price": 28000.0,
+      "max_price": 29000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28000.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.194457"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "Mananthavady Market",
+      "district": "Wayanad",
+      "date": "2026-11-03",
+      "min_price": 71900.0,
+      "modal_price": 72000.0,
+      "max_price": 72000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 72000.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.195475"
+  },
+  {
+    "raw_record": {
+      "crop": "Betelnuts",
+      "mandi": "Uparhali Pmy APMC",
+      "district": "Kamrup",
+      "date": "2026-11-03",
+      "min_price": 3.12,
+      "modal_price": 3.5,
+      "max_price": 4.37,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 3.5/qtl outside plausible bounds [100.0, 25000.0] for Betelnuts",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.201826"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Hosur(Uzhavar Sandhai )",
+      "district": "Krishnagiri",
+      "date": "2026-11-03",
+      "min_price": 50000.0,
+      "modal_price": 55000.0,
+      "max_price": 60000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 55000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.226059"
+  },
+  {
+    "raw_record": {
+      "crop": "Tube Flower",
+      "mandi": "Hosur(Uzhavar Sandhai )",
+      "district": "Krishnagiri",
+      "date": "2026-11-03",
+      "min_price": 100000.0,
+      "modal_price": 110000.0,
+      "max_price": 120000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 110000.0/qtl outside plausible bounds [100.0, 25000.0] for Tube Flower",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.226059"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Namakkal(Uzhavar Sandhai )",
+      "district": "Namakkal",
+      "date": "2026-11-03",
+      "min_price": 27500.0,
+      "modal_price": 29500.0,
+      "max_price": 31500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 29500.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.228372"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Ranipettai(Uzhavar Sandhai )",
+      "district": "Ranipet",
+      "date": "2026-11-03",
+      "min_price": 108000.0,
+      "modal_price": 108000.0,
+      "max_price": 108000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 108000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.233396"
+  },
+  {
+    "raw_record": {
+      "crop": "Marigold(Calcutta)",
+      "mandi": "Ranipettai(Uzhavar Sandhai )",
+      "district": "Ranipet",
+      "date": "2026-11-03",
+      "min_price": 24000.0,
+      "modal_price": 27000.0,
+      "max_price": 30000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27000.0/qtl outside plausible bounds [100.0, 25000.0] for Marigold(Calcutta)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.233396"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Mettur(Uzhavar Sandhai )",
+      "district": "Salem",
+      "date": "2026-11-03",
+      "min_price": 29000.0,
+      "modal_price": 29500.0,
+      "max_price": 30000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 29500.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.234395"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Thathakapatti(Uzhavar Sandhai )",
+      "district": "Salem",
+      "date": "2026-11-03",
+      "min_price": 75000.0,
+      "modal_price": 77500.0,
+      "max_price": 80000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 77500.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.236397"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Thirupathur RM",
+      "district": "Thirupathur",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 26000.0,
+      "max_price": 26000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26000.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.274656"
+  },
+  {
+    "raw_record": {
+      "crop": "Cardamom",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 225000.0,
+      "modal_price": 312500.0,
+      "max_price": 400000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 312500.0/qtl outside plausible bounds [100.0, 25000.0] for Cardamom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.275657"
+  },
+  {
+    "raw_record": {
+      "crop": "Almond(Badam)",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 80000.0,
+      "modal_price": 105000.0,
+      "max_price": 130000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 105000.0/qtl outside plausible bounds [100.0, 25000.0] for Almond(Badam)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.275657"
+  },
+  {
+    "raw_record": {
+      "crop": "Ghee",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 63000.0,
+      "modal_price": 71500.0,
+      "max_price": 80000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 71500.0/qtl outside plausible bounds [100.0, 25000.0] for Ghee",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.275657"
+  },
+  {
+    "raw_record": {
+      "crop": "Cummin Seed(Jeera)",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26000.0,
+      "max_price": 27000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26000.0/qtl outside plausible bounds [100.0, 25000.0] for Cummin Seed(Jeera)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.275657"
+  },
+  {
+    "raw_record": {
+      "crop": "nigella",
+      "mandi": "Pohari APMC",
+      "district": "Shivpuri",
+      "date": "2026-11-03",
+      "min_price": 23595.0,
+      "modal_price": 25200.0,
+      "max_price": 25200.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25200.0/qtl outside plausible bounds [100.0, 25000.0] for nigella",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.284347"
+  },
+  {
+    "raw_record": {
+      "crop": "She Buffalo",
+      "mandi": "APMC Kalyan",
+      "district": "Thane",
+      "date": "2026-11-03",
+      "min_price": 85000.0,
+      "modal_price": 100000.0,
+      "max_price": 104000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 100000.0/qtl outside plausible bounds [100.0, 25000.0] for She Buffalo",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.297061"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "Sultan bathery Market",
+      "district": "Wayanad",
+      "date": "2026-11-03",
+      "min_price": 71995.0,
+      "modal_price": 72000.0,
+      "max_price": 72000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 72000.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.306063"
+  },
+  {
+    "raw_record": {
+      "crop": "Rajgir",
+      "mandi": "Pune(Manjri)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 6.0,
+      "modal_price": 8.0,
+      "max_price": 10.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 8.0/qtl outside plausible bounds [100.0, 25000.0] for Rajgir",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.306063"
+  },
+  {
+    "raw_record": {
+      "crop": "Methi(Leaves)",
+      "mandi": "Pune(Moshi)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 25.0,
+      "modal_price": 28.0,
+      "max_price": 30.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28.0/qtl outside plausible bounds [100.0, 25000.0] for Methi(Leaves)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.306063"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "Kannur Market",
+      "district": "Kannur",
+      "date": "2026-11-03",
+      "min_price": 67000.0,
+      "modal_price": 68000.0,
+      "max_price": 69000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 68000.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.307062"
+  },
+  {
+    "raw_record": {
+      "crop": "Coconut Oil",
+      "mandi": "Kannur Market",
+      "district": "Kannur",
+      "date": "2026-11-03",
+      "min_price": 27800.0,
+      "modal_price": 28300.0,
+      "max_price": 28800.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28300.0/qtl outside plausible bounds [100.0, 25000.0] for Coconut Oil",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.307062"
+  },
+  {
+    "raw_record": {
+      "crop": "Coriander(Leaves)",
+      "mandi": "APMC Vaduj",
+      "district": "Satara",
+      "date": "2026-11-03",
+      "min_price": 15.0,
+      "modal_price": 18.0,
+      "max_price": 20.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 18.0/qtl outside plausible bounds [100.0, 25000.0] for Coriander(Leaves)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.309062"
+  },
+  {
+    "raw_record": {
+      "crop": "Beaten Rice",
+      "mandi": "Fancy Bazaar APMC",
+      "district": "Kamrup",
+      "date": "2026-11-03",
+      "min_price": 21600.0,
+      "modal_price": 26000.0,
+      "max_price": 32000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26000.0/qtl outside plausible bounds [100.0, 25000.0] for Beaten Rice",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.311075"
+  },
+  {
+    "raw_record": {
+      "crop": "Betal Leaves",
+      "mandi": "Tamluk (Medinipur E) APMC",
+      "district": "Medinipur(E)",
+      "date": "2026-11-03",
+      "min_price": 17500.0,
+      "modal_price": 32000.0,
+      "max_price": 44000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 32000.0/qtl outside plausible bounds [100.0, 25000.0] for Betal Leaves",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.317057"
+  },
+  {
+    "raw_record": {
+      "crop": "Pomegranate",
+      "mandi": "Aruppukottai(Uzhavar Sandhai )",
+      "district": "Virudhunagar",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 25500.0,
+      "max_price": 26000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25500.0/qtl outside plausible bounds [100.0, 25000.0] for Pomegranate",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.319059"
+  },
+  {
+    "raw_record": {
+      "crop": "Astera",
+      "mandi": "Flower Market,Gazipur APMC",
+      "district": "Delhi",
+      "date": "2026-11-03",
+      "min_price": 30000.0,
+      "modal_price": 35000.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 35000.0/qtl outside plausible bounds [100.0, 25000.0] for Astera",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.320059"
+  },
+  {
+    "raw_record": {
+      "crop": "Spinach",
+      "mandi": "Pune(Pimpri)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 7.0,
+      "modal_price": 8.0,
+      "max_price": 8.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 8.0/qtl outside plausible bounds [100.0, 25000.0] for Spinach",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.327062"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Natrampalli(Uzhavar Sandhai )",
+      "district": "Thirupathur",
+      "date": "2026-11-03",
+      "min_price": 24000.0,
+      "modal_price": 26000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26000.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.331058"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Palakkad Market",
+      "district": "Palakad",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 25600.0,
+      "max_price": 26000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25600.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.355163"
+  },
+  {
+    "raw_record": {
+      "crop": "Kakada",
+      "mandi": "Paramakudi(Uzhavar Sandhai )",
+      "district": "Ramanathapuram",
+      "date": "2026-11-03",
+      "min_price": 40000.0,
+      "modal_price": 45000.0,
+      "max_price": 50000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 45000.0/qtl outside plausible bounds [100.0, 25000.0] for Kakada",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.356171"
+  },
+  {
+    "raw_record": {
+      "crop": "Kakada",
+      "mandi": "Ramanathapuram(Uzhavar Sandhai )",
+      "district": "Ramanathapuram",
+      "date": "2026-11-03",
+      "min_price": 45000.0,
+      "modal_price": 47500.0,
+      "max_price": 50000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 47500.0/qtl outside plausible bounds [100.0, 25000.0] for Kakada",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.357575"
+  },
+  {
+    "raw_record": {
+      "crop": "Mushroom",
+      "mandi": "Kahithapattarai(Uzhavar Sandhai )",
+      "district": "Vellore",
+      "date": "2026-11-03",
+      "min_price": 35000.0,
+      "modal_price": 35000.0,
+      "max_price": 35000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 35000.0/qtl outside plausible bounds [100.0, 25000.0] for Mushroom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.362609"
+  },
+  {
+    "raw_record": {
+      "crop": "Fish",
+      "mandi": "Melaghar APMC",
+      "district": "Sepahijala",
+      "date": "2026-11-03",
+      "min_price": 34000.0,
+      "modal_price": 35000.0,
+      "max_price": 36000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 35000.0/qtl outside plausible bounds [100.0, 25000.0] for Fish",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.365601"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Thiruchengodu RM",
+      "district": "Namakkal",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26500.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26500.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.390626"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Guntur APMC",
+      "district": "Guntur",
+      "date": "2026-11-03",
+      "min_price": 18000.0,
+      "modal_price": 27000.0,
+      "max_price": 27500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27000.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.395617"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Guntur APMC",
+      "district": "Guntur",
+      "date": "2026-11-03",
+      "min_price": 17000.0,
+      "modal_price": 27500.0,
+      "max_price": 28500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27500.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.395617"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Guntur APMC",
+      "district": "Guntur",
+      "date": "2026-11-03",
+      "min_price": 18000.0,
+      "modal_price": 27300.0,
+      "max_price": 28300.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27300.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.395617"
+  },
+  {
+    "raw_record": {
+      "crop": "Amaranthus",
+      "mandi": "Omalloor Market",
+      "district": "Pathanamthitta",
+      "date": "2026-11-03",
+      "min_price": 25.0,
+      "modal_price": 28.0,
+      "max_price": 30.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28.0/qtl outside plausible bounds [100.0, 25000.0] for Amaranthus",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.397620"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Vadaseri RM",
+      "district": "Kannyiakumari",
+      "date": "2026-11-03",
+      "min_price": 50000.0,
+      "modal_price": 55000.0,
+      "max_price": 60000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 55000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.408067"
+  },
+  {
+    "raw_record": {
+      "crop": "Kakada",
+      "mandi": "Vadaseri RM",
+      "district": "Kannyiakumari",
+      "date": "2026-11-03",
+      "min_price": 50000.0,
+      "modal_price": 55000.0,
+      "max_price": 60000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 55000.0/qtl outside plausible bounds [100.0, 25000.0] for Kakada",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.408067"
+  },
+  {
+    "raw_record": {
+      "crop": "Methi(Leaves)",
+      "mandi": "APMC Rahata",
+      "district": "Ahilyanagar",
+      "date": "2026-11-03",
+      "min_price": 7.0,
+      "modal_price": 11.0,
+      "max_price": 15.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 11.0/qtl outside plausible bounds [100.0, 25000.0] for Methi(Leaves)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.409069"
+  },
+  {
+    "raw_record": {
+      "crop": "Spinach",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 45.1,
+      "modal_price": 45.1,
+      "max_price": 45.1,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 45.1/qtl outside plausible bounds [100.0, 25000.0] for Spinach",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.424292"
+  },
+  {
+    "raw_record": {
+      "crop": "Potato",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 0.01,
+      "modal_price": 0.01,
+      "max_price": 0.01,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 0.01/qtl outside plausible bounds [200.0, 10000.0] for Potato",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.424292"
+  },
+  {
+    "raw_record": {
+      "crop": "Cauliflower",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 18.5,
+      "modal_price": 18.5,
+      "max_price": 18.5,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 18.5/qtl outside plausible bounds [100.0, 25000.0] for Cauliflower",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.424292"
+  },
+  {
+    "raw_record": {
+      "crop": "Coconut Oil",
+      "mandi": "Thalasserry Market",
+      "district": "Kannur",
+      "date": "2026-11-03",
+      "min_price": 25400.0,
+      "modal_price": 25800.0,
+      "max_price": 26300.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25800.0/qtl outside plausible bounds [100.0, 25000.0] for Coconut Oil",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.433435"
+  },
+  {
+    "raw_record": {
+      "crop": "Mushroom",
+      "mandi": "Padappai(Uzhavar Sandhai )",
+      "district": "Kancheepuram",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 29000.0,
+      "max_price": 32000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 29000.0/qtl outside plausible bounds [100.0, 25000.0] for Mushroom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.455495"
+  },
+  {
+    "raw_record": {
+      "crop": "Mushroom",
+      "mandi": "Perambalur(Uzhavar Sandhai )",
+      "district": "Perambalur",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26250.0,
+      "max_price": 27500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26250.0/qtl outside plausible bounds [100.0, 25000.0] for Mushroom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.467446"
+  },
+  {
+    "raw_record": {
+      "crop": "Lemon",
+      "mandi": "Rajapalayam(Uzhavar Sandhai )",
+      "district": "Virudhunagar",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 26500.0,
+      "max_price": 27000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26500.0/qtl outside plausible bounds [100.0, 25000.0] for Lemon",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.493528"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Nanganallur(Uzhavar Sandhai )",
+      "district": "Chengalpet",
+      "date": "2026-11-03",
+      "min_price": 34000.0,
+      "modal_price": 34500.0,
+      "max_price": 35000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 34500.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.496194"
+  },
+  {
+    "raw_record": {
+      "crop": "Green Peas",
+      "mandi": "Pallavaram(Uzhavar Sandhai )",
+      "district": "Chengalpet",
+      "date": "2026-11-03",
+      "min_price": 28000.0,
+      "modal_price": 29000.0,
+      "max_price": 30000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 29000.0/qtl outside plausible bounds [100.0, 25000.0] for Green Peas",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.496194"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 65000.0,
+      "modal_price": 77500.0,
+      "max_price": 90000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 77500.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.505195"
+  },
+  {
+    "raw_record": {
+      "crop": "Arecanut(Betelnut/Supari)",
+      "mandi": "Manjeswaram Market",
+      "district": "Kasargod",
+      "date": "2026-11-03",
+      "min_price": 48200.0,
+      "modal_price": 48300.0,
+      "max_price": 48400.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 48300.0/qtl outside plausible bounds [100.0, 25000.0] for Arecanut(Betelnut/Supari)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.517260"
+  },
+  {
+    "raw_record": {
+      "crop": "Fish",
+      "mandi": "Bachaibari APMC",
+      "district": "Khowai",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 30000.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 30000.0/qtl outside plausible bounds [100.0, 25000.0] for Fish",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.525554"
+  },
+  {
+    "raw_record": {
+      "crop": "Raddish",
+      "mandi": "APMC Pune",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 10.0,
+      "modal_price": 17.0,
+      "max_price": 25.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 17.0/qtl outside plausible bounds [100.0, 25000.0] for Raddish",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.526945"
+  },
+  {
+    "raw_record": {
+      "crop": "Rajgir",
+      "mandi": "APMC Pune",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 5.0,
+      "modal_price": 6.0,
+      "max_price": 8.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 6.0/qtl outside plausible bounds [100.0, 25000.0] for Rajgir",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.526945"
+  },
+  {
+    "raw_record": {
+      "crop": "Rubber",
+      "mandi": "Kalpetta Market",
+      "district": "Wayanad",
+      "date": "2026-11-03",
+      "min_price": 27500.0,
+      "modal_price": 27600.0,
+      "max_price": 27700.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27600.0/qtl outside plausible bounds [100.0, 25000.0] for Rubber",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.531506"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "Kalpetta Market",
+      "district": "Wayanad",
+      "date": "2026-11-03",
+      "min_price": 71000.0,
+      "modal_price": 72000.0,
+      "max_price": 73000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 72000.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.531506"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "Payyannur Market",
+      "district": "Kannur",
+      "date": "2026-11-03",
+      "min_price": 70000.0,
+      "modal_price": 71000.0,
+      "max_price": 72000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 71000.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.531506"
+  },
+  {
+    "raw_record": {
+      "crop": "Mushroom",
+      "mandi": "Andipatti(Uzhavar Sandhai )",
+      "district": "Theni",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26250.0,
+      "max_price": 27500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26250.0/qtl outside plausible bounds [100.0, 25000.0] for Mushroom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.540087"
+  },
+  {
+    "raw_record": {
+      "crop": "Rose(Local)",
+      "mandi": "Kallakurichi(Uzhavar Sandhai )",
+      "district": "Kallakurichi",
+      "date": "2026-11-03",
+      "min_price": 40000.0,
+      "modal_price": 40000.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 40000.0/qtl outside plausible bounds [100.0, 25000.0] for Rose(Local)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.557169"
+  },
+  {
+    "raw_record": {
+      "crop": "Kakada",
+      "mandi": "Sampath Nagar(Uzhavar Sandhai )",
+      "district": "Erode",
+      "date": "2026-11-03",
+      "min_price": 42000.0,
+      "modal_price": 43500.0,
+      "max_price": 45000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 43500.0/qtl outside plausible bounds [100.0, 25000.0] for Kakada",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.574452"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Paramakudi(Uzhavar Sandhai )",
+      "district": "Ramanathapuram",
+      "date": "2026-11-03",
+      "min_price": 70000.0,
+      "modal_price": 75000.0,
+      "max_price": 80000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 75000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.582452"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Tiruvannamalai(Uzhavar Sandhai )",
+      "district": "Thiruvannamalai",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26500.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26500.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.584448"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Perambakkam(Uzhavar Sandhai )",
+      "district": "Thiruvallur",
+      "date": "2026-11-03",
+      "min_price": 50000.0,
+      "modal_price": 50000.0,
+      "max_price": 50000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 50000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.586451"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Kahithapattarai(Uzhavar Sandhai )",
+      "district": "Vellore",
+      "date": "2026-11-03",
+      "min_price": 55000.0,
+      "modal_price": 55000.0,
+      "max_price": 55000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 55000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.589007"
+  },
+  {
+    "raw_record": {
+      "crop": "Ridgeguard(Tori)",
+      "mandi": "RYTHU BAZAR ERRAGADDA",
+      "district": "Hyderabad",
+      "date": "2026-11-03",
+      "min_price": 35.0,
+      "modal_price": 35.0,
+      "max_price": 35.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 35.0/qtl outside plausible bounds [100.0, 25000.0] for Ridgeguard(Tori)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.616511"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Guntur APMC",
+      "district": "Guntur",
+      "date": "2026-11-03",
+      "min_price": 16000.0,
+      "modal_price": 26500.0,
+      "max_price": 27300.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26500.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.621528"
+  },
+  {
+    "raw_record": {
+      "crop": "Banana",
+      "mandi": "Omalloor Market",
+      "district": "Pathanamthitta",
+      "date": "2026-11-03",
+      "min_price": 7.0,
+      "modal_price": 8.0,
+      "max_price": 9.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 8.0/qtl outside plausible bounds [100.0, 25000.0] for Banana",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.622527"
+  },
+  {
+    "raw_record": {
+      "crop": "Ashgourd",
+      "mandi": "Omalloor Market",
+      "district": "Pathanamthitta",
+      "date": "2026-11-03",
+      "min_price": 25.0,
+      "modal_price": 27.0,
+      "max_price": 28.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27.0/qtl outside plausible bounds [100.0, 25000.0] for Ashgourd",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.622527"
+  },
+  {
+    "raw_record": {
+      "crop": "Lemon",
+      "mandi": "Pamohi(Garchuk) APMC",
+      "district": "Kamrup",
+      "date": "2026-11-03",
+      "min_price": 4.37,
+      "modal_price": 4.62,
+      "max_price": 5.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 4.62/qtl outside plausible bounds [100.0, 25000.0] for Lemon",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.625525"
+  },
+  {
+    "raw_record": {
+      "crop": "poppy seeds",
+      "mandi": "Mandsaur APMC",
+      "district": "Mandsaur",
+      "date": "2026-11-03",
+      "min_price": 108200.0,
+      "modal_price": 115100.0,
+      "max_price": 115100.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 115100.0/qtl outside plausible bounds [100.0, 25000.0] for poppy seeds",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.633048"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Imphal APMC",
+      "district": "Imphal West",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 27000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27000.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.645436"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Lamlong Bazaar APMC",
+      "district": "Imphal East",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 27000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27000.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.647755"
+  },
+  {
+    "raw_record": {
+      "crop": "Onion",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 0.01,
+      "modal_price": 0.01,
+      "max_price": 0.01,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 0.01/qtl outside plausible bounds [200.0, 15000.0] for Onion",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.647755"
+  },
+  {
+    "raw_record": {
+      "crop": "Banana",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 0.02,
+      "modal_price": 0.02,
+      "max_price": 0.02,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 0.02/qtl outside plausible bounds [100.0, 25000.0] for Banana",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.647755"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Bishenpur APMC",
+      "district": "Bishnupur",
+      "date": "2026-11-03",
+      "min_price": 27000.0,
+      "modal_price": 27500.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27500.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.647755"
+  },
+  {
+    "raw_record": {
+      "crop": "Arecanut(Betelnut/Supari)",
+      "mandi": "Kuthuparambu Market",
+      "district": "Kannur",
+      "date": "2026-11-03",
+      "min_price": 36000.0,
+      "modal_price": 37000.0,
+      "max_price": 38000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 37000.0/qtl outside plausible bounds [100.0, 25000.0] for Arecanut(Betelnut/Supari)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.663140"
+  },
+  {
+    "raw_record": {
+      "crop": "Kakada",
+      "mandi": "Ranipettai(Uzhavar Sandhai )",
+      "district": "Ranipet",
+      "date": "2026-11-03",
+      "min_price": 72000.0,
+      "modal_price": 72000.0,
+      "max_price": 72000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 72000.0/qtl outside plausible bounds [100.0, 25000.0] for Kakada",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.690461"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Thammampatti (Uzhavar Sandhai )",
+      "district": "Salem",
+      "date": "2026-11-03",
+      "min_price": 24000.0,
+      "modal_price": 26000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26000.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.693486"
+  },
+  {
+    "raw_record": {
+      "crop": "Mushroom",
+      "mandi": "Theni(Uzhavar Sandhai )",
+      "district": "Theni",
+      "date": "2026-11-03",
+      "min_price": 27500.0,
+      "modal_price": 27500.0,
+      "max_price": 27500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27500.0/qtl outside plausible bounds [100.0, 25000.0] for Mushroom",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.695476"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Keelpennathur(Uzhavar Sandhai )",
+      "district": "Thiruvannamalai",
+      "date": "2026-11-03",
+      "min_price": 34000.0,
+      "modal_price": 34500.0,
+      "max_price": 35000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 34500.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.698944"
+  },
+  {
+    "raw_record": {
+      "crop": "Chili Red",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 28000.0,
+      "max_price": 30000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28000.0/qtl outside plausible bounds [100.0, 25000.0] for Chili Red",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.726172"
+  },
+  {
+    "raw_record": {
+      "crop": "Soanf",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 15000.0,
+      "modal_price": 27500.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27500.0/qtl outside plausible bounds [100.0, 25000.0] for Soanf",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.726172"
+  },
+  {
+    "raw_record": {
+      "crop": "poppy seeds",
+      "mandi": "Jaora APMC",
+      "district": "Ratlam",
+      "date": "2026-11-03",
+      "min_price": 108800.0,
+      "modal_price": 118000.0,
+      "max_price": 159000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 118000.0/qtl outside plausible bounds [100.0, 25000.0] for poppy seeds",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.731174"
+  },
+  {
+    "raw_record": {
+      "crop": "Onion Green",
+      "mandi": "Pune(Manjri)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 6.0,
+      "modal_price": 10.0,
+      "max_price": 15.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 10.0/qtl outside plausible bounds [100.0, 25000.0] for Onion Green",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.750172"
+  },
+  {
+    "raw_record": {
+      "crop": "Arecanut(Betelnut/Supari)",
+      "mandi": "Payyannur Market",
+      "district": "Kannur",
+      "date": "2026-11-03",
+      "min_price": 36000.0,
+      "modal_price": 37000.0,
+      "max_price": 38000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 37000.0/qtl outside plausible bounds [100.0, 25000.0] for Arecanut(Betelnut/Supari)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.751177"
+  },
+  {
+    "raw_record": {
+      "crop": "Raibel",
+      "mandi": "Flower Market,Gazipur APMC",
+      "district": "Delhi",
+      "date": "2026-11-03",
+      "min_price": 70000.0,
+      "modal_price": 80000.0,
+      "max_price": 90000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 80000.0/qtl outside plausible bounds [100.0, 25000.0] for Raibel",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.766179"
+  },
+  {
+    "raw_record": {
+      "crop": "Tulip",
+      "mandi": "Flower Market,Gazipur APMC",
+      "district": "Delhi",
+      "date": "2026-11-03",
+      "min_price": 130000.0,
+      "modal_price": 140000.0,
+      "max_price": 150000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 140000.0/qtl outside plausible bounds [100.0, 25000.0] for Tulip",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.766179"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Kallakurichi(Uzhavar Sandhai )",
+      "district": "Kallakurichi",
+      "date": "2026-11-03",
+      "min_price": 60000.0,
+      "modal_price": 60000.0,
+      "max_price": 60000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 60000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.776736"
+  },
+  {
+    "raw_record": {
+      "crop": "Marigold(Calcutta)",
+      "mandi": "Kallakurichi(Uzhavar Sandhai )",
+      "district": "Kallakurichi",
+      "date": "2026-11-03",
+      "min_price": 40000.0,
+      "modal_price": 40000.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 40000.0/qtl outside plausible bounds [100.0, 25000.0] for Marigold(Calcutta)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.776736"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "Pulpally Market",
+      "district": "Wayanad",
+      "date": "2026-11-03",
+      "min_price": 71000.0,
+      "modal_price": 71100.0,
+      "max_price": 71200.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 71100.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.786191"
+  },
+  {
+    "raw_record": {
+      "crop": "Chili Red",
+      "mandi": "Palakkad Market",
+      "district": "Palakad",
+      "date": "2026-11-03",
+      "min_price": 26500.0,
+      "modal_price": 27800.0,
+      "max_price": 29000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27800.0/qtl outside plausible bounds [100.0, 25000.0] for Chili Red",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.798663"
+  },
+  {
+    "raw_record": {
+      "crop": "Fish",
+      "mandi": "Melaghar APMC",
+      "district": "Sepahijala",
+      "date": "2026-11-03",
+      "min_price": 32000.0,
+      "modal_price": 33000.0,
+      "max_price": 34000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 33000.0/qtl outside plausible bounds [100.0, 25000.0] for Fish",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.808667"
+  },
+  {
+    "raw_record": {
+      "crop": "Coconut",
+      "mandi": "Diglipur Vegetable Market (Subhashgram)",
+      "district": "North and Middle Andaman",
+      "date": "2026-11-03",
+      "min_price": 20.0,
+      "modal_price": 30.0,
+      "max_price": 40.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 30.0/qtl outside plausible bounds [100.0, 25000.0] for Coconut",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.810664"
+  },
+  {
+    "raw_record": {
+      "crop": "Wild Cucumber",
+      "mandi": "RYTHU BAZAR ERRAGADDA",
+      "district": "Hyderabad",
+      "date": "2026-11-03",
+      "min_price": 18.0,
+      "modal_price": 18.0,
+      "max_price": 18.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 18.0/qtl outside plausible bounds [100.0, 25000.0] for Wild Cucumber",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.832738"
+  },
+  {
+    "raw_record": {
+      "crop": "Spinach",
+      "mandi": "APMC Rahata",
+      "district": "Ahilyanagar",
+      "date": "2026-11-03",
+      "min_price": 8.0,
+      "modal_price": 9.0,
+      "max_price": 10.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 9.0/qtl outside plausible bounds [100.0, 25000.0] for Spinach",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.848734"
+  },
+  {
+    "raw_record": {
+      "crop": "Chili Red",
+      "mandi": "Kukshi APMC",
+      "district": "Dhar",
+      "date": "2026-11-03",
+      "min_price": 11000.0,
+      "modal_price": 30400.0,
+      "max_price": 30400.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 30400.0/qtl outside plausible bounds [100.0, 25000.0] for Chili Red",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.851735"
+  },
+  {
+    "raw_record": {
+      "crop": "Raddish",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 1.0,
+      "modal_price": 1.0,
+      "max_price": 1.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 1.0/qtl outside plausible bounds [100.0, 25000.0] for Raddish",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.861759"
+  },
+  {
+    "raw_record": {
+      "crop": "Brinjal",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 0.01,
+      "modal_price": 0.01,
+      "max_price": 0.01,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 0.01/qtl outside plausible bounds [100.0, 25000.0] for Brinjal",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.861759"
+  },
+  {
+    "raw_record": {
+      "crop": "Rubber",
+      "mandi": "Mananthavady Market",
+      "district": "Wayanad",
+      "date": "2026-11-03",
+      "min_price": 27900.0,
+      "modal_price": 28000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28000.0/qtl outside plausible bounds [100.0, 25000.0] for Rubber",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.867758"
+  },
+  {
+    "raw_record": {
+      "crop": "Apple",
+      "mandi": "Kattappana Market",
+      "district": "Idukki",
+      "date": "2026-11-03",
+      "min_price": 33000.0,
+      "modal_price": 34000.0,
+      "max_price": 34500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 34000.0/qtl outside plausible bounds [100.0, 25000.0] for Apple",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.871293"
+  },
+  {
+    "raw_record": {
+      "crop": "Coconut Oil",
+      "mandi": "Kuthuparambu Market",
+      "district": "Kannur",
+      "date": "2026-11-03",
+      "min_price": 26500.0,
+      "modal_price": 27000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27000.0/qtl outside plausible bounds [100.0, 25000.0] for Coconut Oil",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.876285"
+  },
+  {
+    "raw_record": {
+      "crop": "Walnut",
+      "mandi": "Bumhama Kupwara (F&V)",
+      "district": "Kupwara",
+      "date": "2026-11-03",
+      "min_price": 50000.0,
+      "modal_price": 60000.0,
+      "max_price": 70000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 60000.0/qtl outside plausible bounds [100.0, 25000.0] for Walnut",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.877284"
+  },
+  {
+    "raw_record": {
+      "crop": "Walnut",
+      "mandi": "Bumhama Kupwara (F&V)",
+      "district": "Kupwara",
+      "date": "2026-11-03",
+      "min_price": 30000.0,
+      "modal_price": 35000.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 35000.0/qtl outside plausible bounds [100.0, 25000.0] for Walnut",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.877284"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Dindigul(Uzhavar Sandhai )",
+      "district": "Dindigul",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26500.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26500.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.887830"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Kumarapalayam(Uzhavar Sandhai )",
+      "district": "Namakkal",
+      "date": "2026-11-03",
+      "min_price": 85000.0,
+      "modal_price": 87500.0,
+      "max_price": 90000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 87500.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.894833"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Rasipuram(Uzhavar Sandhai )",
+      "district": "Namakkal",
+      "date": "2026-11-03",
+      "min_price": 80000.0,
+      "modal_price": 85000.0,
+      "max_price": 90000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 85000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.895832"
+  },
+  {
+    "raw_record": {
+      "crop": "Jasmine",
+      "mandi": "Anna nagar(Uzhavar Sandhai )",
+      "district": "Madurai",
+      "date": "2026-11-03",
+      "min_price": 40000.0,
+      "modal_price": 40000.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 40000.0/qtl outside plausible bounds [100.0, 25000.0] for Jasmine",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.898150"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Thathakapatti(Uzhavar Sandhai )",
+      "district": "Salem",
+      "date": "2026-11-03",
+      "min_price": 25000.0,
+      "modal_price": 26500.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26500.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.903153"
+  },
+  {
+    "raw_record": {
+      "crop": "Kakada",
+      "mandi": "Thathakapatti(Uzhavar Sandhai )",
+      "district": "Salem",
+      "date": "2026-11-03",
+      "min_price": 35000.0,
+      "modal_price": 37500.0,
+      "max_price": 40000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 37500.0/qtl outside plausible bounds [100.0, 25000.0] for Kakada",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.904152"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Melapalayam(Uzhavar Sandhai )",
+      "district": "Tirunelveli",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 29000.0,
+      "max_price": 32000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 29000.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.906150"
+  },
+  {
+    "raw_record": {
+      "crop": "Chili Red",
+      "mandi": "KKNagar(Uzhavar Sandhai )",
+      "district": "Thiruchirappalli",
+      "date": "2026-11-03",
+      "min_price": 28000.0,
+      "modal_price": 28000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 28000.0/qtl outside plausible bounds [100.0, 25000.0] for Chili Red",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.923151"
+  },
+  {
+    "raw_record": {
+      "crop": "Cummin Seed(Jeera)",
+      "mandi": "Radhanpur APMC",
+      "district": "Patan",
+      "date": "2026-11-03",
+      "min_price": 22200.0,
+      "modal_price": 25500.0,
+      "max_price": 27505.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25500.0/qtl outside plausible bounds [100.0, 25000.0] for Cummin Seed(Jeera)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.936407"
+  },
+  {
+    "raw_record": {
+      "crop": "Cinamon(Dalchini)",
+      "mandi": "APMC Mumbai",
+      "district": "Mumbai",
+      "date": "2026-11-03",
+      "min_price": 20000.0,
+      "modal_price": 29000.0,
+      "max_price": 38000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 29000.0/qtl outside plausible bounds [100.0, 25000.0] for Cinamon(Dalchini)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.941425"
+  },
+  {
+    "raw_record": {
+      "crop": "Pepper garbled",
+      "mandi": "Manjeswaram Market",
+      "district": "Kasargod",
+      "date": "2026-11-03",
+      "min_price": 73000.0,
+      "modal_price": 73250.0,
+      "max_price": 73500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 73250.0/qtl outside plausible bounds [100.0, 25000.0] for Pepper garbled",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.954412"
+  },
+  {
+    "raw_record": {
+      "crop": "Cow",
+      "mandi": "APMC Kalyan",
+      "district": "Thane",
+      "date": "2026-11-03",
+      "min_price": 45000.0,
+      "modal_price": 50000.0,
+      "max_price": 55000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 50000.0/qtl outside plausible bounds [100.0, 25000.0] for Cow",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.964864"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Warangal APMC",
+      "district": "Warangal",
+      "date": "2026-11-03",
+      "min_price": 27000.0,
+      "modal_price": 30500.0,
+      "max_price": 41000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 30500.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.965863"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Warangal APMC",
+      "district": "Warangal",
+      "date": "2026-11-03",
+      "min_price": 16000.0,
+      "modal_price": 30000.0,
+      "max_price": 32500.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 30000.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.965863"
+  },
+  {
+    "raw_record": {
+      "crop": "Onion Green",
+      "mandi": "APMC Pune",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 7.0,
+      "modal_price": 13.0,
+      "max_price": 20.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 13.0/qtl outside plausible bounds [100.0, 25000.0] for Onion Green",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.969861"
+  },
+  {
+    "raw_record": {
+      "crop": "Coriander(Leaves)",
+      "mandi": "Pune(Khadiki)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 4.0,
+      "modal_price": 5.0,
+      "max_price": 6.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 5.0/qtl outside plausible bounds [100.0, 25000.0] for Coriander(Leaves)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.976860"
+  },
+  {
+    "raw_record": {
+      "crop": "Spinach",
+      "mandi": "Pune(Moshi)",
+      "district": "Pune",
+      "date": "2026-11-03",
+      "min_price": 10.0,
+      "modal_price": 13.0,
+      "max_price": 15.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 13.0/qtl outside plausible bounds [100.0, 25000.0] for Spinach",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.981280"
+  },
+  {
+    "raw_record": {
+      "crop": "Coriander(Leaves)",
+      "mandi": "APMC Patan",
+      "district": "Satara",
+      "date": "2026-11-03",
+      "min_price": 10.0,
+      "modal_price": 11.0,
+      "max_price": 12.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 11.0/qtl outside plausible bounds [100.0, 25000.0] for Coriander(Leaves)",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.985694"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Fancy Bazaar APMC",
+      "district": "Kamrup",
+      "date": "2026-11-03",
+      "min_price": 29000.0,
+      "modal_price": 31500.0,
+      "max_price": 33000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 31500.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.989690"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Pudukottai(Uzhavar Sandhai )",
+      "district": "Pudukkottai",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 27000.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27000.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.990691"
+  },
+  {
+    "raw_record": {
+      "crop": "Jarbara",
+      "mandi": "Flower Market,Gazipur APMC",
+      "district": "Delhi",
+      "date": "2026-11-03",
+      "min_price": 30.0,
+      "modal_price": 40.0,
+      "max_price": 50.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 40.0/qtl outside plausible bounds [100.0, 25000.0] for Jarbara",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:49.999692"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Kallakurichi(Uzhavar Sandhai )",
+      "district": "Kallakurichi",
+      "date": "2026-11-03",
+      "min_price": 26000.0,
+      "modal_price": 26000.0,
+      "max_price": 26000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 26000.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.016563"
+  },
+  {
+    "raw_record": {
+      "crop": "Tube Flower",
+      "mandi": "Ramanathapuram(Uzhavar Sandhai )",
+      "district": "Ramanathapuram",
+      "date": "2026-11-03",
+      "min_price": 85000.0,
+      "modal_price": 87500.0,
+      "max_price": 90000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 87500.0/qtl outside plausible bounds [100.0, 25000.0] for Tube Flower",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.047576"
+  },
+  {
+    "raw_record": {
+      "crop": "Lemon",
+      "mandi": "Diglipur Vegetable Market (Subhashgram)",
+      "district": "North and Middle Andaman",
+      "date": "2026-11-03",
+      "min_price": 2.0,
+      "modal_price": 3.0,
+      "max_price": 5.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 3.0/qtl outside plausible bounds [100.0, 25000.0] for Lemon",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.056574"
+  },
+  {
+    "raw_record": {
+      "crop": "Dry Chillies",
+      "mandi": "Thoubal APMC",
+      "district": "Thoubal",
+      "date": "2026-11-03",
+      "min_price": 27000.0,
+      "modal_price": 27500.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27500.0/qtl outside plausible bounds [100.0, 25000.0] for Dry Chillies",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.062573"
+  },
+  {
+    "raw_record": {
+      "crop": "Black pepper",
+      "mandi": "North Paravur Market",
+      "district": "Ernakulam",
+      "date": "2026-11-03",
+      "min_price": 70000.0,
+      "modal_price": 75000.0,
+      "max_price": 80000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 75000.0/qtl outside plausible bounds [100.0, 25000.0] for Black pepper",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.072100"
+  },
+  {
+    "raw_record": {
+      "crop": "Ghee",
+      "mandi": "Visakhapatnam APMC",
+      "district": "Visakhapatnam",
+      "date": "2026-11-03",
+      "min_price": 58300.0,
+      "modal_price": 58300.0,
+      "max_price": 58300.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 58300.0/qtl outside plausible bounds [100.0, 25000.0] for Ghee",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.074103"
+  },
+  {
+    "raw_record": {
+      "crop": "Tinda",
+      "mandi": "RYTHU BAZAR ERRAGADDA",
+      "district": "Hyderabad",
+      "date": "2026-11-03",
+      "min_price": 23.0,
+      "modal_price": 23.0,
+      "max_price": 23.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 23.0/qtl outside plausible bounds [100.0, 25000.0] for Tinda",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.078097"
+  },
+  {
+    "raw_record": {
+      "crop": "Garlic",
+      "mandi": "Tuticorin(Uzhavar Sandhai )",
+      "district": "Thoothukudi",
+      "date": "2026-11-03",
+      "min_price": 27000.0,
+      "modal_price": 27500.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27500.0/qtl outside plausible bounds [100.0, 25000.0] for Garlic",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.088352"
+  },
+  {
+    "raw_record": {
+      "crop": "Green Peas",
+      "mandi": "Tuticorin(Uzhavar Sandhai )",
+      "district": "Thoothukudi",
+      "date": "2026-11-03",
+      "min_price": 27000.0,
+      "modal_price": 27500.0,
+      "max_price": 28000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 27500.0/qtl outside plausible bounds [100.0, 25000.0] for Green Peas",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.088352"
+  },
+  {
+    "raw_record": {
+      "crop": "nigella",
+      "mandi": "Neemuch APMC",
+      "district": "Neemuch",
+      "date": "2026-11-03",
+      "min_price": 24100.0,
+      "modal_price": 25900.0,
+      "max_price": 26000.0,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 25900.0/qtl outside plausible bounds [100.0, 25000.0] for nigella",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.089349"
+  },
+  {
+    "raw_record": {
+      "crop": "Green Chilli",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 0.01,
+      "modal_price": 0.01,
+      "max_price": 0.01,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 0.01/qtl outside plausible bounds [100.0, 25000.0] for Green Chilli",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.109350"
+  },
+  {
+    "raw_record": {
+      "crop": "Carrot",
+      "mandi": "Patti APMC",
+      "district": "Tarntaran",
+      "date": "2026-11-03",
+      "min_price": 18.5,
+      "modal_price": 18.5,
+      "max_price": 18.5,
+      "arrivals": 100.0,
+      "unit": "Quintal",
+      "source_id": "data_gov_in",
+      "source_url": "file://C:\\Crop Price pridiction\\data\\raw\\9ef84268-d588-465a-a308-a864a43d0070.csv",
+      "fetched_at": "2026-11-12T15:30:43",
+      "raw_hash": "921b3fb75f85523dcf9c3d6e51f384443ec1fcd940e8cbe10461aef8d1d07d6d"
+    },
+    "reason": "Price Rs 18.5/qtl outside plausible bounds [100.0, 25000.0] for Carrot",
+    "source_id": "data_gov_in",
+    "timestamp": "2026-11-12T15:30:50.109350"
+  }
+]

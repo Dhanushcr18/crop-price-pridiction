@@ -1,0 +1,13 @@
+{
+  "source_id": "weather_open_meteo",
+  "url": "https://api.open-meteo.com/v1/forecast?latitude=13.0285&longitude=77.545&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia%2FKolkata&start_date=2026-10-13&end_date=2026-11-12",
+  "fetched_at": "2026-11-12T15:31:10",
+  "raw_hash": "e5756380d8dc9a23b042202a48cb763f7b64c6b2f003bc4affc5b8a26c180feb",
+  "bytes": 1261,
+  "content_type": "application/json",
+  "metadata": {
+    "mandi": "Bengaluru (Yeshwanthpur)",
+    "lat": 13.0285,
+    "lon": 77.545
+  }
+}

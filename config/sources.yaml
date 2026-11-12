@@ -1,0 +1,112 @@
+# Data Sources Registry for Farmer Sell Advisor Automated Collection System
+# Configured with strict compliance to robots.txt, terms of use, and ethical rate limits.
+
+crawler_defaults:
+  user_agent: "FarmerSellAdvisorBot/1.0 (+https://farmer-sell-advisor.org; contact@farmer-sell-advisor.org)"
+  default_delay_seconds: 2.0
+  max_retries: 3
+  backoff_factor: 2.0
+  timeout_seconds: 15
+  raw_storage_dir: "data/raw/crawled"
+  quarantine_dir: "data/quarantine"
+
+sources:
+  - id: "data_gov_in"
+    name: "Open Government Data (OGD) Agmarknet API"
+    url: "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070"
+    type: "api"
+    crops: ["all"]
+    mandis_covered: "all_karnataka"
+    districts_covered: "all_karnataka"
+    update_frequency: "daily"
+    license_note: "Government Open Data License - India (GODL-India)"
+    robots_allowed: true
+    rate_limit: "1 request per second"
+    priority: 1
+    enabled: true
+    auth_env_var: "DATA_GOV_API_KEY"
+
+  - id: "agmarknet_portal"
+    name: "Agmarknet Directorate of Marketing & Inspection Portal"
+    url: "https://agmarknet.gov.in"
+    type: "csv_download"
+    crops: ["all"]
+    mandis_covered: "all_karnataka"
+    districts_covered: "all_karnataka"
+    update_frequency: "daily"
+    license_note: "Public Agricultural Market Yard Bulletins"
+    robots_allowed: true
+    rate_limit: "1 request per 3 seconds"
+    priority: 2
+    enabled: true
+
+  - id: "raita_mitra_karnataka"
+    name: "Karnataka Agriculture Dept / KSAMB (Raita Mitra)"
+    url: "https://raitamitra.karnataka.gov.in"
+    type: "html"
+    crops: ["onion", "potato", "tomato", "ragi", "paddy", "maize", "pulses", "oilseeds"]
+    mandis_covered: "all_karnataka"
+    districts_covered: "all_karnataka"
+    update_frequency: "daily"
+    license_note: "Karnataka State Agricultural Marketing Board Public Domain"
+    robots_allowed: true
+    rate_limit: "1 request per 3 seconds"
+    priority: 3
+    enabled: true
+
+  - id: "enam_portal"
+    name: "National Agriculture Market (e-NAM)"
+    url: "https://enam.gov.in"
+    type: "html"
+    crops: ["all"]
+    mandis_covered: "all_karnataka"
+    districts_covered: "all_karnataka"
+    update_frequency: "daily"
+    license_note: "Requires written MoU for programmatic scraping; robots.txt missing"
+    robots_allowed: false
+    rate_limit: "None (disabled)"
+    priority: 4
+    enabled: false
+    status_reason: "Blocked by policy: automated access restricted by e-NAM portal terms"
+
+  - id: "weather_open_meteo"
+    name: "Open-Meteo High-Resolution Agro-Meteorology API"
+    url: "https://api.open-meteo.com/v1/forecast"
+    type: "api"
+    crops: ["weather_exogenous"]
+    mandis_covered: "all_karnataka"
+    districts_covered: "all_karnataka"
+    update_frequency: "daily"
+    license_note: "Creative Commons Attribution 4.0 International (CC-BY 4.0)"
+    robots_allowed: true
+    rate_limit: "2 requests per second"
+    priority: 1
+    enabled: true
+
+  - id: "weather_nasa_power"
+    name: "NASA POWER Global Agroclimatology API"
+    url: "https://power.larc.nasa.gov/api/temporal/daily/point"
+    type: "api"
+    crops: ["weather_exogenous"]
+    mandis_covered: "all_karnataka"
+    districts_covered: "all_karnataka"
+    update_frequency: "daily"
+    license_note: "NASA Open Data Policy (Public Domain)"
+    robots_allowed: true
+    rate_limit: "30 requests per minute"
+    priority: 2
+    enabled: true
+
+  - id: "diesel_ppac"
+    name: "Petroleum Planning & Analysis Cell (PPAC) Retail Fuel"
+    url: "https://ppac.gov.in"
+    type: "csv_download"
+    crops: ["fuel_exogenous"]
+    mandis_covered: "karnataka_state"
+    districts_covered: "all_karnataka"
+    update_frequency: "weekly"
+    license_note: "Ministry of Petroleum & Natural Gas Open Bulletin"
+    robots_allowed: true
+    rate_limit: "1 request per 5 seconds"
+    priority: 1
+    enabled: true
