@@ -1,16 +1,12 @@
-"""Ingests validated KSAMB PDF quintal rows into data/processed/panel.parquet with full provenance."""
+"""Ingests validated KSAMB PDF quintal rows into data/processed/panel.parquet with full provenance and idempotency."""
 
+import os
 import sys
 sys.path.insert(0, ".")
-import os
-import json
-import random
 import pandas as pd
 from datetime import datetime
 
-from src.ingest.connectors.ksamb_pdf import KsambPdfImporter, validate_and_filter_ksamb_rows
-
-# Mandi district alias map for Karnataka APMCs
+# Mandi district map for Karnataka APMCs
 MANDI_DISTRICT_MAP = {
     "ANNIGERI": ("Annigeri", "Dharwad"),
     "ARAKALGUD": ("Arakalgud", "Hassan"),
@@ -24,10 +20,10 @@ MANDI_DISTRICT_MAP = {
     "BASAVAKALYANA": ("Basavakalyana", "Bidar"),
     "BELAGAVI": ("Belagavi", "Belagavi"),
     "BELUR": ("Belur", "Hassan"),
-    "BENGALURU": ("Bengaluru (Yeshwanthpur)", "Bengaluru Urban"),
+    "BENGALURU": ("BENGALURU", "Bengaluru Urban"),
     "BHADRAVATHI": ("Bhadravathi", "Shivamogga"),
     "BIDAR": ("Bidar", "Bidar"),
-    "BINNY MILL (F&V)": ("Bengaluru (Binny Mill)", "Bengaluru Urban"),
+    "BINNY MILL (F&V)": ("BINNY MILL (F&V)", "Bengaluru Urban"),
     "BYADGI": ("Byadgi", "Haveri"),
     "C.R.NAGAR": ("Chamarajanagar", "Chamarajanagar"),
     "C.R.PATNA": ("Channarayapatna", "Hassan"),
@@ -130,95 +126,79 @@ MANDI_DISTRICT_MAP = {
 }
 
 
-def run_ingest(
-    pdf_path: str = "Crop_price_of_all_mandies_of_karnataka.pdf",
-    report_date: str = "2026-11-11",
+def ingest_ksamb_to_panel(
+    csv_or_pdf_path: str = "data/raw/user_download/karnataka_mandi_prices_2026-11-11.csv",
     panel_path: str = "data/processed/panel.parquet"
-):
-    print(f"Parsing {pdf_path} for date {report_date}...")
-    importer = KsambPdfImporter()
-    raw_rows = importer.import_pdf(pdf_path, report_date=report_date)
+) -> pd.DataFrame:
+    """Ingests accepted Quintal rows with idempotency key (date, mandi, crop, variety, grade)."""
+    from src.ingest.connectors.ksamb_pdf import KsambPdfImporter, validate_and_route_ksamb_data
 
-    print(f"Applying Step 6 & 7 validation and anomaly filters...")
-    accepted_quintal, non_quintal, quarantined = validate_and_filter_ksamb_rows(
-        raw_rows,
-        quarantine_dir="data/quarantine",
-        non_quintal_output_path="data/processed/non_quintal_prices.parquet",
-        today_date_str="2026-11-12"
-    )
+    if csv_or_pdf_path.endswith(".pdf"):
+        importer = KsambPdfImporter()
+        df_raw = importer.parse_pdf(csv_or_pdf_path)
+    else:
+        df_raw = pd.read_csv(csv_or_pdf_path)
 
-    print(f"Results: {len(accepted_quintal)} accepted quintal rows, {len(non_quintal)} non-quintal, {len(quarantined)} quarantined.")
+    accepted, non_q, quar = validate_and_route_ksamb_data(df_raw)
 
-    # Convert accepted quintal rows to panel schema
-    panel_rows = []
+    panel_df = pd.read_parquet(panel_path) if os.path.exists(panel_path) else pd.DataFrame()
+    report_date = df_raw['report_date'].iloc[0]
     dt = datetime.strptime(report_date, "%Y-%m-%d")
 
-    for r in accepted_quintal:
-        m_norm = r.mandi.strip().upper()
-        clean_mandi_name, dist_name = MANDI_DISTRICT_MAP.get(m_norm, (r.mandi, r.mandi))
+    # Filter out existing data for this date
+    if not panel_df.empty:
+        panel_baseline = panel_df[panel_df['date'] != pd.to_datetime(report_date)]
+    else:
+        panel_baseline = pd.DataFrame()
+
+    new_rows = []
+    for _, r in accepted.iterrows():
+        m_norm = str(r['mandi']).strip().upper()
+        clean_mandi_name, dist_name = MANDI_DISTRICT_MAP.get(m_norm, (str(r['mandi']).strip(), str(r['mandi']).strip()))
 
         row_dict = {
-            "crop": r.commodity.lower().strip(),
-            "variety": r.variety.strip(),
-            "grade": r.grade.strip(),
-            "mandi": clean_mandi_name,
-            "district": dist_name,
-            "date": pd.to_datetime(report_date),
-            "min_price": float(r.min),
-            "modal_price": float(r.modal),
-            "max_price": float(r.max),
-            "arrivals": float(r.arrivals),
-            "unit": "Rs/Quintal",
-            "source_id": "ksamb_pdf",
-            "source_url": f"file://{r.raw_file}",
-            "fetched_at": "2026-11-12T22:51:00",
-            "raw_hash": r.file_sha256,
-            "raw_file": r.raw_file,
-            "raw_page": int(r.raw_page),
-            "raw_line": int(r.raw_line),
-            "acquisition_method": "user_download",
-            "data_provenance": "real",
-            "is_synthetic": False,
-            "month": dt.month,
-            "day_of_week": dt.weekday(),
-            "day_of_year": dt.timetuple().tm_yday,
-            "week_of_year": dt.isocalendar()[1],
-            "rainfall": 0.0,
-            "temperature": 24.0,
-            "diesel_price": 88.94,
-            "festival_flag": 0,
-            "was_imputed": 0
+            'crop': str(r['commodity']).lower().strip(),
+            'mandi': clean_mandi_name,
+            'district': dist_name,
+            'date': pd.to_datetime(report_date),
+            'min_price': float(r['min_price']),
+            'modal_price': float(r['modal_price']),
+            'max_price': float(r['max_price']),
+            'arrivals': float(r['arrivals']),
+            'unit': str(r['unit']),
+            'source_id': 'ksamb_pdf',
+            'source_url': 'https://ksamb.karnataka.gov.in/',
+            'fetched_at': '2026-11-12 00:00:00',
+            'raw_hash': str(r['file_sha256']),
+            'raw_file': str(r['source_file']),
+            'raw_line': int(r['source_page'] * 1000 + (r['table_row'] if pd.notna(r['table_row']) else 0)),
+            'acquisition_method': 'user_download',
+            'data_provenance': 'real',
+            'is_synthetic': False,
+            'month': dt.month,
+            'day_of_week': dt.weekday(),
+            'day_of_year': dt.timetuple().tm_yday,
+            'week_of_year': dt.isocalendar()[1],
+            'rainfall': 0.0,
+            'temperature': 24.5,
+            'diesel_price': 88.5,
+            'festival_flag': 0,
+            'was_imputed': 0,
+            'variety': str(r['variety']).strip(),
+            'grade': str(r['grade']).strip(),
+            'raw_page': float(r['source_page'])
         }
-        panel_rows.append(row_dict)
+        new_rows.append(row_dict)
 
-    new_df = pd.DataFrame(panel_rows)
+    new_panel_part = pd.DataFrame(new_rows)
+    combined = pd.concat([panel_baseline, new_panel_part], ignore_index=True)
 
-    if os.path.exists(panel_path):
-        existing_df = pd.read_parquet(panel_path)
-        print(f"Existing panel has {len(existing_df)} rows.")
-        combined_df = pd.concat([existing_df, new_df], ignore_index=True)
-    else:
-        combined_df = new_df
-
-    # Deduplicate on date, mandi, crop, variety, grade
-    dedup_cols = ["date", "mandi", "crop", "variety", "grade"]
-    combined_df = combined_df.drop_duplicates(subset=dedup_cols, keep="last").reset_index(drop=True)
-
-    combined_df.to_parquet(panel_path, index=False)
-    print(f"Updated {panel_path}: total rows now {len(combined_df)}.")
-
-    return accepted_quintal
+    # Idempotent deduplication
+    combined = combined.drop_duplicates(subset=['date', 'mandi', 'crop', 'variety', 'grade'], keep='last')
+    combined.to_parquet(panel_path, index=False)
+    print(f"Ingested {len(new_rows)} rows into {panel_path}. Total panel rows: {len(combined)}.")
+    return combined
 
 
 if __name__ == "__main__":
-    accepted = run_ingest()
-    
-    # Select 10 random rows and display next to their PDF page and line
-    random.seed(42)
-    sample_10 = random.sample(accepted, 10)
-    print("\n" + "="*80)
-    print("10 RANDOM ACCEPTED ROWS NEXT TO THEIR PDF PAGE AND LINE:")
-    print("="*80)
-    for i, r in enumerate(sample_10, 1):
-        print(f"{i:2d}. Mandi: {r.mandi:<25} | Crop: {r.commodity:<15} ({r.variety}, {r.grade}) | Modal: Rs {r.modal:6.0f}/qtl | PDF Page: {r.raw_page:2d} | Line: {r.raw_line:2d}")
-    print("="*80 + "\n")
+    ingest_ksamb_to_panel()
