@@ -161,7 +161,8 @@ class AdvisorService:
                 ((self.latest_panel_rows["mandi"].str.lower() == mandi_clean) |
                  (self.latest_panel_rows["mandi"].str.lower() == f"{mandi_clean} apmc") |
                  (self.latest_panel_rows["mandi"].str.lower() == f"{mandi_clean} market") |
-                 (self.latest_panel_rows["mandi"].str.lower().str.startswith(mandi_clean)))
+                 (self.latest_panel_rows["mandi"].str.lower().str.startswith(mandi_clean)) |
+                 (self.latest_panel_rows["mandi"].str.lower().apply(lambda m: m in mandi_clean or mandi_clean in m)))
             ]
             if not match.empty:
                 # If multiple varieties exist (like Bengaluru Onion), apply headline rule:
@@ -200,7 +201,7 @@ class AdvisorService:
                 "spot_price_today": round(spot_price, 2),
                 "as_of_date": self.last_data_date.strftime("%Y-%m-%d") if self.last_data_date else "2026-11-11",
                 "horizons": [],
-                "status": "forecasts_disabled",
+                "status": "no_trained_models",
                 "message": "No real price history yet, forecasts disabled",
                 "notice": "No real price history yet, forecasts disabled",
                 "provenance": self.data_provenance,
