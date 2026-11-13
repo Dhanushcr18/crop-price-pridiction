@@ -8,6 +8,9 @@ data:
 audit-trace:
 	python scripts/audit_trace.py
 
+import-ksamb:
+	python -m src.ingest.connectors.ksamb_pdf --file $(FILE)
+
 train:
 	python -m src.models.forecast
 

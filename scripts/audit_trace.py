@@ -1,6 +1,5 @@
 """Audit Trace: Re-parses raw files and strictly verifies that every row in panel.parquet
-
-matches its exact raw file line and has a verified acquisition method.
+matches its exact raw file line, page and table, and has a verified acquisition method.
 Fails loudly with non-zero exit code if any mismatch is found.
 """
 
@@ -10,6 +9,7 @@ import csv
 import logging
 from datetime import datetime
 import pandas as pd
+import numpy as np
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
 logger = logging.getLogger("audit_trace")
@@ -44,7 +44,7 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
         logger.error(f"Audit failure: Found {num_unverified} rows with data_provenance == 'unverified'")
         return False
 
-    # Check 2: File cache to prevent re-opening file for every single row
+    # Check 2: File caches
     file_lines_cache = {}
     pdf_cache = {}
     mismatches = []
@@ -63,11 +63,12 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
             mismatches.append(f"Row {idx}: Raw file does not exist: {raw_file}")
             continue
 
-        # Branch for PDF files
+        # Branch for PDF files: re-parse PDF tables & pages
         if raw_file.lower().endswith(".pdf"):
             import pdfplumber
             if raw_file not in pdf_cache:
                 pdf_cache[raw_file] = pdfplumber.open(raw_file)
+
             pdf_obj = pdf_cache[raw_file]
             raw_page_no = int(row.get("raw_page", 1)) if "raw_page" in row and pd.notna(row["raw_page"]) else 1
             if raw_page_no < 1 or raw_page_no > len(pdf_obj.pages):
@@ -85,10 +86,7 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
 
             # Check modal price on page
             matched_modal = False
-            if 1 <= raw_line_no <= len(page_lines):
-                if str(int(modal)) in page_lines[raw_line_no - 1]:
-                    matched_modal = True
-            if not matched_modal and str(int(modal)) in page_text:
+            if str(int(modal)) in page_text:
                 matched_modal = True
 
             if not matched_modal:
@@ -98,13 +96,20 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
             verified_count += 1
             continue
 
+        # Branch for CSV files
         if raw_file not in file_lines_cache:
-            with open(raw_file, "r", encoding="utf-8", errors="replace") as f:
-                file_lines_cache[raw_file] = f.readlines()
+            try:
+                with open(raw_file, "r", encoding="utf-8", errors="replace") as f:
+                    file_lines_cache[raw_file] = f.readlines()
+            except Exception as e:
+                mismatches.append(f"Row {idx}: Could not read raw file {raw_file}: {e}")
+                continue
 
         lines = file_lines_cache[raw_file]
-        if raw_line_no < 1 or raw_line_no > len(lines):
-            mismatches.append(f"Row {idx}: Invalid line {raw_line_no} (file has {len(lines)} lines)")
+        total_lines = len(lines)
+
+        if raw_line_no < 1 or raw_line_no > total_lines:
+            mismatches.append(f"Row {idx}: Line number {raw_line_no} out of range (1..{total_lines}) for {raw_file}")
             continue
 
         # Parse CSV record (handling multiline records if needed)
@@ -115,8 +120,6 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
             mismatches.append(f"Row {idx}: Could not parse CSV from line {raw_line_no}: {e}")
             continue
 
-        # For OGD India format (State, District, Market, Commodity, Variety, Grade, Arrival_Date, Min_Price, Max_Price, Modal_Price)
-        # Verify that mandi, commodity, and prices are contained in this exact parsed record
         record_text_lower = " ".join(parsed_cells).lower()
         if mandi.lower() not in record_text_lower:
             mismatches.append(f"Row {idx} Line {raw_line_no}: Market '{mandi}' not in raw line: {parsed_cells}")
@@ -126,7 +129,7 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
             mismatches.append(f"Row {idx} Line {raw_line_no}: Crop '{crop}' not in raw line: {parsed_cells}")
             continue
 
-        # Verify numeric modal price appears in parsed cells (allowing < 0.01 tolerance for paise rounding)
+        # Verify numeric modal price appears in parsed cells
         matched_modal = False
         for c in parsed_cells:
             try:
@@ -143,13 +146,30 @@ def run_audit(panel_path: str = "data/processed/panel.parquet") -> bool:
 
         verified_count += 1
 
+    # Close PDF handles
+    for p_obj in pdf_cache.values():
+        p_obj.close()
+
     if mismatches:
         logger.error(f"Audit trace failed with {len(mismatches)} mismatches (first 10 shown):")
         for m in mismatches[:10]:
             logger.error(f"  {m}")
         return False
 
-    logger.info(f"SUCCESS: 100% of panel rows ({verified_count}/{total_rows}) verified against raw files and raw lines.")
+    logger.info(f"SUCCESS: 100% of panel rows ({verified_count}/{total_rows}) verified against raw files, pages, and lines.")
+
+    # Print 10 random rows next to their PDF page
+    pdf_rows = df[df["raw_file"].str.lower().str.endswith(".pdf")]
+    if not pdf_rows.empty:
+        sample_count = min(10, len(pdf_rows))
+        sample_df = pdf_rows.sample(sample_count, random_state=42)
+        print("\n================ 10 RANDOM AUDITED ROWS NEXT TO PDF PAGE ================")
+        print(f"{'Date':<12} {'Mandi':<20} {'Crop':<15} {'Variety':<18} {'Grade':<10} {'Modal':<8} {'Arrivals':<9} {'PDF Page':<10}")
+        print("-" * 105)
+        for _, r in sample_df.iterrows():
+            print(f"{str(r['date'])[:10]:<12} {str(r['mandi'])[:19]:<20} {str(r['crop'])[:14]:<15} {str(r['variety'])[:17]:<18} {str(r['grade'])[:9]:<10} {r['modal_price']:<8.0f} {r['arrivals']:<9.0f} {int(r['raw_page']):<10}")
+        print("=" * 105 + "\n")
+
     return True
 
 
