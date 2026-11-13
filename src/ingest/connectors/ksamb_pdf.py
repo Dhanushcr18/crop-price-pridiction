@@ -395,6 +395,62 @@ class KsambPdfImporter:
         return df[cols]
 
 
+def validate_and_route_ksamb_data(
+    df: pd.DataFrame,
+    quarantine_dir: str = "data/quarantine",
+    non_quintal_output_path: str = "data/processed/non_quintal_prices.parquet"
+) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """
+    Validates KSAMB DataFrame according to Task 2 rules:
+    - Rows with unit != 'Quintal' routed to separate non_quintal table (never converted).
+    - Rows with any flag routed to data/quarantine/ with descriptive failure reasons.
+    - Clean unflagged Quintal rows returned for panel ingestion.
+    """
+    os.makedirs(quarantine_dir, exist_ok=True)
+    os.makedirs(os.path.dirname(os.path.abspath(non_quintal_output_path)), exist_ok=True)
+
+    # 1. Non-quintal rows
+    non_quintal_df = df[df['unit'] != 'Quintal'].copy()
+    non_quintal_df.to_parquet(non_quintal_output_path, index=False)
+    logger.info(f"Saved {len(non_quintal_df)} non-quintal rows to {non_quintal_output_path}")
+
+    # 2. Quarantined rows (rows with any flag)
+    quarantined_df = df[df['flags'].notna()].copy()
+
+    flag_descriptions = {
+        'same_price_triple_3plus_crops': "Identical min/max/modal triple shared across >=3 crops in market",
+        'min_eq_max_eq_modal_most_rows': "Flat market pricing (min == max == modal on >50% of market rows)",
+        'price_below_100_per_qtl': "Quintal price reported below Rs 100/qtl floor",
+        'non_quintal_unit': "Reporting unit is not Quintal (stored in non_quintal table)",
+        'recovered_from_text_line': "Row missed by table bounding box and recovered from text lines",
+        'min_max_modal_violation': "Price ordering violation (min <= modal <= max not satisfied)",
+        'future_date': "Report date is in the future"
+    }
+
+    rejection_reasons = []
+    for _, r in quarantined_df.iterrows():
+        flags = str(r['flags']).split(';')
+        reasons = [flag_descriptions.get(f.strip(), f.strip()) for f in flags]
+        rejection_reasons.append("; ".join(reasons))
+
+    quarantined_df['rejection_reason'] = rejection_reasons
+
+    # Save quarantine output
+    report_date = df['report_date'].iloc[0] if not df.empty else "unknown_date"
+    q_json_path = os.path.join(quarantine_dir, f"quarantine_ksamb_{report_date}.json")
+    q_parquet_path = os.path.join(quarantine_dir, f"quarantine_ksamb_{report_date}.parquet")
+
+    quarantined_df.to_json(q_json_path, orient="records", indent=2)
+    quarantined_df.to_parquet(q_parquet_path, index=False)
+    logger.info(f"Quarantined {len(quarantined_df)} flagged rows to {q_json_path}")
+
+    # 3. Accepted quintal rows (clean, unflagged quintal rows)
+    accepted_df = df[df['flags'].isna() & (df['unit'] == 'Quintal')].copy()
+    logger.info(f"Accepted {len(accepted_df)} clean Quintal rows for panel ingestion")
+
+    return accepted_df, non_quintal_df, quarantined_df
+
+
 def import_ksamb_pdf_to_csv(pdf_path: str, output_csv_path: str) -> pd.DataFrame:
     """Convenience CLI / daily ingestion function."""
     importer = KsambPdfImporter()
