@@ -1235,6 +1235,16 @@ export default function HomePage() {
               </button>
             </div>
 
+            {/* NOTICE: No real price history yet, forecasts disabled */}
+            {(!forecastData?.horizons?.length || adviceData?.notice) && (
+              <div className="bg-amber-100 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200 px-5 py-4 rounded-2xl flex items-center gap-3.5 shadow-sm">
+                <span className="text-2xl">⚠️</span>
+                <div className="text-sm sm:text-base font-bold">
+                  {t.forecastsDisabledNotice}
+                </div>
+              </div>
+            )}
+
             {/* a. PRIMARY ANSWER BANNER (Deep Forest Green with Large Range & Impact Cards) */}
             <section
               aria-label="Recommendation Summary"

@@ -9,6 +9,7 @@ export interface HealthResponse {
   provenance: "real" | "synthetic";
   is_synthetic: boolean;
   synthetic_banner?: string | null;
+  notice?: string | null;
 }
 
 export interface MandiInfo {
@@ -44,6 +45,7 @@ export interface ForecastResponse {
   provenance: string;
   is_synthetic: boolean;
   synthetic_banner?: string | null;
+  notice?: string | null;
   disclaimer: string;
 }
 
@@ -75,6 +77,7 @@ export interface WhereToSellResponse {
   provenance: string;
   is_synthetic: boolean;
   synthetic_banner?: string | null;
+  notice?: string | null;
   disclaimer: string;
 }
 
@@ -121,6 +124,7 @@ export interface WhenToSellResponse {
   provenance: string;
   is_synthetic: boolean;
   synthetic_banner?: string | null;
+  notice?: string | null;
   disclaimer: string;
 }
 
@@ -138,6 +142,7 @@ export interface AdviceResponse {
   provenance: string;
   is_synthetic: boolean;
   synthetic_banner?: string | null;
+  notice?: string | null;
 }
 
 export interface MetricRow {
@@ -173,6 +178,7 @@ export interface ModelReportResponse {
   data_date_range: string;
   is_synthetic: boolean;
   synthetic_banner?: string | null;
+  notice?: string | null;
 }
 
 
@@ -275,6 +281,7 @@ export interface AreaSummaryResponse {
   sowing_to_harvest_lag_days: number;
   assumptions: Array<{ item: string; value: string; status: string }>;
   synthetic_banner?: string | null;
+  notice?: string | null;
 }
 
 export interface SupplyHorizonOutlook {
@@ -299,6 +306,7 @@ export interface SupplyPriceOutlookResponse {
   farmer_acreage_isolated_notice: string;
   autonomy_disclaimer: string;
   synthetic_banner?: string | null;
+  notice?: string | null;
 }
 
 export interface OfficerSubmissionRow {

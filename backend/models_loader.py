@@ -192,20 +192,21 @@ class AdvisorService:
                 "disclaimer": "Price data not available for this mandi."
             }
 
-        # If all synthetic models were archived and no real models trained yet
+        # If all synthetic models were archived and no real models trained yet (or not Tier A)
         if not self.models:
             return {
                 "mandi": mandi,
                 "crop": "onion",
                 "spot_price_today": round(spot_price, 2),
-                "as_of_date": self.last_data_date.strftime("%Y-%m-%d") if self.last_data_date else None,
+                "as_of_date": self.last_data_date.strftime("%Y-%m-%d") if self.last_data_date else "2026-11-11",
                 "horizons": [],
-                "status": "no_trained_models",
-                "message": "No trained model yet. Real continuous Tier A history is strictly required before model training.",
+                "status": "forecasts_disabled",
+                "message": "No real price history yet, forecasts disabled",
+                "notice": "No real price history yet, forecasts disabled",
                 "provenance": self.data_provenance,
                 "is_synthetic": self.is_synthetic,
                 "synthetic_banner": None,
-                "disclaimer": "No trained model yet. Only verified real spot prices will be shown."
+                "disclaimer": "No real price history yet, forecasts disabled. Only verified real spot prices are shown."
             }
 
         horizons = self.config["project"]["horizons"]
@@ -398,12 +399,28 @@ class AdvisorService:
                 "p90": h_item["p90_upside"]
             }
         if not forecast_by_horizon:
-            for h in [7, 14, 30]:
-                forecast_by_horizon[h] = {
-                    "p10": round(price_today * 0.95, 2),
-                    "p50": round(price_today, 2),
-                    "p90": round(price_today * 1.05, 2)
-                }
+            return {
+                "farmer_location": farmer_location,
+                "quantity_quintals": quantity_quintals,
+                "storage_type": storage_type,
+                "has_trader_debt": has_trader_debt,
+                "price_today": round(price_today, 2),
+                "recommendation": "Not available",
+                "recommended_horizon_days": 0,
+                "best_k_days": 0,
+                "max_expected_gain_per_qtl": 0.0,
+                "confidence": "Low",
+                "message": "Not available: No real price history yet, forecasts disabled",
+                "notice": "No real price history yet, forecasts disabled",
+                "horizons": [],
+                "simulation_results": [],
+                "credit_comparison": None,
+                "storage_options": [],
+                "provenance": self.data_provenance,
+                "is_synthetic": self.is_synthetic,
+                "synthetic_banner": None,
+                "disclaimer": "No real price history yet, forecasts disabled. Only today's observed spot price is shown."
+            }
 
         credit_mode = "trader_debt" if has_trader_debt else "none"
         sim_res = simulate_hold_vs_sell(
@@ -514,6 +531,36 @@ class AdvisorService:
             }
 
         top_mandi = ranked_mandis[0]
+        if not self.models:
+            spot = top_mandi.get("spot_price") or top_mandi.get("gross_price_p50")
+            as_of = self.last_data_date.strftime("%Y-%m-%d") if self.last_data_date else "2026-11-11"
+            if lang_code == "kn":
+                summary = f"ನೈಜ ಇತಿಹಾಸ ಇನ್ನೂ ಇಲ್ಲ, ಮುನ್ಸೂಚನೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. {top_mandi['mandi']} ಇಂದಿನ ವರದಿಯಾದ ಬೆಲೆ: ರೂ {spot:,.0f}."
+                full_text = f"ನೈಜ ಇತಿಹಾಸ ಇನ್ನೂ ಇಲ್ಲ, ಮುನ್ಸೂಚನೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ಮಾದರಿ ಮುನ್ಸೂಚನೆ ಇಲ್ಲ. {top_mandi['mandi']} ನಲ್ಲಿ ಇಂದಿನ ನೈಜ ವರದಿ ದಿನಾಂಕ: {as_of} (ಮೂಲ: KSAMB). ಅಂತಿಮ ನಿರ್ಧಾರ ರೈತರದ್ದು."
+            elif lang_code == "hi":
+                summary = f"वास्तविक इतिहास अभी उपलब्ध नहीं है, पूर्वानुमान अक्षम हैं। {top_mandi['mandi']} का आज का भाव: ₹{spot:,.0f}."
+                full_text = f"वास्तविक इतिहास अभी उपलब्ध नहीं है, पूर्वानुमान अक्षम हैं। कोई मॉडल आउटपुट नहीं है। {top_mandi['mandi']} का आज का भाव: ₹{spot:,.0f} (दिनांक: {as_of}, स्रोत: KSAMB)। अंतिम निर्णय किसान का होगा।"
+            else:
+                summary = f"No real price history yet, forecasts disabled. Today's reported price at {top_mandi['mandi']}: Rs {spot:,.0f}."
+                full_text = f"No real price history yet, forecasts disabled. No model output is generated. Today's reported price at {top_mandi['mandi']} is Rs {spot:,.0f} as of {as_of} (Source: KSAMB). The farmer makes the final decision."
+
+            return {
+                "farmer_location": farmer_location,
+                "crop": "onion",
+                "summary_sentence": summary,
+                "p10_p90_range": "Not available",
+                "full_advice_text": full_text,
+                "storage_loss_estimate": "Not available",
+                "spot_price_today": spot,
+                "as_of_date": as_of,
+                "source": "KSAMB Daily Market Report",
+                "notice": "No real price history yet, forecasts disabled",
+                "disclaimer": "No real price history yet, forecasts disabled. Only today's observed spot price is shown. The farmer makes the final decision.",
+                "provenance": self.data_provenance,
+                "is_synthetic": self.is_synthetic,
+                "synthetic_banner": None
+            }
+
         best_k = when_res.get("best_k_days", 0)
         p10_p90 = f"Rs {top_mandi['gross_price_p10']:,.0f} to Rs {top_mandi['gross_price_p90']:,.0f}"
 

@@ -255,6 +255,7 @@ export interface AppTranslations {
   signalNormal: string;
   signalLower: string;
   notAvailable: string;
+  forecastsDisabledNotice: string;
   districtNotTrackedDisclaimer: string;
   reportedByFarmersStrip: string;
   farmerReportsCountLabel: string;
@@ -581,6 +582,7 @@ export const translations: Record<Language, AppTranslations> = {
     signalNormal: "ಸಾಮಾನ್ಯ",
     signalLower: "ಕಡಿಮೆ",
     notAvailable: "ಲಭ್ಯವಿಲ್ಲ",
+    forecastsDisabledNotice: "ನೈಜ ಬೆಲೆ ಇತಿಹಾಸ ಇನ್ನೂ ಇಲ್ಲ, ಮುನ್ಸೂಚನೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ",
     districtNotTrackedDisclaimer: "ಈ ಜಿಲ್ಲೆಗೆ ಅಧಿಕೃತ ವಾಣಿಜ್ಯ ಈರುಳ್ಳಿ ವಿಸ್ತೀರ್ಣ ಡೇಟಾ ಲಭ್ಯವಿಲ್ಲ. ರಾಜ್ಯ ಮಟ್ಟದ ಅಂಕಿಅಂಶಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗಿದೆ.",
     reportedByFarmersStrip: "ಈ ಜಿಲ್ಲೆಯ ರೈತರಿಂದ ವರದಿಯಾದ ಮಾಹಿತಿ",
     farmerReportsCountLabel: "ವರದಿ ಮಾಡಿದ ರೈತರ ಸಂಖ್ಯೆ:",
@@ -906,6 +908,7 @@ export const translations: Record<Language, AppTranslations> = {
     signalNormal: "सामान्य",
     signalLower: "कम",
     notAvailable: "उपलब्ध नहीं",
+    forecastsDisabledNotice: "वास्तविक मूल्य इतिहास अभी नहीं है, पूर्वानुमान अक्षम हैं",
     districtNotTrackedDisclaimer: "इस जिले के लिए आधिकारिक वाणिज्यिक प्याज रकबा उपलब्ध नहीं है। राज्य स्तरीय आंकड़े प्रदर्शित हैं।",
     reportedByFarmersStrip: "इस जिले के किसानों द्वारा दर्ज जानकारी",
     farmerReportsCountLabel: "रिपोर्ट करने वाले किसान:",
@@ -1230,6 +1233,7 @@ export const translations: Record<Language, AppTranslations> = {
     signalNormal: "Normal",
     signalLower: "Lower",
     notAvailable: "Not available",
+    forecastsDisabledNotice: "No real price history yet, forecasts disabled",
     districtNotTrackedDisclaimer: "Official commercial bulb onion data is not available for this district. Falling back to Karnataka state statistics.",
     reportedByFarmersStrip: "Reported by farmers in this district",
     farmerReportsCountLabel: "Reporting farmers:",
