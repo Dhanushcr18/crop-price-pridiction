@@ -1,11 +1,7 @@
-# Configuration for Farmer Sell Advisor (Onion)
+# Configuration for Farmer Sell Advisor (All Crops & All Mandis)
 project:
   name: "Farmer Sell Advisor"
-  crop: "onion"
-  target_mandis:
-    - "Bengaluru (Yeshwanthpur)"
-    - "Kolar"
-    - "Chikkaballapur"
+  state: "Karnataka"
   horizons: [7, 14, 30]
   random_seed: 42
   allow_synthetic_training: false  # DATA_PROVENANCE: strictly false; training refuses synthetic data by default
@@ -14,70 +10,61 @@ paths:
   raw_data_dir: "data/raw"
   real_data_dir: "data/raw/real"
   processed_panel: "data/processed/panel.parquet"
+  non_quintal_panel: "data/processed/non_quintal_prices.parquet"
+  quarantine_dir: "data/quarantine"
   models_dir: "models"
   reports_dir: "reports"
+  master_mandis: "data/master/mandis.csv"
+  master_districts: "data/master/districts.csv"
+  master_crops: "data/master/crops.csv"
+  road_distance_override: "data/master/road_distances_km.csv"
+
+# Tier Assignment Criteria (Recalculated from Real History Only)
+# Tier A "Forecast available": at least 2.0 years of real history, at least 60% of trading days reported, latest report within 7 days.
+# Tier B "Latest price only": at least 1 real report in panel. Show reported price with date and source, strictly no forecast.
+# Tier C "No recent report": reported before but older than freshness limit, or never reported. Show "Not available" with last date.
+tier_criteria:
+  tier_a:
+    min_years: 2.0
+    min_coverage_pct: 0.60
+    max_stale_days: 7
+    allow_forecast: true
+  tier_b:
+    min_records: 1
+    show_latest_price_only: true
+    allow_forecast: false
+  tier_c:
+    fallback_status: "Not available"
+    allow_forecast: false
+
+# Freshness Rules
+freshness:
+  stale_alert_threshold_days: 2  # If latest report is older than 2 days, show yellow warning banner with real date
+  reference_date: "2026-11-16"   # Today's date for freshness calculations
+
+# Spatial Distance Modeling
+# ASSUMPTION:
+# Haversine great-circle distance multiplied by a 1.25 road-winding factor for Karnataka terrain.
+# Overridden by real road distance file if present at data/master/road_distances_km.csv.
+distance_model:
+  is_assumption: true
+  assumption_label: "ASSUMPTION: Haversine great-circle distance multiplied by 1.25 road-winding factor. Overridden by road-distance file if present."
+  road_factor: 1.25  # Road winding multiplier
+  default_search_radius_km: 100.0
 
 # Headline Price Series Selection Rule
 # ASSUMPTION:
 # In multi-variety/grade wholesale market reports (e.g. KSAMB), multiple series are reported for the same crop and mandi on the same date.
 # We keep variety and grade as distinct separate series and NEVER sum or average arrivals across varieties (e.g. Bengaluru repeats 10,823 arrivals across 3 onion rows).
-# To select a single "headline" price series per mandi and crop for farmer advisory:
-# 1. Primary Filter: Filter for the most representative commercial grade, prioritizing 'Medium' or 'Average' or 'FAQ' standard wholesale grades over niche/extreme grades ('Small', 'Non FAQ').
-# 2. Tie-breaker by Variety: Prioritize the standard commercial variety ('Local', or matching crop name) over specialized cultivars ('Bangalore Small', etc.).
-# 3. Default: The row with the highest arrivals for that variety, and show every grade in the UI detail.
-# 4. Tie-breaker by Modal Price: If still tied, select the median modal price among candidates.
-# This rule is explicitly tagged as an Assumption and preserved in metadata.
+# Default: the row with the highest arrivals for that variety, and show every grade in the UI detail.
 headline_price_selection:
   rule_name: "highest_arrivals_representative_variety"
   is_assumption: true
   assumption_label: "ASSUMPTION: Default: the row with the highest arrivals for that variety, and show every grade in the UI detail. Arrivals are never summed across varieties."
   default_rule: "the row with the highest arrivals for that variety, and show every grade in the UI detail"
   preferred_grades: ["Medium", "Average", "FAQ", "Large", "Small", "Non FAQ"]
-  preferred_varieties:
-    onion: ["Local", "Onion", "Puna", "Pusa-Red", "Other", "Bangalore Small"]
-    potato: ["Local", "Potato", "Puna", "Other"]
-    tomato: ["Local", "Tomato", "Hybrid", "Other"]
   arrival_tiebreaker: "max_arrivals"
   show_all_grades_in_ui: true
-
-# Mandi Locations and Geocodes
-mandis:
-  "Bengaluru (Yeshwanthpur)":
-    state: "Karnataka"
-    district: "Bengaluru Urban"
-    lat: 13.0285
-    lon: 77.5450
-    tier: "Major Consumption Hub"
-    base_modal_price_offset: 150.0  # Premium for large wholesale hub
-  "Kolar":
-    state: "Karnataka"
-    district: "Kolar"
-    lat: 13.1367
-    lon: 78.1340
-    tier: "Production / Secondary Mandi"
-    base_modal_price_offset: 0.0
-  "Chikkaballapur":
-    state: "Karnataka"
-    district: "Chikkaballapur"
-    lat: 13.4355
-    lon: 77.7315
-    tier: "Production / Feeder Mandi"
-    base_modal_price_offset: -30.0
-
-# Road Distances (km) between hubs and local farming centers
-distance_matrix_km:
-  "Bengaluru (Yeshwanthpur)":
-    "Bengaluru (Yeshwanthpur)": 10.0
-    "Kolar": 70.0
-    "Chikkaballapur": 58.0
-  "Kolar":
-    "Bengaluru (Yeshwanthpur)": 70.0
-    "Kolar": 8.0
-    "Chikkaballapur": 65.0
-  "Chikkaballapur":
-    "Bengaluru (Yeshwanthpur)": 58.0
-    "Kolar": 65.0
-    "Chikkaballapur": 8.0
 
 # Economic Cost Assumptions
 costs:
@@ -89,29 +76,82 @@ costs:
   handling_hamali_per_quintal: 12.0   # Unloading & grading hamali charge (Rs/qtl)
   transit_shrinkage_pct_per_100km: 0.0025  # 0.25% weight loss per 100km
 
-# Post-harvest storage assumptions
+# Post-harvest Storage & Per-Crop Parameters
+# ASSUMPTION:
+# Storage shelf life, daily decay rates, and transit shrinkage are agronomic estimates.
+# Crops without parameters get conservative defaults and the advisor indicates 'limited guidance'.
+crop_parameters:
+  defaults:
+    is_assumption: true
+    assumption_label: "ASSUMPTION: Conservative default parameter set for unlisted crops. Advisor displays 'limited guidance'."
+    shelf_life_days: 14
+    transit_shrinkage_pct_per_100km: 0.005
+    limited_guidance_notice: "Limited guidance: generic conservative storage model applied."
+    storage_decay:
+      open: 0.015
+      warehouse: 0.006
+      cold_storage: 0.002
+
+  perishability_classes:
+    Very High:
+      max_shelf_life_days: 5
+      transit_shrinkage_pct_per_100km: 0.010
+      storage_decay:
+        open: 0.050
+        warehouse: 0.025
+        cold_storage: 0.008
+    High:
+      max_shelf_life_days: 15
+      transit_shrinkage_pct_per_100km: 0.005
+      storage_decay:
+        open: 0.015
+        warehouse: 0.005
+        cold_storage: 0.001
+    Medium:
+      max_shelf_life_days: 60
+      transit_shrinkage_pct_per_100km: 0.003
+      storage_decay:
+        open: 0.008
+        warehouse: 0.003
+        cold_storage: 0.0008
+    Low:
+      max_shelf_life_days: 180
+      transit_shrinkage_pct_per_100km: 0.001
+      storage_decay:
+        open: 0.002
+        warehouse: 0.0005
+        cold_storage: 0.0001
+    Live:
+      max_shelf_life_days: 3
+      transit_shrinkage_pct_per_100km: 0.015
+      storage_decay:
+        open: 0.020
+        warehouse: 0.020
+        cold_storage: 0.020
+
+# Storage Facilities
 storage:
   types:
     "open":
       name: "Open Farm Storage (Kaccha Shed)"
       cost_per_quintal_day: 0.0
-      daily_spoilage_rate: 0.012      # 1.2% weight loss / rotting / sprouting per day
+      daily_spoilage_rate: 0.012
       max_safe_days: 15
     "warehouse":
       name: "Standard Ventilated Warehouse"
-      cost_per_quintal_day: 0.50      # ~Rs 15/quintal/month
-      daily_spoilage_rate: 0.004      # 0.4% per day
+      cost_per_quintal_day: 0.50
+      daily_spoilage_rate: 0.004
       max_safe_days: 60
     "cold_storage":
       name: "Controlled Atmosphere / Cold Storage"
-      cost_per_quintal_day: 1.50      # ~Rs 45/quintal/month
-      daily_spoilage_rate: 0.001      # 0.1% per day
+      cost_per_quintal_day: 1.50
+      daily_spoilage_rate: 0.001
       max_safe_days: 120
 
 # Credit and Opportunity Costs
 credit:
-  trader_debt_annual_interest_pct: 24.0   # 2.0% per month moneylender / commission agent loan
-  warehouse_receipt_loan_annual_interest_pct: 9.0  # 0.75% per month institutional e-NWR financing
+  trader_debt_annual_interest_pct: 24.0
+  warehouse_receipt_loan_annual_interest_pct: 9.0
 
 # Feature engineering parameters
 features:
@@ -126,54 +166,10 @@ model:
   target_horizons: [7, 14, 30]
   optuna_n_trials: 15
   test_horizon_days: 60
-  coverage_target_min: 70.0  # Alert if P10-P90 coverage < 70%
-  coverage_target_max: 90.0  # Alert if P10-P90 coverage > 90%
-  lightgbm_params:
-    n_estimators: 120
-    learning_rate: 0.05
-    num_leaves: 31
-    min_child_samples: 15
-    subsample: 0.85
-    colsample_bytree: 0.85
-    random_state: 42
-    verbose: -1
+  coverage_target_min: 70.0
+  coverage_target_max: 90.0
 
 # Monte Carlo Simulation parameters
 simulation:
   n_draws: 10000
   evaluation_horizons: [0, 7, 14, 30]
-
-# Crop Area & Supply Outlook settings
-area_outlook:
-  official_data_path: "data/raw/official_crop_area/onion_area_production.csv"
-  db_path: "data/area_reports.db"
-  min_farmer_entries_threshold: 30
-  min_coverage_pct_threshold: 5.0
-  max_single_entry_acres: 500.0
-  sowing_to_harvest_lag_days: 105
-  default_district: "Mysuru"
-  known_districts:
-    - "Mysuru"
-    - "Gadag"
-    - "Dharwad"
-    - "Chitradurga"
-    - "Bagalkot"
-    - "Vijayapura"
-    - "Chikkaballapur"
-    - "Kolar"
-    - "Ballari"
-    - "Belagavi"
-    - "Davanagere"
-    - "Hassan"
-    - "Mandya"
-    - "Tumakuru"
-  known_seasons:
-    - "Kharif"
-    - "Late Kharif"
-    - "Rabi"
-    - "Total"
-  supply_signal_thresholds:
-    higher_ratio: 1.05
-    lower_ratio: 0.95
-
-

@@ -1,149 +1,116 @@
-mandi_id,raw_market_name,name_en,name_kn,district_code,district_en,taluk_en,lat,lon,coord_source
-badami,BADAMI,Badami,Badami,BAG,Bagalakote,Badami,16.2795,75.7716,approximate
-bagalkot,BAGALKOT,Bagalkot,ಬಾಗಲಕೋಟೆ,BAG,Bagalakote,Bagalkot,16.1875,75.698,official_apmc
-bilagi,BILAGI,Bilagi,Bilagi,BAG,Bagalakote,Bilgi,16.1835,75.6948,approximate
-hungund,HUNGUND,Hungund,Hungund,BAG,Bagalakote,Hungund,16.1635,75.6788,approximate
-jamkandi,JAMKANDI,Jamkandi,Jamkandi,BAG,Bagalakote,Jamkhandi,16.2455,75.7444,approximate
-mahalingapura,MAHALINGAPURA,Mahalingapura,Mahalingapura,BAG,Bagalakote,Mudhol,16.2075,75.714,approximate
-doddaballapur,DODDABALLAPUR,Doddaballapur,Doddaballapur,BLR_R,Bengaluru Rural,Dodballapur,13.3787,77.6436,approximate
-bengaluru_yeshwanthpur,BANGALORE,Bengaluru (Yeshwanthpur),ಬೆಂಗಳೂರು (ಯಶವಂತಪುರ),BLR_U,Bengaluru Urban,Bangalore North,13.0285,77.545,official_apmc
-bengaluru_binny_mill,BINNY MILL (F&V),Bengaluru (Binny Mill),ಬೆಂಗಳೂರು (ಬಿನ್ನಿ ಮಿಲ್),BLR_U,Bengaluru Urban,Bangalore South,12.9698,77.5684,official_apmc
-athani,ATHANI,Athani,Athani,BEL,Belagavi,Athni,15.7657,74.4305,approximate
-bailhongal,BAILHONGAL,Bailhongal,Bailhongal,BEL,Belagavi,Parasgad,15.9117,74.5473,approximate
-belagavi,BELGAUM,Belagavi,ಬೆಳಗಾವಿ,BEL,Belagavi,Belgaum,15.8497,74.4977,official_apmc
-gokak,GOKAK,Gokak,Gokak,BEL,Belagavi,Gokak,15.7837,74.4449,approximate
-kudchi,KUDCHI,Kudchi,Kudchi,BEL,Belagavi,Raybag,15.8677,74.5121,approximate
-nandagad,NANDAGAD,Nandagad,Nandagad,BEL,Belagavi,Khanapur,15.8797,74.5217,approximate
-nippani,NIPPANI,Nippani,Nippani,BEL,Belagavi,Chikodi,15.7497,74.4177,approximate
-ramdurga,RAMDURGA,Ramdurga,Ramdurga,BEL,Belagavi,Ramdurg,15.9277,74.5601,approximate
-sankeshwar,SANKESHWAR,Sankeshwar,Sankeshwar,BEL,Belagavi,Hukeri,15.9137,74.5489,approximate
-savadatti,SAVADATTI,Savadatti,Savadatti,BEL,Belagavi,Sampgaon,15.8977,74.5361,approximate
-ballari,BELLARY,Ballari,ಬಳ್ಳಾರಿ,BLY,Ballari,Bellary,15.1394,76.9214,official_apmc
-hagari_bommana_halli,HAGARI BOMMANA HALLI,Hagari Bommana Halli,Hagari Bommana Halli,BLY,Ballari,Hagaribommanahalli,15.2354,76.9982,approximate
-hoovinahadagali,HOOVINAHADAGALI,Hoovinahadagali,Hoovinahadagali,BLY,Ballari,Hadagalli,15.1694,76.9454,approximate
-hospet,HOSPET,Hospet,Hospet,BLY,Ballari,Hospet,15.2294,76.9934,approximate
-kottur,KOTTUR,Kottur,Kottur,BLY,Ballari,Kudligi,15.0814,76.875,approximate
-siraguppa,SIRAGUPPA,Siraguppa,Siraguppa,BLY,Ballari,Siruguppa,15.0594,76.8574,approximate
-aurad,AURAD,Aurad,Aurad,BID,Bidar,Aurad,17.9824,77.5775,approximate
-basavakalyana,BASAVAKALYANA,Basavakalyana,Basavakalyana,BID,Bidar,Basavakalyan,17.8984,77.5103,approximate
-bhalki,BHALKI,Bhalki,Bhalki,BID,Bidar,Bhalki,17.8124,77.4415,approximate
-bidar,BIDAR,Bidar,ಬೀದರ್,BID,Bidar,Bidar,17.9104,77.5199,official_apmc
-humnabad,HUMNABAD,Humnabad,Humnabad,BID,Bidar,Homnabad,17.8724,77.4895,approximate
-vijayapura,BIJAPUR,Vijayapura,ವಿಜಯಪುರ,VIJ_B,Vijayapura,Bijapur,16.8302,75.71,official_apmc
-sindagi,SINDAGI,Sindagi,Sindagi,VIJ_B,Vijayapura,Sindgi,16.8662,75.7388,approximate
-talikote,TALIKOTE,Talikote,Talikote,VIJ_B,Vijayapura,Muddebihal,16.8642,75.7372,approximate
-c_r_nagar,C.R.NAGAR,C.R.Nagar,C.R.Nagar,CHM_N,Chamarajanagara,Chamrajnagar,11.9061,76.9277,approximate
-gundlupet,GUNDLUPET,Gundlupet,Gundlupet,CHM_N,Chamarajanagara,Gundlupet,11.8501,76.8829,approximate
-kollegal,KOLLEGAL,Kollegal,Kollegal,CHM_N,Chamarajanagara,Kollegal,11.8641,76.8941,approximate
-bagepalli,BAGEPALLI,Bagepalli,Bagepalli,CKB,Chikkaballapura,Bagepalli,13.3355,77.6515,approximate
-chikkaballapur,CHICKBALLAPUR,Chikkaballapur,ಚಿಕ್ಕಬಳ್ಳಾಪುರ,CKB,Chikkaballapura,Chik Ballapur,13.4355,77.7315,official_apmc
-chintamani,CHINTAMANI,Chintamani,Chintamani,CKB,Chikkaballapura,Chintamani,13.5055,77.7875,approximate
-gowribidnur,GOWRIBIDNUR,Gowribidnur,Gowribidnur,CKB,Chikkaballapura,Gauribidanur,13.3435,77.6579,approximate
-chickamaglur,CHICKAMAGLUR,Chickamaglur,Chickamaglur,CKM,Chikkamagaluru,Chikmagalur,13.2261,75.7,approximate
-kadur,KADUR,Kadur,Kadur,CKM,Chikkamagaluru,Kadur,13.4061,75.844,approximate
-koppa,KOPPA,Koppa,Koppa,CKM,Chikkamagaluru,Koppa,13.3941,75.8344,approximate
-mudigere,MUDIGERE,Mudigere,Mudigere,CKM,Chikkamagaluru,Mudigere,13.2841,75.7464,approximate
-tarikere,TARIKERE,Tarikere,Tarikere,CKM,Chikkamagaluru,Tarikere,13.3781,75.8216,approximate
-challakere,CHALLAKERE,Challakere,Challakere,CTA,Chitradurga,Challakere,14.1564,76.3448,approximate
-chitradurga,CHITRADURGA,Chitradurga,ಚಿತ್ರದುರ್ಗ,CTA,Chitradurga,Chitradurga,14.2284,76.4024,official_apmc
-hiriyur,HIRIYUR,Hiriyur,Hiriyur,CTA,Chitradurga,Hiriyur,14.1984,76.3784,approximate
-holalkere,HOLALKERE,Holalkere,Holalkere,CTA,Chitradurga,Holalkere,14.2724,76.4376,approximate
-hosadurga,HOSADURGA,Hosadurga,Hosadurga,CTA,Chitradurga,Hosdurga,14.3204,76.476,approximate
-bantwala,BANTWALA,Bantwala,Bantwala,DKN,Dakshina Kannada,Bantval,12.7763,75.1748,approximate
-belthangadi,BELTHANGADI,Belthangadi,Belthangadi,DKN,Dakshina Kannada,Beltangadi,12.8023,75.1956,approximate
-mangaluru,MANGALORE,Mangaluru,ಮಂಗಳೂರು,DKN,Dakshina Kannada,Mangalore,12.8703,75.25,official_apmc
-puttur,PUTTUR,Puttur,Puttur,DKN,Dakshina Kannada,Puttur,12.8563,75.2388,approximate
-sulya,SULYA,Sulya,Sulya,DKN,Dakshina Kannada,Sulya,12.9163,75.2868,approximate
-channagiri,CHANNAGIRI,Channagiri,Channagiri,DVG,Davanagere,Channagiri,14.4344,75.8978,approximate
-davanagere,DAVANAGERE,Davanagere,ದಾವಣಗೆರೆ,DVG,Davanagere,Davanagere,14.4644,75.9218,official_apmc
-harapanahalli,HARAPANAHALLI,Harapanahalli,Harapanahalli,DVG,Davanagere,Harpanahalli,14.3684,75.845,approximate
-harihara,HARIHARA,Harihara,Harihara,DVG,Davanagere,Harihar,14.4344,75.8978,approximate
-honnali,HONNALI,Honnali,Honnali,DVG,Davanagere,Honnali,14.3744,75.8498,approximate
-jagalur,JAGALUR,Jagalur,Jagalur,DVG,Davanagere,Jagalur,14.4264,75.8914,approximate
-annigeri,ANNIGERI,Annigeri,Annigeri,DHW,Dharwad,Navalgund,15.5269,75.0622,approximate
-dharwad,DHARWAR,Dharwad,ಧಾರವಾಡ,DHW,Dharwad,Dharwad,15.4589,75.0078,official_apmc
-hubballi,HUBLI,Hubballi,ಹುಬ್ಬಳ್ಳಿ,DHW,Dharwad,Hubli,15.3647,75.124,official_apmc
-kalghatgi,KALGHATGI,Kalghatgi,Kalghatgi,DHW,Dharwad,Kalghatgi,15.3729,74.939,approximate
-kundgol,KUNDGOL,Kundgol,Kundgol,DHW,Dharwad,Kundgol,15.5229,75.059,approximate
-gadag,GADAG,Gadag,ಗದಗ,GDG,Gadag,Gadag,15.4298,75.6334,official_apmc
-laxmeshwar,LAXMESHWAR,Laxmeshwar,Laxmeshwar,GDG,Gadag,Shirhatti,15.3378,75.5598,approximate
-mundargi,MUNDARGI,Mundargi,Mundargi,GDG,Gadag,Mundargi,15.3378,75.5598,approximate
-nargund,NARGUND,Nargund,Nargund,GDG,Gadag,Nargund,15.3318,75.555,approximate
-rona,RONA,Rona,Rona,GDG,Gadag,Ron,15.3978,75.6078,approximate
-chittapura,CHITTAPURA,Chittapura,Chittapura,KLB,Kalaburagi,Chitapur,17.3777,76.8727,approximate
-kalaburagi,GULBARGA,Kalaburagi,ಕಲಬುರಗಿ,KLB,Kalaburagi,Gulbarga,17.3297,76.8343,official_apmc
-sedam,SEDAM,Sedam,Sedam,KLB,Kalaburagi,Sedam,17.2457,76.7671,approximate
-shahapur,SHAHAPUR,Shahapur,Shahapur,KLB,Kalaburagi,Shahpur,17.2717,76.7879,approximate
-shorapur,SHORAPUR,Shorapur,Shorapur,KLB,Kalaburagi,Shorapur,17.2977,76.8087,approximate
-yadgir,YADGIR,Yadgir,Yadgir,KLB,Kalaburagi,Yadgir,17.3377,76.8407,approximate
-arsikere,ARSIKERE,Arsikere,Arsikere,HSN,Hassan,Arsikere,13.0028,76.0972,approximate
-belur,BELUR,Belur,Belur,HSN,Hassan,Belur,13.0468,76.1324,approximate
-c_r_patna,C.R.PATNA,C.R.Patna,C.R.Patna,HSN,Hassan,Channarayapatna,13.0508,76.1356,approximate
-hassan,HASSAN,Hassan,ಹಾಸನ,HSN,Hassan,Hassan,13.0068,76.1004,official_apmc
-holenarasipur,HOLENARASIPUR,Holenarasipur,Holenarasipur,HSN,Hassan,Hole Narsipur,12.9268,76.0364,approximate
-sakleshpur,SAKLESHPUR,Sakleshpur,Sakleshpur,HSN,Hassan,Sakleshpur,12.9968,76.0924,approximate
-byadgi,BYADGI,Byadgi,Byadgi,HVR,Haveri,Byadgi,14.8154,75.418,approximate
-hangal,HANGAL,Hangal,Hangal,HVR,Haveri,Hangal,14.8574,75.4516,approximate
-haveri,HAVERI,Haveri,ಹಾವೇರಿ,HVR,Haveri,Haveri,14.7954,75.402,official_apmc
-hirekerur,HIREKERUR,Hirekerur,Hirekerur,HVR,Haveri,Hirekerur,14.8814,75.4708,approximate
-ranibennur,RANIBENNUR,Ranibennur,Ranibennur,HVR,Haveri,Ranibennur,14.7274,75.3476,approximate
-savanur,SAVANUR,Savanur,Savanur,HVR,Haveri,Savanur,14.7874,75.3956,approximate
-gonikoppal,GONIKOPPAL,Gonikoppal,Gonikoppal,KDG,Kodagu,Virajpet,12.3315,75.8021,approximate
-madikeri,MADIKERI,Madikeri,Madikeri,KDG,Kodagu,Madikeri,12.2415,75.7301,approximate
-somwarpet,SOMWARPET,Somwarpet,Somwarpet,KDG,Kodagu,Somvarpet,12.2555,75.7413,approximate
-bangarpet,BANGARPET,Bangarpet,Bangarpet,KLR,Kolar,Bangarapet,13.0647,78.0764,approximate
-kolar,KOLAR,Kolar,ಕೋಲಾರ,KLR,Kolar,Kolar,13.1367,78.134,official_apmc
-malur,MALUR,Malur,Malur,KLR,Kolar,Malur,13.1407,78.1372,approximate
-mulbagal,MULBAGAL,Mulbagal,Mulbagal,KLR,Kolar,Mulbagal,13.0387,78.0556,approximate
-srinivaspur,SRINIVASPUR,Srinivaspur,Srinivaspur,KLR,Kolar,Srinivaspur,13.1347,78.1324,approximate
-gangavati,GANGAVATI,Gangavati,Gangavati,KPL,Koppal,Gangawati,15.4452,76.2306,approximate
-kartagi,KARTAGI,Kartagi,Kartagi,KPL,Koppal,Gangawati,15.2752,76.0946,approximate
-koppal,KOPPAL,Koppal,ಕೊಪ್ಪಳ,KPL,Koppal,Koppal,15.3512,76.1554,official_apmc
-kustagi,KUSTAGI,Kustagi,Kustagi,KPL,Koppal,Kushtagi,15.2512,76.0754,approximate
-k_r_pet,K.R.PET,K.R.Pet,K.R.Pet,MDY,Mandya,Krishnarajapet,12.5638,76.9287,approximate
-maddur,MADDUR,Maddur,Maddur,MDY,Mandya,Maddur,12.4738,76.8567,approximate
-mandya,MANDYA,Mandya,ಮಂಡ್ಯ,MDY,Mandya,Mandya,12.5218,76.8951,official_apmc
-nagamangala,NAGAMANGALA,Nagamangala,Nagamangala,MDY,Mandya,Nagamangala,12.5998,76.9575,approximate
-pandavapura,PANDAVAPURA,Pandavapura,Pandavapura,MDY,Mandya,Pandavapura,12.5458,76.9143,approximate
-srirangapatna,SRIRANGAPATNA,Srirangapatna,Srirangapatna,MDY,Mandya,Srirangapatna,12.5218,76.8951,approximate
-hunsur,HUNSUR,Hunsur,Hunsur,MYS,Mysuru,Hunsur,12.2298,76.5866,approximate
-k_r_nagar,K.R.NAGAR,K.R.Nagar,K.R.Nagar,MYS,Mysuru,Krishnarajanagara,12.3938,76.7178,approximate
-mysuru_bandipalya,MYSORE,Mysuru (Bandipalya),ಮೈಸೂರು (ಬಂಡಿಪಾಳ್ಯ),MYS,Mysuru,Mysore,12.285,76.671,official_apmc
-nanjangud,NANJANGUD,Nanjangud,Nanjangud,MYS,Mysuru,Nanjangud,12.3498,76.6826,approximate
-periyapatna,PERIYAPATNA,Periyapatna,Periyapatna,MYS,Mysuru,Piriyapatna,12.3798,76.7066,approximate
-santhesargur,SANTHESARGUR,Santhesargur,Santhesargur,MYS,Mysuru,Heggadadevankote,12.2498,76.6026,approximate
-t_narsipur,T.NARSIPUR,T.Narsipur,T.Narsipur,MYS,Mysuru,Tirumakudal-Narsipur,12.2278,76.585,approximate
-lingasargur,LINGASARGUR,Lingasargur,Lingasargur,RCH,Raichur,Lingsugur,16.1636,77.3111,approximate
-manvi,MANVI,Manvi,Manvi,RCH,Raichur,Manvi,16.1396,77.2919,approximate
-raichur,RAICHUR,Raichur,ರಾಯಚೂರು,RCH,Raichur,Raichur,16.2076,77.3463,official_apmc
-sindhanur,SINDHANUR,Sindhanur,Sindhanur,RCH,Raichur,Sindhnur,16.1936,77.3351,approximate
-channapatna,CHANNAPATNA,Channapatna,Channapatna,RMN,Ramanagara,Channapatna,12.7089,77.2703,approximate
-kanakapura,KANAKAPURA,Kanakapura,Kanakapura,RMN,Ramanagara,Kanakapura,12.6489,77.2223,approximate
-ramanagara,RAMANAGARA,Ramanagara,Ramanagara,RMN,Ramanagara,Ramanagaram,12.7509,77.3039,approximate
-bhadravathi,BHADRAVATHI,Bhadravathi,Bhadravathi,SHM,Shivamogga,Bhadravati,13.8659,75.5169,approximate
-hosanagar,HOSANAGAR,Hosanagar,Hosanagar,SHM,Shivamogga,Hosanagara,14.0039,75.6273,approximate
-sagar,SAGAR,Sagar,Sagar,SHM,Shivamogga,Sagar,13.9199,75.5601,approximate
-shikaripur,SHIKARIPUR,Shikaripur,Shikaripur,SHM,Shivamogga,Shikarpur,13.9559,75.5889,approximate
-shivamogga,SHIMOGA,Shivamogga,ಶಿವಮೊಗ್ಗ,SHM,Shivamogga,Shimoga,13.9299,75.5681,official_apmc
-sorabha,SORABHA,Sorabha,Sorabha,SHM,Shivamogga,Sorab,13.9159,75.5569,approximate
-tirthahalli,TIRTHAHALLI,Tirthahalli,Tirthahalli,SHM,Shivamogga,Tirthahalli,13.9839,75.6113,approximate
-gubbi,GUBBI,Gubbi,Gubbi,TMK,Tumakuru,Gubbi,13.2992,77.0697,approximate
-huliyar,HULIYAR,Huliyar,Huliyar,TMK,Tumakuru,Chiknayakanhalli,13.2592,77.0377,approximate
-kunigal,KUNIGAL,Kunigal,Kunigal,TMK,Tumakuru,Kunigal,13.3632,77.1209,approximate
-madhugiri,MADHUGIRI,Madhugiri,Madhugiri,TMK,Tumakuru,Madhugiri,13.3272,77.0921,approximate
-pavagada,PAVAGADA,Pavagada,Pavagada,TMK,Tumakuru,Pavagada,13.2472,77.0281,approximate
-sira,SIRA,Sira,Sira,TMK,Tumakuru,Sira,13.2712,77.0473,approximate
-tiptur,TIPTUR,Tiptur,Tiptur,TMK,Tumakuru,Tiptur,13.3612,77.1193,approximate
-tumakuru,TUMKUR,Tumakuru,ತುಮಕೂರು,TMK,Tumakuru,Tumkur,13.3392,77.1017,official_apmc
-turuvekere,TURUVEKERE,Turuvekere,Turuvekere,TMK,Tumakuru,Turuvekere,13.3632,77.1209,approximate
-karkala,KARKALA,Karkala,Karkala,UDP,Udupi,Karkal,13.3589,74.7565,approximate
-kundapur,KUNDAPUR,Kundapur,Kundapur,UDP,Udupi,Kundapura,13.3429,74.7437,approximate
-udipi,UDIPI,Udipi,Udipi,UDP,Udupi,Udupi,13.2869,74.6989,approximate
-haliyala,HALIYALA,Haliyala,Haliyala,UKN,Uttara Kannada,Haliyal,14.8805,74.1912,approximate
-honnavar,HONNAVAR,Honnavar,Honnavar,UKN,Uttara Kannada,Honavar,14.7265,74.068,approximate
-karwar,KARWAR,Karwar,Karwar,UKN,Uttara Kannada,Karwar,14.7565,74.092,approximate
-kumta,KUMTA,Kumta,Kumta,UKN,Uttara Kannada,Kumta,14.9085,74.2136,approximate
-mundagod,MUNDAGOD,Mundagod,Mundagod,UKN,Uttara Kannada,Mundgod,14.8005,74.1272,approximate
-siddapura,SIDDAPURA,Siddapura,Siddapura,UKN,Uttara Kannada,Siddapur,14.7745,74.1064,approximate
-sirsi,SIRSI,Sirsi,Sirsi,UKN,Uttara Kannada,Sirsi,14.7745,74.1064,approximate
-yellapura,YELLAPURA,Yellapura,Yellapura,UKN,Uttara Kannada,Yellapur,14.9085,74.2136,approximate
+mandi_id,raw_market_name,name_en,name_kn,district_code,district_en,district_kn,lat,lon,coord_source,notes
+annigeri,ANNIGERI,Annigeri,ಅಣ್ಣಿಗೇರಿ,DWR,Dharwad,ಧಾರವಾಡ,15.4333,75.4333,approximate,
+arakalgud,ARAKALGUD,Arakalgud,ಅರಕಲಗೂಡು,HAS,Hassan,ಹಾಸನ,12.7667,76.05,approximate,APMC Yard Arakalgud
+arsikere,ARSIKERE,Arsikere,ಅರಸೀಕೆರೆ,HAS,Hassan,ಹಾಸನ,13.3135,76.2575,official_apmc,
+badami,BADAMI,Badami,ಬಾದಾಮಿ,BAG,Bagalakote,ಬಾಗಲಕೋಟೆ,15.9189,75.6766,approximate,
+bagalkot,BAGALKOT,Bagalkot,ಬಾಗಲಕೋಟೆ,BAG,Bagalakote,ಬಾಗಲಕೋಟೆ,16.1875,75.698,official_apmc,
+bagepalli,BAGEPALLI,Bagepalli,ಬಾಗೇಪಲ್ಲಿ,CKB,Chikkaballapura,ಚಿಕ್ಕಬಳ್ಳಾಪುರ,13.7833,77.7917,official_apmc,
+ballari,BALLARI,Ballari,ಬಳ್ಳಾರಿ,BLR_D,Ballari,ಬಳ್ಳಾರಿ,15.1394,76.9214,official_apmc,Renamed from Bellary
+bangarpet,BANGARPET,Bangarpet,ಬಂಗಾರಪೇಟೆ,KOL,Kolar,ಕೋಲಾರ,12.9833,78.2,official_apmc,
+bantwala,BANTWALA,Bantwala,ಬಂಟ್ವಾಳ,DK,Dakshina Kannada,ದಕ್ಷಿಣ ಕನ್ನಡ,12.8833,75.0333,approximate,
+basavakalyana,BASAVAKALYANA,Basavakalyana,ಬಸವಕಲ್ಯಾಣ,BID,Bidar,ಬೀದರ್,17.8735,76.9495,approximate,
+belagavi,BELAGAVI,Belagavi,ಬೆಳಗಾವಿ,BEL,Belagavi,ಬೆಳಗಾವಿ,15.8497,74.4977,official_apmc,Renamed from Belgaum
+belur,BELUR,Belur,ಬೇಲೂರು,HAS,Hassan,ಹಾಸನ,13.1622,75.8648,approximate,
+bengaluru_yeshwanthpur,BENGALURU,Bengaluru (Yeshwanthpur),ಬೆಂಗಳೂರು (ಯಶವಂತಪುರ),BLR_U,Bengaluru Urban,ಬೆಂಗಳೂರು ನಗರ,13.0189,77.5556,Assumption,"Mapped to Yeshwanthpur main APMC yard per user decision; trade mix includes grains, pulses, onions"
+bhadravathi,BHADRAVATHI,Bhadravathi,ಭದ್ರಾವತಿ,SHI,Shivamogga,ಶಿವಮೊಗ್ಗ,13.8415,75.7042,official_apmc,
+bidar,BIDAR,Bidar,ಬೀದರ್,BID,Bidar,ಬೀದರ್,17.9104,77.5199,official_apmc,
+binny_mill_f_v,BINNY MILL (F&V),Binny Mill (F&V),ಬಿನ್ನಿ ಮಿಲ್ (ಹಣ್ಣು ಮತ್ತು ತರಕಾರಿ),BLR_U,Bengaluru Urban,ಬೆಂಗಳೂರು ನಗರ,12.9698,77.5684,official_apmc,Separate fruits & vegetables market yard in Bengaluru
+byadgi,BYADGI,Byadgi,ಬ್ಯಾಡಗಿ,HAV,Haveri,ಹಾವೇರಿ,14.6833,75.4833,official_apmc,Famous red chilli APMC
+chamarajanagar,C.R.NAGAR,Chamarajanagar,ಚಾಮರಾಜನಗರ,CMR,Chamarajanagar,ಚಾಮರಾಜನಗರ,11.9261,76.9437,official_apmc,
+channarayapatna,C.R.PATNA,Channarayapatna,ಚನ್ನರಾಯಪಟ್ಟಣ,HAS,Hassan,ಹಾಸನ,12.9042,76.3917,approximate,
+challakere,CHALLAKERE,Challakere,ಚಳ್ಳಕೆರೆ,CHT,Chitradurga,ಚಿತ್ರದುರ್ಗ,14.3167,76.65,approximate,
+channagiri,CHANNAGIRI,Channagiri,ಚನ್ನಗಿರಿ,DAV,Davanagere,ದಾವಣಗೆರೆ,14.0278,75.925,approximate,
+channapatna,CHANNAPATNA,Channapatna,ಚನ್ನಪಟ್ಟಣ,RAM,Ramanagara,ರಾಮನಗರ,12.6517,77.2089,approximate,
+chikkamagaluru,CHIKKAMAGALURU,Chikkamagaluru,ಚಿಕ್ಕಮಗಳೂರು,CKM,Chikkamagaluru,ಚಿಕ್ಕಮಗಳೂರು,13.3161,75.772,approximate,
+chincholi,CHINCOLI,Chincholi,ಚಿಂಚೋಳಿ,KLB,Kalaburagi,ಕಲಬುರಗಿ,17.4667,77.4167,approximate,Variant spelling of Chincholi
+chintamani,CHINTAMANI,Chintamani,ಚಿಂತಾಮಣಿ,CKB,Chikkaballapura,ಚಿಕ್ಕಬಳ್ಳಾಪುರ,13.4,78.0667,official_apmc,
+chitradurga,CHITRADURGA,Chitradurga,ಚಿತ್ರದುರ್ಗ,CHT,Chitradurga,ಚಿತ್ರದುರ್ಗ,14.23,76.4,official_apmc,
+chittapur,CHITTAPURA,Chittapur,ಚಿತ್ತಾಪುರ,KLB,Kalaburagi,ಕಲಬುರಗಿ,17.1167,77.0833,approximate,
+davanagere,DAVANAGERE,Davanagere,ದಾವಣಗೆರೆ,DAV,Davanagere,ದಾವಣಗೆರೆ,14.4667,75.9167,official_apmc,
+doddaballapur,DODDABALLAPUR,Doddaballapur,ದೊಡ್ಡಬಳ್ಳಾಪುರ,BLR_R,Bengaluru Rural,ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ,13.2925,77.5422,official_apmc,
+indi,ENDI,Indi,ಇಂಡಿ,VIJ,Vijayapura,ವಿಜಯಪುರ,17.1833,75.9667,approximate,Phonetic spelling ENDI for Indi APMC
+gadag,GADAG,Gadag,ಗದಗ,GAD,Gadag,ಗದಗ,15.4167,75.6167,official_apmc,
+gangavathi,GANGAVATI,Gangavathi,ಗಂಗಾವತಿ,KOP,Koppal,ಕೊಪ್ಪಳ,15.4333,76.5333,official_apmc,
+gokak,GOKAK,Gokak,ಗೋಕಾಕ್,BEL,Belagavi,ಬೆಳಗಾವಿ,16.1667,74.8333,approximate,
+gowribidanur,GOWRIBIDNUR,Gowribidanur,ಗೌರಿಬಿದನೂರು,CKB,Chikkaballapura,ಚಿಕ್ಕಬಳ್ಳಾಪುರ,13.6111,77.5194,approximate,
+gundlupet,GUNDLUPET,Gundlupet,ಗುಂಡ್ಲುಪೇಟೆ,CMR,Chamarajanagar,ಚಾಮರಾಜನಗರ,11.8,76.6833,approximate,
+hagaribommanahalli,HAGARI BOMMANA HALLI,Hagaribommanahalli,ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ,VIJ_N,Vijayanagara,ವಿಜಯನಗರ,15.0833,76.2,approximate,
+haliyal,HALIYALA,Haliyal,ಹಳಿಯಾಳ,UK,Uttara Kannada,ಉತ್ತರ ಕನ್ನಡ,15.3333,74.7667,approximate,
+hangal,HANGAL,Hangal,ಹಾನಗಲ್,HAV,Haveri,ಹಾವೇರಿ,14.7667,75.1333,approximate,
+hanur,HANUR,Hanur,ಹನೂರು,CMR,Chamarajanagar,ಚಾಮರಾಜನಗರ,12.0833,77.3,approximate,Hanur APMC Sub-market Yard
+harapanahalli,HARAPANAHALLI,Harapanahalli,ಹರಪನಹಳ್ಳಿ,VIJ_N,Vijayanagara,ವಿಜಯನಗರ,14.8,75.9833,approximate,
+harihar,HARIHARA,Harihar,ಹರಿಹರ,DAV,Davanagere,ದಾವಣಗೆರೆ,14.5167,75.8,approximate,
+hassan,HASSAN,Hassan,ಹಾಸನ,HAS,Hassan,ಹಾಸನ,13.0072,76.0961,official_apmc,
+hirekerur,HIREKERUR,Hirekerur,ಹಿರೇಕೆರೂರು,HAV,Haveri,ಹಾವೇರಿ,14.4667,75.3833,approximate,
+hiriyur,HIRIYUR,Hiriyur,ಹಿರಿಯೂರು,CHT,Chitradurga,ಚಿತ್ರದುರ್ಗ,13.95,76.6167,approximate,
+holalkere,HOLALKERE,Holalkere,ಹೊಳಲ್ಕೆರೆ,CHT,Chitradurga,ಚಿತ್ರದುರ್ಗ,14.0333,76.1833,approximate,
+holenarasipura,HOLENARASIPUR,Holenarasipura,ಹೊಳೆನರಸೀಪುರ,HAS,Hassan,ಹಾಸನ,12.7833,76.2333,approximate,
+honnali,HONNALI,Honnali,ಹೊನ್ನಾಳಿ,DAV,Davanagere,ದಾವಣಗೆರೆ,14.2444,75.6444,approximate,
+honnavar,HONNAVAR,Honnavar,ಹೊನ್ನಾವರ,UK,Uttara Kannada,ಉತ್ತರ ಕನ್ನಡ,14.2833,74.45,approximate,
+hoovina_hadagali,HOOVINAHADAGALI,Hoovina Hadagali,ಹೂವಿನ ಹಡಗಲಿ,VIJ_N,Vijayanagara,ವಿಜಯನಗರ,15.0167,75.9333,approximate,
+hosadurga,HOSADURGA,Hosadurga,ಹೊಸದುರ್ಗ,CHT,Chitradurga,ಚಿತ್ರದುರ್ಗ,13.8,76.2833,approximate,
+hubballi,HUBBALLI,Hubballi,ಹುಬ್ಬಳ್ಳಿ,DWR,Dharwad,ಧಾರವಾಡ,15.3647,75.124,official_apmc,Renamed from Hubli
+hungund,HUNGUND,Hungund,ಹುನಗುಂದ,BAG,Bagalakote,ಬಾಗಲಕೋಟೆ,16.0667,76.05,approximate,
+hunsur,HUNSUR,Hunsur,ಹುಣಸೂರು,MYS,Mysuru,ಮೈಸೂರು,12.3111,76.2917,approximate,
+jagalur,JAGALUR,Jagalur,ಜಗಳೂರು,DAV,Davanagere,ದಾವಣಗೆರೆ,14.5167,76.35,approximate,
+jevargi,JEVARGI,Jevargi,ಜೇವರ್ಗಿ,KLB,Kalaburagi,ಕಲಬುರಗಿ,17.0167,76.7667,approximate,
+krishnarajanagara,K.R.NAGAR,Krishnarajanagara,ಕೃಷ್ಣರಾಜನಗರ,MYS,Mysuru,ಮೈಸೂರು,12.5833,76.3833,approximate,
+krishnarajapet,K.R.PET,Krishnarajapet,ಕೃಷ್ಣರಾಜಪೇಟೆ,MAN,Mandya,ಮಂಡ್ಯ,12.8167,76.4833,approximate,
+kadur,KADUR,Kadur,ಕಡೂರು,CKM,Chikkamagaluru,ಚಿಕ್ಕಮಗಳೂರು,13.55,76.0167,approximate,
+kalaburagi,KALABURAGI,Kalaburagi,ಕಲಬುರಗಿ,KLB,Kalaburagi,ಕಲಬುರಗಿ,17.3297,76.8343,official_apmc,Renamed from Gulbarga
+kalghatgi,KALGHATGI,Kalghatgi,ಕಲಘಟಗಿ,DWR,Dharwad,ಧಾರವಾಡ,15.1833,74.9667,approximate,
+kampli,KAMPLI,Kampli,ಕಂಪ್ಲಿ,BLR_D,Ballari,ಬಳ್ಳಾರಿ,15.4,76.6167,approximate,
+kanakagiri,KANAKAGIRI,Kanakagiri,ಕನಕಗಿರಿ,KOP,Koppal,ಕೊಪ್ಪಳ,15.5667,76.4167,approximate,
+karatagi,KARTAGI,Karatagi,ಕಾರಟಗಿ,KOP,Koppal,ಕೊಪ್ಪಳ,15.5833,76.7167,approximate,
+kolar,KOLAR,Kolar,ಕೋಲಾರ,KOL,Kolar,ಕೋಲಾರ,13.1367,78.1292,official_apmc,
+kollegal,KOLLEGAL,Kollegal,ಕೊಳ್ಳೇಗಾಲ,CMR,Chamarajanagar,ಚಾಮರಾಜನಗರ,12.15,77.1167,approximate,
+koppal,KOPPAL,Koppal,ಕೊಪ್ಪಳ,KOP,Koppal,ಕೊಪ್ಪಳ,15.35,76.15,official_apmc,
+kottur,KOTTUR,Kottur,ಕೊಟ್ಟೂರು,VIJ_N,Vijayanagara,ವಿಜಯನಗರ,14.9333,76.2167,approximate,
+kudligi,KUDLIGI,Kudligi,ಕೂಡ್ಲಿಗಿ,VIJ_N,Vijayanagara,ವಿಜಯನಗರ,14.9,76.3833,approximate,
+kumta,KUMTA,Kumta,ಕುಮಟಾ,UK,Uttara Kannada,ಉತ್ತರ ಕನ್ನಡ,14.4167,74.4,approximate,
+kundapura,KUNDAPUR,Kundapura,ಕುಂದಾಪುರ,UDU,Udupi,ಉಡುಪಿ,13.6333,74.7,approximate,
+kushtagi,KUSTAGI,Kushtagi,ಕುಷ್ಟಗಿ,KOP,Koppal,ಕೊಪ್ಪಳ,15.75,76.2,approximate,
+laxmeshwar,LAXMESHWAR,Laxmeshwar,ಲಕ್ಷ್ಮೇಶ್ವರ,GAD,Gadag,ಗದಗ,15.1333,75.4667,approximate,
+lingasugur,LINGASARGUR,Lingasugur,ಲಿಂಗಸುಗೂರು,RAI,Raichur,ರಾಯಚೂರು,16.0167,76.5167,approximate,
+maddur,MADDUR,Maddur,ಮದ್ದೂರು,MAN,Mandya,ಮಂಡ್ಯ,12.5833,77.05,approximate,
+malavalli,MALAVALLI,Malavalli,ಮಳವಳ್ಳಿ,MAN,Mandya,ಮಂಡ್ಯ,12.3833,77.05,approximate,
+malur,MALUR,Malur,ಮಾಲೂರು,KOL,Kolar,ಕೋಲಾರ,13.0039,77.9392,approximate,
+mandya,MANDYA,Mandya,ಮಂಡ್ಯ,MAN,Mandya,ಮಂಡ್ಯ,12.52,76.9,official_apmc,
+manvi,MANVI,Manvi,ಮಾನ್ವಿ,RAI,Raichur,ರಾಯಚೂರು,15.9833,77.05,approximate,
+mudigere,MUDIGERE,Mudigere,ಮೂಡಿಗೆರೆ,CKM,Chikkamagaluru,ಚಿಕ್ಕಮಗಳೂರು,13.1333,75.6333,approximate,
+mundgod,MUNDAGOD,Mundgod,ಮುಂಡಗೋಡ,UK,Uttara Kannada,ಉತ್ತರ ಕನ್ನಡ,14.9667,75.0333,approximate,
+mysuru,MYSURU,Mysuru,ಮೈಸೂರು,MYS,Mysuru,ಮೈಸೂರು,12.285,76.671,official_apmc,Renamed from Mysore (Bandipalya)
+nagamangala,NAGAMANGALA,Nagamangala,ನಾಗಮಂಗಲ,MAN,Mandya,ಮಂಡ್ಯ,12.8167,76.7667,approximate,
+nandagad,NANDAGAD,Nandagad,ನಂದಗಡ,BEL,Belagavi,ಬೆಳಗಾವಿ,15.55,74.5833,approximate,
+nanjangud,NANJANGUD,Nanjangud,ನಂಜನಗೂಡು,MYS,Mysuru,ಮೈಸೂರು,12.1167,76.6833,official_apmc,
+nargund,NARGUND,Nargund,ನರಗುಂದ,GAD,Gadag,ಗದಗ,15.7167,75.3833,approximate,
+pandavapura,PANDAVAPURA,Pandavapura,ಪಾಂಡವಪುರ,MAN,Mandya,ಮಂಡ್ಯ,12.5,76.6667,approximate,
+piriyapatna,PERIYAPATNA,Piriyapatna,ಪಿರಿಯಾಪಟ್ಟಣ,MYS,Mysuru,ಮೈಸೂರು,12.3333,76.1,approximate,
+puttur,PUTTUR,Puttur,ಪುತ್ತೂರು,DK,Dakshina Kannada,ದಕ್ಷಿಣ ಕನ್ನಡ,12.7667,75.2,approximate,
+raichur,RAICHUR,Raichur,ರಾಯಚೂರು,RAI,Raichur,ರಾಯಚೂರು,16.2,77.3667,official_apmc,
+ramanagara,RAMANAGARA,Ramanagara,ರಾಮನಗರ,RAM,Ramanagara,ರಾಮನಗರ,12.715,77.281,official_apmc,
+ramdurg,RAMDURGA,Ramdurg,ರಾಮದುರ್ಗ,BEL,Belagavi,ಬೆಳಗಾವಿ,15.95,75.3,approximate,
+ranebennur,RANIBENNUR,Ranebennur,ರಾಣೆಬೆನ್ನೂರು,HAV,Haveri,ಹಾವೇರಿ,14.6167,75.6167,official_apmc,
+ron,RONA,Ron,ರೋಣ,GAD,Gadag,ಗದಗ,15.7,75.7333,approximate,
+sakleshpur,SAKLESHPUR,Sakleshpur,ಸಕಲೇಶಪುರ,HAS,Hassan,ಹಾಸನ,12.9667,75.7833,approximate,
+santhesargur,SANTHESARGUR,Santhesargur,ಸಂತೆಸರಗೂರು,HAS,Hassan,ಹಾಸನ,12.75,76.1,approximate,
+saundatti,SAVADATTI,Saundatti,ಸವದತ್ತಿ,BEL,Belagavi,ಬೆಳಗಾವಿ,15.7667,75.1167,approximate,
+savanur,SAVANUR,Savanur,ಸವಣೂರು,HAV,Haveri,ಹಾವೇರಿ,14.9667,75.35,approximate,
+sedam,SEDAM,Sedam,ಸೇಡಂ,KLB,Kalaburagi,ಕಲಬುರಗಿ,17.1833,77.2833,approximate,
+shiggaon,SHIGGAON,Shiggaon,ಶಿಗ್ಗಾಂವ,HAV,Haveri,ಹಾವೇರಿ,14.9833,75.2333,approximate,Shiggaon APMC Yard
+shikaripura,SHIKARIPUR,Shikaripura,ಶಿಕಾರಿಪುರ,SHI,Shivamogga,ಶಿವಮೊಗ್ಗ,14.2667,75.35,approximate,
+shivamogga,SHIVAMOGGA,Shivamogga,ಶಿವಮೊಗ್ಗ,SHI,Shivamogga,ಶಿವಮೊಗ್ಗ,13.9299,75.5681,official_apmc,Renamed from Shimoga
+sindagi,SINDAGI,Sindagi,ಸಿಂದಗಿ,VIJ,Vijayapura,ವಿಜಯಪುರ,16.9167,76.2333,approximate,
+sindhanur,SINDHANUR,Sindhanur,ಸಿಂಧನೂರು,RAI,Raichur,ರಾಯಚೂರು,15.7667,76.7667,official_apmc,
+siruguppa,SIRAGUPPA,Siruguppa,ಸಿರುಗುಪ್ಪ,BLR_D,Ballari,ಬಳ್ಳಾರಿ,15.6333,76.9,approximate,
+sirsi,SIRSI,Sirsi,ಶಿರಸಿ,UK,Uttara Kannada,ಉತ್ತರ ಕನ್ನಡ,14.6195,74.8354,official_apmc,
+soraba,SORABHA,Soraba,ಸೊರಬ,SHI,Shivamogga,ಶಿವಮೊಗ್ಗ,14.3833,75.0833,approximate,
+srinivaspur,SRINIVASPUR,Srinivaspur,ಶ್ರೀನಿವಾಸಪುರ,KOL,Kolar,ಕೋಲಾರ,13.3333,78.2167,approximate,
+sullia,SULYA,Sullia,ಸುಳ್ಯ,DK,Dakshina Kannada,ದಕ್ಷಿಣ ಕನ್ನಡ,12.5667,75.3833,approximate,
+talikoti,TALIKOTE,Talikoti,ತಾಳಿಕೋಟೆ,VIJ,Vijayapura,ವಿಜಯಪುರ,16.4833,76.3167,approximate,
+tiptur,TIPTUR,Tiptur,ತಿಪಟೂರು,TUM,Tumakuru,ತುಮಕೂರು,13.257,76.478,official_apmc,Famous copra/coconut APMC
+thirthahalli,TIRTHAHALLI,Thirthahalli,ತೀರ್ಥಹಳ್ಳಿ,SHI,Shivamogga,ಶಿವಮೊಗ್ಗ,13.7,75.2333,approximate,
+turuvekere,TURUVEKERE,Turuvekere,ತುರುವೇಕೆರೆ,TUM,Tumakuru,ತುಮಕೂರು,13.1611,76.6694,approximate,
+udupi,UDIPI,Udupi,ಉಡುಪಿ,UDU,Udupi,ಉಡುಪಿ,13.3409,74.7421,official_apmc,
+vijayapura,VIJAYAPURA,Vijayapura,ವಿಜಯಪುರ,VIJ,Vijayapura,ವಿಜಯಪುರ,16.8302,75.71,official_apmc,Renamed from Bijapur
+yarahalli,YARAHALLI,Yarahalli,ಯರಹಳ್ಳಿ,MYS,Mysuru,ಮೈಸೂರು,12.3,76.65,approximate,Yarahalli Sub-market Yard

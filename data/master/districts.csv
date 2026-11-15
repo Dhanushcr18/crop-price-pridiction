@@ -1,32 +1,32 @@
-district_code,name_en,name_kn,lat,lon
-BAG,Bagalakote,ಬಾಗಲಕೋಟೆ,16.1875,75.698
-BLR_U,Bengaluru Urban,ಬೆಂಗಳೂರು ನಗರ,12.9716,77.5946
-BLR_R,Bengaluru Rural,ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ,13.2847,77.5684
-BEL,Belagavi,ಬೆಳಗಾವಿ,15.8497,74.4977
-BLY,Ballari,ಬಳ್ಳಾರಿ,15.1394,76.9214
-BID,Bidar,ಬೀದರ್,17.9104,77.5199
-VIJ_B,Vijayapura,ವಿಜಯಪುರ,16.8302,75.71
-CHM_N,Chamarajanagara,ಚಾಮರಾಜನಗರ,11.9261,76.9437
-CKB,Chikkaballapura,ಚಿಕ್ಕಬಳ್ಳಾಪುರ,13.4355,77.7315
-CKM,Chikkamagaluru,ಚಿಕ್ಕಮಗಳೂರು,13.3161,75.772
-CTA,Chitradurga,ಚಿತ್ರದುರ್ಗ,14.2284,76.4024
-DKN,Dakshina Kannada,ದಕ್ಷಿಣ ಕನ್ನಡ,12.8703,75.25
-DVG,Davanagere,ದಾವಣಗೆರೆ,14.4644,75.9218
-DHW,Dharwad,ಧಾರವಾಡ,15.4589,75.0078
-GDG,Gadag,ಗದಗ,15.4298,75.6334
-KLB,Kalaburagi,ಕಲಬುರಗಿ,17.3297,76.8343
-HSN,Hassan,ಹಾಸನ,13.0068,76.1004
-HVR,Haveri,ಹಾವೇರಿ,14.7954,75.402
-KDG,Kodagu,ಕೊಡಗು,12.3375,75.8069
-KLR,Kolar,ಕೋಲಾರ,13.1367,78.134
-KPL,Koppal,ಕೊಪ್ಪಳ,15.3512,76.1554
-MDY,Mandya,ಮಂಡ್ಯ,12.5218,76.8951
-MYS,Mysuru,ಮೈಸೂರು,12.2958,76.6394
-RCH,Raichur,ರಾಯಚೂರು,16.2076,77.3463
-RMN,Ramanagara,ರಾಮನಗರ,12.7209,77.2799
-SHM,Shivamogga,ಶಿವಮೊಗ್ಗ,13.9299,75.5681
-TMK,Tumakuru,ತುಮಕೂರು,13.3392,77.1017
-UDP,Udupi,ಉಡುಪಿ,13.3409,74.7421
-UKN,Uttara Kannada,ಉತ್ತರ ಕನ್ನಡ,14.8185,74.1416
-YDG,Yadgir,ಯಾದಗಿರಿ,16.7644,77.1378
-VJN,Vijayanagara,ವಿಜಯನಗರ,15.2741,76.3862
+district_code,name_en,name_kn,lat,lon,reporting_mandis_count,status
+BAG,Bagalakote,ಬಾಗಲಕೋಟೆ,16.1875,75.698,3,active
+BLR_U,Bengaluru Urban,ಬೆಂಗಳೂರು ನಗರ,12.9716,77.5946,2,active
+BLR_R,Bengaluru Rural,ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ,13.2847,77.5684,1,active
+BLR_D,Ballari,ಬಳ್ಳಾರಿ,15.1394,76.9214,3,active
+BEL,Belagavi,ಬೆಳಗಾವಿ,15.8497,74.4977,5,active
+BID,Bidar,ಬೀದರ್,17.9104,77.5199,2,active
+CMR,Chamarajanagar,ಚಾಮರಾಜನಗರ,11.9261,76.9437,4,active
+CKB,Chikkaballapura,ಚಿಕ್ಕಬಳ್ಳಾಪುರ,13.4325,77.7275,3,active
+CKM,Chikkamagaluru,ಚಿಕ್ಕಮಗಳೂರು,13.3161,75.772,3,active
+CHT,Chitradurga,ಚಿತ್ರದುರ್ಗ,14.23,76.4,5,active
+DK,Dakshina Kannada,ದಕ್ಷಿಣ ಕನ್ನಡ,12.87,74.88,3,active
+DAV,Davanagere,ದಾವಣಗೆರೆ,14.4667,75.9167,5,active
+DWR,Dharwad,ಧಾರವಾಡ,15.4589,75.0078,3,active
+GAD,Gadag,ಗದಗ,15.4167,75.6167,4,active
+HAS,Hassan,ಹಾಸನ,13.0072,76.0961,8,active
+HAV,Haveri,ಹಾವೇರಿ,14.7958,75.3986,6,active
+KLB,Kalaburagi,ಕಲಬುರಗಿ,17.3297,76.8343,5,active
+KOD,Kodagu,ಕೊಡಗು,12.4244,75.7382,0,No market data
+KOL,Kolar,ಕೋಲಾರ,13.1367,78.1292,4,active
+KOP,Koppal,ಕೊಪ್ಪಳ,15.35,76.15,5,active
+MAN,Mandya,ಮಂಡ್ಯ,12.52,76.9,6,active
+MYS,Mysuru,ಮೈಸೂರು,12.2958,76.6394,6,active
+RAI,Raichur,ರಾಯಚೂರು,16.2,77.3667,4,active
+RAM,Ramanagara,ರಾಮನಗರ,12.715,77.281,2,active
+SHI,Shivamogga,ಶಿವಮೊಗ್ಗ,13.9299,75.5681,5,active
+TUM,Tumakuru,ತುಮಕೂರು,13.3409,77.101,2,active
+UDU,Udupi,ಉಡುಪಿ,13.3409,74.7421,2,active
+UK,Uttara Kannada,ಉತ್ತರ ಕನ್ನಡ,14.8136,74.1297,5,active
+VIJ_N,Vijayanagara,ವಿಜಯನಗರ,15.2689,76.3909,5,active
+VIJ,Vijayapura,ವಿಜಯಪುರ,16.8302,75.71,4,active
+YAD,Yadgir,ಯಾದಗಿರಿ,16.7667,77.1333,0,No market data
