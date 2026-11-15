@@ -1,0 +1,186 @@
+# Scope Diagnosis: Hard-Coded Onion & Target Mandis
+
+Generated: 2026-11-16. Audit of hard-coded references to `onion`, `Kolar`, `Chikkaballapur`, and `Bengaluru` across the codebase.
+
+## config.yaml (28 occurrences)
+
+- **config.yaml:1** [onion]: `# Configuration for Farmer Sell Advisor (Onion)`
+- **config.yaml:4** [onion]: `crop: "onion"`
+- **config.yaml:6** [bengaluru]: `- "Bengaluru (Yeshwanthpur)"`
+- **config.yaml:7** [kolar]: `- "Kolar"`
+- **config.yaml:8** [chikkaballapur]: `- "Chikkaballapur"`
+- **config.yaml:23** [onion, bengaluru]: `# We keep variety and grade as distinct separate series and NEVER sum or average arrivals across varieties (e.g. Bengaluru repeats 10,823 arrivals across 3 onion rows).`
+- **config.yaml:37** [onion]: `onion: ["Local", "Onion", "Puna", "Pusa-Red", "Other", "Bangalore Small"]`
+- **config.yaml:45** [bengaluru]: `"Bengaluru (Yeshwanthpur)":`
+- **config.yaml:47** [bengaluru]: `district: "Bengaluru Urban"`
+- **config.yaml:52** [kolar]: `"Kolar":`
+- **config.yaml:54** [kolar]: `district: "Kolar"`
+- **config.yaml:59** [chikkaballapur]: `"Chikkaballapur":`
+- **config.yaml:61** [chikkaballapur]: `district: "Chikkaballapur"`
+- **config.yaml:69** [bengaluru]: `"Bengaluru (Yeshwanthpur)":`
+- **config.yaml:70** [bengaluru]: `"Bengaluru (Yeshwanthpur)": 10.0`
+- **config.yaml:71** [kolar]: `"Kolar": 70.0`
+- **config.yaml:72** [chikkaballapur]: `"Chikkaballapur": 58.0`
+- **config.yaml:73** [kolar]: `"Kolar":`
+- **config.yaml:74** [bengaluru]: `"Bengaluru (Yeshwanthpur)": 70.0`
+- **config.yaml:75** [kolar]: `"Kolar": 8.0`
+- **config.yaml:76** [chikkaballapur]: `"Chikkaballapur": 65.0`
+- **config.yaml:77** [chikkaballapur]: `"Chikkaballapur":`
+- **config.yaml:78** [bengaluru]: `"Bengaluru (Yeshwanthpur)": 58.0`
+- **config.yaml:79** [kolar]: `"Kolar": 65.0`
+- **config.yaml:80** [chikkaballapur]: `"Chikkaballapur": 8.0`
+- **config.yaml:148** [onion]: `official_data_path: "data/raw/official_crop_area/onion_area_production.csv"`
+- **config.yaml:162** [chikkaballapur]: `- "Chikkaballapur"`
+- **config.yaml:163** [kolar]: `- "Kolar"`
+
+## src/ (pipeline, optimizer, advisor) (49 occurrences)
+
+- **src/agent/advisor.py:221** [kolar, chikkaballapur, bengaluru]: `"description": "APMC Mandi name (e.g., 'Bengaluru (Yeshwanthpur)', 'Kolar', 'Chikkaballapur')"`
+- **src/agent/advisor.py:240** [kolar]: `"description": "Farmer's home mandi location (e.g., 'Kolar')"`
+- **src/agent/advisor.py:244** [onion]: `"description": "Total onion quantity to sell in quintals"`
+- **src/agent/advisor.py:412** [kolar]: `farmer_location: str = "Kolar",`
+- **src/agent/advisor.py:437** [onion, kolar, chikkaballapur, bengaluru]: `"You help smallholder onion farmers in Karnataka (Kolar, Chikkaballapur, Bengaluru APMC) decide "`
+- **src/agent/advisor.py:466** [kolar]: `res = tool_get_forecast(t_input.get("mandi", "Kolar"), t_input.get("horizon_days", 7))`
+- **src/agent/advisor.py:521** [kolar]: `print(synthesize_advice_multilingual("Kolar", 50.0, "open", has_trader_debt=True, language="en"))`
+- **src/agent/advisor.py:523** [kolar]: `print(synthesize_advice_multilingual("Kolar", 50.0, "warehouse", has_trader_debt=False, language="hi"))`
+- **src/agent/advisor.py:525** [chikkaballapur]: `print(synthesize_advice_multilingual("Chikkaballapur", 60.0, "warehouse", has_trader_debt=False, language="kn"))`
+- **src/data/area_repository.py:26** [onion]: `"official_data_path", "data/raw/official_crop_area/onion_area_production.csv"`
+- **src/data/area_repository.py:250** [onion]: `"""Load official NHB/DES onion statistics with provenance check."""`
+- **src/data/pipeline.py:24** [bengaluru]: `if any(k in raw_lower for k in ["yeshwanthpur", "bengaluru", "bangalore", "binny"]):`
+- **src/data/pipeline.py:25** [bengaluru]: `return "Bengaluru (Yeshwanthpur)"`
+- **src/data/pipeline.py:26** [chikkaballapur]: `elif "chikkaballapur" in raw_lower or "chickballapur" in raw_lower:`
+- **src/data/pipeline.py:27** [chikkaballapur]: `return "Chikkaballapur"`
+- **src/data/pipeline.py:28** [kolar]: `elif "kolar" in raw_lower:`
+- **src/data/pipeline.py:29** [kolar]: `return "Kolar"`
+- **src/data/pipeline.py:73** [onion]: `# Filter for onion if commodity column exists`
+- **src/data/pipeline.py:75** [onion]: `temp_df = temp_df[temp_df[comm_col].astype(str).str.contains("onion", case=False, na=False)]`
+- **src/data/pipeline.py:82** [onion]: `logger.info(f"No onion records matching target mandis in {f}.")`
+- **src/data/pipeline.py:205** [bengaluru]: `if "Bengaluru" in mandi:`
+- **src/data/pipeline.py:207** [kolar]: `elif "Kolar" in mandi:`
+- **src/decision/when_to_sell.py:54** [onion]: `Simulates expected financial gains and downside risks of holding onions for k days.`
+- **src/decision/where_to_sell.py:81** [bengaluru]: `"Bengaluru (Yeshwanthpur)": {"p10": 3400.0, "p50": 3950.0, "p90": 4300.0},`
+- **src/decision/where_to_sell.py:82** [kolar]: `"Kolar": {"p10": 3200.0, "p50": 3750.0, "p90": 4100.0},`
+- **src/decision/where_to_sell.py:83** [chikkaballapur]: `"Chikkaballapur": {"p10": 3150.0, "p50": 3700.0, "p90": 4050.0}`
+- **src/decision/where_to_sell.py:158** [bengaluru]: `"Bengaluru (Yeshwanthpur)": {"p10": 3450.0, "p50": 4050.0, "p90": 4450.0},`
+- **src/decision/where_to_sell.py:159** [kolar]: `"Kolar": {"p10": 3200.0, "p50": 3720.0, "p90": 4100.0},`
+- **src/decision/where_to_sell.py:160** [chikkaballapur]: `"Chikkaballapur": {"p10": 3150.0, "p50": 3680.0, "p90": 4050.0}`
+- **src/decision/where_to_sell.py:163** [kolar]: `farmer_location="Kolar",`
+- **src/decision/where_to_sell.py:167** [kolar]: `print("=== TOP MANDIS FOR KOLAR FARMER (50 Quintals) ===")`
+- **src/evaluation/evaluate.py:56** [kolar, chikkaballapur]: `for farmer_loc in ["Kolar", "Chikkaballapur"]:`
+- **src/evaluation/evaluate.py:213** [bengaluru]: `"- **Farmer Sell Advisor**: Farmer executes the system's optimal mandi routing (e.g., Bengaluru Yeshwanthpur vs local) "`
+- **src/ingest/validate.py:19** [onion]: `"onion": (200.0, 15000.0),`
+- **src/ingest/validate.py:66** [onion]: `"onion": (150.0, 15000.0),`
+- **src/ingest/validate.py:67** [onion]: `"onion_green": (150.0, 15000.0),`
+- **src/ingest/connectors/open_meteo.py:30** [kolar, chikkaballapur, bengaluru]: `# Representative APMC centroids in Karnataka (Bengaluru, Kolar, Chikkaballapur)`
+- **src/ingest/connectors/open_meteo.py:32** [bengaluru]: `("Bengaluru (Yeshwanthpur)", 13.0285, 77.5450),`
+- **src/ingest/connectors/open_meteo.py:33** [kolar]: `("Kolar", 13.1367, 78.1340),`
+- **src/ingest/connectors/open_meteo.py:34** [chikkaballapur]: `("Chikkaballapur", 13.4355, 77.7315)`
+- **src/ingest/connectors/open_meteo.py:75** [bengaluru]: `mandi_name = (payload.metadata or {}).get("mandi", "Bengaluru (Yeshwanthpur)")`
+- **src/ingest/connectors/ppac_diesel.py:21** [bengaluru]: `content = b"date,state,city,fuel_type,retail_price_rs_per_liter\n2026-11-01,Karnataka,Bengaluru,Diesel,88.94\n2026-11-08,Karnataka,Bengaluru,Diesel,88.94\n"`
+- **src/ingest/connectors/user_download.py:143** [onion]: `def import_file(self, file_path: str, default_crop: str = "onion") -> Dict[str, Any]:`
+- **src/ingest/connectors/user_download.py:307** [onion]: `def import_directory(self, directory: Optional[str] = None, default_crop: str = "onion") -> Dict[str, Any]:`
+- **src/models/forecast.py:413** [bengaluru]: `beng = sample_30[sample_30["mandi"] == "Bengaluru (Yeshwanthpur)"].tail(45).copy()`
+- **src/models/forecast.py:446** [onion, bengaluru]: `title="30-Day Ahead Onion Modal Price Forecast vs Actual (Bengaluru APMC)",`
+- **src/models/forecast.py:536** [bengaluru]: `lines.append("## 6. Sample 30-Day Ahead Out-of-Sample Predictions (Bengaluru APMC)\n")`
+- **src/models/forecast.py:539** [bengaluru]: `beng_sample = sample_30[sample_30["mandi"] == "Bengaluru (Yeshwanthpur)"].tail(10)`
+- **src/models/forecast_area_experiment.py:239** [onion]: `> Incorporating official state-level onion area and production features ('forecast_with_area') resulted in marginal error changes without statistically significant accuracy gains over the existing model.`
+
+## backend/ (API, loaders, routers) (17 occurrences)
+
+- **backend/main.py:162** [kolar]: `def get_forecast(mandi: str = Query("Kolar", description="Name of the APMC mandi")):`
+- **backend/models_loader.py:126** [kolar]: `loc_key = user_location or "Kolar"`
+- **backend/models_loader.py:154** [onion]: `# Find latest spot price for mandi and specified crop (default onion)`
+- **backend/models_loader.py:158** [onion]: `crop_clean = "onion"`
+- **backend/models_loader.py:168** [onion, bengaluru]: `# If multiple varieties exist (like Bengaluru Onion), apply headline rule:`
+- **backend/models_loader.py:184** [onion]: `"crop": "onion",`
+- **backend/models_loader.py:200** [onion]: `"crop": "onion",`
+- **backend/models_loader.py:263** [onion]: `"crop": "onion",`
+- **backend/models_loader.py:523** [onion]: `"crop": "onion",`
+- **backend/models_loader.py:550** [onion]: `"crop": "onion",`
+- **backend/models_loader.py:713** [onion]: `"The model relies on APMC modal summaries and does not differentiate between onion grades (e.g. flower vs bold bulb).",`
+- **backend/models_loader.py:775** [kolar]: `forecast_30 = self.get_forecast_for_mandi("Kolar")`
+- **backend/models_loader.py:829** [onion]: `else "Low confidence: District-level official bulb onion data is not available for this district. Outlook relies on Karnataka state-level aggregates."`
+- **backend/models_loader.py:834** [onion]: `f"State onion area is {abs(pct_diff):.1f}% {direction_word} the 5-year average. "`
+- **backend/schemas.py:44** [onion]: `crop: str = "onion"`
+- **backend/schemas.py:57** [kolar, chikkaballapur, bengaluru]: `farmer_location: str = Field(..., description="e.g., 'Kolar', 'Chikkaballapur', 'Bengaluru (Yeshwanthpur)'")`
+- **backend/schemas.py:208** [onion]: `acres: float = Field(..., description="Reported onion acreage")`
+
+## frontend/src/ (pickers, components, pages) (46 occurrences)
+
+- **frontend/src/app/layout.tsx:7** [onion]: `"Honest market price decision intelligence for Karnataka smallholder onion farmers. Advises WHERE and WHEN to sell.",`
+- **frontend/src/app/page.tsx:22** [onion]: `OnionIcon,`
+- **frontend/src/app/page.tsx:68** [onion]: `const [crop, setCrop] = useState<string>("onion");`
+- **frontend/src/app/page.tsx:69** [chikkaballapur]: `const [farmerLocation, setFarmerLocation] = useState<string>("Chikkaballapur");`
+- **frontend/src/app/page.tsx:191** [onion]: `setCrop("onion");`
+- **frontend/src/app/page.tsx:192** [chikkaballapur]: `setFarmerLocation("Chikkaballapur");`
+- **frontend/src/app/page.tsx:234** [onion]: `crop: "Onion",`
+- **frontend/src/app/page.tsx:278** [kolar]: `if (text.includes("kolar") || text.includes("ಕೋಲಾರ") || text.includes("कोलार")) {`
+- **frontend/src/app/page.tsx:279** [kolar]: `setFarmerLocation("Kolar");`
+- **frontend/src/app/page.tsx:281** [bengaluru]: `text.includes("bengaluru") ||`
+- **frontend/src/app/page.tsx:287** [bengaluru]: `setFarmerLocation("Bengaluru (Yeshwanthpur)");`
+- **frontend/src/app/page.tsx:289** [chikkaballapur]: `setFarmerLocation("Chikkaballapur");`
+- **frontend/src/app/page.tsx:312** [kolar, bengaluru]: `: 'At Kolar APMC, the modal price today is ₹2,600 per quintal. At Bengaluru Yeshwanthpur, it is ₹2,820. After logistics, net realization is higher.';`
+- **frontend/src/app/page.tsx:339** [onion]: `'Crop: Onion\n' +`
+- **frontend/src/app/page.tsx:398** [onion]: `<OnionIcon size={48} />`
+- **frontend/src/app/page.tsx:485** [onion]: `<OnionIcon size={18} />`
+- **frontend/src/app/page.tsx:540** [kolar]: `<span>Kolar Modal: ₹2,600 / Qtl</span>`
+- **frontend/src/app/page.tsx:592** [onion]: `selected={crop === "onion"}`
+- **frontend/src/app/page.tsx:593** [onion]: `title={t.cropOnion}`
+- **frontend/src/app/page.tsx:594** [onion]: `subtitle={t.cropOnionSub}`
+- **frontend/src/app/page.tsx:595** [onion]: `icon={<OnionIcon size={28} />}`
+- **frontend/src/app/page.tsx:596** [onion]: `onClick={() => setCrop("onion")}`
+- **frontend/src/app/page.tsx:631** [chikkaballapur]: `{ id: "Chikkaballapur", label: t.mandiChikkaballapur, dist: "0 km" },`
+- **frontend/src/app/page.tsx:632** [kolar]: `{ id: "Kolar", label: t.mandiKolar, dist: "65 km" },`
+- **frontend/src/app/page.tsx:633** [bengaluru]: `{ id: "Bengaluru (Yeshwanthpur)", label: t.mandiYeshwanthpur, dist: "58 km" },`
+- **frontend/src/app/page.tsx:805** [onion]: `<OnionIcon size={18} /> {t.cropOnion}`
+- **frontend/src/app/page.tsx:1074** [bengaluru]: `{whereData?.ranked_mandis?.find(m => m.mandi.includes("Bengaluru"))?.gross_price_p50`
+- **frontend/src/app/page.tsx:1075** [bengaluru]: `? '₹${whereData.ranked_mandis.find(m => m.mandi.includes("Bengaluru"))?.gross_price_p50} • 58 km'`
+- **frontend/src/app/page.tsx:1198** [kolar, chikkaballapur, bengaluru]: `Checking Kolar, Bengaluru Yeshwanthpur, and Chikkaballapur APMCs...`
+- **frontend/src/app/page.tsx:1223** [onion]: `<OnionIcon size={16} /> {t.cropOnion}`
+- **frontend/src/components/CropAreaView.tsx:41** [onion]: `import { OnionIcon } from "./ui/Icons";`
+- **frontend/src/components/CropAreaView.tsx:70** [chikkaballapur]: `"Chikkaballapur",`
+- **frontend/src/components/CropAreaView.tsx:71** [kolar]: `"Kolar",`
+- **frontend/src/components/CropAreaView.tsx:254** [onion]: `'${district} ${season} onion area outlook';`
+- **frontend/src/components/CropAreaView.tsx:292** [onion]: `link.setAttribute("download", 'fpo_onion_area_${district}_${season}.csv');`
+- **frontend/src/components/CropAreaView.tsx:419** [onion]: `<OnionIcon size={16} />`
+- **frontend/src/components/CropAreaView.tsx:742** [onion]: `{/* Step 3: Onion Acreage Grown Field + Stepper + Quick Chips */}`
+- **frontend/src/components/CropAreaView.tsx:953** [onion]: `{/* Stylized Karnataka SVG Map with Onion Producing Belts */}`
+- **frontend/src/components/CropAreaView.tsx:956** [onion]: `<span>Karnataka Onion Producing Belts</span>`
+- **frontend/src/components/CropAreaView.tsx:1174** [onion]: `? 'Karnataka onion area this season: ${(`
+- **frontend/src/components/CropAreaView.tsx:1878** [onion]: `Medium Onion`
+- **frontend/src/components/Header.tsx:7** [onion]: `import { OnionIcon } from "./ui/Icons";`
+- **frontend/src/components/Header.tsx:68** [onion]: `<OnionIcon size={24} />`
+- **frontend/src/components/ui/Icons.tsx:76** [onion]: `/** Onion Commodity Icon */`
+- **frontend/src/components/ui/Icons.tsx:77** [onion]: `export const OnionIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (`
+- **frontend/src/components/ui/Icons.tsx:86** [onion]: `{/* Onion Stem / Shoot */}`
+
+## frontend/src/i18n/ (translations) (28 occurrences)
+
+- **frontend/src/i18n/translations.ts:50** [onion]: `cropOnion: string;`
+- **frontend/src/i18n/translations.ts:51** [onion]: `cropOnionSub: string;`
+- **frontend/src/i18n/translations.ts:63** [kolar]: `mandiKolar: string;`
+- **frontend/src/i18n/translations.ts:64** [chikkaballapur]: `mandiChikkaballapur: string;`
+- **frontend/src/i18n/translations.ts:393** [onion]: `cropOnion: "ಈರುಳ್ಳಿ",`
+- **frontend/src/i18n/translations.ts:394** [onion]: `cropOnionSub: "ರಬಿ ಮತ್ತು ಮುಂಗಾರು ಬೆಳೆ (ಸಕ್ರಿಯ ಮಾರುಕಟ್ಟೆ)",`
+- **frontend/src/i18n/translations.ts:405** [kolar]: `mandiKolar: "ಕೋಲಾರ ಮಂಡಿ",`
+- **frontend/src/i18n/translations.ts:406** [chikkaballapur]: `mandiChikkaballapur: "ಚಿಕ್ಕಬಳ್ಳಾಪುರ ಮಂಡಿ",`
+- **frontend/src/i18n/translations.ts:719** [onion]: `cropOnion: "प्याज",`
+- **frontend/src/i18n/translations.ts:720** [onion]: `cropOnionSub: "रबी और खरीफ फसल (सक्रिय मंडी)",`
+- **frontend/src/i18n/translations.ts:731** [kolar]: `mandiKolar: "कोलार मंडी",`
+- **frontend/src/i18n/translations.ts:732** [chikkaballapur]: `mandiChikkaballapur: "चिक्काबल्लापुर मंडी",`
+- **frontend/src/i18n/translations.ts:1005** [onion]: `appTagline: "Decision intelligence for Karnataka smallholder onion farmers",`
+- **frontend/src/i18n/translations.ts:1019** [onion]: `welcomeTitle: "Where and when to sell your onions",`
+- **frontend/src/i18n/translations.ts:1044** [onion]: `cropOnion: "Onion",`
+- **frontend/src/i18n/translations.ts:1045** [onion]: `cropOnionSub: "Rabi & Kharif crop (active APMC volume)",`
+- **frontend/src/i18n/translations.ts:1056** [kolar]: `mandiKolar: "Kolar Mandi",`
+- **frontend/src/i18n/translations.ts:1057** [chikkaballapur]: `mandiChikkaballapur: "Chikkaballapur Mandi",`
+- **frontend/src/i18n/translations.ts:1058** [bengaluru]: `mandiYeshwanthpur: "Bengaluru Yeshwanthpur Mandi",`
+- **frontend/src/i18n/translations.ts:1139** [onion]: `storageNearbySubtitle: "Facilities to protect your onions from rotting",`
+- **frontend/src/i18n/translations.ts:1184** [onion]: `step1Text: "1. Tell us your mandi, onion quantity, and storage.",`
+- **frontend/src/i18n/translations.ts:1185** [kolar, chikkaballapur]: `step2Text: "2. We compare net realized prices at Kolar, Yeshwanthpur, and Chikkaballapur.",`
+- **frontend/src/i18n/translations.ts:1216** [onion]: `areaOutlookSubtitle: "Official onion acreage, farmer reports, and supply-linked price outlook",`
+- **frontend/src/i18n/translations.ts:1221** [onion]: `stepAcresTitle: "Enter your onion cultivated area",`
+- **frontend/src/i18n/translations.ts:1227** [onion]: `stateAreaHeadline: "Karnataka onion area this season:",`
+- **frontend/src/i18n/translations.ts:1237** [onion]: `districtNotTrackedDisclaimer: "Official commercial bulb onion data is not available for this district. Falling back to Karnataka state statistics.",`
+- **frontend/src/i18n/translations.ts:1242** [onion]: `historyChartHeading: "5-Year Onion Area History",`
+- **frontend/src/i18n/translations.ts:1283** [onion]: `pillar3Desc: "Kharif onion nursery transplantation to harvest is modelled as 90 to 105 days with 12.5% normal post-harvest shrinkage.",`
