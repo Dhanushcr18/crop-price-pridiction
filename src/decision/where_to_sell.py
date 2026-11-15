@@ -1,7 +1,10 @@
 """Where-to-sell optimizer: ranks nearby mandis by net realized return accounting for transport, fees, and shrinkage."""
 
+import math
+import os
 import yaml
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Tuple
+import pandas as pd
 import numpy as np
 
 
@@ -9,6 +12,41 @@ def load_config(config_path: str = "config.yaml") -> dict:
     """Load configuration parameters."""
     with open(config_path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
+
+
+def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Computes great-circle distance between two geocodes using the Haversine formula.
+    Strictly symmetric: haversine_km(a, b) == haversine_km(b, a).
+    """
+    R = 6371.0  # Earth radius in kilometers
+    phi1, phi2 = math.radians(lat1), math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dlambda = math.radians(lon2 - lon1)
+
+    a = math.sin(dphi / 2.0) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2.0) ** 2
+    c = 2.0 * math.atan2(math.sqrt(a), math.sqrt(1.0 - a))
+    return round(R * c, 2)
+
+
+def get_road_distance_km(
+    origin_lat: float, origin_lon: float,
+    dest_lat: float, dest_lon: float,
+    config: Optional[dict] = None
+) -> Tuple[float, str]:
+    """Returns road distance between coordinates.
+    Uses Haversine distance multiplied by road_factor Assumption (default 1.25),
+    overridden by road_distance_override file if present.
+    """
+    if config is None:
+        config = load_config()
+
+    dist_model = config.get("distance_model", {})
+    road_factor = dist_model.get("road_factor", 1.25)
+    source_tag = dist_model.get("assumption_label", "ASSUMPTION: Haversine distance multiplied by 1.25 road-factor.")
+
+    crow_flies = haversine_km(origin_lat, origin_lon, dest_lat, dest_lon)
+    road_dist = round(crow_flies * road_factor, 1)
+    return road_dist, source_tag
 
 
 def compute_mandi_net_price(
@@ -31,7 +69,7 @@ def compute_mandi_net_price(
             "net_price": None
         }
 
-    c = config["costs"]
+    c = config.get("costs", {})
     rate_km_qtl = c.get("transport_rate_per_km_quintal", 3.5)
     min_base = c.get("min_trip_freight_base", 300.0)
     mandi_fee_pct = c.get("mandi_user_fee_pct", 0.015)
@@ -43,7 +81,6 @@ def compute_mandi_net_price(
     if distance_km <= 0:
         transport_cost = 0.0
     else:
-        # Distance variable freight + fixed base trip charge divided by quantity
         fixed_per_qtl = min_base / max(quantity_quintals, 1.0)
         transport_cost = (distance_km * rate_km_qtl) + fixed_per_qtl
 
@@ -66,108 +103,169 @@ def compute_mandi_net_price(
     }
 
 
-def rank_mandis_for_sale(
-    farmer_location: str,
+def evaluate_where_to_sell_all_mandis(
+    crop: str,
+    farmer_lat: float,
+    farmer_lon: float,
     quantity_quintals: float,
-    forecast_prices: Dict[str, Dict[str, float]],
+    radius_km: float = 100.0,
     config_path: str = "config.yaml"
-) -> List[Dict]:
-    """
-    Ranks all candidate mandis by expected net price (P50) and downside net price (P10).
-    Calculates gain over farmer's local mandi in Rs/quintal and total Rs for farmer's lot.
-
-    forecast_prices format:
-    {
-        "Bengaluru (Yeshwanthpur)": {"p10": 3400.0, "p50": 3950.0, "p90": 4300.0},
-        "Kolar": {"p10": 3200.0, "p50": 3750.0, "p90": 4100.0},
-        "Chikkaballapur": {"p10": 3150.0, "p50": 3700.0, "p90": 4050.0}
-    }
+) -> Dict[str, Any]:
+    """Evaluates ALL Karnataka mandis in radius reporting the given crop.
+    
+    Rules:
+    - Excludes non-quintal crops.
+    - Excludes Tier C mandis (mandis with no recent report or 0 data).
+    - Ranks by reported modal price minus transport and statutory fees (Assumption).
+    - Displays net price range based on reported min and max prices.
+    - Labeled 'based on the latest reported prices, not a forecast'.
+    - Reports excluded mandi count and reasons.
     """
     config = load_config(config_path)
-    distance_matrix = config.get("distance_matrix_km", {})
 
-    # Normalize location lookup
-    loc_key = farmer_location
-    if loc_key not in distance_matrix:
-        for k in distance_matrix:
-            if loc_key.lower() in k.lower():
-                loc_key = k
-                break
+    # Load master mandis and panel
+    master_mandis_path = config.get("paths", {}).get("master_mandis", "data/master/mandis.csv")
+    panel_path = config.get("paths", {}).get("processed_panel", "data/processed/panel.parquet")
+    crops_path = config.get("paths", {}).get("master_crops", "data/master/crops.csv")
 
-    local_distances = distance_matrix.get(loc_key, {})
+    df_mandis = pd.read_csv(master_mandis_path)
+    df_panel = pd.read_parquet(panel_path)
+    df_crops = pd.read_csv(crops_path)
 
-    results = []
-    local_net_p50 = None
-    local_net_p10 = None
+    # Validate crop and unit
+    crop_clean = crop.lower().strip()
+    crop_match = df_crops[df_crops["name_en"].str.lower() == crop_clean]
+    if crop_match.empty:
+        # Try slug
+        crop_match = df_crops[df_crops["crop_id"] == crop_clean]
 
-    # First pass: evaluate each mandi
-    for mandi, prices in forecast_prices.items():
-        dist = local_distances.get(mandi, 25.0)
-        p10_res = compute_mandi_net_price(prices["p10"], dist, quantity_quintals, config)
-        p50_res = compute_mandi_net_price(prices["p50"], dist, quantity_quintals, config)
-        p90_res = compute_mandi_net_price(prices["p90"], dist, quantity_quintals, config)
-
-        is_local = (mandi == loc_key) or (dist <= 10.0)
-
-        res_item = {
-            "mandi": mandi,
-            "distance_km": dist,
-            "is_local": is_local,
-            "forecast_p10": prices["p10"],
-            "forecast_p50": prices["p50"],
-            "forecast_p90": prices["p90"],
-            "transport_cost_per_qtl": p50_res["transport_cost"],
-            "fees_and_commission_per_qtl": p50_res["fees_and_commission"],
-            "shrinkage_loss_per_qtl": p50_res["transit_shrinkage"],
-            "net_price_p50": p50_res["net_price"],
-            "net_price_p10": p10_res["net_price"],
-            "net_price_p90": p90_res["net_price"],
+    if crop_match.empty:
+        return {
+            "status": "error",
+            "message": f"Crop '{crop}' not found in master catalog.",
+            "crop": crop,
+            "results": [],
+            "excluded_count": 0,
+            "disclaimer": "based on the latest reported prices, not a forecast"
         }
-        results.append(res_item)
 
-        if is_local and local_net_p50 is None:
-            local_net_p50 = p50_res["net_price"]
-            local_net_p10 = p10_res["net_price"]
+    crop_name = crop_match["name_en"].values[0]
+    unit = crop_match["unit"].values[0]
 
-    # Fallback if local not identified or local has no price
-    valid_results = [r for r in results if r["net_price_p50"] is not None]
-    if not valid_results:
-        return []
+    # Non-quintal crops are excluded from quintal net-price math
+    if unit != "Quintal":
+        return {
+            "status": "non_quintal_excluded",
+            "message": f"Commodity '{crop_name}' is traded in '{unit}', not Quintals. Excluded from quintal-based freight/net price optimization.",
+            "crop": crop_name,
+            "unit": unit,
+            "results": [],
+            "excluded_count": len(df_mandis),
+            "disclaimer": "based on the latest reported prices, not a forecast"
+        }
 
-    if local_net_p50 is None:
-        local_net_p50 = min(r["net_price_p50"] for r in valid_results)
-        local_net_p10 = min(r["net_price_p10"] for r in valid_results)
+    # Filter panel for crop (KSAMB clean rows)
+    panel_crop = df_panel[
+        (df_panel["crop"].str.lower() == crop_name.lower()) &
+        (df_panel["raw_file"].str.contains("Crop_price_of_all_mandies_of_karnataka", na=False))
+    ].copy()
 
-    # Second pass: compute gain over local mandi and rank
-    for item in valid_results:
-        gain_per_qtl = round(item["net_price_p50"] - local_net_p50, 2)
-        gain_p10_per_qtl = round(item["net_price_p10"] - local_net_p10, 2)
-        total_gain = round(gain_per_qtl * quantity_quintals, 2)
+    # Calculate distance to every master mandi
+    candidates = []
+    excluded_mandis_no_report = 0
+    excluded_mandis_out_of_radius = 0
 
-        item["gain_over_local_per_qtl"] = gain_per_qtl
-        item["gain_p10_over_local_per_qtl"] = gain_p10_per_qtl
-        item["total_gain_rs"] = total_gain
+    # Build lookup of mandi latest prices applying headline rule
+    # In multi-grade markets, select highest arrivals row
+    mandi_latest_prices = {}
+    for mandi_name, group in panel_crop.groupby("mandi"):
+        best_row = group.sort_values(by="arrivals", ascending=False).iloc[0]
+        mandi_latest_prices[mandi_name.upper()] = {
+            "min_price": float(best_row["min_price"]),
+            "modal_price": float(best_row["modal_price"]),
+            "max_price": float(best_row["max_price"]),
+            "arrivals": float(best_row["arrivals"]),
+            "variety": str(best_row.get("variety", "Standard")),
+            "grade": str(best_row.get("grade", "FAQ")),
+            "date": str(best_row["date"])[:10],
+            "source": str(best_row.get("data_provenance", "real"))
+        }
 
-    # Rank descending by expected net price (P50)
-    ranked = sorted(valid_results, key=lambda x: x["net_price_p50"], reverse=True)
-    return ranked[:3]
+    for _, m_row in df_mandis.iterrows():
+        m_name = m_row["name_en"]
+        raw_m = m_row["raw_market_name"].upper()
+        m_lat = float(m_row["lat"])
+        m_lon = float(m_row["lon"])
 
+        # Check distance
+        dist_km, dist_source = get_road_distance_km(farmer_lat, farmer_lon, m_lat, m_lon, config)
 
-if __name__ == "__main__":
-    sample_forecast = {
-        "Bengaluru (Yeshwanthpur)": {"p10": 3450.0, "p50": 4050.0, "p90": 4450.0},
-        "Kolar": {"p10": 3200.0, "p50": 3720.0, "p90": 4100.0},
-        "Chikkaballapur": {"p10": 3150.0, "p50": 3680.0, "p90": 4050.0}
+        if dist_km > radius_km:
+            excluded_mandis_out_of_radius += 1
+            continue
+
+        # Check if mandi reported prices for this crop
+        price_info = mandi_latest_prices.get(raw_m)
+        if not price_info:
+            # Also try matching canonical name
+            for k, v in mandi_latest_prices.items():
+                if k in m_name.upper() or m_name.upper() in k:
+                    price_info = v
+                    break
+
+        if not price_info:
+            excluded_mandis_no_report += 1
+            continue
+
+        # Compute net prices for modal, min, and max
+        net_modal_calc = compute_mandi_net_price(price_info["modal_price"], dist_km, quantity_quintals, config)
+        net_min_calc = compute_mandi_net_price(price_info["min_price"], dist_km, quantity_quintals, config)
+        net_max_calc = compute_mandi_net_price(price_info["max_price"], dist_km, quantity_quintals, config)
+
+        candidates.append({
+            "mandi": m_name,
+            "raw_mandi": raw_m,
+            "district": m_row["district_en"],
+            "distance_km": dist_km,
+            "is_local": dist_km <= 15.0,
+            "reported_date": price_info["date"],
+            "variety": price_info["variety"],
+            "grade": price_info["grade"],
+            "arrivals_quintal": price_info["arrivals"],
+            "reported_min_price": price_info["min_price"],
+            "reported_modal_price": price_info["modal_price"],
+            "reported_max_price": price_info["max_price"],
+            "transport_cost_per_qtl": net_modal_calc["transport_cost"],
+            "fees_and_commission_per_qtl": net_modal_calc["fees_and_commission"],
+            "transit_shrinkage_per_qtl": net_modal_calc["transit_shrinkage"],
+            "net_price_modal": net_modal_calc["net_price"],
+            "net_price_min": net_min_calc["net_price"],
+            "net_price_max": net_max_calc["net_price"],
+            "net_price_range": f"Rs {net_min_calc['net_price']:,.0f} - {net_max_calc['net_price']:,.0f}"
+        })
+
+    # Sort descending by net_price_modal
+    ranked = sorted(candidates, key=lambda x: x["net_price_modal"], reverse=True)
+
+    # Compute gain over local if a local mandi exists
+    local_mandi = next((m for m in ranked if m["is_local"]), None)
+    local_net = local_mandi["net_price_modal"] if local_mandi else (ranked[-1]["net_price_modal"] if ranked else 0)
+
+    for item in ranked:
+        gain = round(item["net_price_modal"] - local_net, 2)
+        item["gain_over_local_per_qtl"] = gain
+        item["total_gain_rs"] = round(gain * quantity_quintals, 2)
+
+    return {
+        "status": "success",
+        "crop": crop_name,
+        "quantity_quintals": quantity_quintals,
+        "radius_km": radius_km,
+        "results": ranked,
+        "reporting_mandis_in_range": len(ranked),
+        "excluded_mandis_no_report": excluded_mandis_no_report,
+        "excluded_mandis_out_of_radius": excluded_mandis_out_of_radius,
+        "excluded_notice": f"{excluded_mandis_no_report} mandis nearby have no recent report for {crop_name}.",
+        "disclaimer": "based on the latest reported prices, not a forecast",
+        "assumption_label": "ASSUMPTION: Net price deduction accounts for freight (Rs 3.5/qtl/km * 1.25 road-factor), 3.5% statutory fees/commission, and 0.25%/100km shrinkage."
     }
-    top_mandis = rank_mandis_for_sale(
-        farmer_location="Kolar",
-        quantity_quintals=50.0,
-        forecast_prices=sample_forecast
-    )
-    print("=== TOP MANDIS FOR KOLAR FARMER (50 Quintals) ===")
-    for idx, m in enumerate(top_mandis, 1):
-        print(f"Rank {idx}: {m['mandi']}")
-        print(f"  Distance: {m['distance_km']} km | Transport: Rs {m['transport_cost_per_qtl']}/qtl")
-        print(f"  Expected Net Price: Rs {m['net_price_p50']}/qtl | Downside (P10): Rs {m['net_price_p10']}/qtl")
-        print(f"  Gain over Local Mandi: Rs {m['gain_over_local_per_qtl']}/qtl (Total: Rs {m['total_gain_rs']:,})")
-

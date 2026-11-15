@@ -30,7 +30,13 @@ from backend.schemas import (
     AreaReportRequest,
     AreaReportResponse,
     AreaSummaryResponse,
-    SupplyPriceOutlookResponse
+    SupplyPriceOutlookResponse,
+    CropInfo,
+    DistrictInfo,
+    MandiItem,
+    TodayPriceResponse,
+    WhereToSellSpatialRequest,
+    CoverageSummaryResponse
 )
 from backend.models_loader import AdvisorService
 
@@ -151,36 +157,83 @@ def get_health():
     return service.get_health_status()
 
 
-@app.get("/api/mandis", response_model=List[MandiInfo], tags=["Market Data"])
-def get_mandis(user_location: Optional[str] = Query(None, description="Optional user location for distance calculation")):
-    """List of candidate Karnataka mandis with coordinates, APMC tier, and road distances."""
+@app.get("/api/crops", response_model=List[CropInfo], tags=["Master Data"])
+def get_crops():
+    """Returns all 102 monitored crops in Karnataka with categories, units, and translations."""
     service = AdvisorService.get_instance()
-    return service.get_mandis(user_location)
+    return service.get_crops()
 
 
-@app.get("/api/forecast", response_model=ForecastResponse, tags=["Forecasting"])
-def get_forecast(mandi: str = Query("Kolar", description="Name of the APMC mandi")):
-    """P10/P50/P90 price forecast across 7, 14, and 30 days for a specific mandi."""
+@app.get("/api/districts", response_model=List[DistrictInfo], tags=["Master Data"])
+def get_districts():
+    """Returns all 31 Karnataka districts with market counts and active status."""
     service = AdvisorService.get_instance()
-    # Normalize mandi check
-    mandis_cfg = service.config.get("mandis", {})
-    match = None
-    for name in mandis_cfg:
-        if mandi.lower() in name.lower() or name.lower() in mandi.lower():
-            match = name
-            break
-    target_mandi = match or mandi
-    return service.get_forecast_for_mandi(target_mandi)
+    return service.get_districts()
 
 
-@app.post("/api/where-to-sell", response_model=WhereToSellResponse, tags=["Decision Support"])
-def post_where_to_sell(body: WhereToSellRequest):
-    """Ranks nearby mandis by net price deducting transport freight, statutory fees, and transit shrinkage."""
+@app.get("/api/mandis", response_model=List[MandiItem], tags=["Market Data"])
+def get_mandis(
+    district: Optional[str] = Query(None, description="Optional district code or name filter"),
+    crop: Optional[str] = Query(None, description="Optional crop filter"),
+    lat: Optional[float] = Query(None, description="Optional farmer latitude"),
+    lon: Optional[float] = Query(None, description="Optional farmer longitude")
+):
+    """List of all 115 Karnataka mandis with coordinates, APMC tier, last reported date, and road distances."""
+    service = AdvisorService.get_instance()
+    return service.get_mandis(district=district, crop=crop, lat=lat, lon=lon)
+
+
+@app.get("/api/today-price", response_model=TodayPriceResponse, tags=["Market Data"])
+def get_today_price(
+    crop: str = Query(..., description="Crop name e.g. 'Onion', 'Tomato'"),
+    mandi: str = Query(..., description="Mandi name e.g. 'BENGALURU', 'Kolar'")
+):
+    """Latest reported price for crop and mandi. Returns 'Data under review' for quarantined markets, 'Not available' for unrecorded."""
+    service = AdvisorService.get_instance()
+    return service.get_today_price(crop=crop, mandi=mandi)
+
+
+@app.get("/api/prices/compare", tags=["Market Data"])
+def get_prices_compare(
+    crop: str = Query(..., description="Crop name"),
+    district: Optional[str] = Query(None, description="Filter by district"),
+    radius_km: Optional[float] = Query(None, description="Radius filter in km"),
+    lat: Optional[float] = Query(None, description="Farmer latitude"),
+    lon: Optional[float] = Query(None, description="Farmer longitude")
+):
+    """Compare reported prices for a single crop across all reporting mandis in district or radius."""
+    service = AdvisorService.get_instance()
+    return service.compare_prices(crop=crop, district=district, radius_km=radius_km, lat=lat, lon=lon)
+
+
+@app.get("/api/coverage", response_model=CoverageSummaryResponse, tags=["Master Data"])
+def get_coverage():
+    """Returns aggregate coverage counts across crops, districts, and tiers with freshness status."""
+    service = AdvisorService.get_instance()
+    return service.get_coverage_summary()
+
+
+@app.get("/api/forecast", tags=["Forecasting"])
+def get_forecast(
+    mandi: str = Query(..., description="Name of the APMC mandi"),
+    crop: str = Query("Onion", description="Crop name")
+):
+    """P10/P50/P90 price forecast across 7, 14, and 30 days. Tier A only (strictly disabled while Tier A count is 0)."""
+    service = AdvisorService.get_instance()
+    return service.get_forecast(crop=crop, mandi=mandi)
+
+
+@app.post("/api/where-to-sell", tags=["Decision Support"])
+def post_where_to_sell(body: WhereToSellSpatialRequest):
+    """Ranks ALL nearby mandis in range by net price deducting transport freight, statutory fees, and transit shrinkage."""
     service = AdvisorService.get_instance()
     return service.evaluate_where_to_sell(
+        crop=body.crop,
         farmer_location=body.farmer_location,
+        lat=body.lat,
+        lon=body.lon,
         quantity_quintals=body.quantity_quintals,
-        horizon_days=body.horizon_days
+        radius_km=body.radius_km
     )
 
 

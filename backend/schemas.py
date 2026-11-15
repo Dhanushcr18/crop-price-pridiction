@@ -297,3 +297,108 @@ class SupplyPriceOutlookResponse(BaseModel):
     synthetic_banner: Optional[str] = None
 
 
+# ---------------------------------------------------------------------------
+# All-Crop & All-Mandi Dynamic Schemas
+# ---------------------------------------------------------------------------
+
+class CropInfo(BaseModel):
+    crop_id: str
+    name_en: str
+    name_kn: str
+    name_hi: str
+    category: str
+    unit: str
+    perishability_class: str
+    variety_count: int
+    grade_count: int
+    reporting_mandis_count: int
+    total_records: int
+
+
+class DistrictInfo(BaseModel):
+    district_code: str
+    name_en: str
+    name_kn: str
+    lat: float
+    lon: float
+    reporting_mandis_count: int
+    status: str
+
+
+class MandiItem(BaseModel):
+    mandi_id: str
+    raw_market_name: str
+    name_en: str
+    name_kn: str
+    district_code: str
+    district_en: str
+    district_kn: str
+    lat: float
+    lon: float
+    coord_source: str
+    tier: str
+    last_reported_date: Optional[str] = None
+    is_stale: bool = True
+    all_quarantined: bool = False
+    distance_km: Optional[float] = None
+
+
+class GradePriceDetail(BaseModel):
+    variety: str
+    grade: str
+    unit: str
+    min_price: float
+    modal_price: float
+    max_price: float
+    arrivals: float
+
+
+class HeadlinePrice(BaseModel):
+    min_price: float
+    modal_price: float
+    max_price: float
+    arrivals: float
+    unit: str
+    variety: str
+    grade: str
+    date: str
+    source: str
+    is_stale: bool
+    stale_notice: str
+    headline_selection_rule: str
+
+
+class TodayPriceResponse(BaseModel):
+    status: str
+    available: bool
+    crop: str
+    mandi: str
+    message: str
+    headline_price: Optional[HeadlinePrice] = None
+    all_grades: List[GradePriceDetail] = []
+    notice: Optional[str] = None
+    is_stale: bool = True
+    date: Optional[str] = None
+    source: Optional[str] = None
+
+
+class WhereToSellSpatialRequest(BaseModel):
+    crop: str = "Onion"
+    farmer_location: Optional[str] = None
+    lat: Optional[float] = None
+    lon: Optional[float] = None
+    quantity_quintals: float = 30.0
+    radius_km: float = 100.0
+
+
+class CoverageSummaryResponse(BaseModel):
+    total_crops: int
+    total_districts: int
+    total_mandis: int
+    total_pairs: int
+    tier_counts: Dict[str, int]
+    freshness: Dict[str, Any]
+    quarantined_mandis: List[str]
+
+
+
