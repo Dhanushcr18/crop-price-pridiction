@@ -27,3 +27,7 @@ out/
 Thumbs.db
 .vscode/
 .idea/
+
+# Local JDK
+frontend/oracleJdk-27/
+
