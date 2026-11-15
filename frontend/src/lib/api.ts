@@ -9,7 +9,14 @@ import {
   AreaReportRequest,
   AreaReportResponse,
   AreaSummaryResponse,
-  SupplyPriceOutlookResponse
+  SupplyPriceOutlookResponse,
+  CropInfo,
+  DistrictInfo,
+  MandiDetailItem,
+  TodayPriceResponse,
+  PriceComparisonItem,
+  WhereToSellSpatialResponse,
+  CoverageSummaryResponse
 } from "../types/api";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -50,10 +57,11 @@ export async function getMandis(userLocation?: string): Promise<MandiInfo[]> {
   return fetchWithCache<MandiInfo[]>(`${API_BASE}/api/mandis${query}`, `mandis_${userLocation || "all"}`);
 }
 
-export async function getForecast(mandi: string): Promise<ForecastResponse> {
+export async function getForecast(mandi: string, crop?: string): Promise<ForecastResponse> {
+  const cropParam = crop ? `&crop=${encodeURIComponent(crop)}` : "";
   return fetchWithCache<ForecastResponse>(
-    `${API_BASE}/api/forecast?mandi=${encodeURIComponent(mandi)}`,
-    `forecast_${mandi}`
+    `${API_BASE}/api/forecast?mandi=${encodeURIComponent(mandi)}${cropParam}`,
+    `forecast_${mandi}_${crop || "all"}`
   );
 }
 
@@ -175,3 +183,91 @@ export async function getOfficerReview(
   }
   return res.json();
 }
+
+// ---------------------------------------------------------------------------
+// All-Crop & All-Mandi Dynamic Endpoints
+// ---------------------------------------------------------------------------
+
+export async function getCrops(): Promise<CropInfo[]> {
+  return fetchWithCache<CropInfo[]>(`${API_BASE}/api/crops`, "all_crops");
+}
+
+export async function getDistricts(): Promise<DistrictInfo[]> {
+  return fetchWithCache<DistrictInfo[]>(`${API_BASE}/api/districts`, "all_districts");
+}
+
+export async function getMandisFiltered(params?: {
+  district?: string;
+  crop?: string;
+  lat?: number;
+  lon?: number;
+}): Promise<MandiDetailItem[]> {
+  const searchParams = new URLSearchParams();
+  if (params?.district) searchParams.set("district", params.district);
+  if (params?.crop) searchParams.set("crop", params.crop);
+  if (params?.lat !== undefined) searchParams.set("lat", params.lat.toString());
+  if (params?.lon !== undefined) searchParams.set("lon", params.lon.toString());
+  const qs = searchParams.toString();
+  return fetchWithCache<MandiDetailItem[]>(
+    `${API_BASE}/api/mandis${qs ? `?${qs}` : ""}`,
+    `mandis_filtered_${qs}`
+  );
+}
+
+export async function getTodayPrice(crop: string, mandi: string): Promise<TodayPriceResponse> {
+  return fetchWithCache<TodayPriceResponse>(
+    `${API_BASE}/api/today-price?crop=${encodeURIComponent(crop)}&mandi=${encodeURIComponent(mandi)}`,
+    `today_price_${crop}_${mandi}`
+  );
+}
+
+export async function getPricesCompare(params: {
+  crop: string;
+  district?: string;
+  radiusKm?: number;
+  lat?: number;
+  lon?: number;
+}): Promise<PriceComparisonItem[]> {
+  const searchParams = new URLSearchParams();
+  searchParams.set("crop", params.crop);
+  if (params.district) searchParams.set("district", params.district);
+  if (params.radiusKm) searchParams.set("radius_km", params.radiusKm.toString());
+  if (params.lat !== undefined) searchParams.set("lat", params.lat.toString());
+  if (params.lon !== undefined) searchParams.set("lon", params.lon.toString());
+  const qs = searchParams.toString();
+  return fetchWithCache<PriceComparisonItem[]>(
+    `${API_BASE}/api/prices/compare?${qs}`,
+    `compare_${qs}`
+  );
+}
+
+export async function postWhereToSellSpatial(params: {
+  crop: string;
+  farmerLocation?: string;
+  lat?: number;
+  lon?: number;
+  quantityQuintals?: number;
+  radiusKm?: number;
+}): Promise<WhereToSellSpatialResponse> {
+  return fetchWithCache<WhereToSellSpatialResponse>(
+    `${API_BASE}/api/where-to-sell`,
+    `spatial_where_${params.crop}_${params.farmerLocation}_${params.radiusKm}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        crop: params.crop,
+        farmer_location: params.farmerLocation,
+        lat: params.lat,
+        lon: params.lon,
+        quantity_quintals: params.quantityQuintals || 30.0,
+        radius_km: params.radiusKm || 100.0
+      })
+    }
+  );
+}
+
+export async function getCoverageSummary(): Promise<CoverageSummaryResponse> {
+  return fetchWithCache<CoverageSummaryResponse>(`${API_BASE}/api/coverage`, "coverage_summary");
+}
+

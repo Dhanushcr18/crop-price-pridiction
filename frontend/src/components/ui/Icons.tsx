@@ -212,3 +212,183 @@ export const FarmerIcon: React.FC<IconProps> = ({ size = 24, className = "", ...
     <path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2" />
   </svg>
 );
+
+/** Cereals & Grains Icon */
+export const CerealIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <path d="M12 2v20" />
+    <path d="M12 4c2 0 4 2 4 4s-2 4-4 4" />
+    <path d="M12 4c-2 0-4 2-4 4s2 4 4 4" />
+    <path d="M12 10c2.5 0 4.5 1.5 4.5 3.5S14.5 17 12 17" />
+    <path d="M12 10c-2.5 0-4.5 1.5-4.5 3.5S9.5 17 12 17" />
+  </svg>
+);
+
+/** Pulses & Pods Icon */
+export const PulseIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <ellipse cx="8" cy="12" rx="3" ry="5" />
+    <ellipse cx="16" cy="12" rx="3" ry="5" />
+    <path d="M4 12c0-5 3.5-9 8-9s8 4 8 9-3.5 9-8 9-8-4-8-9z" />
+  </svg>
+);
+
+/** Vegetable Icon */
+export const VegetableIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <path d="M6 18c0-6 4-11 6-15 2 4 6 9 6 15a6 6 0 0 1-12 0z" />
+    <path d="M10 6l-3-3" />
+    <path d="M14 6l3-3" />
+  </svg>
+);
+
+/** Fruit Icon */
+export const FruitIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <path d="M12 20.5C6.5 20.5 4 16 4 12c0-4.5 3.5-7 8-7s8 2.5 8 7c0 4-2.5 8.5-8 8.5z" />
+    <path d="M12 5V2" />
+    <path d="M12 3c2-1 4 0 5 1" />
+  </svg>
+);
+
+/** Spice Icon */
+export const SpiceIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <path d="M18 3c-3 1-5 4-6 7-2 5-6 8-9 9 2-4 5-8 7-10 3-4 6-6 8-6z" />
+    <path d="M18 3l3-1" />
+  </svg>
+);
+
+/** Oilseed Icon */
+export const OilseedIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" />
+  </svg>
+);
+
+/** Plantation & Tree Crop Icon */
+export const PlantationIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <path d="M12 22V10" />
+    <path d="M12 10C8 6 4 8 2 10c2-4 6-6 10-6s8 2 10 6c-2-2-6-4-10 0z" />
+    <path d="M12 14c-4-2-7-1-9 0 2-3 5-4 9-2" />
+    <path d="M12 14c4-2 7-1 9 0-2-3-5-4-9-2" />
+  </svg>
+);
+
+/** Neutral Fallback Commodity Icon */
+export const NeutralCropIcon: React.FC<IconProps> = ({ size = 24, className = "", ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <path d="M12 2a9 9 0 0 0-9 9c0 4.97 4.03 9 9 9s9-4.03 9-9a9 9 0 0 0-9-9z" />
+    <path d="M12 6v12" />
+    <path d="M8 10c2-1 4-1 4 2" />
+    <path d="M16 14c-2 1-4 1-4-2" />
+  </svg>
+);
+
+export function getCropIconComponent(cropName: string, category: string): React.FC<IconProps> {
+  const norm = (cropName || "").toLowerCase();
+  if (norm.includes("onion")) return OnionIcon;
+  if (norm.includes("potato") && !norm.includes("sweet")) return PotatoIcon;
+  if (norm.includes("tomato")) return TomatoIcon;
+
+  const cat = (category || "").toLowerCase();
+  if (cat === "cereal") return CerealIcon;
+  if (cat === "pulse") return PulseIcon;
+  if (cat === "vegetable") return VegetableIcon;
+  if (cat === "fruit") return FruitIcon;
+  if (cat === "spice") return SpiceIcon;
+  if (cat === "oilseed") return OilseedIcon;
+  if (cat === "plantation") return PlantationIcon;
+
+  return NeutralCropIcon;
+}

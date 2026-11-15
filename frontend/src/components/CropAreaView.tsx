@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Sprout,
   Volume2,
@@ -24,8 +24,6 @@ import {
   ThumbsUp,
   ThumbsDown,
   Mic,
-  Sun,
-  Moon,
   UserPlus,
   Sliders,
   Edit3,
@@ -36,7 +34,6 @@ import {
   Scale,
   CheckCircle,
   AlertTriangle,
-  RotateCcw,
 } from "lucide-react";
 import { OnionIcon } from "./ui/Icons";
 import {
@@ -83,7 +80,6 @@ export const CropAreaView: React.FC<CropAreaViewProps> = ({
   language,
   onLanguageChange,
   onBackToAdvisor,
-  isStandalone = false,
 }) => {
   const t = translations[language];
 

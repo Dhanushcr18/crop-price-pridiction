@@ -18,11 +18,12 @@ import { Skeleton } from "../components/ui/Skeleton";
 import { ReadAloudButton } from "../components/ui/ReadAloudButton";
 import { ShareButton } from "../components/ui/ShareButton";
 import { CropAreaView } from "../components/CropAreaView";
+import { CropPicker } from "../components/CropPicker";
+import { MandiPicker } from "../components/MandiPicker";
+import { ReportedPriceCard } from "../components/ReportedPriceCard";
+import { KarnatakaMap } from "../components/KarnatakaMap";
 import {
   OnionIcon,
-  PotatoIcon,
-  TomatoIcon,
-  MandiIcon,
   FarmerIcon,
   CropIcon,
 } from "../components/ui/Icons";
@@ -35,6 +36,12 @@ import {
   AdviceResponse,
   HistoryRecord,
   TextSize,
+  CropInfo,
+  DistrictInfo,
+  MandiDetailItem,
+  TodayPriceResponse,
+  WhereToSellSpatialResponse,
+  CoverageSummaryResponse,
 } from "../types/api";
 import { translations } from "../i18n/translations";
 import {
@@ -43,6 +50,12 @@ import {
   getWhereToSell,
   getWhenToSell,
   getAdvice,
+  getCrops,
+  getDistricts,
+  getMandisFiltered,
+  getTodayPrice,
+  postWhereToSellSpatial,
+  getCoverageSummary,
 } from "../lib/api";
 import { formatCurrency, formatPercent } from "../lib/formatter";
 
@@ -64,9 +77,17 @@ export default function HomePage() {
   const totalSteps = 6;
   const [activeMode, setActiveMode] = useState<"advisor" | "crop_area">("advisor");
 
-  // Form Inputs
-  const [crop, setCrop] = useState<string>("onion");
-  const [farmerLocation, setFarmerLocation] = useState<string>("Chikkaballapur");
+  // Dynamic Master Data
+  const [crops, setCrops] = useState<CropInfo[]>([]);
+  const [districts, setDistricts] = useState<DistrictInfo[]>([]);
+  const [mandis, setMandis] = useState<MandiDetailItem[]>([]);
+  const [previewPrice, setPreviewPrice] = useState<TodayPriceResponse | null>(null);
+  const [spatialWhereData, setSpatialWhereData] = useState<WhereToSellSpatialResponse | null>(null);
+  const [coverageSummary, setCoverageSummary] = useState<CoverageSummaryResponse | null>(null);
+
+  // Form Inputs (dynamic default from data)
+  const [crop, setCrop] = useState<string>("");
+  const [farmerLocation, setFarmerLocation] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(30);
   const [storageType, setStorageType] = useState<string>("warehouse");
   const [hasTraderDebt, setHasTraderDebt] = useState<boolean>(false);
@@ -91,7 +112,7 @@ export default function HomePage() {
   // Voice Search Listening State
   const [isListeningMic, setIsListeningMic] = useState<boolean>(false);
 
-  // Initialize preferences on mount
+  // Initialize preferences and master data on mount
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedLang = localStorage.getItem("fsa_lang") as Language;
@@ -120,7 +141,42 @@ export default function HomePage() {
     getHealth()
       .then((h) => setHealth(h))
       .catch((err) => console.warn("Health check error:", err));
+
+    // Load master crops, districts, and mandis dynamically
+    Promise.all([
+      getCrops(),
+      getDistricts(),
+      getMandisFiltered(),
+      getCoverageSummary()
+    ]).then(([cropsRes, distsRes, mandisRes, covRes]) => {
+      setCrops(cropsRes);
+      setDistricts(distsRes);
+      setMandis(mandisRes);
+      setCoverageSummary(covRes);
+
+      // Default crop: first crop in list, preferably one with active reports
+      if (cropsRes.length > 0) {
+        const defaultCrop = cropsRes.find((c) => (c.reporting_mandis_count || c.reporting_markets_count || 0) > 0) || cropsRes[0];
+        setCrop(defaultCrop.name || defaultCrop.name_en || defaultCrop.crop_id);
+      }
+      // Default mandi: first reporting mandi in list
+      if (mandisRes.length > 0) {
+        const defaultMandi = mandisRes.find((m) => m.tier === "Tier B" && !m.all_quarantined && !m.is_quarantined) || mandisRes[0];
+        setFarmerLocation(defaultMandi.name || defaultMandi.name_en || defaultMandi.mandi_id || "");
+      }
+    }).catch((err) => {
+      console.warn("Failed to load master data:", err);
+    });
   }, []);
+
+  // Update preview price whenever crop or location changes
+  useEffect(() => {
+    if (crop && farmerLocation) {
+      getTodayPrice(crop, farmerLocation)
+        .then((p) => setPreviewPrice(p))
+        .catch((err) => console.warn("Preview price error:", err));
+    }
+  }, [crop, farmerLocation]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -188,8 +244,18 @@ export default function HomePage() {
 
   const handleNewFarmerSession = () => {
     setQuantity(30);
-    setCrop("onion");
-    setFarmerLocation("Chikkaballapur");
+    if (crops.length > 0) {
+      const defaultCrop =
+        crops.find((c) => (c.reporting_mandis_count || c.reporting_markets_count || 0) > 0) ||
+        crops[0];
+      setCrop(defaultCrop.name || defaultCrop.name_en || defaultCrop.crop_id);
+    }
+    if (mandis.length > 0) {
+      const defaultMandi =
+        mandis.find((m) => m.tier === "Tier B" && !m.all_quarantined && !m.is_quarantined) ||
+        mandis[0];
+      setFarmerLocation(defaultMandi.name || defaultMandi.name_en || defaultMandi.mandi_id || "");
+    }
     setStorageType("warehouse");
     setHasTraderDebt(false);
     setDebtChoice("no");
@@ -199,6 +265,7 @@ export default function HomePage() {
     setWhereData(null);
     setWhenData(null);
     setForecastData(null);
+    setSpatialWhereData(null);
     setIsSettingsOpen(false);
     showToast(t.startNewFarmerBtn);
   };
@@ -209,13 +276,26 @@ export default function HomePage() {
     try {
       const debtParam = debtChoice === "yes";
 
-      const [adviceRes, forecastRes, whereRes, whenRes] = await Promise.all([
-        getAdvice(farmerLocation, quantity, storageType, debtParam, language),
-        getForecast(farmerLocation),
-        getWhereToSell(farmerLocation, quantity, 7),
-        getWhenToSell(farmerLocation, quantity, storageType, debtParam),
+      const [todayPriceRes, spatialRes, adviceRes, forecastRes, whereRes, whenRes] = await Promise.all([
+        getTodayPrice(crop, farmerLocation).catch(() => null),
+        postWhereToSellSpatial({
+          crop: crop,
+          farmerLocation: farmerLocation,
+          quantityQuintals: quantity,
+          radiusKm: 150
+        }).catch(() => null),
+        getAdvice(farmerLocation, quantity, storageType, debtParam, language).catch(() => null),
+        getForecast(farmerLocation, crop).catch(() => null),
+        getWhereToSell(farmerLocation, quantity, 7).catch(() => null),
+        getWhenToSell(farmerLocation, quantity, storageType, debtParam).catch(() => null),
       ]);
 
+      if (todayPriceRes) {
+        setPreviewPrice(todayPriceRes);
+      }
+      if (spatialRes) {
+        setSpatialWhereData(spatialRes);
+      }
       setAdviceData(adviceRes);
       setForecastData(forecastRes);
       setWhereData(whereRes);
@@ -231,17 +311,16 @@ export default function HomePage() {
           const newRecord: HistoryRecord = {
             id: `rec_${Date.now()}`,
             timestamp: new Date().toISOString(),
-            crop: "Onion",
+            crop: crop || "Crop",
             mandi: farmerLocation,
             quantity: quantity,
             storage: storageType,
             hasTraderDebt: debtParam,
-            recommendation: adviceRes.summary_sentence,
-            recommendedMandi: adviceRes.recommended_mandi,
-            priceRange: adviceRes.p10_p90_range,
+            recommendation: adviceRes?.summary_sentence || `Reported price: ₹${todayPriceRes?.headline_price?.modal_price || 0}`,
+            recommendedMandi: farmerLocation,
+            priceRange: todayPriceRes?.headline_price ? `₹${todayPriceRes.headline_price.min_price} - ₹${todayPriceRes.headline_price.max_price}` : "Spot Only",
           };
           historyList.unshift(newRecord);
-          // Keep top 20
           localStorage.setItem("fsa_history", JSON.stringify(historyList.slice(0, 20)));
         } catch {
           // ignore storage error
@@ -274,19 +353,20 @@ export default function HomePage() {
         language === "kn" ? "kn-IN" : language === "hi" ? "hi-IN" : "en-IN";
       recognition.onstart = () => setIsListeningMic(true);
       recognition.onresult = (event: any) => {
-        const text = event.results[0][0].transcript.toLowerCase();
-        if (text.includes("kolar") || text.includes("ಕೋಲಾರ") || text.includes("कोलार")) {
-          setFarmerLocation("Kolar");
-        } else if (
-          text.includes("bengaluru") ||
-          text.includes("bangalore") ||
-          text.includes("yeshwanthpur") ||
-          text.includes("ಯಶವಂತಪುರ") ||
-          text.includes("यशवंतपुर")
-        ) {
-          setFarmerLocation("Bengaluru (Yeshwanthpur)");
-        } else {
-          setFarmerLocation("Chikkaballapur");
+        const text = (event.results[0][0].transcript || "").toLowerCase();
+        // Dynamically find matching mandi from loaded master data
+        const matchedMandi = mandis.find((m) => {
+          const mName = m.name || m.name_en || "";
+          const mKn = m.kannada_name || m.name_kn || "";
+          const mDist = m.district || m.district_en || "";
+          return (
+            (mName && text.includes(mName.toLowerCase())) ||
+            (mKn && text.includes(mKn.toLowerCase())) ||
+            (mDist && text.includes(mDist.toLowerCase()))
+          );
+        });
+        if (matchedMandi) {
+          setFarmerLocation(matchedMandi.name || matchedMandi.name_en || "");
         }
         setIsListeningMic(false);
       };
@@ -296,25 +376,6 @@ export default function HomePage() {
     } catch {
       setIsListeningMic(false);
     }
-  };
-
-  const handleVoiceGuidancePreview = () => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
-      showToast("Speech synthesis not supported on this browser.");
-      return;
-    }
-    window.speechSynthesis.cancel();
-    const text =
-      language === "kn"
-        ? `ಕೋಲಾರ ಮಂಡಿಯಲ್ಲಿ ಇಂದಿನ ಮಾದರಿ ಬೆಲೆ ಕ್ವಿಂಟಾಲ್‌ಗೆ ₹2,600. ಬೆಂಗಳೂರು ಯಶವಂತಪುರದಲ್ಲಿ ₹2,820. ನೀವು 30 ಕ್ವಿಂಟಾಲ್‌ಗೆ ಸಾರಿಗೆಯ ನಂತರ ಹೆಚ್ಚಿನ ನಿವ್ವಳ ಲಾಭ ಪಡೆಯಬಹುದು.`
-        : language === "hi"
-        ? `कोलार मंडी में आज का मॉडल भाव ₹2,600 प्रति क्विंटल है। यशवंतपुर में ₹2,820 है। ढुलाई खर्च के बाद भी आपको अतिरिक्त लाभ मिल सकता है।`
-        : `At Kolar APMC, the modal price today is ₹2,600 per quintal. At Bengaluru Yeshwanthpur, it is ₹2,820. After logistics, net realization is higher.`;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = language === "kn" ? "kn-IN" : language === "hi" ? "hi-IN" : "en-IN";
-    utterance.rate = 0.9;
-    window.speechSynthesis.speak(utterance);
-    showToast(t.playAudio);
   };
 
   const handleShareWhatsApp = () => {
@@ -336,7 +397,7 @@ export default function HomePage() {
       `=======================================================\n` +
       `${t.appName.toUpperCase()} - SUMMARY REPORT\n` +
       `=======================================================\n` +
-      `Crop: Onion\n` +
+      `Crop: ${crop || "Crop"}\n` +
       `Location: ${farmerLocation}\n` +
       `Quantity: ${quantity} Quintals (${quantity * 2} Bags)\n` +
       `Storage: ${storageType}\n` +
@@ -537,7 +598,11 @@ export default function HomePage() {
               <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end flex-wrap">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface-low dark:bg-surface-low-dark border border-divider/60 text-xs font-bold text-ink-muted">
                   <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-                  <span>Kolar Modal: ₹2,600 / Qtl</span>
+                  <span>
+                    {previewPrice?.headline_price
+                      ? `${farmerLocation} (${previewPrice.headline_price.variety}): ₹${previewPrice.headline_price.modal_price} / ${previewPrice.headline_price.unit}`
+                      : `${farmerLocation || "Mandi"}: ${previewPrice?.status || "Live APMC"}`}
+                  </span>
                 </div>
                 <button
                   type="button"
@@ -587,29 +652,12 @@ export default function HomePage() {
                       </p>
                     </div>
 
-                    <div className="space-y-3 pt-1">
-                      <SelectCard
-                        selected={crop === "onion"}
-                        title={t.cropOnion}
-                        subtitle={t.cropOnionSub}
-                        icon={<OnionIcon size={28} />}
-                        onClick={() => setCrop("onion")}
-                      />
-                      <SelectCard
-                        disabled
-                        title={t.cropPotato}
-                        badge={t.comingSoon}
-                        badgeColor="neutral"
-                        icon={<PotatoIcon size={28} />}
-                      />
-                      <SelectCard
-                        disabled
-                        title={t.cropTomato}
-                        badge={t.comingSoon}
-                        badgeColor="neutral"
-                        icon={<TomatoIcon size={28} />}
-                      />
-                    </div>
+                    <CropPicker
+                      crops={crops}
+                      selectedCrop={crop}
+                      onSelectCrop={(c) => setCrop(c)}
+                      language={language}
+                    />
                   </section>
                 )}
 
@@ -625,38 +673,27 @@ export default function HomePage() {
                       </p>
                     </div>
 
-                    <div className="space-y-3 pt-1">
-                      <div className="space-y-2">
-                        {[
-                          { id: "Chikkaballapur", label: t.mandiChikkaballapur, dist: "0 km" },
-                          { id: "Kolar", label: t.mandiKolar, dist: "65 km" },
-                          { id: "Bengaluru (Yeshwanthpur)", label: t.mandiYeshwanthpur, dist: "58 km" },
-                        ].map((loc) => (
-                          <SelectCard
-                            key={loc.id}
-                            selected={farmerLocation === loc.id}
-                            title={loc.label}
-                            subtitle={loc.dist}
-                            icon={<MandiIcon size={26} className="text-primary" />}
-                            onClick={() => setFarmerLocation(loc.id)}
-                          />
-                        ))}
-                      </div>
+                    <MandiPicker
+                      districts={districts}
+                      mandis={mandis}
+                      selectedMandi={farmerLocation}
+                      onSelectMandi={(m) => setFarmerLocation(m)}
+                      language={language}
+                    />
 
-                      <div className="pt-2">
-                        <Button
-                          variant="voice"
-                          size="touch"
-                          isListening={isListeningMic}
-                          onClick={handleVoiceSearch}
-                          type="button"
-                        >
-                          <span className="material-symbols-outlined text-[24px] mr-2">
-                            mic
-                          </span>
-                          <span>{isListeningMic ? t.listening : t.speakVillage}</span>
-                        </Button>
-                      </div>
+                    <div className="pt-2">
+                      <Button
+                        variant="voice"
+                        size="touch"
+                        isListening={isListeningMic}
+                        onClick={handleVoiceSearch}
+                        type="button"
+                      >
+                        <span className="material-symbols-outlined text-[24px] mr-2">
+                          mic
+                        </span>
+                        <span>{isListeningMic ? t.listening : t.speakVillage}</span>
+                      </Button>
                     </div>
                   </section>
                 )}
@@ -802,7 +839,7 @@ export default function HomePage() {
                             {t.reviewCropLabel}
                           </span>
                           <span className="font-bold text-ink dark:text-ink-dark flex items-center gap-1.5">
-                            <OnionIcon size={18} /> {t.cropOnion}
+                            <CropIcon size={18} /> {crop || "Crop"}
                           </span>
                         </div>
                         <button
@@ -939,246 +976,21 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: 7 COLS (Live Mandi Preview, Spatial Map & Fuel Calculator) */}
+              {/* RIGHT COLUMN: 7 COLS (Reported Spot Price & Karnataka Tier Map) */}
               <div className="lg:col-span-7 flex flex-col gap-6">
-                {/* 1. Live Context KPI Grid */}
-                <div className="bg-white dark:bg-surface-dark border border-divider dark:border-divider-dark rounded-3xl p-5 sm:p-6 shadow-card space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-divider/60 dark:border-divider-dark">
-                    <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full bg-primary animate-ping" />
-                      <h3 className="font-extrabold text-base sm:text-lg text-ink dark:text-ink-dark">
-                        {farmerLocation} {t.liveMandiMapTitle}
-                      </h3>
-                    </div>
-                    <span className="text-xs font-bold text-ink-muted dark:text-ink-muted-dark">
-                      11:30 AM Sync
-                    </span>
-                  </div>
+                <ReportedPriceCard
+                  priceData={previewPrice}
+                  crop={crop}
+                  mandi={farmerLocation}
+                  language={language}
+                />
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div className="p-4 rounded-2xl bg-surface-low dark:bg-surface-low-dark border border-divider/60">
-                      <span className="text-xs text-ink-muted dark:text-ink-muted-dark font-medium block">
-                        {t.liveModalPrice}
-                      </span>
-                      <div className="flex items-baseline gap-1 my-1">
-                        <span className="text-2xl font-black text-primary dark:text-primary-dark tabular-nums">
-                          ₹2,600
-                        </span>
-                        <span className="text-xs text-ink-muted">/ qtl</span>
-                      </div>
-                      <span className="text-xs font-bold text-primary flex items-center gap-1">
-                        ▲ +₹150 vs yesterday
-                      </span>
-                    </div>
-
-                    <div className="p-4 rounded-2xl bg-surface-low dark:bg-surface-low-dark border border-divider/60">
-                      <span className="text-xs text-ink-muted dark:text-ink-muted-dark font-medium block">
-                        {t.todayArrivals}
-                      </span>
-                      <div className="flex items-baseline gap-1 my-1">
-                        <span className="text-2xl font-black text-ink dark:text-ink-dark tabular-nums">
-                          480
-                        </span>
-                        <span className="text-xs text-ink-muted">qtl</span>
-                      </div>
-                      <span className="text-xs font-bold text-ink-muted">
-                        Normal arrival flow
-                      </span>
-                    </div>
-
-                    <div className="p-4 rounded-2xl bg-surface-low dark:bg-surface-low-dark border border-divider/60">
-                      <span className="text-xs text-ink-muted dark:text-ink-muted-dark font-medium block">
-                        {quantity} {t.quintalsUnit} {t.estimatedLotValue}
-                      </span>
-                      <div className="flex items-baseline gap-1 my-1">
-                        <span className="text-2xl font-black text-primary dark:text-primary-dark tabular-nums">
-                          {forecastData?.spot_price_today ? `₹${(quantity * forecastData.spot_price_today).toLocaleString("en-IN")}` : t.notAvailable}
-                        </span>
-                      </div>
-                      <span className="text-xs text-ink-muted">
-                        Gross (before transit)
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Spoken Guidance Audio Bar */}
-                  <div className="p-3 rounded-2xl bg-surface-low dark:bg-surface-low-dark border border-divider/60 flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-2xl">📢</span>
-                      <div>
-                        <p className="text-xs font-bold text-ink dark:text-ink-dark">
-                          {t.voiceGuidanceAvailable}
-                        </p>
-                        <p className="text-[11px] text-ink-muted dark:text-ink-muted-dark">
-                          {t.voiceGuidanceSub}
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={handleVoiceGuidancePreview}
-                      className="px-3.5 py-2 rounded-xl bg-primary text-white font-bold text-xs flex items-center gap-1.5 shadow-sm hover:bg-primary-hover active:scale-95 transition-all"
-                    >
-                      <span className="material-symbols-outlined text-[18px]">play_circle</span>
-                      <span>{t.playAudio}</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* 2. Stylized Karnataka APMC Spatial Map Canvas */}
-                <div className="bg-white dark:bg-surface-dark border border-divider dark:border-divider-dark rounded-3xl p-5 sm:p-6 shadow-card space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl">🗺️</span>
-                      <h3 className="font-extrabold text-base sm:text-lg text-ink dark:text-ink-dark">
-                        {t.liveMandiMapTitle}
-                      </h3>
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-primary-tint dark:bg-primary/20 text-primary dark:text-primary-dark text-xs font-bold">
-                      {t.liveMandiMapRadius}
-                    </span>
-                  </div>
-
-                  {/* Stylized Vector Route Canvas */}
-                  <div className="relative w-full h-72 bg-[#FAF7F0] dark:bg-surface-low-dark rounded-2xl overflow-hidden border border-divider/60 p-4 select-none">
-                    <svg className="absolute inset-0 w-full h-full opacity-25 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M 40,30 Q 180,140 380,90 T 780,180" fill="none" stroke="#2E7D32" strokeDasharray="6 6" strokeWidth="3" />
-                      <path d="M 20,200 Q 260,160 460,240 T 840,210" fill="none" stroke="#795548" strokeWidth="2.5" />
-                      <circle cx="240" cy="140" fill="#2E7D32" fillOpacity="0.1" r="100" />
-                    </svg>
-
-                    {/* Nodes */}
-                    {/* Farmer Pin */}
-                    <div className="absolute left-1/3 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
-                      <div className="px-2 py-0.5 rounded-full bg-primary text-white text-[11px] font-extrabold shadow-md animate-bounce">
-                        📍 {t.youAreHere} ({farmerLocation})
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-lg border-2 border-white mt-1">
-                        🚜
-                      </div>
-                      <span className="text-xs font-black text-ink dark:text-ink-dark bg-white/95 dark:bg-surface-dark/95 px-2 py-0.5 rounded-md shadow-sm mt-1 tabular-nums">
-                        {forecastData?.spot_price_today ? `₹${forecastData.spot_price_today} / qtl` : t.notAvailable}
-                      </span>
-                    </div>
-
-                    {/* Yeshwanthpur Pin */}
-                    <div className="absolute left-8 bottom-6 z-10 flex flex-col items-center">
-                      <div className="w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center shadow-md">
-                        <MandiIcon size={16} />
-                      </div>
-                      <div className="bg-white/95 dark:bg-surface-dark/95 px-2 py-1 rounded-lg shadow-sm text-center mt-1 border border-divider/60">
-                        <p className="text-[11px] font-bold text-ink dark:text-ink-dark">
-                          ಬೆಂಗಳೂರು (Yeshwanthpur)
-                        </p>
-                        <p className="text-[11px] font-extrabold text-primary dark:text-primary-dark tabular-nums">
-                          {whereData?.ranked_mandis?.find(m => m.mandi.includes("Bengaluru"))?.gross_price_p50
-                            ? `₹${whereData.ranked_mandis.find(m => m.mandi.includes("Bengaluru"))?.gross_price_p50} • 58 km`
-                            : `58 km • ${t.notAvailable}`}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Chintamani Pin */}
-                    <div className="absolute right-1/4 top-6 z-10 flex flex-col items-center">
-                      <div className="w-6 h-6 rounded-full bg-surface-high text-ink flex items-center justify-center shadow-md">
-                        <MandiIcon size={14} />
-                      </div>
-                      <div className="bg-white/95 dark:bg-surface-dark/95 px-2 py-1 rounded-lg shadow-sm text-center mt-1 border border-divider/60">
-                        <p className="text-[11px] font-bold text-ink dark:text-ink-dark">
-                          ಚಿಂತಾಮಣಿ (Chintamani)
-                        </p>
-                        <p className="text-[11px] font-bold text-ink-muted tabular-nums">
-                          {whereData?.ranked_mandis?.find(m => m.mandi.includes("Chintamani"))?.gross_price_p50
-                            ? `₹${whereData.ranked_mandis.find(m => m.mandi.includes("Chintamani"))?.gross_price_p50} • 38 km`
-                            : `38 km • ${t.notAvailable}`}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Malur Pin */}
-                    <div className="absolute left-1/4 bottom-14 z-10 flex flex-col items-center">
-                      <div className="w-6 h-6 rounded-full bg-surface-high text-ink flex items-center justify-center shadow-md">
-                        <MandiIcon size={14} />
-                      </div>
-                      <div className="bg-white/95 dark:bg-surface-dark/95 px-2 py-0.5 rounded shadow-sm text-center mt-1 border border-divider/60">
-                        <span className="text-[10px] font-bold text-ink dark:text-ink-dark">
-                          ಮಾಲೂರು (Malur) 24 km
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Distant Hubli Marker */}
-                    <div className="absolute right-3 bottom-3 z-10">
-                      <span className="bg-white/90 dark:bg-surface-dark/90 text-ink-muted px-2 py-1 rounded-lg text-[10px] font-bold border border-divider/60">
-                        ಹುಬ್ಬಳ್ಳಿ (Hubballi): ₹2,950 ({t.distanceMarket})
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* 3. Transport & Fuel Estimator (Tempo Calculator) */}
-                  <div className="p-4 rounded-2xl bg-surface-low dark:bg-surface-low-dark border border-divider/60 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xl">🚚</span>
-                        <h4 className="font-extrabold text-sm sm:text-base text-ink dark:text-ink-dark">
-                          {t.tempoCalculatorTitle}
-                        </h4>
-                      </div>
-                      <span className="text-xs font-bold text-primary dark:text-primary-dark">
-                        {t.tempoVehicleType}
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="p-3 bg-white dark:bg-surface-dark rounded-xl border border-divider/60 flex items-center justify-between">
-                        <div>
-                          <p className="text-xs font-bold text-ink dark:text-ink-dark">
-                            {farmerLocation} → ಬೆಂಗಳೂರು (58 km)
-                          </p>
-                          <p className="text-xs font-bold text-primary mt-0.5">
-                            +₹220/qtl gross spread
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-sm font-black text-ink dark:text-ink-dark tabular-nums">
-                            ₹1,400
-                          </p>
-                          <p className="text-[10px] text-ink-muted">
-                            {t.tempoTripEstimate}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="p-3 bg-white dark:bg-surface-dark rounded-xl border border-divider/60 flex items-center justify-between">
-                        <div>
-                          <p className="text-xs font-bold text-ink dark:text-ink-dark">
-                            {farmerLocation} → ಚಿಂತಾಮಣಿ (38 km)
-                          </p>
-                          <p className="text-xs font-bold text-ink-muted mt-0.5">
-                            Lower auction rate
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-sm font-black text-ink dark:text-ink-dark tabular-nums">
-                            ₹600
-                          </p>
-                          <p className="text-[10px] text-ink-muted">
-                            {t.tempoTripEstimate}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-2 border-t border-divider/60 text-xs text-ink-muted dark:text-ink-muted-dark">
-                      <span>
-                        {t.tempoNetGain}: <strong className="text-primary font-bold">+₹5,200</strong>
-                      </span>
-                      <span className="font-bold text-primary">
-                        ✓ {t.bestOptionBadge}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <KarnatakaMap
+                  mandis={mandis}
+                  selectedMandi={farmerLocation}
+                  onSelectMandi={(m) => setFarmerLocation(m)}
+                  language={language}
+                />
               </div>
             </div>
           </div>
@@ -1195,7 +1007,7 @@ export default function HomePage() {
                 {t.calculatingAdvice}
               </h3>
               <p className="text-xs text-ink-muted dark:text-ink-muted-dark">
-                Checking Kolar, Bengaluru Yeshwanthpur, and Chikkaballapur APMCs...
+                Checking reporting Karnataka APMCs...
               </p>
             </div>
 
@@ -1208,7 +1020,7 @@ export default function HomePage() {
         )}
 
         {/* ================= 4. RESULTS SECTION (Full 12-Column Desktop Grid) ================= */}
-        {activeMode === "advisor" && hasResults && adviceData && whereData && whenData && forecastData && !loading && (
+        {activeMode === "advisor" && hasResults && adviceData && whereData && whenData && !loading && (
           <div data-testid="results-deck" className="space-y-8 py-2 sm:py-6 animate-in fade-in duration-fast">
             {/* Top Bar for Resetting / Modifying Inputs */}
             <div className="flex items-center justify-between pb-3 border-b border-divider dark:border-divider-dark">
@@ -1220,7 +1032,7 @@ export default function HomePage() {
                   ⚖️ {quantity} {t.quintalsUnit} ({quantity * 2} bags)
                 </span>
                 <span className="px-3 py-1 rounded-full bg-surface-low dark:bg-surface-low-dark border border-divider/60 flex items-center gap-1.5">
-                  <OnionIcon size={16} /> {t.cropOnion}
+                  <CropIcon size={16} /> {crop || "Crop"}
                 </span>
               </div>
               <button
@@ -1234,6 +1046,14 @@ export default function HomePage() {
                 {t.editLink}
               </button>
             </div>
+
+            {/* Reported Spot Price Card */}
+            <ReportedPriceCard
+              priceData={previewPrice}
+              crop={crop}
+              mandi={farmerLocation}
+              language={language}
+            />
 
             {/* NOTICE: No real price history yet, forecasts disabled */}
             {(!forecastData?.horizons?.length || adviceData?.notice) && (
@@ -1368,7 +1188,7 @@ export default function HomePage() {
                   {t.whereToSellTitle}
                 </h3>
                 <p className="text-sm text-ink-muted dark:text-ink-muted-dark">
-                  {t.whereToSellSubtitle}
+                  {t.whereToSellSubtitle} {spatialWhereData ? `(${spatialWhereData.reporting_mandis_in_range} mandis reporting in range)` : ""}
                 </p>
               </div>
 
@@ -1474,19 +1294,33 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* d. PRICE OUTLOOK FAN CHART (7, 14, 30 DAYS) */}
+            {/* d. PRICE OUTLOOK FAN CHART (7, 14, 30 DAYS) or TIER B NOTICE */}
             <section aria-label="Price Outlook Forecast">
-              <ChartCard
-                horizons={forecastData.horizons}
-                spotPriceToday={forecastData.spot_price_today}
-                language={language}
-                title={t.chartTitle}
-                subtitle={t.chartSubtitle}
-                axisPriceText={t.axisPrice}
-                axisDaysText={t.axisDays}
-                rangeLegendText={t.rangeLegend}
-                medianLegendText={t.medianLegend}
-              />
+              {forecastData?.horizons && forecastData.horizons.length > 0 ? (
+                <ChartCard
+                  horizons={forecastData.horizons}
+                  spotPriceToday={forecastData.spot_price_today}
+                  language={language}
+                  title={t.chartTitle}
+                  subtitle={t.chartSubtitle}
+                  axisPriceText={t.axisPrice}
+                  axisDaysText={t.axisDays}
+                  rangeLegendText={t.rangeLegend}
+                  medianLegendText={t.medianLegend}
+                />
+              ) : (
+                <div className="bg-surface-low dark:bg-surface-low-dark border border-divider dark:border-divider-dark rounded-3xl p-6 shadow-sm space-y-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="material-symbols-outlined text-[24px] text-primary">schedule</span>
+                    <h4 className="font-extrabold text-base text-ink dark:text-ink-dark">
+                      {t.tierBBadge}
+                    </h4>
+                  </div>
+                  <p className="text-sm text-ink-muted dark:text-ink-muted-dark leading-relaxed font-medium">
+                    {t.forecastNotAvailableNotice}
+                  </p>
+                </div>
+              )}
             </section>
 
             {/* e. BORROW TOGGLE: E-NWR PLEDGE LOAN VS TRADER ADVANCE */}
@@ -1623,7 +1457,7 @@ export default function HomePage() {
                 <span>{t.disclaimer}</span>
               </div>
               <p className="text-xs text-ink-muted dark:text-ink-muted-dark">
-                Model: {health?.model_version || "1.0.0-lgb-cqr"} • Data sync: {health?.last_data_date || "2026-11-03"}
+                Karnataka APMC Panel: {coverageSummary?.total_mandis || 115} markets • {coverageSummary?.total_crops || 102} crops • Latest: {coverageSummary?.freshness?.latest_report_date || "2026-11-11"}
               </p>
             </div>
           </div>

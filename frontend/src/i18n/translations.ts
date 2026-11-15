@@ -344,6 +344,44 @@ export interface AppTranslations {
   distanceMarket: string;
   dispatchAdvisory: string;
   dispatchAdvisoryText: string;
+
+  // Step 1 & 2 All-Crop & All-Mandi Dynamic UI
+  searchCrop: string;
+  searchMandi: string;
+  searchDistrict: string;
+  allCategories: string;
+  catCereal: string;
+  catPulse: string;
+  catVegetable: string;
+  catFruit: string;
+  catSpice: string;
+  catOilseed: string;
+  catPlantation: string;
+  catOther: string;
+  reportedInMarkets: string;
+  selectDistrict: string;
+  selectMandi: string;
+  noMarketData: string;
+  dataUnderReview: string;
+  locationUnknown: string;
+  tierABadge: string;
+  tierBBadge: string;
+  tierCBadge: string;
+  forecastNotAvailableNotice: string;
+  reportedCardLabel: string;
+  ksambSource: string;
+  latestReportedOn: string;
+  varietyAndGrade: string;
+  arrivalsToday: string;
+  minMaxModal: string;
+  viewAllGrades: string;
+  karnatakaMapTitle: string;
+  karnatakaMapSubtitle: string;
+  legendTierB: string;
+  legendUnderReview: string;
+  legendTierC: string;
+  legendNoMarket: string;
+  limitedGuidance: string;
 }
 
 export const translations: Record<Language, AppTranslations> = {
@@ -671,6 +709,44 @@ export const translations: Record<Language, AppTranslations> = {
     distanceMarket: "ದೂರದ ಮಾರುಕಟ್ಟೆ",
     dispatchAdvisory: "ಇಂದಿನ ರವಾನೆ ಸಲಹೆ",
     dispatchAdvisoryText: "ಮಧ್ಯಾಹ್ನ 2 ಗಂಟೆಯೊಳಗೆ ವಾಹನ ಲಭ್ಯತೆ ಉತ್ತಮವಾಗಿದೆ.",
+
+    // Step 1 & 2 All-Crop & All-Mandi Dynamic UI
+    searchCrop: "ಬೆಳೆಯನ್ನು ಹುಡುಕಿ...",
+    searchMandi: "ಮಾರುಕಟ್ಟೆಯನ್ನು ಹುಡುಕಿ...",
+    searchDistrict: "ಜಿಲ್ಲೆಯನ್ನು ಹುಡುಕಿ...",
+    allCategories: "ಎಲ್ಲಾ ವಿಭಾಗಗಳು",
+    catCereal: "ಧಾನ್ಯಗಳು ಮತ್ತು ಸಿರಿಧಾನ್ಯಗಳು",
+    catPulse: "ಬೇಳೆಕಾಳುಗಳು",
+    catVegetable: "ತರಕಾರಿಗಳು",
+    catFruit: "ಹಣ್ಣುಗಳು",
+    catSpice: "ಮಸಾಲೆ ಪದಾರ್ಥಗಳು",
+    catOilseed: "ಎಣ್ಣೆಕಾಳುಗಳು",
+    catPlantation: "ತೋಟಗಾರಿಕಾ ಬೆಳೆಗಳು",
+    catOther: "ಇತರ ಉತ್ಪನ್ನಗಳು",
+    reportedInMarkets: "{count} ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ದಾಖಲಾಗಿದೆ",
+    selectDistrict: "ಜಿಲ್ಲೆ ಆಯ್ಕೆಮಾಡಿ",
+    selectMandi: "ಮಾರುಕಟ್ಟೆ (APMC) ಆಯ್ಕೆಮಾಡಿ",
+    noMarketData: "ಮಾರುಕಟ್ಟೆ ದತ್ತಾಂಶವಿಲ್ಲ",
+    dataUnderReview: "ಮಾಹಿತಿ ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ",
+    locationUnknown: "ಸ್ಥಳ ತಿಳಿದಿಲ್ಲ",
+    tierABadge: "ಶ್ರೇಣಿ A (ಮುನ್ಸೂಚನೆ ಲಭ್ಯ)",
+    tierBBadge: "ಶ್ರೇಣಿ B (ಇತ್ತೀಚಿನ ದರ ಮಾತ್ರ)",
+    tierCBadge: "ಶ್ರೇಣಿ C (ಇತ್ತೀಚಿನ ವರದಿಯಿಲ್ಲ)",
+    forecastNotAvailableNotice: "ಮುನ್ಸೂಚನೆ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ: ಮುನ್ಸೂಚನೆಗೆ ಕನಿಷ್ಠ 2 ವರ್ಷಗಳ ದರ ಇತಿಹಾಸ (ಶ್ರೇಣಿ A) ಅಗತ್ಯವಿದೆ. ಅಧಿಕೃತ ದಾಖಲಿತ ದರವನ್ನು ಮಾತ್ರ ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
+    reportedCardLabel: "ದಾಖಲಾದ ಮಾರುಕಟ್ಟೆ ದರ",
+    ksambSource: "ಕೆಎಸ್‌ಎಎಂಬಿ ದೈನಂದಿನ ಮಾರುಕಟ್ಟೆ ವರದಿ",
+    latestReportedOn: "ಕೊನೆಯದಾಗಿ ದಾಖಲಾದ ದಿನಾಂಕ: {date}",
+    varietyAndGrade: "ತಳಿ ಮತ್ತು ದರ್ಜೆ",
+    arrivalsToday: "ಆವಕ (ಕ್ವಿಂಟಾಲ್)",
+    minMaxModal: "ಕನಿಷ್ಠ / ಮಾದರಿ / ಗರಿಷ್ಠ",
+    viewAllGrades: "ಎಲ್ಲಾ ತಳಿ ಮತ್ತು ದರ್ಜೆಗಳನ್ನು ನೋಡಿ",
+    karnatakaMapTitle: "ಕರ್ನಾಟಕ ಎಪಿಎಂಸಿ ವರದಿ ಸ್ಥಿತಿ",
+    karnatakaMapSubtitle: "31 ಜಿಲ್ಲೆಗಳಲ್ಲಿ 115 ಮಾರುಕಟ್ಟೆಗಳು",
+    legendTierB: "ವರದಿಯಾಗಿದೆ (ಶ್ರೇಣಿ B)",
+    legendUnderReview: "ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ",
+    legendTierC: "ವರದಿಯಿಲ್ಲ (ಶ್ರೇಣಿ C)",
+    legendNoMarket: "ಎಪಿಎಂಸಿ ಇಲ್ಲ",
+    limitedGuidance: "ಈ ಬೆಳೆಗೆ ಸೀಮಿತ ಕೃಷಿ ಮಾರ್ಗದರ್ಶನ",
   },
 
   // ================= HINDI (Pure script - no mixed English/Kannada) =================
@@ -997,6 +1073,44 @@ export const translations: Record<Language, AppTranslations> = {
     distanceMarket: "दूर की मंडी",
     dispatchAdvisory: "आज की लदान सलाह",
     dispatchAdvisoryText: "दोपहर 2 बजे से पहले वाहन उपलब्धता अनुकूल है।",
+
+    // Step 1 & 2 All-Crop & All-Mandi Dynamic UI
+    searchCrop: "फसल खोजें...",
+    searchMandi: "मंडी खोजें...",
+    searchDistrict: "ज़िला चुनें...",
+    allCategories: "सभी श्रेणियां",
+    catCereal: "अनाज और मिलेट्स",
+    catPulse: "दालें और दलहन",
+    catVegetable: "सब्जियां",
+    catFruit: "फल",
+    catSpice: "मसाले",
+    catOilseed: "तिलहन",
+    catPlantation: "बागवानी और रोपण फसलें",
+    catOther: "अन्य उत्पाद",
+    reportedInMarkets: "{count} मंडियों में दर्ज",
+    selectDistrict: "ज़िला चुनें",
+    selectMandi: "मंडी (APMC) चुनें",
+    noMarketData: "कोई मंडी डेटा नहीं",
+    dataUnderReview: "डेटा समीक्षाधीन है",
+    locationUnknown: "स्थान अज्ञात",
+    tierABadge: "श्रेणी A (पूर्वानुमान उपलब्ध)",
+    tierBBadge: "श्रेणी B (केवल नवीनतम भाव)",
+    tierCBadge: "श्रेणी C (कोई ताज़ा रिपोर्ट नहीं)",
+    forecastNotAvailableNotice: "पूर्वानुमान अभी उपलब्ध नहीं है: इसके लिए कम से कम 2 वर्ष का मूल्य इतिहास (श्रेणी A) आवश्यक है। केवल सत्यापित रिपोर्ट किया गया मंडी भाव दिखाया जा रहा है।",
+    reportedCardLabel: "दर्ज मंडी भाव",
+    ksambSource: "केएसएएमबी दैनिक मंडी रिपोर्ट",
+    latestReportedOn: "नवीनतम रिपोर्ट दिनांक: {date}",
+    varietyAndGrade: "किस्म और श्रेणी",
+    arrivalsToday: "दैनिक आवक (क्विंटल)",
+    minMaxModal: "न्यूनतम / मॉडल / अधिकतम",
+    viewAllGrades: "सभी किस्में और श्रेणियां देखें",
+    karnatakaMapTitle: "कर्नाटक एपीएमसी रिपोर्ट स्थिति",
+    karnatakaMapSubtitle: "31 जिलों में 115 मंडियां",
+    legendTierB: "रिपोर्ट किया गया (श्रेणी B)",
+    legendUnderReview: "समीक्षाधीन",
+    legendTierC: "डेटा नहीं (श्रेणी C)",
+    legendNoMarket: "एपीएमसी नहीं",
+    limitedGuidance: "इस फसल के लिए सीमित भंडारण मार्गदर्शन",
   },
 
   // ================= ENGLISH (Pure script - no mixed Indic terms) =================
@@ -1322,5 +1436,43 @@ export const translations: Record<Language, AppTranslations> = {
     distanceMarket: "Distant Market",
     dispatchAdvisory: "Today's Dispatch Advisory",
     dispatchAdvisoryText: "Optimal vehicle availability is before 2:00 PM.",
+
+    // Step 1 & 2 All-Crop & All-Mandi Dynamic UI
+    searchCrop: "Search crop...",
+    searchMandi: "Search market...",
+    searchDistrict: "Search district...",
+    allCategories: "All Categories",
+    catCereal: "Cereals & Millets",
+    catPulse: "Pulses & Legumes",
+    catVegetable: "Vegetables",
+    catFruit: "Fruits",
+    catSpice: "Spices & Condiments",
+    catOilseed: "Oilseeds",
+    catPlantation: "Plantation Crops",
+    catOther: "Other Commodities",
+    reportedInMarkets: "Reported in {count} markets",
+    selectDistrict: "Select District",
+    selectMandi: "Select Market (APMC)",
+    noMarketData: "No market data",
+    dataUnderReview: "Data under review",
+    locationUnknown: "Location unknown",
+    tierABadge: "Tier A (Forecast available)",
+    tierBBadge: "Tier B (Latest price only)",
+    tierCBadge: "Tier C (No recent report)",
+    forecastNotAvailableNotice: "Forecast not available yet: at least 2 years of price history (Tier A) are required. Showing verified reported spot price only.",
+    reportedCardLabel: "REPORTED SPOT PRICE",
+    ksambSource: "KSAMB Daily Market Report",
+    latestReportedOn: "Latest reported: {date}",
+    varietyAndGrade: "Variety & Grade",
+    arrivalsToday: "Arrivals",
+    minMaxModal: "Min / Modal / Max",
+    viewAllGrades: "View All Varieties & Grades",
+    karnatakaMapTitle: "Karnataka APMC Reporting Status",
+    karnatakaMapSubtitle: "115 markets across 31 districts",
+    legendTierB: "Reported (Tier B)",
+    legendUnderReview: "Under Review",
+    legendTierC: "No Data (Tier C)",
+    legendNoMarket: "No APMC",
+    limitedGuidance: "Limited agronomic guidance for this crop",
   },
 };
