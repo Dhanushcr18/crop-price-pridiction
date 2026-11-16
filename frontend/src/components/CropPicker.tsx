@@ -62,6 +62,36 @@ export const CropPicker: React.FC<CropPickerProps> = ({
 
   return (
     <div className="space-y-4">
+      {/* Quick Dropdown: All 102 Karnataka Crops */}
+      <div className="space-y-1.5">
+        <label className="text-xs font-extrabold uppercase tracking-wider text-ink-muted flex items-center justify-between">
+          <span>{language === "kn" ? "ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಬೆಳೆಗಳು (102)" : language === "hi" ? "कर्नाटक की सभी फसलें (102)" : "All Karnataka Crops (102)"}</span>
+          <span className="text-[11px] font-normal text-primary">Direct Dropdown</span>
+        </label>
+        <select
+          value={selectedCrop}
+          onChange={(e) => onSelectCrop(e.target.value)}
+          className="w-full p-3 bg-white dark:bg-surface-dark border border-divider dark:border-divider-dark rounded-2xl text-sm font-bold text-ink dark:text-ink-dark focus:outline-none focus:ring-2 focus:ring-primary/30 shadow-sm"
+        >
+          {crops.map((c) => {
+            const cropName = c.name || c.name_en || c.crop_id;
+            const cropKn = c.kannada_name || c.name_kn || cropName;
+            const cropHi = c.hindi_name || c.name_hi || cropName;
+            const label =
+              language === "kn"
+                ? `${cropKn} (${cropName})`
+                : language === "hi"
+                ? `${cropHi} (${cropName})`
+                : cropName;
+            return (
+              <option key={cropName} value={cropName}>
+                {label} — {c.category} ({c.unit})
+              </option>
+            );
+          })}
+        </select>
+      </div>
+
       {/* Search Input */}
       <div className="relative">
         <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted text-[20px]">

@@ -58,6 +58,9 @@ import {
   getCoverageSummary,
 } from "../lib/api";
 import { formatCurrency, formatPercent } from "../lib/formatter";
+import defaultCrops from "../data/masterCrops.json";
+import defaultMandis from "../data/masterMandis.json";
+import defaultDistricts from "../data/masterDistricts.json";
 
 export default function HomePage() {
   const [language, setLanguage] = useState<Language>("kn");
@@ -77,17 +80,17 @@ export default function HomePage() {
   const totalSteps = 6;
   const [activeMode, setActiveMode] = useState<"advisor" | "crop_area">("advisor");
 
-  // Dynamic Master Data
-  const [crops, setCrops] = useState<CropInfo[]>([]);
-  const [districts, setDistricts] = useState<DistrictInfo[]>([]);
-  const [mandis, setMandis] = useState<MandiDetailItem[]>([]);
+  // Dynamic Master Data (initialized with bundled 102 crops and 115 mandis)
+  const [crops, setCrops] = useState<CropInfo[]>(defaultCrops as any);
+  const [districts, setDistricts] = useState<DistrictInfo[]>(defaultDistricts as any);
+  const [mandis, setMandis] = useState<MandiDetailItem[]>(defaultMandis as any);
   const [previewPrice, setPreviewPrice] = useState<TodayPriceResponse | null>(null);
   const [spatialWhereData, setSpatialWhereData] = useState<WhereToSellSpatialResponse | null>(null);
   const [coverageSummary, setCoverageSummary] = useState<CoverageSummaryResponse | null>(null);
 
   // Form Inputs (dynamic default from data)
-  const [crop, setCrop] = useState<string>("");
-  const [farmerLocation, setFarmerLocation] = useState<string>("");
+  const [crop, setCrop] = useState<string>((defaultCrops[0] as any)?.name_en || "Onion");
+  const [farmerLocation, setFarmerLocation] = useState<string>((defaultMandis[0] as any)?.name_en || "BENGALURU");
   const [quantity, setQuantity] = useState<number>(30);
   const [storageType, setStorageType] = useState<string>("warehouse");
   const [hasTraderDebt, setHasTraderDebt] = useState<boolean>(false);

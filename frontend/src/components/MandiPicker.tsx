@@ -104,6 +104,42 @@ export const MandiPicker: React.FC<MandiPickerProps> = ({
 
   return (
     <div className="space-y-4">
+      {/* Quick Dropdown: All 115 Karnataka Mandis */}
+      <div className="space-y-1.5">
+        <label className="text-xs font-extrabold uppercase tracking-wider text-ink-muted flex items-center justify-between">
+          <span>{language === "kn" ? "ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಮಾರುಕಟ್ಟೆಗಳು (115)" : language === "hi" ? "कर्नाटक की सभी 115 मंडियां" : "All Karnataka Markets (115 Mandis)"}</span>
+          <span className="text-[11px] font-normal text-primary">Direct Dropdown</span>
+        </label>
+        <select
+          value={selectedMandi}
+          onChange={(e) => {
+            const chosen = mandis.find(
+              (m) =>
+                (m.name || m.name_en || m.mandi_id) === e.target.value ||
+                m.id === e.target.value
+            );
+            onSelectMandi(e.target.value, chosen?.district || chosen?.district_en);
+          }}
+          className="w-full p-3 bg-white dark:bg-surface-dark border border-divider dark:border-divider-dark rounded-2xl text-sm font-bold text-ink dark:text-ink-dark focus:outline-none focus:ring-2 focus:ring-primary/30 shadow-sm"
+        >
+          {mandis.map((m) => {
+            const mName = m.name || m.name_en || m.mandi_id || "";
+            const mDist = m.district || m.district_en || "";
+            const mKn = m.kannada_name || m.name_kn || mName;
+            const label = language === "kn" ? `${mKn} (${mName})` : mName;
+            const statusTag =
+              m.is_quarantined || m.all_quarantined
+                ? "Data under review"
+                : m.tier || "APMC";
+            return (
+              <option key={m.id || m.mandi_id || mName} value={mName}>
+                {label} — {mDist} ({statusTag})
+              </option>
+            );
+          })}
+        </select>
+      </div>
+
       {/* Search and Geolocation Row */}
       <div className="flex flex-col sm:flex-row gap-2.5">
         <div className="relative flex-1">

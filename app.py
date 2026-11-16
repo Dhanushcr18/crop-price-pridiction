@@ -1,4 +1,4 @@
-"""Streamlit Demo UI for Farmer Sell Advisor."""
+"""Streamlit UI for Farmer Sell Advisor - All Crops & All Mandis in Karnataka."""
 
 import os
 import sys
@@ -11,18 +11,12 @@ import streamlit as st
 # Ensure project root is in path
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
-from src.agent.advisor import (
-    tool_get_forecast,
-    tool_rank_mandis,
-    tool_hold_vs_sell,
-    tool_find_storage,
-    synthesize_advice_multilingual
-)
+from backend.models_loader import AdvisorService
 
 # Page configuration
 st.set_page_config(
-    page_title="Farmer Sell Advisor (Onion)",
-    page_icon="🧅",
+    page_title="Karnataka Farmer Sell Advisor",
+    page_icon="🌾",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -45,37 +39,137 @@ st.markdown("""
         font-size: 0.9em;
         margin-top: 15px;
     }
+    .stale-banner {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
 
-def load_config():
-    with open("config.yaml", "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+@st.cache_resource
+def get_service():
+    return AdvisorService.get_instance()
 
 
-config = load_config()
+service = get_service()
+crops_list = service.get_crops()
+districts_list = service.get_districts()
+mandis_list = service.get_mandis()
 
-# Sidebar: Farmer Profile & Inputs
-st.sidebar.title("👨‍🌾 Farmer Profile & Harvest")
+crops_df = pd.DataFrame(crops_list)
+districts_df = pd.DataFrame(districts_list)
+mandis_df = pd.DataFrame(mandis_list)
 
-crop_name = st.sidebar.selectbox("Crop", ["Onion (Nashik / Bellary Red)"], index=0)
-farmer_location = st.sidebar.selectbox(
-    "Farmer Mandi / Location",
-    ["Kolar", "Chikkaballapur", "Bengaluru (Yeshwanthpur)"],
+# Sidebar
+st.sidebar.title("👨‍🌾 Farmer Profile & Inputs")
+
+language_map = {
+    "English": "en",
+    "ಕನ್ನಡ (Kannada)": "kn",
+    "हिन्दी (Hindi)": "hi"
+}
+selected_lang_label = st.sidebar.radio("Language / ಭಾಷೆ / भाषा", list(language_map.keys()), index=0)
+selected_lang = language_map[selected_lang_label]
+
+st.sidebar.markdown("---")
+
+# Crop Selection: Category Filter + Crop Dropdown (All 102 crops)
+st.sidebar.subheader("🌱 Select Crop / ಬೆಳೆ")
+categories = ["All Categories"] + sorted(crops_df["category"].dropna().unique().tolist())
+selected_category = st.sidebar.selectbox("Filter Category", categories, index=0)
+
+if selected_category != "All Categories":
+    filtered_crops_df = crops_df[crops_df["category"] == selected_category]
+else:
+    filtered_crops_df = crops_df
+
+crop_options = {}
+for _, row in filtered_crops_df.iterrows():
+    c_en = row["name_en"]
+    c_kn = row.get("name_kn") or c_en
+    c_hi = row.get("name_hi") or c_en
+    unit = row.get("unit", "Quintal")
+    cat = row.get("category", "")
+    if selected_lang == "kn":
+        display_name = f"{c_kn} ({c_en}) — {cat} ({unit})"
+    elif selected_lang == "hi":
+        display_name = f"{c_hi} ({c_en}) — {cat} ({unit})"
+    else:
+        display_name = f"{c_en} — {cat} ({unit})"
+    crop_options[c_en] = display_name
+
+selected_crop_en = st.sidebar.selectbox(
+    f"Crop ({len(crop_options)} available)",
+    options=list(crop_options.keys()),
+    format_func=lambda x: crop_options[x],
     index=0
 )
-quantity_quintals = st.sidebar.number_input(
-    "Harvest Quantity to Sell (Quintals)",
-    min_value=5.0,
-    max_value=1000.0,
-    value=50.0,
+selected_crop_row = crops_df[crops_df["name_en"] == selected_crop_en].iloc[0]
+crop_unit = selected_crop_row.get("unit", "Quintal")
+
+st.sidebar.markdown("---")
+
+# Mandi Selection: District Filter + Mandi Dropdown (All 115 mandis)
+st.sidebar.subheader("📍 Select Mandi / ಮಾರುಕಟ್ಟೆ")
+district_options = ["All Districts"] + sorted(districts_df["name_en"].dropna().unique().tolist())
+selected_district = st.sidebar.selectbox("Filter District", district_options, index=0)
+
+if selected_district != "All Districts":
+    filtered_mandis_df = mandis_df[mandis_df["district_en"] == selected_district]
+else:
+    filtered_mandis_df = mandis_df
+
+mandi_options = {}
+for _, row in filtered_mandis_df.iterrows():
+    m_en = row["name_en"]
+    m_kn = row.get("name_kn") or m_en
+    dist_en = row.get("district_en", "")
+    tier_tag = row.get("tier", "APMC")
+    if selected_lang == "kn":
+        display_name = f"{m_kn} ({m_en}) — {dist_en} [{tier_tag}]"
+    else:
+        display_name = f"{m_en} — {dist_en} [{tier_tag}]"
+    mandi_options[m_en] = display_name
+
+selected_mandi_en = st.sidebar.selectbox(
+    f"Mandi ({len(mandi_options)} available)",
+    options=list(mandi_options.keys()),
+    format_func=lambda x: mandi_options[x],
+    index=0
+)
+selected_mandi_row = mandis_df[mandis_df["name_en"] == selected_mandi_en].iloc[0]
+mandi_raw = selected_mandi_row["raw_market_name"]
+mandi_lat = float(selected_mandi_row["lat"])
+mandi_lon = float(selected_mandi_row["lon"])
+
+# Harvest Quantity
+quantity = st.sidebar.number_input(
+    f"Harvest Quantity ({crop_unit})",
+    min_value=1.0,
+    max_value=5000.0,
+    value=30.0,
     step=5.0
 )
 
+# Search Radius for where-to-sell
+radius_km = st.sidebar.slider(
+    "Search Radius for Nearby Mandis (km)",
+    min_value=25,
+    max_value=300,
+    value=100,
+    step=25
+)
+
+# Storage & Loan Inputs
 storage_display_map = {
     "Open Farm Storage (Kaccha Shed - High Spoilage)": "open",
-    "Standard Ventilated Warehouse (Govt / APMC)": "warehouse",
+    "Standard Ventilated Warehouse (APMC / Govt)": "warehouse",
     "Cold Storage / Controlled Atmosphere": "cold_storage"
 }
 storage_selected_label = st.sidebar.selectbox("Storage Available", list(storage_display_map.keys()), index=0)
@@ -84,255 +178,177 @@ storage_type = storage_display_map[storage_selected_label]
 has_trader_debt = st.sidebar.checkbox(
     "Farmer owes informal trader loan (24% p.a. interest)",
     value=False,
-    help="Check if farmer has taken pre-harvest crop advances from a commission agent or trader."
+    help="Check if farmer has taken pre-harvest crop advances requiring immediate sale."
 )
-
-language_map = {
-    "English": "en",
-    "हिन्दी (Hindi)": "hi",
-    "ಕನ್ನಡ (Kannada)": "kn"
-}
-selected_lang_label = st.sidebar.radio("Advisory Language / ಭಾಷೆ / भाषा", list(language_map.keys()), index=0)
-selected_lang = language_map[selected_lang_label]
 
 st.sidebar.markdown("---")
 st.sidebar.info(
-    "💡 **Advisor Rule**: The farmer always makes the final decision. "
-    "All price projections show uncertainty ranges (P10 downside to P90 upside)."
+    "💡 **Advisor Rule**: The farmer always makes the final sale decision. "
+    "All reported prices are verified against KSAMB daily bulletins."
 )
 
 # Main Dashboard
-st.title("🧅 Farmer Sell Advisor: Onion Decision Support")
+st.title("🌾 Karnataka Farmer Sell Advisor (All Crops & Mandis)")
+st.caption("Serving all 102 crops and 115 APMC mandis across Karnataka based on verified KSAMB daily reporting.")
 
-# DATA_PROVENANCE Check & Mandatory Banner
-has_synthetic = True
-try:
-    panel_path = config["paths"]["processed_panel"]
-    if os.path.exists(panel_path):
-        pdf = pd.read_parquet(panel_path)
-        if "is_synthetic" in pdf.columns:
-            has_synthetic = bool(pdf["is_synthetic"].any())
-        elif "data_provenance" in pdf.columns:
-            has_synthetic = bool((pdf["data_provenance"] == "synthetic").any())
-except Exception:
-    pass
+# Mandatory Freshness Banner
+health = service.get_health_status()
+if health.get("is_stale"):
+    st.markdown(
+        f"""<div class="stale-banner">
+        ⚠️ <strong>Latest reported: {health.get('last_data_date')}</strong> — 
+        Showing latest verified KSAMB APMC daily bulletin ({health.get('days_since_data')} days ago). 
+        Never presented as today's live spot rate.
+        </div>""",
+        unsafe_allow_html=True
+    )
 
-if has_synthetic:
+# 1. Fetch Today's Reported Price
+price_data = service.get_today_price(selected_crop_en, mandi_raw)
+
+st.subheader(f"📊 Market Report: {selected_crop_en} at {selected_mandi_en}")
+
+if price_data.get("status") == "Data under review":
     st.error(
-        "⚠️ **SYNTHETIC DATA - NOT FOR REAL DECISIONS** ⚠️\n\n"
-        "The underlying dataset and models contain generated/synthetic rows. "
-        "This application is running in **DEMONSTRATION MODE ONLY**. "
-        "**DO NOT USE THIS SYSTEM FOR REAL HARVESTING, COMMERCE, OR FINANCIAL COMMITMENTS.**\n\n"
-        "*To transition to verified operational decisions: place real Agmarknet CSV files into `data/raw/real/`, "
-        "rebuild the panel (`python run.py data`), and retrain the models (`python run.py train`).*"
+        f"⚠️ **Data Under Review**: All market records for **{selected_mandi_en}** were quarantined "
+        f"during data ingestion due to anomalous flat pricing or identical triples across commodities. "
+        f"No unverified prices are displayed to farmers."
     )
-    st.sidebar.error("⚠️ **SYNTHETIC DATA - NOT FOR REAL DECISIONS**")
-
-st.markdown(
-    "**Objective**: Helping smallholder farmers decide **WHERE** to sell, **WHEN** to sell, "
-    "and at what **expected price**, maximizing net income after freight, commissions, and storage spoilage."
-)
-
-# Fetch Decision Data
-with st.spinner("Analyzing APMC market arrivals, spatial price spreads, and post-harvest decay..."):
-    # 1. Where to sell optimization
-    ranking_data = tool_rank_mandis(farmer_location, quantity_quintals, horizon_days=7)
-    top_mandis = ranking_data["top_3_mandis"]
-    best_mandi = top_mandis[0]
-
-    # 2. When to sell simulation
-    hold_data = tool_hold_vs_sell(farmer_location, quantity_quintals, storage_type, has_trader_debt)
-    best_k = hold_data["best_k_days"]
-
-    # 3. Plain language multilingual text
-    advice_text = synthesize_advice_multilingual(
-        farmer_location, quantity_quintals, storage_type, has_trader_debt, selected_lang
+elif not price_data.get("available"):
+    st.info(
+        f"ℹ️ **Not Available**: No transaction recorded for **{selected_crop_en}** at **{selected_mandi_en}** "
+        f"in the latest KSAMB report ({price_data.get('date', '2026-11-11')}). Never guessing or imputing prices."
     )
+else:
+    headline = price_data.get("headline_price", {})
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric(
+            label="Modal Price",
+            value=f"Rs {headline.get('modal_price', 0):,.0f} / {crop_unit}",
+            delta=f"Grade: {headline.get('grade', 'FAQ')}"
+        )
+    with col2:
+        st.metric(
+            label="Price Range (Min — Max)",
+            value=f"Rs {headline.get('min_price', 0):,.0f} — {headline.get('max_price', 0):,.0f}",
+            delta=f"Variety: {headline.get('variety', 'Standard')}"
+        )
+    with col3:
+        st.metric(
+            label="Arrival Volume",
+            value=f"{headline.get('arrivals', 0):,.0f} {crop_unit}",
+            delta="Daily reported volume"
+        )
+    with col4:
+        st.metric(
+            label="Report Freshness & Tier",
+            value=f"Tier B (Reported Only)",
+            delta=f"Reported: {price_data.get('date')}"
+        )
 
-# Top Metrics Row
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.metric(
-        label="Top Mandi Destination",
-        value=best_mandi["mandi"],
-        delta=f"{best_mandi['distance_km']} km away"
-    )
-
-with col2:
-    st.metric(
-        label="Expected Net Price (P50)",
-        value=f"Rs {best_mandi['net_price_p50']:.1f}/qtl",
-        delta=f"P10: Rs {best_mandi['net_price_p10']:.1f}/qtl"
-    )
-
-with col3:
-    gain_val = best_mandi["gain_over_local_per_qtl"]
-    lot_val = best_mandi["total_gain_rs"]
-    st.metric(
-        label="Advantage vs Local Sale",
-        value=f"+Rs {gain_val:.1f}/qtl",
-        delta=f"+Rs {lot_val:,.0f} Total Lot"
-    )
-
-with col4:
-    timing_label = "SELL TODAY" if best_k == 0 else f"HOLD {best_k} DAYS"
-    timing_delta = "0d wait" if best_k == 0 else f"+Rs {hold_data['max_expected_gain_per_qtl']:.1f}/qtl gain"
-    st.metric(
-        label="Optimal Timing Recommendation",
-        value=timing_label,
-        delta=timing_delta
-    )
+    # Show all reported grades if multiple exist
+    all_grades = price_data.get("all_grades", [])
+    if len(all_grades) > 1:
+        st.markdown("**All Reported Grades for this Mandi:**")
+        grade_rows = []
+        for g in all_grades:
+            grade_rows.append({
+                "Grade": g.get("grade"),
+                "Variety": g.get("variety"),
+                "Modal Price (Rs)": g.get("modal_price"),
+                "Min Price (Rs)": g.get("min_price"),
+                "Max Price (Rs)": g.get("max_price"),
+                "Arrivals": g.get("arrivals"),
+                "Status": "Headline (Highest Volume)" if g.get("is_headline") else "Additional Grade"
+            })
+        st.dataframe(pd.DataFrame(grade_rows), use_container_width=True)
 
 st.markdown("---")
 
-# Section: Plain Language Multilingual Advice Box
-st.subheader("🗣️ Plain-Language Farmer Advisory")
-st.markdown(advice_text)
+# 2. WHERE TO SELL: Spatial Comparison across All Mandis in Range
+st.subheader(f"📍 WHERE TO SELL: Mandi Comparison within {radius_km} km")
+
+if crop_unit != "Quintal":
+    st.info(
+        f"ℹ️ Transport net-price deduction math applies to Quintal commodities. "
+        f"Non-quintal commodities ({crop_unit}) display reported prices only."
+    )
+else:
+    with st.spinner("Analyzing all reporting APMC mandis within radius..."):
+        where_res = service.evaluate_where_to_sell_all_mandis(
+            crop_name=selected_crop_en,
+            farmer_lat=mandi_lat,
+            farmer_lon=mandi_lon,
+            quantity_quintals=quantity,
+            radius_km=float(radius_km)
+        )
+
+    candidates = where_res.get("results", [])
+    if not candidates:
+        st.warning(
+            f"No APMC mandis within {radius_km} km reported transactions for **{selected_crop_en}** on this date. "
+            f"({where_res.get('excluded_mandis_no_report', 0)} nearby mandis had zero reports)."
+        )
+    else:
+        st.markdown(
+            f"Found **{len(candidates)}** reporting markets within {radius_km} km. "
+            f"Ranked by **net realized modal return** after transport freight (`1.25 # Assumption` road factor), "
+            f"statutory APMC fees (1.5%) + commission (2.0%), and transit shrinkage (0.25%/100km)."
+        )
+
+        table_data = []
+        for rank, c in enumerate(candidates, 1):
+            table_data.append({
+                "Rank": f"#{rank}",
+                "Mandi": c["mandi"],
+                "District": c["district"],
+                "Road Dist (km)": f"{c['distance_km']} km",
+                "Gross Modal": f"Rs {c['reported_modal_price']:,.0f}",
+                "Transport Cost": f"- Rs {c['transport_cost_per_qtl']:,.1f}",
+                "Fees & Comm.": f"- Rs {c['fees_and_commission_per_qtl']:,.1f}",
+                "Shrinkage Loss": f"- Rs {c['transit_shrinkage_per_qtl']:,.1f}",
+                "Net Modal Return": f"Rs {c['net_price_modal']:,.1f}",
+                "Net Range (Min–Max)": c["net_price_range"],
+                "Gain vs Local": f"{'+' if c['gain_over_local_per_qtl'] >= 0 else ''}Rs {c['gain_over_local_per_qtl']:.1f}/qtl",
+                "Total Lot Gain": f"{'+' if c['total_gain_rs'] >= 0 else ''}Rs {c['total_gain_rs']:,.0f}"
+            })
+        st.dataframe(pd.DataFrame(table_data), use_container_width=True)
+
+        if where_res.get("excluded_mandis_no_report", 0) > 0:
+            st.caption(f"ℹ️ {where_res['excluded_mandis_no_report']} other mandis in radius had no reported transactions for {selected_crop_en}.")
 
 st.markdown("---")
 
-# Section: Where to Sell Breakdown Table
-st.subheader("📍 WHERE TO SELL: Mandi Net Realized Return Comparison")
-st.markdown(
-    "Net price accounts for **gross market price**, **freight transport cost**, **APMC market fees (1.5%)**, "
-    "**commission agent charges (2.0%)**, **handling hamali**, and **in-transit shrinkage**."
-)
+# 3. Advisory Summary
+st.subheader("🗣️ Advisory Guidance & Decision Support")
 
-table_rows = []
-for idx, m in enumerate(top_mandis, 1):
-    table_rows.append({
-        "Rank": f"#{idx}",
-        "Mandi": m["mandi"],
-        "Distance (km)": f"{m['distance_km']} km",
-        "Forecast Range (P10–P90)": f"Rs {m['forecast_p10']:.0f} – {m['forecast_p90']:.0f}",
-        "Expected Gross (P50)": f"Rs {m['forecast_p50']:.1f}",
-        "Transport Freight": f"- Rs {m['transport_cost_per_qtl']:.1f}",
-        "Fees & Comm.": f"- Rs {m['fees_and_commission_per_qtl']:.1f}",
-        "Transit Loss": f"- Rs {m['shrinkage_loss_per_qtl']:.1f}",
-        "Net Realized P50": f"Rs {m['net_price_p50']:.1f}",
-        "Downside P10": f"Rs {m['net_price_p10']:.1f}",
-        "Gain vs Local": f"+Rs {m['gain_over_local_per_qtl']:.1f}/qtl",
-        "Total Lot Gain": f"+Rs {m['total_gain_rs']:,.0f}"
-    })
-
-st.dataframe(pd.DataFrame(table_rows), use_container_width=True)
-
-# Section: Interactive Forecast Fan Chart & Hold-vs-Sell Simulation
-st.markdown("---")
-tab1, tab2 = st.tabs(["📈 Price Forecast Fan Chart (P10–P90)", "⏳ Hold vs. Sell Monte Carlo Simulation"])
-
-with tab1:
-    st.subheader(f"30-Day Forward Price Fan Chart: {farmer_location}")
-    st.markdown(
-        "LightGBM Quantile Regression forecasts across **7, 14, and 30-day horizons**. "
-        "The shaded band represents the calibrated 80% confidence interval ($P10$ to $P90$)."
-    )
-
-    fc_7 = tool_get_forecast(farmer_location, 7)
-    fc_14 = tool_get_forecast(farmer_location, 14)
-    fc_30 = tool_get_forecast(farmer_location, 30)
-
-    horizons_x = [0, 7, 14, 30]
-    spot_val = fc_7["p50_expected"] / 1.012  # approximate spot today
-    p10_y = [spot_val - 120, fc_7["p10_downside"], fc_14["p10_downside"], fc_30["p10_downside"]]
-    p50_y = [spot_val, fc_7["p50_expected"], fc_14["p50_expected"], fc_30["p50_expected"]]
-    p90_y = [spot_val + 140, fc_7["p90_upside"], fc_14["p90_upside"], fc_30["p90_upside"]]
-
-    fig_fan = go.Figure()
-    # P90
-    fig_fan.add_trace(go.Scatter(
-        x=horizons_x, y=p90_y,
-        mode="lines",
-        line=dict(width=0),
-        showlegend=False,
-        name="P90 Upside"
-    ))
-    # P10 with fill to P90
-    fig_fan.add_trace(go.Scatter(
-        x=horizons_x, y=p10_y,
-        mode="lines",
-        fill="tonexty",
-        fillcolor="rgba(39, 174, 96, 0.25)",
-        line=dict(width=0),
-        name="80% Uncertainty Band (P10–P90)"
-    ))
-    # P50 Median Expected
-    fig_fan.add_trace(go.Scatter(
-        x=horizons_x, y=p50_y,
-        mode="lines+markers",
-        line=dict(color="#27ae60", width=3, dash="solid"),
-        marker=dict(size=8),
-        name="P50 Expected Price"
-    ))
-
-    fig_fan.update_layout(
-        xaxis_title="Forecast Horizon (Days Ahead)",
-        yaxis_title="Price (Rs / Quintal)",
-        xaxis=dict(tickvals=[0, 7, 14, 30], ticktext=["Today (Spot)", "7 Days", "14 Days", "30 Days"]),
-        template="plotly_white",
-        height=420
-    )
-    st.plotly_chart(fig_fan, use_container_width=True)
-
-with tab2:
-    st.subheader(f"Monte Carlo Simulation: Spoilage Decay vs Market Gain")
-    st.markdown(
-        f"Simulating **10,000 draws** from the forward price distribution factoring in "
-        f"**{storage_selected_label}** and **{'Trader Debt (24% p.a.)' if has_trader_debt else 'Zero Debt / e-NWR (9% p.a.)'}**."
-    )
-
-    sim_horizons = [7, 14, 30]
-    expected_gains = [hold_data["horizons"][k]["expected_gain_per_qtl"] for k in sim_horizons]
-    win_probs = [hold_data["horizons"][k]["prob_wait_beats_today_pct"] for k in sim_horizons]
-    p10_worst = [hold_data["horizons"][k]["worst_case_p10_gain"] for k in sim_horizons]
-
-    fig_bar = go.Figure()
-    fig_bar.add_trace(go.Bar(
-        x=[f"{k} Days" for k in sim_horizons],
-        y=expected_gains,
-        name="Expected Net Gain (Rs/qtl)",
-        marker_color=["#27ae60" if g > 0 else "#e74c3c" for g in expected_gains],
-        text=[f"Rs {g:+.1f}" for g in expected_gains],
-        textposition="auto"
-    ))
-    fig_bar.add_trace(go.Scatter(
-        x=[f"{k} Days" for k in sim_horizons],
-        y=p10_worst,
-        name="Worst Case (P10 Net Gain)",
-        mode="lines+markers",
-        line=dict(color="#e67e22", width=2.5, dash="dash"),
-        marker=dict(size=6)
-    ))
-    fig_bar.update_layout(
-        yaxis_title="Net Gain / Loss over Selling Today (Rs/qtl)",
-        template="plotly_white",
-        height=380,
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
-    )
-    st.plotly_chart(fig_bar, use_container_width=True)
-
-    # Spoilage & cost detail table
-    detail_rows = []
-    for k in [0, 7, 14, 30]:
-        h_info = hold_data["horizons"][k]
-        detail_rows.append({
-            "Wait (Days)": f"{k} Days" if k > 0 else "Sell Today",
-            "Cumulative Spoilage Loss": f"{h_info['spoilage_loss_pct']:.1f}%",
-            "Storage Rent / Qtl": f"Rs {h_info['storage_cost_per_qtl']:.2f}",
-            "Interest Cost / Qtl": f"Rs {h_info['interest_cost_per_qtl']:.2f}",
-            "Win Probability": f"{h_info['prob_wait_beats_today_pct']:.1f}%",
-            "Expected Net Gain": f"Rs {h_info['expected_gain_per_qtl']:+.2f} / qtl",
-            "Worst-Case (P10)": f"Rs {h_info['worst_case_p10_gain']:+.2f} / qtl"
-        })
-    st.table(pd.DataFrame(detail_rows))
+if selected_lang == "kn":
+    st.markdown(f"""
+    - **ಆಯ್ಕೆ ಮಾಡಿದ ಬೆಳೆ**: {selected_crop_row.get('name_kn', selected_crop_en)} ({selected_crop_en})
+    - **ಆಯ್ಕೆ ಮಾಡಿದ ಮಾರುಕಟ್ಟೆ**: {selected_mandi_row.get('name_kn', selected_mandi_en)} ({selected_mandi_en})
+    - **ವರದಿ ಸ್ಥಿತಿ**: 2026-11-11 ರ KSAMB ಅಧಿಕೃತ ಬುಲೆಟಿನ್ ಪ್ರಕಾರ. ಹಳೆಯ ದರವನ್ನು ಇಂದಿನ ನೇರ ಬೆಲೆ ಎಂದು ಬಿಂಬಿಸಲಾಗುವುದಿಲ್ಲ.
+    - **ಮುನ್ಸೂಚನೆ ಸ್ಥಿತಿ (Tier B)**: ಪ್ರಸ್ತುತ ಕೇವಲ 1 ದಿನದ ಅಧಿಕೃತ ವರದಿ ಇರುವುದರಿಂದ, ಮುಂದಿನ ದಿನಗಳ ಮುನ್ಸೂಚನೆ (Forecast) ಅನ್ನು ತಡೆಹಿಡಿಯಲಾಗಿದೆ. ಕನಿಷ್ಠ 2 ವರ್ಷಗಳ ಇತಿಹಾಸ ಲಭ್ಯವಾದಾಗ ಮಾತ್ರ ಮುನ್ಸೂಚನೆ ನೀಡಲಾಗುತ್ತದೆ.
+    """)
+elif selected_lang == "hi":
+    st.markdown(f"""
+    - **चयनित फसल**: {selected_crop_row.get('name_hi', selected_crop_en)} ({selected_crop_en})
+    - **चयनित मंडी**: {selected_mandi_en} ({selected_mandi_row.get('district_en', '')})
+    - **रिपोर्ट स्थिति**: KSAMB आधिकारिक दैनिक बुलेटिन (11 Nov 2026).
+    - **पूर्वानुमान स्थिति (Tier B)**: चूंकि केवल 1 दिन का वास्तविक डेटा उपलब्ध है, अतः भविष्य का पूर्वानुमान अक्षम रखा गया है।
+    """)
+else:
+    st.markdown(f"""
+    - **Selected Crop**: {selected_crop_en} ({selected_crop_row.get('category', '')}, {crop_unit})
+    - **Selected Mandi**: {selected_mandi_en} ({selected_mandi_row.get('district_en', '')})
+    - **Report Status**: Latest KSAMB daily report dated 11 Nov 2026.
+    - **Tier Status (Tier B)**: Real price reporting only. Forward ML price forecasts are disabled until 2 years of daily records exist.
+    """)
 
 st.markdown("""
 <div class="disclaimer-card">
     ⚠️ <strong>Statutory Disclaimer for Farmers & FPOs</strong>: 
-    All models produce probabilistic forecasts (P10 to P90) based on historical APMC arrivals and seasonal price volatility. 
-    Weather shocks, border trade bans, or export duty changes can impact market prices. 
+    Prices reflect KSAMB APMC daily reports. No prices are imputed or guessed. 
     <strong>The farmer makes the final sale decision; this advisor acts solely as decision intelligence.</strong>
 </div>
 """, unsafe_allow_html=True)
-

@@ -1,0 +1,281 @@
+[
+  {
+    "district_code": "BAG",
+    "name_en": "Bagalakote",
+    "name_kn": "ಬಾಗಲಕೋಟೆ",
+    "lat": 16.1875,
+    "lon": 75.698,
+    "reporting_mandis_count": 3,
+    "status": "active"
+  },
+  {
+    "district_code": "BLR_U",
+    "name_en": "Bengaluru Urban",
+    "name_kn": "ಬೆಂಗಳೂರು ನಗರ",
+    "lat": 12.9716,
+    "lon": 77.5946,
+    "reporting_mandis_count": 2,
+    "status": "active"
+  },
+  {
+    "district_code": "BLR_R",
+    "name_en": "Bengaluru Rural",
+    "name_kn": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ",
+    "lat": 13.2847,
+    "lon": 77.5684,
+    "reporting_mandis_count": 1,
+    "status": "active"
+  },
+  {
+    "district_code": "BLR_D",
+    "name_en": "Ballari",
+    "name_kn": "ಬಳ್ಳಾರಿ",
+    "lat": 15.1394,
+    "lon": 76.9214,
+    "reporting_mandis_count": 3,
+    "status": "active"
+  },
+  {
+    "district_code": "BEL",
+    "name_en": "Belagavi",
+    "name_kn": "ಬೆಳಗಾವಿ",
+    "lat": 15.8497,
+    "lon": 74.4977,
+    "reporting_mandis_count": 5,
+    "status": "active"
+  },
+  {
+    "district_code": "BID",
+    "name_en": "Bidar",
+    "name_kn": "ಬೀದರ್",
+    "lat": 17.9104,
+    "lon": 77.5199,
+    "reporting_mandis_count": 2,
+    "status": "active"
+  },
+  {
+    "district_code": "CMR",
+    "name_en": "Chamarajanagar",
+    "name_kn": "ಚಾಮರಾಜನಗರ",
+    "lat": 11.9261,
+    "lon": 76.9437,
+    "reporting_mandis_count": 4,
+    "status": "active"
+  },
+  {
+    "district_code": "CKB",
+    "name_en": "Chikkaballapura",
+    "name_kn": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ",
+    "lat": 13.4325,
+    "lon": 77.7275,
+    "reporting_mandis_count": 3,
+    "status": "active"
+  },
+  {
+    "district_code": "CKM",
+    "name_en": "Chikkamagaluru",
+    "name_kn": "ಚಿಕ್ಕಮಗಳೂರು",
+    "lat": 13.3161,
+    "lon": 75.772,
+    "reporting_mandis_count": 3,
+    "status": "active"
+  },
+  {
+    "district_code": "CHT",
+    "name_en": "Chitradurga",
+    "name_kn": "ಚಿತ್ರದುರ್ಗ",
+    "lat": 14.23,
+    "lon": 76.4,
+    "reporting_mandis_count": 5,
+    "status": "active"
+  },
+  {
+    "district_code": "DK",
+    "name_en": "Dakshina Kannada",
+    "name_kn": "ದಕ್ಷಿಣ ಕನ್ನಡ",
+    "lat": 12.87,
+    "lon": 74.88,
+    "reporting_mandis_count": 3,
+    "status": "active"
+  },
+  {
+    "district_code": "DAV",
+    "name_en": "Davanagere",
+    "name_kn": "ದಾವಣಗೆರೆ",
+    "lat": 14.4667,
+    "lon": 75.9167,
+    "reporting_mandis_count": 5,
+    "status": "active"
+  },
+  {
+    "district_code": "DWR",
+    "name_en": "Dharwad",
+    "name_kn": "ಧಾರವಾಡ",
+    "lat": 15.4589,
+    "lon": 75.0078,
+    "reporting_mandis_count": 3,
+    "status": "active"
+  },
+  {
+    "district_code": "GAD",
+    "name_en": "Gadag",
+    "name_kn": "ಗದಗ",
+    "lat": 15.4167,
+    "lon": 75.6167,
+    "reporting_mandis_count": 4,
+    "status": "active"
+  },
+  {
+    "district_code": "HAS",
+    "name_en": "Hassan",
+    "name_kn": "ಹಾಸನ",
+    "lat": 13.0072,
+    "lon": 76.0961,
+    "reporting_mandis_count": 8,
+    "status": "active"
+  },
+  {
+    "district_code": "HAV",
+    "name_en": "Haveri",
+    "name_kn": "ಹಾವೇರಿ",
+    "lat": 14.7958,
+    "lon": 75.3986,
+    "reporting_mandis_count": 6,
+    "status": "active"
+  },
+  {
+    "district_code": "KLB",
+    "name_en": "Kalaburagi",
+    "name_kn": "ಕಲಬುರಗಿ",
+    "lat": 17.3297,
+    "lon": 76.8343,
+    "reporting_mandis_count": 5,
+    "status": "active"
+  },
+  {
+    "district_code": "KOD",
+    "name_en": "Kodagu",
+    "name_kn": "ಕೊಡಗು",
+    "lat": 12.4244,
+    "lon": 75.7382,
+    "reporting_mandis_count": 0,
+    "status": "No market data"
+  },
+  {
+    "district_code": "KOL",
+    "name_en": "Kolar",
+    "name_kn": "ಕೋಲಾರ",
+    "lat": 13.1367,
+    "lon": 78.1292,
+    "reporting_mandis_count": 4,
+    "status": "active"
+  },
+  {
+    "district_code": "KOP",
+    "name_en": "Koppal",
+    "name_kn": "ಕೊಪ್ಪಳ",
+    "lat": 15.35,
+    "lon": 76.15,
+    "reporting_mandis_count": 5,
+    "status": "active"
+  },
+  {
+    "district_code": "MAN",
+    "name_en": "Mandya",
+    "name_kn": "ಮಂಡ್ಯ",
+    "lat": 12.52,
+    "lon": 76.9,
+    "reporting_mandis_count": 6,
+    "status": "active"
+  },
+  {
+    "district_code": "MYS",
+    "name_en": "Mysuru",
+    "name_kn": "ಮೈಸೂರು",
+    "lat": 12.2958,
+    "lon": 76.6394,
+    "reporting_mandis_count": 6,
+    "status": "active"
+  },
+  {
+    "district_code": "RAI",
+    "name_en": "Raichur",
+    "name_kn": "ರಾಯಚೂರು",
+    "lat": 16.2,
+    "lon": 77.3667,
+    "reporting_mandis_count": 4,
+    "status": "active"
+  },
+  {
+    "district_code": "RAM",
+    "name_en": "Ramanagara",
+    "name_kn": "ರಾಮನಗರ",
+    "lat": 12.715,
+    "lon": 77.281,
+    "reporting_mandis_count": 2,
+    "status": "active"
+  },
+  {
+    "district_code": "SHI",
+    "name_en": "Shivamogga",
+    "name_kn": "ಶಿವಮೊಗ್ಗ",
+    "lat": 13.9299,
+    "lon": 75.5681,
+    "reporting_mandis_count": 5,
+    "status": "active"
+  },
+  {
+    "district_code": "TUM",
+    "name_en": "Tumakuru",
+    "name_kn": "ತುಮಕೂರು",
+    "lat": 13.3409,
+    "lon": 77.101,
+    "reporting_mandis_count": 2,
+    "status": "active"
+  },
+  {
+    "district_code": "UDU",
+    "name_en": "Udupi",
+    "name_kn": "ಉಡುಪಿ",
+    "lat": 13.3409,
+    "lon": 74.7421,
+    "reporting_mandis_count": 2,
+    "status": "active"
+  },
+  {
+    "district_code": "UK",
+    "name_en": "Uttara Kannada",
+    "name_kn": "ಉತ್ತರ ಕನ್ನಡ",
+    "lat": 14.8136,
+    "lon": 74.1297,
+    "reporting_mandis_count": 5,
+    "status": "active"
+  },
+  {
+    "district_code": "VIJ_N",
+    "name_en": "Vijayanagara",
+    "name_kn": "ವಿಜಯನಗರ",
+    "lat": 15.2689,
+    "lon": 76.3909,
+    "reporting_mandis_count": 5,
+    "status": "active"
+  },
+  {
+    "district_code": "VIJ",
+    "name_en": "Vijayapura",
+    "name_kn": "ವಿಜಯಪುರ",
+    "lat": 16.8302,
+    "lon": 75.71,
+    "reporting_mandis_count": 4,
+    "status": "active"
+  },
+  {
+    "district_code": "YAD",
+    "name_en": "Yadgir",
+    "name_kn": "ಯಾದಗಿರಿ",
+    "lat": 16.7667,
+    "lon": 77.1333,
+    "reporting_mandis_count": 0,
+    "status": "No market data"
+  }
+]

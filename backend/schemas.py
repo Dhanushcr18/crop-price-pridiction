@@ -41,7 +41,7 @@ class ForecastHorizonDetail(BaseModel):
 
 class ForecastResponse(BaseModel):
     mandi: str
-    crop: str = "onion"
+    crop: Optional[str] = None
     spot_price_today: Optional[float] = None
     as_of_date: Optional[str] = None
     horizons: List[ForecastHorizonDetail] = []
@@ -383,7 +383,7 @@ class TodayPriceResponse(BaseModel):
 
 
 class WhereToSellSpatialRequest(BaseModel):
-    crop: str = "Onion"
+    crop: str
     farmer_location: Optional[str] = None
     lat: Optional[float] = None
     lon: Optional[float] = None
