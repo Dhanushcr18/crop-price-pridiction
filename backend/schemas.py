@@ -155,6 +155,7 @@ class WhenToSellResponse(BaseModel):
 
 class AdviceRequest(BaseModel):
     farmer_location: str
+    crop: Optional[str] = None
     quantity_quintals: float = Field(..., gt=0, le=10000)
     storage_type: str = Field("open", description="'open', 'warehouse', or 'cold_storage'")
     has_trader_debt: bool = False

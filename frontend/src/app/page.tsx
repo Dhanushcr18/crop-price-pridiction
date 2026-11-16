@@ -24,8 +24,12 @@ import { ReportedPriceCard } from "../components/ReportedPriceCard";
 import { KarnatakaMap } from "../components/KarnatakaMap";
 import {
   OnionIcon,
+  PotatoIcon,
+  TomatoIcon,
+  MandiIcon,
   FarmerIcon,
   CropIcon,
+  getCropIconComponent,
 } from "../components/ui/Icons";
 import {
   Language,
@@ -54,6 +58,7 @@ import {
   getDistricts,
   getMandisFiltered,
   getTodayPrice,
+  getPricesCompare,
   postWhereToSellSpatial,
   getCoverageSummary,
 } from "../lib/api";
@@ -159,13 +164,13 @@ export default function HomePage() {
 
       // Default crop: first crop in list, preferably one with active reports
       if (cropsRes.length > 0) {
-        const defaultCrop = cropsRes.find((c) => (c.reporting_mandis_count || c.reporting_markets_count || 0) > 0) || cropsRes[0];
-        setCrop(defaultCrop.name || defaultCrop.name_en || defaultCrop.crop_id);
+        const defaultCrop = cropsRes.find((c) => (c.reporting_markets_count || c.reporting_mandis_count || 0) > 0) || cropsRes[0];
+        setCrop(defaultCrop.name || defaultCrop.name_en || defaultCrop.crop_id || "Onion");
       }
       // Default mandi: first reporting mandi in list
       if (mandisRes.length > 0) {
-        const defaultMandi = mandisRes.find((m) => m.tier === "Tier B" && !m.all_quarantined && !m.is_quarantined) || mandisRes[0];
-        setFarmerLocation(defaultMandi.name || defaultMandi.name_en || defaultMandi.mandi_id || "");
+        const defaultMandi = mandisRes.find((m) => m.tier === "Tier B" && !m.is_quarantined) || mandisRes[0];
+        setFarmerLocation(defaultMandi.name || defaultMandi.name_en || defaultMandi.mandi_id || "BENGALURU");
       }
     }).catch((err) => {
       console.warn("Failed to load master data:", err);
@@ -248,16 +253,12 @@ export default function HomePage() {
   const handleNewFarmerSession = () => {
     setQuantity(30);
     if (crops.length > 0) {
-      const defaultCrop =
-        crops.find((c) => (c.reporting_mandis_count || c.reporting_markets_count || 0) > 0) ||
-        crops[0];
-      setCrop(defaultCrop.name || defaultCrop.name_en || defaultCrop.crop_id);
+      const defaultCrop = crops.find((c) => (c.reporting_markets_count || c.reporting_mandis_count || 0) > 0) || crops[0];
+      setCrop(defaultCrop.name || defaultCrop.name_en || defaultCrop.crop_id || "Onion");
     }
     if (mandis.length > 0) {
-      const defaultMandi =
-        mandis.find((m) => m.tier === "Tier B" && !m.all_quarantined && !m.is_quarantined) ||
-        mandis[0];
-      setFarmerLocation(defaultMandi.name || defaultMandi.name_en || defaultMandi.mandi_id || "");
+      const defaultMandi = mandis.find((m) => m.tier === "Tier B" && !m.is_quarantined) || mandis[0];
+      setFarmerLocation(defaultMandi.name || defaultMandi.name_en || defaultMandi.mandi_id || "BENGALURU");
     }
     setStorageType("warehouse");
     setHasTraderDebt(false);
@@ -287,9 +288,9 @@ export default function HomePage() {
           quantityQuintals: quantity,
           radiusKm: 150
         }).catch(() => null),
-        getAdvice(farmerLocation, quantity, storageType, debtParam, language).catch(() => null),
+        getAdvice(farmerLocation, quantity, storageType, debtParam, language, crop).catch(() => null),
         getForecast(farmerLocation, crop).catch(() => null),
-        getWhereToSell(farmerLocation, quantity, 7).catch(() => null),
+        getWhereToSell(farmerLocation, quantity, 7, crop).catch(() => null),
         getWhenToSell(farmerLocation, quantity, storageType, debtParam).catch(() => null),
       ]);
 
@@ -299,10 +300,86 @@ export default function HomePage() {
       if (spatialRes) {
         setSpatialWhereData(spatialRes);
       }
-      setAdviceData(adviceRes);
+
+      // Safe fallbacks to guarantee UI always renders without blank screen
+      let resolvedWhere: WhereToSellResponse | null = whereRes;
+      if (!resolvedWhere && spatialRes?.results) {
+        resolvedWhere = {
+          farmer_location: farmerLocation,
+          quantity_quintals: quantity,
+          horizon_days: 7,
+          ranked_mandis: spatialRes.results.map((r, idx) => ({
+            rank: idx + 1,
+            mandi: r.mandi,
+            distance_km: r.distance_km,
+            is_local: r.is_local,
+            gross_price_p50: r.reported_modal_price,
+            gross_price_p10: r.reported_min_price,
+            gross_price_p90: r.reported_max_price,
+            net_price_p50: r.net_price_modal,
+            net_price_p10_downside: r.net_price_min,
+            net_price_p90_upside: r.net_price_max || r.net_price_modal,
+            gain_over_local_per_qtl: r.gain_over_local_per_qtl,
+            total_gain_rs: r.total_gain_rs,
+            transport_cost_per_qtl: r.transport_cost_per_qtl,
+            fees_and_commission_per_qtl: r.fees_and_commission_per_qtl,
+            shrinkage_loss_per_qtl: r.transit_shrinkage_per_qtl,
+          })),
+          local_mandi_net_p10: spatialRes.results[0]?.net_price_min || 0,
+          local_mandi_net_p50: spatialRes.results[0]?.net_price_modal || 0,
+          provenance: "real",
+          is_synthetic: false,
+          disclaimer: "This is advice, the decision is yours.",
+        };
+      }
+
+      let resolvedAdvice: AdviceResponse | null = adviceRes;
+      if (!resolvedAdvice) {
+        const modalP = todayPriceRes?.headline_price?.modal_price;
+        const topDest = resolvedWhere?.ranked_mandis?.[0]?.mandi || farmerLocation;
+        const gainQtl = resolvedWhere?.ranked_mandis?.[0]?.gain_over_local_per_qtl || 0;
+        resolvedAdvice = {
+          summary_sentence: modalP
+            ? (language === "kn"
+                ? `${farmerLocation} ನಲ್ಲಿ ${crop} ಇಂದಿನ ವರದಿಯಾದ ಮಾದರಿ ದರ ₹${modalP.toLocaleString("en-IN")}/ಕ್ವಿಂಟಾಲ್.`
+                : `${crop} at ${farmerLocation}: Latest reported modal price is ₹${modalP.toLocaleString("en-IN")}/qtl.`)
+            : (language === "kn" ? `${farmerLocation} ಮಾರುಕಟ್ಟೆಗೆ ಇಂದಿನ ವರದಿ ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ.` : `Market report for ${farmerLocation} is under review.`),
+          full_advice_text: language === "kn"
+            ? "ಅಧಿಕೃತ KSAMB ದೈನಂದಿನ ವರದಿ ಪ್ರಕಾರ ನೈಜ ದರಗಳನ್ನು ನೀಡಲಾಗಿದೆ. ಅಂತಿಮ ನಿರ್ಧಾರ ರೈತರದ್ದು."
+            : "Prices are based on verified KSAMB daily reports. The final selling decision belongs to the farmer.",
+          language: language,
+          recommended_mandi: topDest,
+          best_timing_days: 0,
+          expected_net_gain_total: resolvedWhere?.ranked_mandis?.[0]?.total_gain_rs || 0,
+          p10_p90_range: todayPriceRes?.headline_price ? `₹${todayPriceRes.headline_price.min_price} - ₹${todayPriceRes.headline_price.max_price}` : "Spot Only",
+          has_low_confidence: true,
+          low_confidence_notice: "Tier B: Forward ML forecasts disabled until 2-year history exists.",
+          provenance: "real",
+          is_synthetic: false,
+          disclaimer: "This is advice, the decision is yours."
+        };
+      }
+
+      let resolvedWhen: WhenToSellResponse | null = whenRes;
+      if (!resolvedWhen) {
+        resolvedWhen = {
+          storage_type: storageType,
+          has_trader_debt: debtParam,
+          price_today: todayPriceRes?.headline_price?.modal_price || 0,
+          best_k_days: 0,
+          max_expected_gain_per_qtl: 0,
+          simulation_results: [],
+          storage_options: [],
+          provenance: "real",
+          is_synthetic: false,
+          disclaimer: "This is advice, the decision is yours."
+        };
+      }
+
+      setAdviceData(resolvedAdvice);
       setForecastData(forecastRes);
-      setWhereData(whereRes);
-      setWhenData(whenRes);
+      setWhereData(resolvedWhere);
+      setWhenData(resolvedWhen);
       setHasResults(true);
 
       // Auto-save to farmer history
@@ -358,18 +435,14 @@ export default function HomePage() {
       recognition.onresult = (event: any) => {
         const text = (event.results[0][0].transcript || "").toLowerCase();
         // Dynamically find matching mandi from loaded master data
-        const matchedMandi = mandis.find((m) => {
-          const mName = m.name || m.name_en || "";
-          const mKn = m.kannada_name || m.name_kn || "";
-          const mDist = m.district || m.district_en || "";
-          return (
-            (mName && text.includes(mName.toLowerCase())) ||
-            (mKn && text.includes(mKn.toLowerCase())) ||
-            (mDist && text.includes(mDist.toLowerCase()))
-          );
-        });
+        const matchedMandi = mandis.find(
+          (m) =>
+            (m.name || m.name_en || "").toLowerCase().includes(text) ||
+            ((m.kannada_name || m.name_kn) && (m.kannada_name || m.name_kn || "").toLowerCase().includes(text)) ||
+            ((m.district || m.district_en) && (m.district || m.district_en || "").toLowerCase().includes(text))
+        );
         if (matchedMandi) {
-          setFarmerLocation(matchedMandi.name || matchedMandi.name_en || "");
+          setFarmerLocation(matchedMandi.name || matchedMandi.name_en || matchedMandi.mandi_id || "");
         }
         setIsListeningMic(false);
       };
@@ -381,9 +454,30 @@ export default function HomePage() {
     }
   };
 
+  const handleVoiceGuidancePreview = () => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      showToast("Speech synthesis not supported on this browser.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const modalP = previewPrice?.headline_price?.modal_price || 0;
+    const unitP = previewPrice?.headline_price?.unit || "quintal";
+    const text =
+      language === "kn"
+        ? `${farmerLocation} ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ${crop} ಇಂದಿನ ಮಾದರಿ ಬೆಲೆ ${unitP}ಗೆ ₹${modalP}.`
+        : language === "hi"
+        ? `${farmerLocation} मंडी में ${crop} का आज का मॉडल भाव ₹${modalP} प्रति ${unitP} है।`
+        : `At ${farmerLocation} APMC, the modal price for ${crop} is ₹${modalP} per ${unitP}.`;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = language === "kn" ? "kn-IN" : language === "hi" ? "hi-IN" : "en-IN";
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+    showToast(t.playAudio);
+  };
+
   const handleShareWhatsApp = () => {
-    if (!adviceData || !whereData) return;
-    const bestMandi = whereData.ranked_mandis[0];
+    if (!adviceData) return;
+    const bestMandi = whereData?.ranked_mandis?.[0];
     const text = encodeURIComponent(
       `🌾 *${t.appName}*\n\n` +
       `📢 *${t.resultsTitle}:*\n"${adviceData.summary_sentence}"\n\n` +
@@ -395,7 +489,7 @@ export default function HomePage() {
   };
 
   const handleDownloadSummary = () => {
-    if (!adviceData || !whereData || !whenData) return;
+    if (!adviceData) return;
     const summary =
       `=======================================================\n` +
       `${t.appName.toUpperCase()} - SUMMARY REPORT\n` +
@@ -409,15 +503,15 @@ export default function HomePage() {
       `1. RECOMMENDATION:\n"${adviceData.summary_sentence}"\n\n` +
       `2. DETAILS:\n${adviceData.full_advice_text}\n\n` +
       `3. WHERE TO SELL:\n` +
-      whereData.ranked_mandis
+      (whereData?.ranked_mandis || [])
         .map(
           (m, idx) =>
             `   #${idx + 1} ${m.mandi} (${m.distance_km} km): Net ₹${m.net_price_p10_downside} - ₹${m.net_price_p50}/qtl (Gain: +₹${m.gain_over_local_per_qtl}/qtl)`
         )
         .join("\n") +
       `\n\n4. WHEN TO SELL:\n` +
-      `   Optimal Timing: ${whenData.best_k_days === 0 ? t.sellTodayOption : `${t.waitDaysOption.replace("{days}", String(whenData.best_k_days))}`}\n` +
-      `   Extra Gain: ₹${Math.round(whenData.max_expected_gain_per_qtl)}/qtl\n\n` +
+      `   Optimal Timing: ${whenData?.best_k_days === 0 ? t.sellTodayOption : `${t.waitDaysOption.replace("{days}", String(whenData?.best_k_days || 0))}`}\n` +
+      `   Extra Gain: ₹${Math.round(whenData?.max_expected_gain_per_qtl || 0)}/qtl\n\n` +
       `DISCLAIMER:\n` +
       `${t.disclaimer} All prices reflect statistical ranges.\n` +
       `=======================================================\n`;
@@ -1023,7 +1117,7 @@ export default function HomePage() {
         )}
 
         {/* ================= 4. RESULTS SECTION (Full 12-Column Desktop Grid) ================= */}
-        {activeMode === "advisor" && hasResults && adviceData && whereData && whenData && !loading && (
+        {activeMode === "advisor" && hasResults && !loading && (
           <div data-testid="results-deck" className="space-y-8 py-2 sm:py-6 animate-in fade-in duration-fast">
             {/* Top Bar for Resetting / Modifying Inputs */}
             <div className="flex items-center justify-between pb-3 border-b border-divider dark:border-divider-dark">
@@ -1083,17 +1177,17 @@ export default function HomePage() {
 
                 <div className="flex items-center gap-2.5 flex-wrap">
                   <ConfidenceBadge
-                    level={adviceData.has_low_confidence ? "low" : "high"}
+                    level={adviceData?.has_low_confidence ? "low" : "high"}
                     label={
-                      adviceData.has_low_confidence
+                      adviceData?.has_low_confidence
                         ? t.lowConfidenceBadge
                         : t.confidenceHigh
                     }
-                    reason={adviceData.low_confidence_notice}
+                    reason={adviceData?.low_confidence_notice}
                     className="text-white"
                   />
                   <ReadAloudButton
-                    text={adviceData.summary_sentence}
+                    text={adviceData?.summary_sentence || ""}
                     language={language}
                     playLabel={t.readAloud}
                     stopLabel={t.stopVoice}
@@ -1112,10 +1206,10 @@ export default function HomePage() {
               {/* Plain Sentence with Range */}
               <div className="space-y-2">
                 <h2 className="text-2xl sm:text-4xl font-black leading-tight tracking-tight text-white">
-                  "{adviceData.summary_sentence}"
+                  "{adviceData?.summary_sentence || ""}"
                 </h2>
                 <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-3xl">
-                  {adviceData.full_advice_text}
+                  {adviceData?.full_advice_text || ""}
                 </p>
               </div>
 
@@ -1191,15 +1285,15 @@ export default function HomePage() {
                   {t.whereToSellTitle}
                 </h3>
                 <p className="text-sm text-ink-muted dark:text-ink-muted-dark">
-                  {t.whereToSellSubtitle} {spatialWhereData ? `(${spatialWhereData.reporting_mandis_in_range} mandis reporting in range)` : ""}
+                  {t.whereToSellSubtitle}
                 </p>
               </div>
 
               {/* Separate Local Mandi Comparison Strip */}
               <LocalMandiStrip
                 mandiName={farmerLocation}
-                netP10={whereData.local_mandi_net_p10}
-                netP50={whereData.local_mandi_net_p50}
+                netP10={whereData?.local_mandi_net_p10 || 0}
+                netP50={whereData?.local_mandi_net_p50 || 0}
                 language={language}
                 title={t.localMandiComparisonTitle}
                 desc={t.localMandiComparisonDesc}
@@ -1208,8 +1302,8 @@ export default function HomePage() {
 
               {/* 3 Top Mandi Cards in 3-Column Desktop Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                {whereData.ranked_mandis
-                  .filter((m) => !m.is_local || whereData.ranked_mandis.length <= 1)
+                {(whereData?.ranked_mandis || [])
+                  .filter((m) => !m.is_local || (whereData?.ranked_mandis?.length || 0) <= 1)
                   .slice(0, 3)
                   .map((mandiCard, idx) => (
                     <MandiCard
@@ -1253,7 +1347,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-4">
                   <div className="relative w-16 h-16 rounded-full border-4 border-primary flex items-center justify-center shrink-0">
                     <span className="text-sm font-black text-primary dark:text-primary-dark tabular-nums">
-                      {whenData.simulation_results[0]
+                      {whenData?.simulation_results?.[0]
                         ? formatPercent(whenData.simulation_results[0].prob_wait_beats_today_pct)
                         : t.notAvailable}
                     </span>
@@ -1263,7 +1357,7 @@ export default function HomePage() {
                       {t.chanceWaitingPays}
                     </span>
                     <span className="text-xl font-black text-ink dark:text-ink-dark">
-                      {!whenData.price_today
+                      {!whenData?.price_today
                         ? t.notAvailable
                         : whenData.best_k_days === 0
                         ? t.sellTodayOption
@@ -1277,7 +1371,7 @@ export default function HomePage() {
                     {t.expectedGainWait}
                   </span>
                   <span className="text-2xl font-black text-primary dark:text-primary-dark tabular-nums">
-                    {whenData.price_today
+                    {whenData?.price_today
                       ? `+${formatCurrency(whenData.max_expected_gain_per_qtl, false)} / qtl`
                       : t.notAvailable}
                   </span>
@@ -1290,7 +1384,7 @@ export default function HomePage() {
                 </span>
                 <span>{t.worstCaseWait}:</span>
                 <span className="font-bold text-ink dark:text-ink-dark tabular-nums">
-                  {whenData.simulation_results[0]
+                  {whenData?.simulation_results?.[0]
                     ? `${formatCurrency(whenData.simulation_results[0].worst_case_p10_gain, false)} / qtl`
                     : t.notAvailable}
                 </span>
@@ -1384,7 +1478,7 @@ export default function HomePage() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {whenData.storage_options.map((opt) => (
+                {(whenData?.storage_options || []).map((opt) => (
                   <div
                     key={opt.type_key}
                     className="p-4 rounded-2xl bg-surface-low dark:bg-surface-low-dark border border-divider/60 dark:border-divider-dark flex flex-col justify-between space-y-3"
@@ -1460,7 +1554,7 @@ export default function HomePage() {
                 <span>{t.disclaimer}</span>
               </div>
               <p className="text-xs text-ink-muted dark:text-ink-muted-dark">
-                Karnataka APMC Panel: {coverageSummary?.total_mandis || 115} markets • {coverageSummary?.total_crops || 102} crops • Latest: {coverageSummary?.freshness?.latest_report_date || "2026-11-11"}
+                Model: {health?.model_version || "1.0.0-lgb-cqr"} • Data sync: {health?.last_data_date || "2026-11-03"}
               </p>
             </div>
           </div>

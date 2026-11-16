@@ -259,7 +259,8 @@ def post_advice(body: AdviceRequest):
         quantity_quintals=body.quantity_quintals,
         storage_type=body.storage_type,
         has_trader_debt=body.has_trader_debt,
-        language=body.language
+        language=body.language,
+        crop=body.crop
     )
 
 

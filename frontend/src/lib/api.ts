@@ -68,15 +68,17 @@ export async function getForecast(mandi: string, crop?: string): Promise<Forecas
 export async function getWhereToSell(
   farmerLocation: string,
   quantityQuintals: number,
-  horizonDays: number = 7
+  horizonDays: number = 7,
+  crop: string = "Onion"
 ): Promise<WhereToSellResponse> {
   return fetchWithCache<WhereToSellResponse>(
     `${API_BASE}/api/where-to-sell`,
-    `where_${farmerLocation}_${quantityQuintals}_${horizonDays}`,
+    `where_${farmerLocation}_${quantityQuintals}_${horizonDays}_${crop}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        crop: crop || "Onion",
         farmer_location: farmerLocation,
         quantity_quintals: quantityQuintals,
         horizon_days: horizonDays,
@@ -113,15 +115,17 @@ export async function getAdvice(
   quantityQuintals: number,
   storageType: string = "open",
   hasTraderDebt: boolean = false,
-  language: string = "en"
+  language: string = "en",
+  crop: string = "Onion"
 ): Promise<AdviceResponse> {
   return fetchWithCache<AdviceResponse>(
     `${API_BASE}/api/advice`,
-    `advice_${farmerLocation}_${quantityQuintals}_${storageType}_${hasTraderDebt}_${language}`,
+    `advice_${farmerLocation}_${quantityQuintals}_${storageType}_${hasTraderDebt}_${language}_${crop}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        crop: crop || "Onion",
         farmer_location: farmerLocation,
         quantity_quintals: quantityQuintals,
         storage_type: storageType,

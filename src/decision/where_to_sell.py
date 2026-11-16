@@ -269,3 +269,62 @@ def evaluate_where_to_sell_all_mandis(
         "disclaimer": "based on the latest reported prices, not a forecast",
         "assumption_label": "ASSUMPTION: Net price deduction accounts for freight (Rs 3.5/qtl/km * 1.25 road-factor), 3.5% statutory fees/commission, and 0.25%/100km shrinkage."
     }
+
+
+def rank_mandis_for_sale(
+    farmer_location: str,
+    quantity_quintals: float,
+    forecast_prices: Dict[str, Dict[str, float]],
+    config_path: str = "config.yaml"
+) -> List[Dict[str, Any]]:
+    """Backward compatibility wrapper ranking candidate mandis."""
+    config = load_config(config_path)
+    distance_matrix = config.get("distance_matrix_km", {})
+    loc_key = farmer_location
+    if loc_key not in distance_matrix:
+        for k in distance_matrix:
+            if loc_key.lower() in k.lower():
+                loc_key = k
+                break
+    local_distances = distance_matrix.get(loc_key, {})
+
+    results = []
+    for mandi_name, prices in forecast_prices.items():
+        mandi_dist_key = mandi_name
+        if mandi_dist_key not in local_distances:
+            for k in local_distances:
+                if mandi_dist_key.lower() in k.lower():
+                    mandi_dist_key = k
+                    break
+        dist_km = local_distances.get(mandi_dist_key, 50.0)
+        p50 = prices.get("p50")
+        p10 = prices.get("p10")
+        p90 = prices.get("p90")
+        if p50 is None:
+            continue
+        net_calc = compute_mandi_net_price(p50, dist_km, quantity_quintals, config)
+        net_p10_calc = compute_mandi_net_price(p10, dist_km, quantity_quintals, config)
+        results.append({
+            "mandi": mandi_name,
+            "distance_km": dist_km,
+            "forecast_p10": p10,
+            "forecast_p50": p50,
+            "forecast_p90": p90,
+            "transport_cost_per_qtl": net_calc["transport_cost"],
+            "fees_and_commission_per_qtl": net_calc["fees_and_commission"],
+            "shrinkage_loss_per_qtl": net_calc["transit_shrinkage"],
+            "net_price_p50": net_calc["net_price"],
+            "net_price_p10": net_p10_calc["net_price"],
+            "gain_over_local_per_qtl": 0.0,
+            "total_gain_rs": 0.0,
+            "is_local": dist_km <= 5.0
+        })
+
+    local_mandi = next((m for m in results if m["is_local"]), None)
+    local_net = local_mandi["net_price_p50"] if local_mandi else (results[-1]["net_price_p50"] if results else 0)
+    for item in results:
+        gain = round(item["net_price_p50"] - local_net, 2)
+        item["gain_over_local_per_qtl"] = gain
+        item["total_gain_rs"] = round(gain * quantity_quintals, 2)
+
+    return sorted(results, key=lambda x: x["net_price_p50"], reverse=True)[:3]

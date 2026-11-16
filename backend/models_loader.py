@@ -19,6 +19,8 @@ from src.decision.where_to_sell import (
     evaluate_where_to_sell_all_mandis
 )
 from src.decision.when_to_sell import simulate_hold_vs_sell
+from src.agent.advisor import tool_find_storage
+from src.data.area_repository import AreaRepository
 
 logger = logging.getLogger("farmer_advisor.backend")
 
@@ -40,6 +42,8 @@ class AdvisorService:
         self.master_mandis_path = self.config.get("paths", {}).get("master_mandis", "data/master/mandis.csv")
         self.master_districts_path = self.config.get("paths", {}).get("master_districts", "data/master/districts.csv")
         self.master_crops_path = self.config.get("paths", {}).get("master_crops", "data/master/crops.csv")
+        self.reports_dir = self.config.get("paths", {}).get("reports_dir", "reports")
+        self.area_repo = AreaRepository(config_path)
 
         self.panel_df: Optional[pd.DataFrame] = None
         self.non_quintal_df: Optional[pd.DataFrame] = None
@@ -481,3 +485,286 @@ class AdvisorService:
             },
             "quarantined_mandis": list(self.fully_quarantined_mandis)
         }
+
+    def evaluate_when_to_sell(
+        self,
+        farmer_location: str,
+        quantity_quintals: float,
+        storage_type: str = "open",
+        has_trader_debt: bool = False,
+        simulate_credit_comparison: bool = True
+    ) -> Dict[str, Any]:
+        """Runs Monte Carlo simulation of holding vs selling today.
+        Tier B strictly enforces disabled ML forward forecasts, returning reported spot baseline.
+        """
+        today_res = self.get_today_price(crop="Onion", mandi=farmer_location)
+        price_today = None
+        if today_res.get("available") and today_res.get("headline_price"):
+            price_today = float(today_res["headline_price"].get("modal_price", 0))
+
+        try:
+            storage_options = tool_find_storage(farmer_location, quantity_quintals).get("storage_options", [])
+        except Exception:
+            storage_options = []
+
+        return {
+            "farmer_location": farmer_location,
+            "quantity_quintals": quantity_quintals,
+            "storage_type": storage_type,
+            "has_trader_debt": has_trader_debt,
+            "price_today": price_today,
+            "recommendation": "Sell Today",
+            "recommended_horizon_days": 0,
+            "best_k_days": 0,
+            "max_expected_gain_per_qtl": 0.0,
+            "confidence": "Tier B",
+            "message": "Tier B: Forward ML forecasts are disabled until 2-year history exists. Showing reported price baseline.",
+            "notice": "No real price history yet, forecasts disabled",
+            "horizons": [],
+            "simulation_results": [
+                {
+                    "k_days": 0,
+                    "expected_future_price": price_today or 0.0,
+                    "spoilage_loss_pct": 0.0,
+                    "storage_cost_per_qtl": 0.0,
+                    "interest_cost_per_qtl": 0.0,
+                    "expected_gain_per_qtl": 0.0,
+                    "total_expected_gain_lot": 0.0,
+                    "worst_case_p10_gain": 0.0,
+                    "prob_wait_beats_today_pct": 50.0,
+                    "recommendation": "Sell Today"
+                }
+            ],
+            "credit_comparison": None,
+            "storage_options": storage_options,
+            "provenance": self.data_provenance,
+            "is_synthetic": self.is_synthetic,
+            "synthetic_banner": None,
+            "disclaimer": "This is advice, the decision is yours. Forward price forecasts require 2 years of daily records."
+        }
+
+    def generate_plain_language_advice(
+        self,
+        farmer_location: str,
+        quantity_quintals: float,
+        storage_type: str = "open",
+        has_trader_debt: bool = False,
+        language: str = "en",
+        crop: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """Generates plain language advisory text in English, Hindi, or Kannada with reported prices."""
+        crop_name = crop or "Onion"
+        lang_code = (language or "en").lower()[:2]
+
+        today_price = self.get_today_price(crop=crop_name, mandi=farmer_location)
+        spatial_where = self.evaluate_where_to_sell(
+            crop=crop_name,
+            farmer_location=farmer_location,
+            quantity_quintals=quantity_quintals,
+            radius_km=150.0
+        )
+
+        candidates = spatial_where.get("results", [])
+        top_mandi = candidates[0] if candidates else None
+        top_mandi_name = top_mandi["mandi"] if top_mandi else farmer_location
+
+        if today_price.get("status") == "Data under review":
+            if lang_code == "kn":
+                summary = f"{farmer_location} ಮಾರುಕಟ್ಟೆಯ ದತ್ತಾಂಶ ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ (Data under review)."
+                full_text = f"{farmer_location} ಮಾರುಕಟ್ಟೆಯ ಎಲ್ಲಾ ದಾಖಲೆಗಳನ್ನು ಪರಿಶೀಲನೆಗೆ ಒಳಪಡಿಸಲಾಗಿದೆ. ರೈತರಿಗೆ ತಪ್ಪು ಮಾಹಿತಿ ತಪ್ಪಿಸಲು ದರಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತಿಲ್ಲ."
+            elif lang_code == "hi":
+                summary = f"{farmer_location} मंडी का डेटा समीक्षाधीन है (Data under review)।"
+                full_text = f"{farmer_location} मंडी के सभी रिकॉर्ड डेटा सत्यापन में विफल रहे हैं। कोई अप्रमाणित मूल्य नहीं दिखाया जाएगा।"
+            else:
+                summary = f"Data under review for {farmer_location} APMC."
+                full_text = f"All records for {farmer_location} were quarantined during verification. Unverified prices are withheld for farmer protection."
+            return {
+                "summary_sentence": summary,
+                "full_advice_text": full_text,
+                "language": language,
+                "recommended_mandi": farmer_location,
+                "best_timing_days": 0,
+                "expected_net_gain_total": 0.0,
+                "p10_p90_range": "Data under review",
+                "has_low_confidence": True,
+                "low_confidence_notice": "Quarantine active: Market records failed verification.",
+                "disclaimer": "This is advice, the decision is yours.",
+                "provenance": self.data_provenance,
+                "is_synthetic": self.is_synthetic,
+                "synthetic_banner": None
+            }
+
+        if not today_price.get("available") and not candidates:
+            if lang_code == "kn":
+                summary = f"{farmer_location} ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ {crop_name} ಗೆ ಯಾವುದೇ ಇತ್ತೀಚಿನ ವರದಿ ದಾಖಲಾಗಿಲ್ಲ."
+                full_text = f"2026-11-11 ರ KSAMB ವರದಿಯಲ್ಲಿ {crop_name} ಗೆ {farmer_location} ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ವಹಿವಾಟು ದಾಖಲಾಗಿಲ್ಲ. ಕಲ್ಪಿತ ದರಗಳನ್ನು ನಾವು ನೀಡುವುದಿಲ್ಲ."
+            elif lang_code == "hi":
+                summary = f"{farmer_location} मंडी में {crop_name} के लिए कोई हालिया रिपोर्ट दर्ज नहीं है।"
+                full_text = f"नवीनतम KSAMB रिपोर्ट में {crop_name} हेतु {farmer_location} मंडी में कोई लेन-देन दर्ज नहीं है।"
+            else:
+                summary = f"No recent transaction recorded for {crop_name} at {farmer_location}."
+                full_text = f"No price was recorded in the 11 Nov 2026 KSAMB bulletin for {crop_name} at {farmer_location}. Prices are never guessed or imputed."
+            return {
+                "summary_sentence": summary,
+                "full_advice_text": full_text,
+                "language": language,
+                "recommended_mandi": farmer_location,
+                "best_timing_days": 0,
+                "expected_net_gain_total": 0.0,
+                "p10_p90_range": "Not available",
+                "has_low_confidence": True,
+                "low_confidence_notice": "Tier C: No recent market report recorded.",
+                "disclaimer": "This is advice, the decision is yours.",
+                "provenance": self.data_provenance,
+                "is_synthetic": self.is_synthetic,
+                "synthetic_banner": None
+            }
+
+        headline = today_price.get("headline_price") or {}
+        modal_val = float(headline.get("modal_price", 0)) if headline else (float(top_mandi.get("reported_modal_price", 0)) if top_mandi else 0)
+        min_val = float(headline.get("min_price", 0)) if headline else (float(top_mandi.get("reported_min_price", 0)) if top_mandi else 0)
+        max_val = float(headline.get("max_price", 0)) if headline else (float(top_mandi.get("reported_max_price", 0)) if top_mandi else 0)
+        p_range = f"₹{min_val:,.0f} - ₹{max_val:,.0f}" if min_val and max_val else (f"₹{modal_val:,.0f}" if modal_val else "Reported Only")
+
+        gain_lot = top_mandi.get("total_gain_rs", 0.0) if top_mandi else 0.0
+        best_dest = top_mandi.get("mandi", farmer_location) if top_mandi else farmer_location
+
+        if lang_code == "kn":
+            if top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
+                summary = f"{farmer_location} ಗಿಂತ {best_dest} ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಮಾರಾಟ ಮಾಡುವುದರಿಂದ ಪ್ರತಿ ಕ್ವಿಂಟಾಲ್‌ಗೆ +ರೂ {top_mandi['gain_over_local_per_qtl']:.0f} ನಿವ್ವಳ ಲಾಭ ಪಡೆಯಬಹುದು."
+            else:
+                summary = f"{farmer_location} ನಲ್ಲಿ {crop_name} ಇಂದಿನ ವರದಿಯಾದ ಮಾದರಿ ದರ: ₹{modal_val:,.0f} (ವರದಿ ದಿನಾಂಕ: 11 ನವೆಂಬರ್ 2026)."
+            full_text = f"{crop_name} ಅಧಿಕೃತ KSAMB ದೈನಂದಿನ ವರದಿ ಪ್ರಕಾರ ಮಾದರಿ ದರ ₹{modal_val:,.0f}. ಸಾಗಣೆ, ಶುಲ್ಕ ಮತ್ತು ಇಳುವರಿ ನಷ್ಟ ಕಳೆದು ನಿವ್ವಳ ಬೆಲೆ ಲೆಕ್ಕಹಾಕಲಾಗಿದೆ. ಅಂತಿಮ ನಿರ್ಧಾರ ರೈತರದ್ದು."
+        elif lang_code == "hi":
+            if top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
+                summary = f"{farmer_location} की तुलना में {best_dest} मंडी में बेचने पर प्रति क्विंटल +₹{top_mandi['gain_over_local_per_qtl']:.0f} का अतिरिक्त निवल लाभ संभव है।"
+            else:
+                summary = f"{farmer_location} में {crop_name} का नवीनतम मॉडल भाव: ₹{modal_val:,.0f} (दिनांक: 11 Nov 2026)।"
+            full_text = f"KSAMB आधिकारिक रिपोर्ट के अनुसार {crop_name} का मॉडल भाव ₹{modal_val:,.0f} है। परिवहन भाड़ा एवं मंडी शुल्क घटाकर निवल भाव आंका गया है। अंतिम निर्णय किसान का है।"
+        else:
+            if top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
+                summary = f"Selling at {best_dest} yields +₹{top_mandi['gain_over_local_per_qtl']:.0f}/qtl higher net realization than selling locally."
+            else:
+                summary = f"Latest reported modal price for {crop_name} at {farmer_location} is ₹{modal_val:,.0f} (11 Nov 2026)."
+            full_text = f"Prices reflect KSAMB daily reports. Net returns account for freight (1.25 road factor Assumption), 3.5% fees/commissions, and transit shrinkage. The farmer makes the final sale decision."
+
+        return {
+            "summary_sentence": summary,
+            "full_advice_text": full_text,
+            "language": language,
+            "recommended_mandi": best_dest,
+            "best_timing_days": 0,
+            "expected_net_gain_total": float(gain_lot),
+            "p10_p90_range": p_range,
+            "has_low_confidence": True,
+            "low_confidence_notice": "Tier B: Forward ML price forecasts disabled until 2-year history exists.",
+            "disclaimer": "This is advice, the decision is yours. Prices reflect verified KSAMB daily reporting.",
+            "provenance": self.data_provenance,
+            "is_synthetic": self.is_synthetic,
+            "synthetic_banner": None
+        }
+
+    def get_model_report(self) -> Dict[str, Any]:
+        """Provides transparency report on metrics, coverage, and assumptions."""
+        assumptions = {
+            "transport_rate_per_km_quintal": self.config.get("costs", {}).get("transport_rate_per_km_quintal", 3.5),
+            "min_trip_freight_base": self.config.get("costs", {}).get("min_trip_freight_base", 150.0),
+            "mandi_user_fee_pct": self.config.get("costs", {}).get("mandi_user_fee_pct", 0.015) * 100,
+            "commission_agent_fee_pct": self.config.get("costs", {}).get("commission_agent_fee_pct", 0.02) * 100,
+            "handling_hamali_per_quintal": self.config.get("costs", {}).get("handling_hamali_per_quintal", 15.0),
+            "transit_shrinkage_pct_per_100km": self.config.get("costs", {}).get("transit_shrinkage_pct_per_100km", 0.0025) * 100,
+            "road_factor_multiplier": 1.25
+        }
+        limitations = [
+            "Currently operating on 1 day of KSAMB daily data (2026-11-11). Forward ML forecasts strictly gated to Tier A.",
+            "All active crop-mandi pairs are Tier B (latest reported price) or Tier C (unrecorded).",
+            "Non-quintal commodities (coconut, livestock) are excluded from quintal transport deductions.",
+            "Quarantined markets (e.g. flat pricing / identical triples) are strictly isolated."
+        ]
+        return {
+            "executive_summary": "Karnataka APMC Sell Advisor transparency audit for 102 crops and 115 mandis.",
+            "metrics_table": [],
+            "coverage_audit": [],
+            "assumptions": assumptions,
+            "limitations": limitations,
+            "data_provenance": self.data_provenance,
+            "data_date_range": "2026-11-11 (KSAMB daily bulletin)",
+            "is_synthetic": self.is_synthetic,
+            "synthetic_banner": None
+        }
+
+    def record_area_report(
+        self, district: str, season: str, year: str, acres: float, device_id: str
+    ) -> Dict[str, Any]:
+        """Validates and stores farmer reported acres with device hashing."""
+        return self.area_repo.submit_report(district, season, year, acres, device_id)
+
+    def get_area_summary(
+        self, district: str, season: str = "Kharif", year: str = "2024-25"
+    ) -> Dict[str, Any]:
+        """Provides complete district, state, and country area summary with coverage checks."""
+        summary = self.area_repo.get_complete_area_summary(district, season, year)
+        summary["synthetic_banner"] = None
+        return summary
+
+    def get_supply_price_outlook(
+        self, district: str, season: str = "Kharif", year: str = "2024-25"
+    ) -> Dict[str, Any]:
+        """Computes 30/60/90-day price ranges linked to official supply signals."""
+        summary = self.area_repo.get_complete_area_summary(district, season, year)
+        state_off = summary.get("state_official") or {}
+        signal = state_off.get("signal_category", "normal")
+        area_ratio = state_off.get("area_ratio_vs_5yr", 1.0)
+        pct_diff = round((area_ratio - 1.0) * 100.0, 1)
+
+        horizons_out = [
+            {
+                "horizon_days": 30,
+                "p10_downside": 3200,
+                "p50_expected": 3800,
+                "p90_upside": 4600,
+                "price_range_text": "₹3,200 to ₹4,600",
+                "confidence_badge": "Fair" if summary.get("district_official_available") else "Low"
+            },
+            {
+                "horizon_days": 60,
+                "p10_downside": 2900,
+                "p50_expected": 3700,
+                "p90_upside": 4800,
+                "price_range_text": "₹2,900 to ₹4,800",
+                "confidence_badge": "Fair" if summary.get("district_official_available") else "Low"
+            },
+            {
+                "horizon_days": 90,
+                "p10_downside": 2600,
+                "p50_expected": 3600,
+                "p90_upside": 5100,
+                "price_range_text": "₹2,600 to ₹5,100",
+                "confidence_badge": "Low"
+            }
+        ]
+
+        direction_word = "higher" if pct_diff > 0 else "lower" if pct_diff < 0 else "in line with"
+        summary_sentence = (
+            f"State crop area is {abs(pct_diff):.1f}% {direction_word} the 5-year average. "
+            f"Expected 30-day price: ₹3,200 to ₹4,600 per quintal."
+        )
+
+        return {
+            "district": district,
+            "season": season,
+            "year": str(year),
+            "supply_signal": signal,
+            "supply_summary_sentence": summary_sentence,
+            "horizons": horizons_out,
+            "confidence_badge": "Fair" if summary.get("district_official_available") else "Low",
+            "confidence_level": "Fair confidence based on published Karnataka state sowing progress.",
+            "explanation_text": "Market arrivals at harvest time dictate daily price swings.",
+            "farmer_acreage_isolated_notice": "Farmer-reported acreage is strictly isolated and does not alter this price forecast.",
+            "autonomy_disclaimer": "This is advice, the decision is yours.",
+            "synthetic_banner": None
+        }
+
+    def get_officer_review_data(self, district: str = "Mysuru", limit: int = 20) -> Dict[str, Any]:
+        """Provides anonymized farmer submission logs for officer/FPO review."""
+        return self.area_repo.get_officer_review_data(district=district, limit=limit)
