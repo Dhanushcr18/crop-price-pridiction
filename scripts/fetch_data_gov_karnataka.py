@@ -15,6 +15,9 @@ import logging
 from datetime import datetime
 from typing import Dict, Any, List
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
 logger = logging.getLogger("fetch_data_gov_karnataka")
@@ -25,7 +28,7 @@ TARGET_CROPS = ["Onion", "Tomato", "Potato"]
 TARGET_STATE = "Karnataka"
 
 
-def fetch_karnataka_daily_records() -> Dict[str, Any]:
+def fetch_karnataka_daily_records(fetch_all: bool = True) -> Dict[str, Any]:
     api_key = os.environ.get("DATA_GOV_API_KEY", "").strip()
     if not api_key:
         logger.warning(
@@ -44,26 +47,24 @@ def fetch_karnataka_daily_records() -> Dict[str, Any]:
     os.makedirs(out_dir, exist_ok=True)
 
     records_collected: List[Dict[str, Any]] = []
-    
-    for crop in TARGET_CROPS:
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+
+    if fetch_all:
         params = {
             "api-key": api_key,
             "format": "json",
             "offset": 0,
-            "limit": 1000,
+            "limit": 2000,
             "filters[state]": TARGET_STATE,
-            "filters[commodity]": crop
         }
-        
-        logger.info(f"Querying data.gov.in for State={TARGET_STATE}, Commodity={crop}...")
+        logger.info(f"Querying data.gov.in for all commodities in State={TARGET_STATE}...")
         try:
-            resp = requests.get(BASE_URL, params=params, timeout=30)
+            resp = requests.get(BASE_URL, params=params, headers=headers, timeout=45)
             status_code = resp.status_code
             raw_bytes = resp.content
             raw_hash = hashlib.sha256(raw_bytes).hexdigest()
 
-            # Save raw untouched response bytes
-            raw_file_name = f"response_{crop.lower()}_{datetime.now().strftime('%H%M%S')}.json"
+            raw_file_name = f"response_all_karnataka_{datetime.now().strftime('%H%M%S')}.json"
             raw_file_path = os.path.join(out_dir, raw_file_name)
             with open(raw_file_path, "wb") as f:
                 f.write(raw_bytes)
@@ -72,26 +73,67 @@ def fetch_karnataka_daily_records() -> Dict[str, Any]:
             records = data.get("records", []) if isinstance(data, dict) else []
             records_collected.extend(records)
 
-            # Save metadata alongside
             meta = {
                 "url": resp.url.split("api-key=")[0] + "api-key=REDACTED",
                 "http_status": status_code,
                 "timestamp": datetime.now().isoformat(),
-                "crop": crop,
                 "state": TARGET_STATE,
                 "raw_file": raw_file_path,
                 "sha256": raw_hash,
                 "records_returned": len(records),
                 "acquisition_method": "live_http"
             }
-            meta_path = os.path.join(out_dir, f"meta_{crop.lower()}_{datetime.now().strftime('%H%M%S')}.json")
+            meta_path = os.path.join(out_dir, f"meta_all_karnataka_{datetime.now().strftime('%H%M%S')}.json")
             with open(meta_path, "w", encoding="utf-8") as f:
                 json.dump(meta, f, indent=2)
 
-            logger.info(f"Saved {len(records)} records for {crop} (HTTP {status_code}) -> {raw_file_path}")
-
+            logger.info(f"Saved {len(records)} records for all Karnataka commodities (HTTP {status_code}) -> {raw_file_path}")
         except Exception as e:
-            logger.error(f"Failed to fetch {crop} from data.gov.in: {e}")
+            logger.error(f"Failed to fetch all commodities from data.gov.in: {e}")
+    else:
+        for crop in TARGET_CROPS:
+            params = {
+                "api-key": api_key,
+                "format": "json",
+                "offset": 0,
+                "limit": 1000,
+                "filters[state]": TARGET_STATE,
+                "filters[commodity]": crop
+            }
+            logger.info(f"Querying data.gov.in for State={TARGET_STATE}, Commodity={crop}...")
+            try:
+                resp = requests.get(BASE_URL, params=params, headers=headers, timeout=45)
+                status_code = resp.status_code
+                raw_bytes = resp.content
+                raw_hash = hashlib.sha256(raw_bytes).hexdigest()
+
+                raw_file_name = f"response_{crop.lower()}_{datetime.now().strftime('%H%M%S')}.json"
+                raw_file_path = os.path.join(out_dir, raw_file_name)
+                with open(raw_file_path, "wb") as f:
+                    f.write(raw_bytes)
+
+                data = resp.json() if status_code == 200 else {}
+                records = data.get("records", []) if isinstance(data, dict) else []
+                records_collected.extend(records)
+
+                meta = {
+                    "url": resp.url.split("api-key=")[0] + "api-key=REDACTED",
+                    "http_status": status_code,
+                    "timestamp": datetime.now().isoformat(),
+                    "crop": crop,
+                    "state": TARGET_STATE,
+                    "raw_file": raw_file_path,
+                    "sha256": raw_hash,
+                    "records_returned": len(records),
+                    "acquisition_method": "live_http"
+                }
+                meta_path = os.path.join(out_dir, f"meta_{crop.lower()}_{datetime.now().strftime('%H%M%S')}.json")
+                with open(meta_path, "w", encoding="utf-8") as f:
+                    json.dump(meta, f, indent=2)
+
+                logger.info(f"Saved {len(records)} records for {crop} (HTTP {status_code}) -> {raw_file_path}")
+            except Exception as e:
+                logger.error(f"Failed to fetch {crop} from data.gov.in: {e}")
 
     return {
         "status": "success",

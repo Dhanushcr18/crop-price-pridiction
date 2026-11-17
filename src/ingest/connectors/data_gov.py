@@ -6,7 +6,10 @@ import logging
 import pandas as pd
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
+from dotenv import load_dotenv
 from src.ingest.base import BaseConnector, RawPayload, ParsedRow, SchemaValidationError
+
+load_dotenv()
 
 logger = logging.getLogger("farmer_advisor.ingest.data_gov")
 

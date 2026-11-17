@@ -6,6 +6,9 @@ import logging
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
 import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from src.ingest.base import PolicyBlockedError
 from src.ingest.connectors import get_connector
