@@ -629,24 +629,40 @@ class AdvisorService:
         gain_lot = top_mandi.get("total_gain_rs", 0.0) if top_mandi else 0.0
         best_dest = top_mandi.get("mandi", farmer_location) if top_mandi else farmer_location
 
+        has_local_report = bool(today_price.get("available"))
+        top_dist = top_mandi.get("distance_km", 0.0) if top_mandi else 0.0
+        top_net = top_mandi.get("net_price_modal", 0.0) if top_mandi else 0.0
+
         if lang_code == "kn":
-            if top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
+            if not has_local_report and top_mandi:
+                summary = f"{farmer_location} ನಲ್ಲಿ {crop_name} ಗೆ ವರದಿ ದಾಖಲಾಗಿಲ್ಲ. ಹತ್ತಿರದ {best_dest} ({top_dist} ಕಿ.ಮೀ) ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ನಿವ್ವಳ ಮಾದರಿ ದರ ₹{top_net:,.0f}/ಕ್ವಿಂಟಾಲ್ ಇದೆ."
+                full_text = f"{farmer_location} ನಲ್ಲಿ {crop_name} ಗೆ ಇಂದಿನ ಬೆಲೆ ವರದಿ ಲಭ್ಯವಿಲ್ಲ. ಹತ್ತಿರದ {best_dest} ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ವರದಿಯಾದ ಮಾದರಿ ದರ ₹{top_mandi.get('reported_modal_price', 0):,.0f}. ಸಾಗಣೆ ಮತ್ತು ಶುಲ್ಕ ಕಳೆದು ನಿವ್ವಳ ಬೆಲೆ ₹{top_net:,.0f}. ಅಂತಿಮ ನಿರ್ಧಾರ ರೈತರದ್ದು."
+            elif top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
                 summary = f"{farmer_location} ಗಿಂತ {best_dest} ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಮಾರಾಟ ಮಾಡುವುದರಿಂದ ಪ್ರತಿ ಕ್ವಿಂಟಾಲ್‌ಗೆ +ರೂ {top_mandi['gain_over_local_per_qtl']:.0f} ನಿವ್ವಳ ಲಾಭ ಪಡೆಯಬಹುದು."
+                full_text = f"{crop_name} ಅಧಿಕೃತ KSAMB ದೈನಂದಿನ ವರದಿ ಪ್ರಕಾರ ಮಾದರಿ ದರ ₹{modal_val:,.0f}. ಸಾಗಣೆ, ಶುಲ್ಕ ಮತ್ತು ಇಳುವರಿ ನಷ್ಟ ಕಳೆದು ನಿವ್ವಳ ಬೆಲೆ ಲೆಕ್ಕಹಾಕಲಾಗಿದೆ. ಅಂತಿಮ ನಿರ್ಧಾರ ರೈತರದ್ದು."
             else:
                 summary = f"{farmer_location} ನಲ್ಲಿ {crop_name} ಇಂದಿನ ವರದಿಯಾದ ಮಾದರಿ ದರ: ₹{modal_val:,.0f} (ವರದಿ ದಿನಾಂಕ: 11 ನವೆಂಬರ್ 2026)."
-            full_text = f"{crop_name} ಅಧಿಕೃತ KSAMB ದೈನಂದಿನ ವರದಿ ಪ್ರಕಾರ ಮಾದರಿ ದರ ₹{modal_val:,.0f}. ಸಾಗಣೆ, ಶುಲ್ಕ ಮತ್ತು ಇಳುವರಿ ನಷ್ಟ ಕಳೆದು ನಿವ್ವಳ ಬೆಲೆ ಲೆಕ್ಕಹಾಕಲಾಗಿದೆ. ಅಂತಿಮ ನಿರ್ಧಾರ ರೈತರದ್ದು."
+                full_text = f"{crop_name} ಅಧಿಕೃತ KSAMB ದೈನಂದಿನ ವರದಿ ಪ್ರಕಾರ ಮಾದರಿ ದರ ₹{modal_val:,.0f}. ಸಾಗಣೆ, ಶುಲ್ಕ ಮತ್ತು ಇಳುವರಿ ನಷ್ಟ ಕಳೆದು ನಿವ್ವಳ ಬೆಲೆ ಲೆಕ್ಕಹಾಕಲಾಗಿದೆ. ಅಂತಿಮ ನಿರ್ಧಾರ ರೈತರದ್ದು."
         elif lang_code == "hi":
-            if top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
+            if not has_local_report and top_mandi:
+                summary = f"{farmer_location} में {crop_name} का भाव दर्ज नहीं है। निकटतम {best_dest} ({top_dist} किमी) में निवल मॉडल भाव ₹{top_net:,.0f}/क्विंटल है।"
+                full_text = f"{farmer_location} में {crop_name} का आज का भाव उपलब्ध नहीं है। निकटतम {best_dest} में मॉडल भाव ₹{top_mandi.get('reported_modal_price', 0):,.0f} है। परिवहन भाड़ा घटाकर निवल भाव ₹{top_net:,.0f} आंका गया है। अंतिम निर्णय किसान का है।"
+            elif top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
                 summary = f"{farmer_location} की तुलना में {best_dest} मंडी में बेचने पर प्रति क्विंटल +₹{top_mandi['gain_over_local_per_qtl']:.0f} का अतिरिक्त निवल लाभ संभव है।"
+                full_text = f"KSAMB आधिकारिक रिपोर्ट के अनुसार {crop_name} का मॉडल भाव ₹{modal_val:,.0f} है। परिवहन भाड़ा एवं मंडी शुल्क घटाकर निवल भाव आंका गया है। अंतिम निर्णय किसान का है।"
             else:
                 summary = f"{farmer_location} में {crop_name} का नवीनतम मॉडल भाव: ₹{modal_val:,.0f} (दिनांक: 11 Nov 2026)।"
-            full_text = f"KSAMB आधिकारिक रिपोर्ट के अनुसार {crop_name} का मॉडल भाव ₹{modal_val:,.0f} है। परिवहन भाड़ा एवं मंडी शुल्क घटाकर निवल भाव आंका गया है। अंतिम निर्णय किसान का है।"
+                full_text = f"KSAMB आधिकारिक रिपोर्ट के अनुसार {crop_name} का मॉडल भाव ₹{modal_val:,.0f} है। परिवहन भाड़ा एवं मंडी शुल्क घटाकर निवल भाव आंका गया है। अंतिम निर्णय किसान का है।"
         else:
-            if top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
+            if not has_local_report and top_mandi:
+                summary = f"No report for {crop_name} at {farmer_location} today. Nearby {best_dest} ({top_dist} km away) offers a net price of ₹{top_net:,.0f}/qtl."
+                full_text = f"No local price report for {crop_name} at {farmer_location} today. Nearby {best_dest} reports ₹{top_mandi.get('reported_modal_price', 0):,.0f}/qtl, with an estimated net realization of ₹{top_net:,.0f}/qtl after transport and statutory fees. The farmer makes the final sale decision."
+            elif top_mandi and top_mandi.get("gain_over_local_per_qtl", 0) > 0:
                 summary = f"Selling at {best_dest} yields +₹{top_mandi['gain_over_local_per_qtl']:.0f}/qtl higher net realization than selling locally."
+                full_text = f"Prices reflect KSAMB daily reports. Net returns account for freight (1.25 road factor Assumption), 3.5% fees/commissions, and transit shrinkage. The farmer makes the final sale decision."
             else:
                 summary = f"Latest reported modal price for {crop_name} at {farmer_location} is ₹{modal_val:,.0f} (11 Nov 2026)."
-            full_text = f"Prices reflect KSAMB daily reports. Net returns account for freight (1.25 road factor Assumption), 3.5% fees/commissions, and transit shrinkage. The farmer makes the final sale decision."
+                full_text = f"Prices reflect KSAMB daily reports. Net returns account for freight (1.25 road factor Assumption), 3.5% fees/commissions, and transit shrinkage. The farmer makes the final sale decision."
 
         return {
             "summary_sentence": summary,

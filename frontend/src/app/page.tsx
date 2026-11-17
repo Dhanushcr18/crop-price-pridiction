@@ -199,7 +199,7 @@ export default function HomePage() {
     }
     // If advice already calculated, refresh plain language advice
     if (hasResults) {
-      getAdvice(farmerLocation, quantity, storageType, hasTraderDebt, newLang)
+      getAdvice(farmerLocation, quantity, storageType, hasTraderDebt, newLang, crop)
         .then((res) => setAdviceData(res))
         .catch((e) => console.warn(e));
     }
